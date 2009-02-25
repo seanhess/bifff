@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="style.*" xmlns:magic="magic.*">
+		
+	<!--<Rule path="VBox .one" base="{main}">
+		<Set width="400"/>
+	</Rule>-->
+	
+	<magic:Listener dispatcher="{this}" target="{VBox}"/>
+	
+	<mx:HBox id="main" styleName="main">
+		
+		<mx:VBox styleName="sub">
+			<mx:Button label="CHARLIE"/>		
+			<mx:Button label="CHARLIE"/>		
+			<mx:Button label="CHARLIE"/>		
+		</mx:VBox>
+		
+		<mx:VBox styleName="list">
+			<mx:Button label="Henry" styleName="test one two"/>
+			<mx:Button label="Henry" styleName="test one two"/>
+			<mx:Button label="Henry" styleName="test one two"/>
+			<mx:Button label="Henry" styleName="test one two"/>
+			<mx:Button label="Henry" styleName="test one two"/>
+		</mx:VBox>
+		
+	</mx:HBox>
+	
+</mx:Application>
