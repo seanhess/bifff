@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Object xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:magic="magic.*">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.core.Container;
+			import mx.core.UIComponent;
+			import mx.core.IDataRenderer;
+		]]>
+	</mx:Script>
+
+	<magic:Node id="any" type="{Node.ANY}"/>
+	<magic:Node id="one" type="{Node.STYLE}" value="one"/>
+	<magic:Node id="myStyle" type="{Node.STYLE}" value="myStyle"/>
+	<magic:Node id="main" type="{Node.STYLE}" value="main"/>
+	<magic:Node id="button" type="{Node.TYPE}" value="{Button}"/>
+	<magic:Node id="vbox" type="{Node.TYPE}" value="{VBox}"/>
+	<magic:Node id="container" type="{Node.TYPE}" value="{Container}"/>
+	<magic:Node id="uicomponent" type="{Node.TYPE}" value="{UIComponent}"/>
+	<magic:Node id="data" type="{Node.TYPE}" value="{IDataRenderer}"/>
+	<magic:Node id="box" type="{Node.TYPE}" value="{Box}"/>
+	<magic:Node id="canvas" type="{Node.TYPE}" value="{Canvas}"/>
+	<magic:Node id="form" type="{Node.TYPE}" value="{Form}"/>
+	<magic:Node id="label" type="{Node.TYPE}" value="{Label}"/>
+
+	<!-- Used in TestMatching -->
+	<mx:VBox id="buttonVBox">
+		<mx:Button id="oneButton" 	label="one" 	styleName="one myStyle"/>
+		<mx:Button id="twoButton" 	label="two" 	styleName="two myStyle"/>
+		<mx:Button id="threeButton" label="three" 	styleName="three"/>
+	</mx:VBox>
+	
+	<mx:Canvas styleName="one">
+		<mx:Box>
+			<mx:Form styleName="myStyle">
+				<mx:Label id="nestedLabel" text="HI"/>
+			</mx:Form>
+			<mx:Label id="lessNestedLabel" text="woot"/>
+		</mx:Box>
+	</mx:Canvas>
+	
+	<mx:HBox styleName="main">
+		<mx:VBox styleName="list">
+			<mx:Button label="Henry" styleName="test one two"/>
+			<mx:Button id="henry" label="Henry" styleName="test one two"/>
+			<mx:Button label="Henry" styleName="test one two"/>
+			<mx:Button label="Henry" styleName="test one two"/>
+			<mx:Button label="Henry" styleName="test one two"/>
+		</mx:VBox>
+	</mx:HBox>
+	
+</mx:Object>

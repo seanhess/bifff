@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="style.*" xmlns:magic="magic.*">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="magic.*">
 		
-	<!--<Rule path="VBox .one" base="{main}">
-		<Set width="400"/>
-	</Rule>-->
+	<Listener target="{this}">
+		<rules>
+			<Rule>
+				<nodes>
+					<Node type="{Node.ANY}" />
+					<Node type="{Node.STYLE}" value="main"/>
+				</nodes>
+			</Rule>
+		</rules>
+	</Listener>
 	
-	<magic:Listener dispatcher="{this}" target="{VBox}"/>
+	<mx:VBox styleName="sub">
+		<mx:Button label="CHARLIE" styleName="one"/>		
+		<mx:Button label="CHARLIE"/>		
+		<mx:Button label="CHARLIE"/>		
+	</mx:VBox>
 	
 	<mx:HBox id="main" styleName="main">
-		
-		<mx:VBox styleName="sub">
-			<mx:Button label="CHARLIE"/>		
-			<mx:Button label="CHARLIE"/>		
-			<mx:Button label="CHARLIE"/>		
-		</mx:VBox>
 		
 		<mx:VBox styleName="list">
 			<mx:Button label="Henry" styleName="test one two"/>
