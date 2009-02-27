@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="net.seanhess.biff.core.*" xmlns:b="net.seanhess.biff.behaviors.*">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="http://biff.seanhess.net/2009">
 
 	<mx:Style>
 		.test
@@ -9,35 +9,35 @@
 			paddingTop: 100;
 		}
 	</mx:Style>
-
+	
 	<BehaviorMap target="{this}">
 	
 		<Selector match="Canvas mx.core.Container VBox.list .one">
-			<b:Set id="ouch" fontSize="48" width="1000" color="{color}"/>
+			<Set id="ouch" fontSize="48" width="1000" color="{color}"/>
 		</Selector>
 		
 		<Selector match=".monkey">
-			<b:Styles addClass="test" xmlns="magic.behaviors.*"/>
+			<Styles addClass="test"/>
 		</Selector>
 		
 		<Selector match=".two">
-			<b:Listener event="click">
-				<b:DispatchEvent type="test"/>
-			</b:Listener>
-			<b:Listener event="test">
-				<b:Trace message="test"/>
-			</b:Listener>
+			<Listener event="click">
+				<DispatchEvent type="test"/>
+			</Listener>
+			<Listener event="test">
+				<Trace message="test"/>
+			</Listener>
 		</Selector>
 		
 		<Selector match="#ooga">
-			<b:Listener event="click">
-				<b:Contents>
-					<b:append>
+			<Listener event="click">
+				<Contents>
+					<append>
 						<mx:Button label="LIVE!"/>
-					</b:append>
-				</b:Contents>
-				<b:Trace message="ooga"/>
-			</b:Listener>
+					</append>
+				</Contents>
+				<Trace message="ooga"/>
+			</Listener>
 		</Selector>
 	</BehaviorMap>
 	
