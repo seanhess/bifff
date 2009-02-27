@@ -5,5 +5,6 @@ package net.seanhess.bif.views
 	public interface ISimpleItem extends IDataRenderer
 	{
 		function getChildren():Array;
+		function removeAllChildren():void;
 	}
 }

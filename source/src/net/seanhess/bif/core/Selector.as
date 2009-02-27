@@ -5,6 +5,8 @@ package net.seanhess.bif.core
 	[DefaultProperty("behaviors")]
 	public class Selector implements ISelector
 	{
+		public var debug:Boolean = false;
+		
 		public function set nodes(value:Array):void
 		{
 			_nodes = value;
@@ -27,15 +29,35 @@ package net.seanhess.bif.core
 		
 		public function set match(value:String):void
 		{
+			_match = value;
+			
 			var items:Array = value.split(" ");
 			var nodes:Array = [];
 			
-			for each (var item:String in items)
+			for (var index:int = 0; index < items.length; index ++)
 			{
-				nodes.push(parseItem(item));
+				var item:String = items[index];
+				var node:Node = parseItem(item);
+				
+				if (node.type == Node.RECURSION_INSTRUCTION)
+				{
+					(nodes[index-1] as Node).recursion = node.value;
+					continue;
+				}
+				
+				nodes.push(node);
 			}
 			
+			(nodes[nodes.length-1] as Node).recursion = Node.NONE;
+			
+			if (debug) 	trace(" [ G ]   " + this);
+			
 			this.nodes = nodes;
+		}
+		
+		public function get match():String
+		{
+			return _match;
 		}
 		
 		public function parseItem(item:String):Node
@@ -44,6 +66,9 @@ package net.seanhess.bif.core
 			
 			if (item == "*")
 				node = new Node(Node.ANY);
+				
+			else if (item == ">")
+				node = new Node(Node.RECURSION_INSTRUCTION, Node.PARENT); // this actually tells
 			
 			else if (item.indexOf(".") == 0)
 				node = new Node(Node.STYLE, item.replace(".",""));				
@@ -125,7 +150,12 @@ package net.seanhess.bif.core
 			return nodes;
 		}
 		
+		public function toString():String
+		{
+			return " [ S ]  " + match;
+		}
 		
+		protected var _match:String;
 		protected var _behaviors:Array;
 		protected var _nodes:Array;
 	}

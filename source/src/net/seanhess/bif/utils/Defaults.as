@@ -32,9 +32,15 @@ package net.seanhess.bif.utils
 			
 			for each (var property:XML in properties)
 			{
-				var value:* = target[property.@name.toString()];
-				if (value is type)
-					found.push(value);
+				try {
+					var value:* = target[property.@name.toString()];
+					if (value is type)
+						found.push(value);
+				}
+				catch (e:Error)
+				{
+					
+				}
 			}
 			
 			return found;

@@ -11,9 +11,14 @@ package net.seanhess.bif.core
 	import net.seanhess.bif.utils.Defaults;
 	import net.seanhess.bif.utils.Invalidator;
 	
+	/**
+	 * I want mate to be able to inject to me, so I'm hacking this to extend UIComponent
+	 */
 	[DefaultProperty("selectors")]
-	public class BehaviorMap
+	public class BehaviorMap extends UIComponent
 	{
+		public var debug:Boolean = false;
+		
 		public var selectors:Array = [];
 		public var matcher:IMatcher = new Matcher();
 		public var invalidator:Invalidator = new Invalidator(commit, 5);
@@ -57,20 +62,41 @@ package net.seanhess.bif.core
 		{
 			var target:UIComponent = event.target as UIComponent;
 			
+			var printed:Boolean = false;
+			
 			for each (var selector:ISelector in selectors)
-				matchSelector(target, selector);
+			{
+				if (matchSelector(target, selector))
+				{
+					if (debug && !printed)
+					{
+						printed = true;
+						trace("");
+						trace("<<< " + target + " >>>");
+					}
+					
+					executeRule(target, selector);
+				}
+			}
 		}
 		
-		protected function matchSelector(target:UIComponent, selector:ISelector):void
+		protected function matchSelector(target:UIComponent, selector:ISelector):Boolean
 		{
-			if (matcher.match(target, selector.nodes, this.target as DisplayObject))
-				executeRule(target, selector);
+			return matcher.match(target, selector.nodes, this.target as DisplayObject);
 		}
 		
 		protected function executeRule(target:UIComponent, selector:ISelector):void
 		{
+			if (debug) trace(selector);
+			
 			for each (var behavior:IBehavior in selector.behaviors)
 				behavior.apply(target);
+		}
+		
+		public function BehaviorMap()
+		{
+			this.includeInLayout = false;
+			this.visible = false;
 		}
 		
 	}

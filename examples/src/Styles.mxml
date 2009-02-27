@@ -11,7 +11,6 @@
 	</mx:Style>
 	
 	<mx:Array id="buttonRenderer">
-		<Swap view="views.ButtonRenderer"/>
 	</mx:Array>
 	
 	<BehaviorMap target="{this}">
@@ -20,8 +19,9 @@
 			<Set right="200"/>
 		</Selector>
 		
-		<Selector match="VBox.buttons Canvas" behaviors="{buttonRenderer}"/><!-- careful with swap NOT to match the thing you're switching to -->
-		<Selector match="VBox.buttons Item" behaviors="{buttonRenderer}"/>
+		<Selector match="VBox Item">
+			<Swap view="views.ButtonRenderer"/>
+		</Selector>
 		
 		<Selector match="ButtonRenderer">
 			<Set color="#FF0000"/>

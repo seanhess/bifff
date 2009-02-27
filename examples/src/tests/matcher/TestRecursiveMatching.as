@@ -29,24 +29,24 @@ package tests.matcher
 		[Test]
 		public function matchImmediately():void
 		{
-			assertEquals(true, matcher.matchRecursive(views.oneButton, [views.one]));
-			assertEquals(true, matcher.matchRecursive(views.oneButton, [views.myStyle]));
-			assertEquals(false, matcher.matchRecursive(views.threeButton, [views.myStyle]));
+			assertEquals(true, matcher.matchAncestor(views.oneButton, [views.one]));
+			assertEquals(true, matcher.matchAncestor(views.oneButton, [views.myStyle]));
+			assertEquals(false, matcher.matchAncestor(views.threeButton, [views.myStyle]));
 		}
 		
 		[Test]
 		public function matchParentBox():void
 		{
-			assertEquals(true, matcher.matchRecursive(views.oneButton, [views.button]));
-			assertEquals(false, matcher.matchRecursive(views.threeButton, [views.myStyle]));
+			assertEquals(true, matcher.matchAncestor(views.oneButton, [views.button]));
+			assertEquals(false, matcher.matchAncestor(views.threeButton, [views.myStyle]));
 		}
 		
 		[Test]
 		public function matchMultipleNesting():void
 		{
-			assertEquals(true, matcher.matchRecursive(views.nestedLabel, [views.one]));
-			assertEquals(true, matcher.matchRecursive(views.nestedLabel, [views.myStyle]));
-			assertEquals(true, matcher.matchRecursive(views.nestedLabel, [views.canvas]));
+			assertEquals(true, matcher.matchAncestor(views.nestedLabel, [views.one]));
+			assertEquals(true, matcher.matchAncestor(views.nestedLabel, [views.myStyle]));
+			assertEquals(true, matcher.matchAncestor(views.nestedLabel, [views.canvas]));
 		}
 		
 		

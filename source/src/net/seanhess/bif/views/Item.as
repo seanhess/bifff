@@ -9,7 +9,7 @@ package net.seanhess.bif.views
 	 * 
 	 * Also allows you to copy children from it, even though it isn't a container
 	 */
-	public class Item extends UIComponent implements ISimpleItem, IDataRenderer
+	dynamic public class Item extends UIComponent implements ISimpleItem, IDataRenderer
 	{
 		protected var _data:Object;
 		
@@ -31,6 +31,11 @@ package net.seanhess.bif.views
 				children.push(this.getChildAt(i));
 				
 			return children;
+		}
+		
+		public function removeAllChildren():void
+		{
+			
 		}
 	}
 }

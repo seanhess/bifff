@@ -14,7 +14,22 @@ package net.seanhess.bif.core
 		{
 			if (nodes.length < 1)
 				return false;
+				
+			var node:Node = last(nodes);
 			
+			switch(node.recursion)
+			{
+				case Node.NONE:			
+				case Node.PARENT:		return matchNone(item, nodes, root);
+				case Node.ANCESTOR:		return matchAncestor(item, nodes, root);
+				
+				default:
+					throw new Error("Unkown recursion for node " + node);
+			}
+		}
+		
+		public function matchNone(item:DisplayObject, nodes:Array, root:DisplayObject = null):Boolean
+		{
 			if (!matchNode(item, last(nodes)))
 				return false;
 				
@@ -24,13 +39,10 @@ package net.seanhess.bif.core
 			if (item == root)
 				return false;
 				
-			return matchRecursive(item.parent, next(nodes), root);
+			return match(item.parent, next(nodes), root);
 		}
 		
-		/**
-		 * called once we're on the second item... searching up the tree
-		 */
-		public function matchRecursive(item:DisplayObject, nodes:Array, root:DisplayObject=null):Boolean
+		public function matchAncestor(item:DisplayObject, nodes:Array, root:DisplayObject = null):Boolean
 		{
 			if (item == null)
 				return false;
@@ -46,11 +58,10 @@ package net.seanhess.bif.core
 			}
 				
 			if (item.parent && item != root)
-				return matchRecursive(item.parent, nodes, root);
+				return match(item.parent, nodes, root);
 				
 			return false;							// no more parents, return false
 		}
-
 
 
 

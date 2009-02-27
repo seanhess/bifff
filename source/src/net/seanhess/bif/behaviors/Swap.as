@@ -24,6 +24,12 @@ package net.seanhess.bif.behaviors
 			
 			var newView:* = new _view();
 			
+			if (target is UIComponent && newView is UIComponent)
+			{
+				newView.styleName = target.styleName;
+				newView.id = target.id;
+			}
+			
 			if (target is IDataRenderer && newView is IDataRenderer)
 				newView.data = target.data; 
 			

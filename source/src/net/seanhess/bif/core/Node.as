@@ -10,8 +10,16 @@ package net.seanhess.bif.core
 		public static const ANY:String = "any";			// * - matches anything.. Be careful, this is less performance-happy
 		public static const META:String = "meta";		// :even and :odd
 		
+		public static const RECURSION_INSTRUCTION:String = "recursionInstruction"; 
+
+		public static const NONE:String = "none";
+		public static const PARENT:String = "parent";
+		public static const ANCESTOR:String = "ancestor";
+		
+		
 		public var type:String;
 		public var value:*;
+		public var recursion:String = ANCESTOR;
 		
 		public function Node(type:String=null, value:*=null)
 		{
@@ -21,7 +29,7 @@ package net.seanhess.bif.core
 		
 		public function toString():String
 		{
-			return type + ": " + value;
+			return "<Node type=" + type + " value=" + value + "/>";
 		}
 	}
 }
