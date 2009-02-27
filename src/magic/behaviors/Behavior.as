@@ -1,36 +1,16 @@
 package magic.behaviors
 {
-	import flash.display.DisplayObject;
-	
-	import mx.core.UIComponent;
-	
+	/**
+	 * One issue... it doesn't make sense to store the target, since this is reused. It needs to have add(target) and remove(target)
+	 */
 	public class Behavior implements IBehavior
 	{
-		public function set target(value:DisplayObject):void
+		public function add(target:*):void 
 		{
-			_target = value;
 		}
 		
-		public function get target():DisplayObject
+		public function remove(target:*):void
 		{
-			return _target;
 		}
-		
-		public function get component():UIComponent
-		{
-			return _target as UIComponent;
-		}
-		
-		public function add():void 
-		{
-			
-		}
-		
-		public function remove():void
-		{
-			
-		}
-		
-		protected var _target;
 	}
 }

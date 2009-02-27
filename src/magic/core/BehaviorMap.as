@@ -1,26 +1,28 @@
 package magic.core
 {
+	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	
+	import magic.behaviors.IBehavior;
 	import magic.utils.Invalidator;
 	
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
 	
 	[DefaultProperty("selectors")]
-	public class Listener extends Invalidator
+	public class BehaviorMap
 	{
 		public var selectors:Array = [];
 		public var matcher:IMatcher = new Matcher();
+		public var invalidator:Invalidator = new Invalidator(commit);
 		
 		public function set target(value:IEventDispatcher):void
 		{
 			if (registered)	unregister();
 			
 			_target = value;	
-			newListen = true;
-			invalidate();
+			invalidator.invalidate("target");
 		}
 		
 		public function get target():IEventDispatcher
@@ -29,16 +31,12 @@ package magic.core
 		}
 		
 		private var _target:IEventDispatcher;
-		private var newListen:Boolean = false;
 		private var registered:Boolean = false;
 		
-		override protected function commit():void
+		protected function commit():void
 		{
-			super.commit();
-			
-			if (newListen)
+			if (invalidator.invalid("target"))
 			{
-				newListen = false;
 				target.addEventListener(FlexEvent.CREATION_COMPLETE, onFoundTarget, true, 1, true);
 				registered = true;
 			}
@@ -54,19 +52,22 @@ package magic.core
 		{
 			var target:UIComponent = event.target as UIComponent;
 			
-			for each (var selector:Selector in selectors)
+			for each (var selector:ISelector in selectors)
 				matchSelector(target, selector);
 		}
 		
-		protected function matchSelector(target:UIComponent, selector:Selector):void
+		protected function matchSelector(target:UIComponent, selector:ISelector):void
 		{
-			if (matcher.match(target, selector.nodes))
+			if (matcher.match(target, selector.nodes, this.target as DisplayObject))
 				executeRule(target, selector);
 		}
 		
-		protected function executeRule(target:UIComponent, selector:Selector):void
+		protected function executeRule(target:UIComponent, selector:ISelector):void
 		{
 			trace("EXECUTING " + selector + " on " + target);
+
+			for each (var behavior:IBehavior in selector.behaviors)
+				behavior.add(target);
 		}
 	}
 }

@@ -1,33 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="magic.core.*">
-	<mx:Script>
-		<![CDATA[
-			import flash.utils.getQualifiedClassName;
-		]]>
-	</mx:Script>
-		
-	<Listener target="{this}">
-		<Selector match="mx.core.Container Button#henry3">
-		
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="magic.core.*" xmlns:behaviors="magic.behaviors.*">
+
+	<BehaviorMap target="{this}">
+		<Selector match="Canvas mx.core.Container VBox.list Button">
+			<Set id="ouch" fontSize="124" paddingBottom="200" width="1000" color="{color}" xmlns="magic.behaviors.*"/>
 		</Selector>
-	</Listener>
+	</BehaviorMap>
 	
-	<mx:VBox styleName="sub">
-		<mx:Button id="charlie1" label="CHARLIE" styleName="one"/>		
-		<mx:Button label="CHARLIE"/>		
-		<mx:Button label="CHARLIE"/>		
-	</mx:VBox>
+	<mx:String id="color">#FFFF00</mx:String>
 	
-	<mx:HBox id="main" styleName="main">
-		
-		<mx:VBox styleName="list">
-			<mx:Button id="henry1" label="Henry" styleName="test one two"/>
-			<mx:Button id="henry2" label="Henry" styleName="test one two"/>
-			<mx:Button id="henry3" label="Henry" styleName="test one two"/>
-			<mx:Button id="henry4" label="Henry" styleName="test one two"/>
-			<mx:Button id="henry5" label="Henry" styleName="test one two"/>
+	<mx:Canvas id="big">
+		<mx:VBox styleName="sub">
+			<mx:Button id="charlie1" label="CHARLIE" styleName="one"/>		
+			<mx:Button label="CHARLIE"/>		
+			<mx:Button label="CHARLIE"/>		
 		</mx:VBox>
 		
-	</mx:HBox>
+		<mx:HBox id="main" styleName="main">
+			<mx:VBox styleName="list">
+				<mx:Button id="henry1" label="Henry" styleName="test one two" click="color = '#00FF00'"/>
+				<mx:Button id="henry2" label="Henry" styleName="test one two" click="color = '#0000FF'"/>
+				<mx:Button id="henry3" label="Henry" styleName="test one two" click="ouch.width = 20"/>
+				<mx:Button id="henry4" label="Henry" styleName="test one two"/>
+				<mx:Button id="henry5" label="Henry" styleName="test one two"/>
+			</mx:VBox>
+		</mx:HBox>
+	</mx:Canvas>
 	
 </mx:Application>

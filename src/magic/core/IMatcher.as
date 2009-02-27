@@ -4,6 +4,6 @@ package magic.core
 	
 	public interface IMatcher
 	{
-		function match(item:DisplayObject, nodes:Array):Boolean;
+		function match(item:DisplayObject, nodes:Array, root:DisplayObject=null):Boolean;
 	}
 }

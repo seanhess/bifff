@@ -10,7 +10,7 @@ package magic.core
 		/**
 		 * To be called once, only at the beginning
 		 */
-		public function match(item:DisplayObject, nodes:Array):Boolean
+		public function match(item:DisplayObject, nodes:Array, root:DisplayObject=null):Boolean
 		{
 			if (nodes.length < 1)
 				return false;
@@ -21,13 +21,16 @@ package magic.core
 			if (nodes.length == 1) // this was the only one
 				return true;
 				
-			return matchRecursive(item.parent, next(nodes));
+			if (item == root)
+				return false;
+				
+			return matchRecursive(item.parent, next(nodes), root);
 		}
 		
 		/**
 		 * called once we're on the second item... searching up the tree
 		 */
-		public function matchRecursive(item:DisplayObject, nodes:Array):Boolean
+		public function matchRecursive(item:DisplayObject, nodes:Array, root:DisplayObject=null):Boolean
 		{
 			if (item == null)
 				return false;
@@ -42,8 +45,8 @@ package magic.core
 				nodes = next(nodes)		 			// get the next one in the list
 			}
 				
-			if (item.parent)
-				return matchRecursive(item.parent, nodes);
+			if (item.parent && item != root)
+				return matchRecursive(item.parent, nodes, root);
 				
 			return false;							// no more parents, return false
 		}
