@@ -2,5 +2,8 @@
 <BehaviorMap xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://biff.seanhess.net/2009">
 	<Selector match="Button">
 		<Set fontSize="24"/>
+		<Listener event="click">
+			<Set width="200"/>
+		</Listener>
 	</Selector>
 </BehaviorMap>
