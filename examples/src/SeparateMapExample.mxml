@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:biff="http://biff.seanhess.net/2009" xmlns:maps="maps.*">
+	<maps:MainBehaviorMap target="{this}"/>
+	
+	<mx:Button label="henry"/>
+</mx:Application>

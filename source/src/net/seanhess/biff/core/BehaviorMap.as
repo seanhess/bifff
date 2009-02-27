@@ -3,19 +3,19 @@ package net.seanhess.biff.core
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
-	
-	import net.seanhess.biff.behaviors.IBehavior;
-	import net.seanhess.biff.utils.Invalidator;
+	import flash.utils.describeType;
 	
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
 	
-	[DefaultProperty("selectors")]
+	import net.seanhess.biff.behaviors.IBehavior;
+	import net.seanhess.biff.utils.Invalidator;
+	
 	public class BehaviorMap
 	{
 		public var selectors:Array = [];
 		public var matcher:IMatcher = new Matcher();
-		public var invalidator:Invalidator = new Invalidator(commit);
+		public var invalidator:Invalidator = new Invalidator(commit, 5);
 		
 		public function set target(value:IEventDispatcher):void
 		{
@@ -37,6 +37,7 @@ package net.seanhess.biff.core
 		{
 			if (invalidator.invalid("target"))
 			{
+				scanSelectors();
 				target.addEventListener(FlexEvent.CREATION_COMPLETE, onFoundTarget, true, 1, true);
 				registered = true;
 			}
@@ -66,6 +67,28 @@ package net.seanhess.biff.core
 		{
 			for each (var behavior:IBehavior in selector.behaviors)
 				behavior.add(target);
+		}
+		
+		/**
+		 * Reflects through me, looking for selectors
+		 */
+		protected function scanSelectors():void
+		{
+			if (selectors == null || selectors.length == 0)
+			{
+				var info:XML = describeType(this);
+				var properties:XMLList = info..accessor + info..variable;
+				
+				var selectors:Array = [];
+				
+				for each (var property:XML in properties)
+				{
+					if (property.@type == "net.seanhess.biff.core::Selector") // FIXME: Change to use the interface instead?
+						selectors.push(this[property.@name.toString()]);
+				} 
+				
+				this.selectors = selectors;
+			}
 		}
 	}
 }

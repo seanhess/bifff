@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BehaviorMap xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://biff.seanhess.net/2009">
+	<Selector match="Button">
+		<Set fontSize="24"/>
+	</Selector>
+</BehaviorMap>

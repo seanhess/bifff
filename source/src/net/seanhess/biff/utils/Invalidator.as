@@ -12,10 +12,12 @@ package net.seanhess.biff.utils
 		
 		protected var invalidProperties:Object = {};
 		protected var commitCallback:Function;
+		protected var timeout:int = 50;
 		
-		public function Invalidator(commitCallback:Function)
+		public function Invalidator(commitCallback:Function, timeout:int = 50)
 		{
 			this.commitCallback = commitCallback;
+			this.timeout = timeout;
 		}
 		
 		protected function commit():void
@@ -34,7 +36,7 @@ package net.seanhess.biff.utils
 			
 			if (invalidationTimer == null)
 			{
-				invalidationTimer = new Timer(50, 1);
+				invalidationTimer = new Timer(timeout, 1);
 				invalidationTimer.addEventListener(TimerEvent.TIMER, onTimer, false, 0, true);
 				invalidationTimer.start();
 			}
