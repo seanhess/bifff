@@ -10,7 +10,7 @@ package net.seanhess.bif.behaviors
 	 */
 	public class Contents implements IBehavior
 	{
-		public function add(target:*):void
+		public function apply(target:*):void
 		{
 			var container:Container = target as Container;
 			
@@ -26,11 +26,6 @@ package net.seanhess.bif.behaviors
 					
 			for each (var child:UIComponent in toAdd)
 				container.addChild(child);		
-		}
-		
-		public function remove(target:*):void
-		{
-			// not implemented for now.. don't want to worry about GC
 		}
 		
 		public function set removeAll(value:Object):void

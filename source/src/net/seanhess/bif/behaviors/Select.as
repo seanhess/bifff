@@ -2,18 +2,13 @@ package net.seanhess.bif.behaviors
 {
 	import net.seanhess.bif.core.Selector;
 	
-	public class Select
+	public class Select implements IBehavior
 	{
-		public function add(target:*):void
+		public function apply(target:*):void
 		{
 			
 		}
-		
-		public function remove(target:*):void
-		{
-			
-		}
-		
+
 		public function set match(value:String):void
 		{
 			

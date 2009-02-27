@@ -28,23 +28,13 @@ package net.seanhess.bif.behaviors
 		protected var classesToAdd:Array = [];
 		protected var classesToRemove:Array = [];
 		
-		public function add(target:*):void
+		public function apply(target:*):void
 		{
 			views[target] = true;
 			
 			for each (var style:String in classesToAdd)
 			{
 				updateStyleDeclaration(target, style);
-			}
-		}
-		
-		public function remove(target:*):void
-		{
-			delete views[target];
-			
-			for each (var style:String in classesToRemove)
-			{
-				// FIXME
 			}
 		}
 		

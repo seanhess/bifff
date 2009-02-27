@@ -10,12 +10,12 @@ package net.seanhess.bif.behaviors
 	[DefaultProperty("behaviors")]
 	public class Listener implements IBehavior
 	{
-		public function add(target:*):void
+		public function apply(target:*):void
 		{
 			(target as IEventDispatcher).addEventListener(type, handler, false, 0, true);
 		}
 		
-		public function remove(target:*):void
+		public function undo(target:*):void
 		{
 			(target as IEventDispatcher).removeEventListener(type, handler);	
 		}
@@ -39,7 +39,7 @@ package net.seanhess.bif.behaviors
 		{
 			for each (var behavior:IBehavior in behaviors)
 			{
-				behavior.add(event.currentTarget);
+				behavior.apply(event.currentTarget);
 			}
 		}
 		

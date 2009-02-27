@@ -23,7 +23,7 @@ package net.seanhess.bif.behaviors
 		protected var updates:Object = {};
 		protected var invalidator:Invalidator = new Invalidator(commit);
 		
-		public function add(target:*):void
+		public function apply(target:*):void
 		{
 			var old:Object = {};
 			
@@ -33,7 +33,7 @@ package net.seanhess.bif.behaviors
 			views[target] = old;
 		}
 		
-		public function remove(target:*):void
+		public function undo(target:*):void
 		{
 			var old:Object = views[target];
 			

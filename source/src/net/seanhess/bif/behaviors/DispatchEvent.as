@@ -8,7 +8,7 @@ package net.seanhess.bif.behaviors
 	 */
 	public class DispatchEvent implements IBehavior
 	{
-		public function add(target:*):void
+		public function apply(target:*):void
 		{
 			var arguments:Array = constructorArguments;
 			
@@ -22,12 +22,7 @@ package net.seanhess.bif.behaviors
 				
 			(target as IEventDispatcher).dispatchEvent(event);			
 		}
-		
-		public function remove(target:*):void
-		{
-			// um, doesn't do anything.
-		}
-		
+
 		/**
 		 * The event type. 
 		 */
