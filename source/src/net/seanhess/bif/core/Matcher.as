@@ -122,6 +122,21 @@ package net.seanhess.bif.core
 			return true; // if they have all matched
 		}
 		
+		public function matchMeta(item:DisplayObject, node:Node):Boolean
+		{
+			if (!(item.parent))
+				return false;
+				
+			if (node.value == "even" && (item.parent.getChildIndex(item) % 2 == 0))
+				return true;
+			
+			else if (node.value == "odd" && (item.parent.getChildIndex(item) % 2 == 1))
+				return true;
+			
+			else
+				return false;
+		}
+		
 		public function matchNode(item:DisplayObject, node:Node):Boolean
 		{
 			switch(node.type)
@@ -131,6 +146,7 @@ package net.seanhess.bif.core
 				case Node.ID:		return matchID(item, node);
 				case Node.STYLE:	return matchStyle(item, node);
 				case Node.MULTI:	return matchMultiple(item, node);
+				case Node.META:		return matchMeta(item, node);
 				case Node.ANY:		return true;
 			}
 			

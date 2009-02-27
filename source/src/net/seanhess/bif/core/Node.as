@@ -8,6 +8,7 @@ package net.seanhess.bif.core
 		public static const ID:String = "id";			// id
 		public static const MULTI:String = "multi";		// value is an array of nodes that ALL have to match to work
 		public static const ANY:String = "any";			// * - matches anything.. Be careful, this is less performance-happy
+		public static const META:String = "meta";		// :even and :odd
 		
 		public var type:String;
 		public var value:*;

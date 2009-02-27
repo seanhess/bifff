@@ -12,6 +12,18 @@
 	
 	<BehaviorMap target="{this}">
 
+		<Selector match="#rows Canvas">
+			<Set width="200" height="50"/>
+		</Selector>
+
+		<Selector match="#rows Canvas:odd">
+			<Set backgroundColor="#FFFFFF"/>			
+		</Selector>
+		
+		<Selector match="#rows Canvas:even">
+			<Set backgroundColor="#000000"/>			
+		</Selector>
+
 		<Selector match="Canvas mx.core.Container VBox.list .one">
 			<Set id="ouch" fontSize="48" width="1000" color="{color}"/>
 		</Selector>
@@ -64,5 +76,14 @@
 			</mx:VBox>
 		</mx:HBox>
 	</mx:Canvas>
+	
+	<mx:VBox id="rows">
+		<mx:Canvas/>
+		<mx:Canvas/>
+		<mx:Canvas/>
+		<mx:Canvas/>
+		<mx:Canvas/>
+		<mx:Canvas/>
+	</mx:VBox>
 	
 </mx:Application>

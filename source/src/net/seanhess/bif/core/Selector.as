@@ -57,7 +57,7 @@ package net.seanhess.bif.core
 			else if (item.match(/^[a-z]+[\w\.]*$/))	// starts with a lower-case letter, then matches any word or '.' chars till the end
 				node = new Node(Node.CLASS, getDefinitionByName(item));
 			
-			else if (item.match(/^[A-Z][\w\.\#]*$/))
+			else if (item.match(/^[A-Z][\w\.\#\:]*$/))
 				node = new Node(Node.MULTI, parseMulti(item));
 			
 			else
@@ -68,11 +68,12 @@ package net.seanhess.bif.core
 		
 		public function parseMulti(itemList:String):Array
 		{
-			var items:Array = itemList.split(/(\.|\#)/);
+			var items:Array = itemList.split(/(\.|\#|\:)/);
 			var nodes:Array = [];
 			
 			var nextIsStyle:Boolean = false;
 			var nextIsID:Boolean = false;
+			var nextIsMeta:Boolean = false;
 			
 			for each (var item:String in items)
 			{
@@ -80,6 +81,7 @@ package net.seanhess.bif.core
 				{
 					nextIsID = true;
 					nextIsStyle = false;
+					nextIsMeta = false;
 					continue;
 				}
 				
@@ -87,6 +89,15 @@ package net.seanhess.bif.core
 				{
 					nextIsStyle = true;
 					nextIsID = false;
+					nextIsMeta = false;
+					continue;
+				}
+				
+				if (item == ":")
+				{
+					nextIsMeta = true;
+					nextIsID = false;
+					nextIsStyle = false;
 					continue;
 				}
 				
@@ -98,6 +109,9 @@ package net.seanhess.bif.core
 				else if (nextIsID)
 					value = new Node(Node.ID, item);
 					
+				else if (nextIsMeta)
+					value = new Node(Node.META, item);
+					
 				else 
 					value = parseItem(item);
 				
@@ -105,6 +119,7 @@ package net.seanhess.bif.core
 				
 				nextIsID = false;
 				nextIsStyle = false;
+				nextIsMeta = false;
 			}
 			
 			return nodes;
