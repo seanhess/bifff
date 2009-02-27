@@ -3,12 +3,12 @@ package net.seanhess.bif.core
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
-	import flash.utils.describeType;
 	
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
 	
 	import net.seanhess.bif.behaviors.IBehavior;
+	import net.seanhess.bif.utils.Defaults;
 	import net.seanhess.bif.utils.Invalidator;
 	
 	[DefaultProperty("selectors")]
@@ -17,6 +17,7 @@ package net.seanhess.bif.core
 		public var selectors:Array = [];
 		public var matcher:IMatcher = new Matcher();
 		public var invalidator:Invalidator = new Invalidator(commit, 5);
+		public var defaults:Defaults = new Defaults(this);
 		
 		public function set target(value:IEventDispatcher):void
 		{
@@ -38,7 +39,9 @@ package net.seanhess.bif.core
 		{
 			if (invalidator.invalid("target"))
 			{
-				scanSelectors();
+				if (selectors == null || selectors.length == 0)
+					selectors = defaults.scan(ISelector);
+
 				target.addEventListener(FlexEvent.CREATION_COMPLETE, onFoundTarget, true, 1, true);
 				registered = true;
 			}
@@ -70,27 +73,5 @@ package net.seanhess.bif.core
 				behavior.apply(target);
 		}
 		
-		/**
-		 * Reflects through me, looking for selectors
-		 */
-		protected function scanSelectors():void
-		{
-			if (selectors == null || selectors.length == 0)
-			{
-				var info:XML = describeType(this);
-				var properties:XMLList = info..accessor + info..variable;
-				
-				var selectors:Array = [];
-				
-				for each (var property:XML in properties)
-				{
-					var value:* = this[property.@name.toString()];
-					if (value is ISelector)
-						selectors.push(value);
-				} 
-				
-				this.selectors = selectors;
-			}
-		}
 	}
 }
