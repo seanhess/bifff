@@ -5,6 +5,7 @@
 	<component class="net.seanhess.biff.behaviors.IBehavior"/>
 	<component class="net.seanhess.biff.behaviors.Listener"/>
 	<component class="net.seanhess.biff.behaviors.Set"/>
+	<component class="net.seanhess.biff.behaviors.Select"/>
 	<component class="net.seanhess.biff.behaviors.Styles"/>
 	<component class="net.seanhess.biff.behaviors.Trace"/>
 
