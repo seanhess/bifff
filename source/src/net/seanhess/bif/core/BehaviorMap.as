@@ -1,4 +1,4 @@
-package net.seanhess.biff.core
+package net.seanhess.bif.core
 {
 	import flash.display.DisplayObject;
 	import flash.events.Event;
@@ -8,9 +8,10 @@ package net.seanhess.biff.core
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
 	
-	import net.seanhess.biff.behaviors.IBehavior;
-	import net.seanhess.biff.utils.Invalidator;
+	import net.seanhess.bif.behaviors.IBehavior;
+	import net.seanhess.bif.utils.Invalidator;
 	
+	[DefaultProperty("selectors")]
 	public class BehaviorMap
 	{
 		public var selectors:Array = [];
@@ -83,7 +84,7 @@ package net.seanhess.biff.core
 				
 				for each (var property:XML in properties)
 				{
-					if (property.@type == "net.seanhess.biff.core::Selector") // FIXME: Change to use the interface instead?
+					if (property.@type == "net.seanhess.bif.core::Selector") // FIXME: Change to use the interface instead?
 						selectors.push(this[property.@name.toString()]);
 				} 
 				

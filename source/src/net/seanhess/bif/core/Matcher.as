@@ -1,4 +1,4 @@
-package net.seanhess.biff.core
+package net.seanhess.bif.core
 {
 	import flash.display.DisplayObject;
 	import flash.utils.getQualifiedClassName;

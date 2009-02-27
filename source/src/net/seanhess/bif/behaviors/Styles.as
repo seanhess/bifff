@@ -1,4 +1,4 @@
-package net.seanhess.biff.behaviors
+package net.seanhess.bif.behaviors
 {
 	import flash.utils.Dictionary;
 	

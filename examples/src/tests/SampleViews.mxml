@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Object xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="net.seanhess.biff.core.*">
+<mx:Object xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="net.seanhess.bif.core.*">
 
 	<mx:Script>
 		<![CDATA[

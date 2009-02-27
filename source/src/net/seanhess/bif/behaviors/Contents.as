@@ -1,4 +1,4 @@
-package net.seanhess.biff.behaviors
+package net.seanhess.bif.behaviors
 {
 	import mx.core.Container;
 	import mx.core.UIComponent;

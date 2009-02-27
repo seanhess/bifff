@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="http://biff.seanhess.net/2009">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="http://bif.seanhess.net/2009">
 
 	<mx:Style>
 		.test
@@ -11,7 +11,7 @@
 	</mx:Style>
 	
 	<BehaviorMap target="{this}">
-	
+
 		<Selector match="Canvas mx.core.Container VBox.list .one">
 			<Set id="ouch" fontSize="48" width="1000" color="{color}"/>
 		</Selector>

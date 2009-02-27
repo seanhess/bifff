@@ -1,8 +1,8 @@
-package net.seanhess.biff.behaviors
+package net.seanhess.bif.behaviors
 {
-	import net.seanhess.biff.core.Selector;
+	import net.seanhess.bif.core.Selector;
 	
-	public class Select extends IBehavior extends Selector
+	public class Select
 	{
 		public function add(target:*):void
 		{
@@ -19,7 +19,7 @@ package net.seanhess.biff.behaviors
 			
 		}
 		
-		public functions set direction(value:String):void
+		public function set direction(value:String):void
 		{
 		
 		}

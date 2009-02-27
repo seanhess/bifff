@@ -1,4 +1,4 @@
-package net.seanhess.biff.utils
+package net.seanhess.bif.utils
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;

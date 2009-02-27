@@ -1,7 +1,7 @@
 package tests.selector
 {
-	import net.seanhess.biff.core.Node;
-	import net.seanhess.biff.core.Selector;
+	import net.seanhess.bif.core.Node;
+	import net.seanhess.bif.core.Selector;
 	
 	import mx.containers.VBox;
 	

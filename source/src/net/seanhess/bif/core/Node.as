@@ -1,4 +1,4 @@
-package net.seanhess.biff.core
+package net.seanhess.bif.core
 {
 	public class Node
 	{

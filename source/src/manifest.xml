@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <componentPackage>    
-	<component class="net.seanhess.biff.behaviors.Contents"/>
-	<component class="net.seanhess.biff.behaviors.DispatchEvent"/>
-	<component class="net.seanhess.biff.behaviors.IBehavior"/>
-	<component class="net.seanhess.biff.behaviors.Listener"/>
-	<component class="net.seanhess.biff.behaviors.Set"/>
-	<component class="net.seanhess.biff.behaviors.Select"/>
-	<component class="net.seanhess.biff.behaviors.Styles"/>
-	<component class="net.seanhess.biff.behaviors.Trace"/>
+	<component class="net.seanhess.bif.behaviors.Contents"/>
+	<component class="net.seanhess.bif.behaviors.DispatchEvent"/>
+	<component class="net.seanhess.bif.behaviors.IBehavior"/>
+	<component class="net.seanhess.bif.behaviors.Listener"/>
+	<component class="net.seanhess.bif.behaviors.Set"/>
+	<component class="net.seanhess.bif.behaviors.Select"/>
+	<component class="net.seanhess.bif.behaviors.Styles"/>
+	<component class="net.seanhess.bif.behaviors.Trace"/>
 
-	<component class="net.seanhess.biff.core.BehaviorMap"/>
-	<component class="net.seanhess.biff.core.IMatcher"/>
-	<component class="net.seanhess.biff.core.ISelector"/>
-	<component class="net.seanhess.biff.core.Matcher"/>
-	<component class="net.seanhess.biff.core.Node"/>
-	<component class="net.seanhess.biff.core.Selector"/>
+	<component class="net.seanhess.bif.core.BehaviorMap"/>
+	<component class="net.seanhess.bif.core.IMatcher"/>
+	<component class="net.seanhess.bif.core.ISelector"/>
+	<component class="net.seanhess.bif.core.Matcher"/>
+	<component class="net.seanhess.bif.core.Node"/>
+	<component class="net.seanhess.bif.core.Selector"/>
 	
-	<component class="net.seanhess.biff.utils.Invalidator"/>
+	<component class="net.seanhess.bif.utils.Invalidator"/>
 </componentPackage>
