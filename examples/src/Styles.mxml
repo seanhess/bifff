@@ -11,6 +11,14 @@
 	</mx:Style>
 	
 	<BehaviorMap target="{this}">
+	
+		<Selector match="VBox.buttons">
+			<Set right="200"/>
+		</Selector>
+		
+		<Selector match="VBox.buttons Canvas">
+			<Swap view="views.ButtonRenderer"/>
+		</Selector>
 
 		<Selector match="#rows Canvas">
 			<Set width="200" height="50"/>
@@ -85,5 +93,12 @@
 		<mx:Canvas/>
 		<mx:Canvas/>
 	</mx:VBox>
+	
+	<mx:VBox styleName="buttons">
+		<mx:Canvas data="one"/>
+		<mx:Canvas data="two"/>
+		<mx:Canvas data="three"/>
+		<mx:Canvas data="four"/>
+	</mx:VBox>	
 	
 </mx:Application>
