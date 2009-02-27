@@ -11,22 +11,35 @@
 	</mx:Style>
 
 	<BehaviorMap target="{this}">
+	
 		<Selector match="Canvas mx.core.Container VBox.list .one">
 			<b:Set id="ouch" fontSize="48" width="1000" color="{color}"/>
 		</Selector>
+		
 		<Selector match=".monkey">
 			<b:Styles addClass="test" xmlns="magic.behaviors.*"/>
 		</Selector>
+		
 		<Selector match=".two">
-			<b:Listener event="{MouseEvent.CLICK}">
-				<b:DispatchEvent arguments="test"/>
+			<b:Listener event="click">
+				<b:DispatchEvent type="test"/>
 			</b:Listener>
 			<b:Listener event="test">
 				<b:Trace message="test"/>
 			</b:Listener>
 		</Selector>
+		
+		<Selector match="#ooga">
+			<b:Listener event="click">
+				<b:Contents>
+					<b:append>
+						<mx:Button label="LIVE!"/>
+					</b:append>
+				</b:Contents>
+				<b:Trace message="ooga"/>
+			</b:Listener>
+		</Selector>
 	</BehaviorMap>
-	
 	
 	<mx:String id="color">#FFFF00</mx:String>
 	
@@ -42,7 +55,10 @@
 				<mx:Button id="henry4" label="Henry" styleName="one monkey"/>
 				<mx:Button id="henry1" label="Henry" styleName="test one two" click="color = '#00FF00'"/>
 				<mx:Button id="henry2" label="Henry" styleName="test one two" click="color = '#0000FF'"/>
-				<mx:Button id="henry3" label="Henry" styleName="test one two" click="ouch.width = 20"/>
+				<mx:Button id="henry3" label="Henry" styleName="grrr one two" click="ouch.width = 20"/>
+				<mx:HBox id="ooga" backgroundColor="#FF0000">
+					<mx:Button label="DIE!"/>
+				</mx:HBox>
 			</mx:VBox>
 		</mx:HBox>
 	</mx:Canvas>

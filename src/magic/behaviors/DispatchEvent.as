@@ -10,7 +10,12 @@ package magic.behaviors
 	{
 		public function add(target:*):void
 		{
-			var event:Event = createInstance(factory, constructorArguments) as Event;
+			var arguments:Array = constructorArguments;
+			
+			if (arguments == null && eventType != null )
+				arguments = [eventType];
+			
+			var event:Event = createInstance(factory, arguments) as Event;
 			
 			for (var property:String in eventProperties)
 				event[property] = eventProperties[property];
@@ -40,6 +45,14 @@ package magic.behaviors
 				value = [value];
 				
 			constructorArguments = value as Array;
+		}
+		
+		/**
+		 * Alias to set the first constructor argument?
+		 */
+		public function set type(value:String):void
+		{
+			eventType = value;
 		}
 		
 		/**
@@ -85,5 +98,6 @@ package magic.behaviors
 		protected var factory:Class = Event;
 		protected var constructorArguments:Array;
 		protected var eventProperties:Object;
+		protected var eventType:String;
 	}
 }

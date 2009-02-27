@@ -39,7 +39,7 @@ package magic.behaviors
 		{
 			for each (var behavior:IBehavior in behaviors)
 			{
-				behavior.add(event.target);
+				behavior.add(event.currentTarget);
 			}
 		}
 		
