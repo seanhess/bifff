@@ -10,7 +10,7 @@ package magic
 	public class Listener extends Invalidator
 	{
 		public var selectors:Array = [];
-		public var matcher:Matcher = new Matcher();
+		public var matcher:IMatcher = new Matcher();
 		
 		public function set target(value:IEventDispatcher):void
 		{
@@ -52,15 +52,13 @@ package magic
 		{
 			var target:UIComponent = event.target as UIComponent;
 			
-			var matcher:Matcher = new Matcher();
-			
 			for each (var selector:Selector in selectors)
 				matchSelector(target, selector);
 		}
 		
 		protected function matchSelector(target:UIComponent, selector:Selector):void
 		{
-			if (matcher.begin(target, selector.nodes))
+			if (matcher.match(target, selector.nodes))
 				executeRule(target, selector);
 		}
 		

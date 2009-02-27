@@ -2,10 +2,28 @@ package magic
 {
 	import flash.utils.getDefinitionByName;
 	
-	[DefaultProperty("nodes")]
-	public class Selector
+	[DefaultProperty("behaviors")]
+	public class Selector implements ISelector
 	{
-		[Bindable] public var nodes:Array;
+		public function set nodes(value:Array):void
+		{
+			_nodes = value;
+		}
+		
+		public function get nodes():Array
+		{
+			return _nodes;
+		}
+		
+		public function set behaviors(value:Array):void
+		{
+			_behaviors = value;
+		}
+		
+		public function get behaviors():Array
+		{
+			return _behaviors;
+		}
 		
 		public function set match(value:String):void
 		{
@@ -91,5 +109,9 @@ package magic
 			
 			return nodes;
 		}
+		
+		
+		protected var _behaviors:Array;
+		protected var _nodes:Array;
 	}
 }

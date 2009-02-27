@@ -5,12 +5,12 @@ package magic
 	
 	import mx.core.UIComponent;
 	
-	public class Matcher
+	public class Matcher implements IMatcher
 	{
 		/**
 		 * To be called once, only at the beginning
 		 */
-		public function begin(item:DisplayObject, nodes:Array):Boolean
+		public function match(item:DisplayObject, nodes:Array):Boolean
 		{
 			if (nodes.length < 1)
 				return false;

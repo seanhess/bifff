@@ -7,7 +7,9 @@
 	</mx:Script>
 		
 	<Listener target="{this}">
-		<Selector match="mx.core.Container Button"/>
+		<Selector match="mx.core.Container Button#henry3">
+		
+		</Selector>
 	</Listener>
 	
 	<mx:VBox styleName="sub">
