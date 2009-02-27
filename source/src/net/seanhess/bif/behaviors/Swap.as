@@ -6,8 +6,15 @@ package net.seanhess.bif.behaviors
 	import mx.core.IDataRenderer;
 	import mx.core.UIComponent;
 	
+	import net.seanhess.bif.views.ISimpleItem;
+	
 	/**
-	 * Swaps you out with another view
+	 * Swaps you out with another view, copies your children
+	 * if both are containers, 
+	 * 
+	 * More importantly, it copies the data, allowing you 
+	 * to create views with nothing in them but a data 
+	 * property, and swap them out with a renderer
 	 */
 	public class Swap implements IBehavior
 	{
@@ -20,11 +27,11 @@ package net.seanhess.bif.behaviors
 			if (target is IDataRenderer && newView is IDataRenderer)
 				newView.data = target.data; 
 			
-			if (target is Container && newView is Container)
+			if ((target is Container || target is ISimpleItem) && newView is Container)
 			{
-				var container:Container = target as Container;
-				var children:Array = container.getChildren();
-				container.removeAllChildren();
+				var children:Array = target.getChildren();
+				target.removeAllChildren();
+				
 				for each (var child:UIComponent in children)
 					newView.addChild(child);
 			}
