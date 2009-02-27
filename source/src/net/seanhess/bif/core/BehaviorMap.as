@@ -84,8 +84,9 @@ package net.seanhess.bif.core
 				
 				for each (var property:XML in properties)
 				{
-					if (property.@type == "net.seanhess.bif.core::Selector") // FIXME: Change to use the interface instead?
-						selectors.push(this[property.@name.toString()]);
+					var value:* = this[property.@name.toString()];
+					if (value is ISelector)
+						selectors.push(value);
 				} 
 				
 				this.selectors = selectors;
