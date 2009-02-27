@@ -94,5 +94,18 @@ package tests.matcher
 			assertEquals(true, matcher.matchID(views.mainVBox, new Node(Node.TAG, "mainVBox")));
 			assertEquals(false, matcher.matchID(views.twoButton, new Node(Node.TAG, "mainVBox")));
 		}
+		
+		[Test]
+		public function matchMultiple():void
+		{
+			var composite:Node = new Node(Node.MULTI, [views.button, views.buttontag, views.one, new Node(Node.ID, "henry2")]);	
+			var composite2:Node = new Node(Node.MULTI, [views.button, views.myStyle]);	
+			
+			assertEquals(true, matcher.matchMultiple(views.henry2, composite));
+			assertEquals(false, matcher.matchMultiple(views.henry1, composite));
+			
+			assertEquals(true, matcher.matchMultiple(views.twoButton, composite2));
+		}
+		
 	}
 }
