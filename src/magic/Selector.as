@@ -41,20 +41,43 @@ package magic
 				node.value = item.replace("#","");
 			}
 			
-			// Parse both CLASS and TAG // The difference is... what? use a try block on getDefinitionByName?
-			// Check to see if there is a "." in it
-			// Ooh, how will I tell the difference between a fully qualified class, and multiple styleNames?
-			// Yikes!
+			else if (item.match(/^\w+$/)) 	// if all word characters.. 
+			{
+				node.type = Node.TAG;
+				node.value = item;
+			}
 			
-			// ALSO add multiples
+			else if (item.match(/^[a-z]+[\w\.]*$/))	// starts with a lower-case letter, then matches any word or '.' chars till the end
+			{
+				node.type = Node.CLASS;
+				node.value = getDefinitionByName(item);
+			}
 			
-//			else 
-//			{
-//				node.type = Node.CLASS;
-//				node.value = getDefinitionByName(item);				
-//			}
+			else if (item.match(/^[A-Z][\w\.\#]*$/))
+			{
+				node.type = Node.MULTI;
+				node.value = parseMulti(item);
+			}
+			
+			else
+			{
+				throw new Error("Could not type item ("+item+")");
+			}
 			
 			return node;
+		}
+		
+		public function parseMulti(itemList:String):Array
+		{
+			var items:Array = itemList.split(/[\.\#]/);
+			var nodes:Array = [];
+			
+			for each (var item:String in items)
+			{
+				nodes.push(parseItem(item));
+			}
+			
+			return nodes;
 		}
 	}
 }
