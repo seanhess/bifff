@@ -1,7 +1,9 @@
-package magic
+package magic.core
 {
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
+	
+	import magic.utils.Invalidator;
 	
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;

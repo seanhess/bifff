@@ -1,4 +1,4 @@
-package magic
+package magic.core
 {
 	import flash.utils.getDefinitionByName;
 	

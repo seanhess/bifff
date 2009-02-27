@@ -1,7 +1,7 @@
 package tests.matcher
 {
-	import magic.Matcher;
-	import magic.Node;
+	import magic.core.Matcher;
+	import magic.core.Node;
 	
 	import mx.controls.Button;
 	

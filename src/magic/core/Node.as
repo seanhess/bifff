@@ -1,4 +1,4 @@
-package magic
+package magic.core
 {
 	public class Node
 	{

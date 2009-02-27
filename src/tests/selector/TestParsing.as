@@ -1,7 +1,7 @@
 package tests.selector
 {
-	import magic.Node;
-	import magic.Selector;
+	import magic.core.Node;
+	import magic.core.Selector;
 	
 	import net.digitalprimates.fluint.tests.TestCase;
 	

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Object xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:magic="magic.*">
+<mx:Object xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="magic.core.*">
 
 	<mx:Script>
 		<![CDATA[
@@ -9,23 +9,23 @@
 		]]>
 	</mx:Script>
 
-	<magic:Node id="any" type="{Node.ANY}"/>
-	<magic:Node id="one" type="{Node.STYLE}" value="one"/>
-	<magic:Node id="myStyle" type="{Node.STYLE}" value="myStyle"/>
-	<magic:Node id="main" type="{Node.STYLE}" value="main"/>
-	<magic:Node id="button" type="{Node.CLASS}" value="{Button}"/>
-	<magic:Node id="vbox" type="{Node.CLASS}" value="{VBox}"/>
-	<magic:Node id="container" type="{Node.CLASS}" value="{Container}"/>
-	<magic:Node id="uicomponent" type="{Node.CLASS}" value="{UIComponent}"/>
-	<magic:Node id="data" type="{Node.CLASS}" value="{IDataRenderer}"/>
-	<magic:Node id="box" type="{Node.CLASS}" value="{Box}"/>
-	<magic:Node id="canvas" type="{Node.CLASS}" value="{Canvas}"/>
-	<magic:Node id="form" type="{Node.CLASS}" value="{Form}"/>
-	<magic:Node id="label" type="{Node.CLASS}" value="{Label}"/>
+	<Node id="any" type="{Node.ANY}"/>
+	<Node id="one" type="{Node.STYLE}" value="one"/>
+	<Node id="myStyle" type="{Node.STYLE}" value="myStyle"/>
+	<Node id="main" type="{Node.STYLE}" value="main"/>
+	<Node id="button" type="{Node.CLASS}" value="{Button}"/>
+	<Node id="vbox" type="{Node.CLASS}" value="{VBox}"/>
+	<Node id="container" type="{Node.CLASS}" value="{Container}"/>
+	<Node id="uicomponent" type="{Node.CLASS}" value="{UIComponent}"/>
+	<Node id="data" type="{Node.CLASS}" value="{IDataRenderer}"/>
+	<Node id="box" type="{Node.CLASS}" value="{Box}"/>
+	<Node id="canvas" type="{Node.CLASS}" value="{Canvas}"/>
+	<Node id="form" type="{Node.CLASS}" value="{Form}"/>
+	<Node id="label" type="{Node.CLASS}" value="{Label}"/>
 
-	<magic:Node id="vboxtag" 	type="{Node.TAG}" value="VBox"/>
-	<magic:Node id="canvastag" 	type="{Node.TAG}" value="Canvas"/>
-	<magic:Node id="buttontag" 	type="{Node.TAG}" value="Button"/>
+	<Node id="vboxtag" 	type="{Node.TAG}" value="VBox"/>
+	<Node id="canvastag" 	type="{Node.TAG}" value="Canvas"/>
+	<Node id="buttontag" 	type="{Node.TAG}" value="Button"/>
 
 	<!-- Used in TestMatching -->
 	<mx:VBox id="buttonVBox">

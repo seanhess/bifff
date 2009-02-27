@@ -1,4 +1,4 @@
-package magic
+package magic.utils
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
