@@ -29,13 +29,15 @@
 			</Listener>
 		</Selector>
 		
-		<Selector match="#ooga">
+		<Selector match="#ooga Button">
 			<Listener event="click">
-				<Contents>
-					<append>
-						<mx:Button label="LIVE!"/>
-					</append>
-				</Contents>
+				<Select direction="parents" match="HBox .list">
+					<Contents>
+						<replace>
+							<mx:Button label="LIVE!"/>
+						</replace>
+					</Contents>
+				</Select>
 				<Trace message="ooga"/>
 			</Listener>
 		</Selector>
@@ -56,7 +58,7 @@
 				<mx:Button id="henry1" label="Henry" styleName="test one two" click="color = '#00FF00'"/>
 				<mx:Button id="henry2" label="Henry" styleName="test one two" click="color = '#0000FF'"/>
 				<mx:Button id="henry3" label="Henry" styleName="grrr one two" click="ouch.width = 20"/>
-				<mx:HBox id="ooga" backgroundColor="#FF0000">
+				<mx:HBox id="ooga" backgroundColor="#FF0000" width="300">
 					<mx:Button label="DIE!"/>
 				</mx:HBox>
 			</mx:VBox>
