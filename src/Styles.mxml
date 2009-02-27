@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="magic.core.*" xmlns:behaviors="magic.behaviors.*">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="magic.core.*" xmlns:b="magic.behaviors.*">
+
+	<mx:Style>
+		.test
+		{
+			focusAlpha: 0.1;
+			font-weight: normal;
+			paddingTop: 100;
+		}
+	</mx:Style>
 
 	<BehaviorMap target="{this}">
-		<Selector match="Canvas mx.core.Container VBox.list Button">
-			<Set id="ouch" fontSize="124" paddingBottom="200" width="1000" color="{color}" xmlns="magic.behaviors.*"/>
+		<Selector match="Canvas mx.core.Container VBox.list .one">
+			<b:Set id="ouch" fontSize="48" width="1000" color="{color}"/>
+		</Selector>
+		<Selector match=".monkey">
+			<b:Styles addClass="test" xmlns="magic.behaviors.*"/>
+		</Selector>
+		<Selector match=".two">
+			<b:Listener event="{MouseEvent.CLICK}">
+				<b:DispatchEvent arguments="test"/>
+			</b:Listener>
+			<b:Listener event="test">
+				<b:Trace message="test"/>
+			</b:Listener>
 		</Selector>
 	</BehaviorMap>
+	
 	
 	<mx:String id="color">#FFFF00</mx:String>
 	
@@ -18,11 +39,10 @@
 		
 		<mx:HBox id="main" styleName="main">
 			<mx:VBox styleName="list">
+				<mx:Button id="henry4" label="Henry" styleName="one monkey"/>
 				<mx:Button id="henry1" label="Henry" styleName="test one two" click="color = '#00FF00'"/>
 				<mx:Button id="henry2" label="Henry" styleName="test one two" click="color = '#0000FF'"/>
 				<mx:Button id="henry3" label="Henry" styleName="test one two" click="ouch.width = 20"/>
-				<mx:Button id="henry4" label="Henry" styleName="test one two"/>
-				<mx:Button id="henry5" label="Henry" styleName="test one two"/>
 			</mx:VBox>
 		</mx:HBox>
 	</mx:Canvas>

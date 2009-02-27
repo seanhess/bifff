@@ -67,6 +67,10 @@ package magic.core
 			
 			if (comp == null || comp.styleName == null)
 				return false;
+				
+			// FIXME! // 
+			if (!(comp.styleName is String))
+				return false;
 
 			var styles:Array = comp.styleName.split(" ");
 			

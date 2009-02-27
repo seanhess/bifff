@@ -64,8 +64,6 @@ package magic.core
 		
 		protected function executeRule(target:UIComponent, selector:ISelector):void
 		{
-			trace("EXECUTING " + selector + " on " + target);
-
 			for each (var behavior:IBehavior in selector.behaviors)
 				behavior.add(target);
 		}
