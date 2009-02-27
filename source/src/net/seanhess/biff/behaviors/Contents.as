@@ -1,4 +1,4 @@
-package magic.behaviors
+package net.seanhess.biff.behaviors
 {
 	import mx.core.Container;
 	import mx.core.UIComponent;

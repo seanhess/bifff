@@ -1,11 +1,11 @@
-package magic.behaviors
+package net.seanhess.biff.behaviors
 {
 	import flash.events.Event;
 	import flash.utils.Dictionary;
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
 	
-	import magic.utils.Invalidator;
+	import net.seanhess.biff.utils.Invalidator;
 	
 	import mx.styles.IStyleClient;
 	

@@ -1,4 +1,4 @@
-package magic.behaviors
+package net.seanhess.biff.behaviors
 {
 	public class Trace implements IBehavior
 	{

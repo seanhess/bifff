@@ -1,7 +1,7 @@
 package tests.selector
 {
-	import magic.core.Node;
-	import magic.core.Selector;
+	import net.seanhess.biff.core.Node;
+	import net.seanhess.biff.core.Selector;
 	
 	import mx.containers.VBox;
 	

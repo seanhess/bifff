@@ -1,11 +1,11 @@
-package magic.core
+package net.seanhess.biff.core
 {
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	
-	import magic.behaviors.IBehavior;
-	import magic.utils.Invalidator;
+	import net.seanhess.biff.behaviors.IBehavior;
+	import net.seanhess.biff.utils.Invalidator;
 	
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;

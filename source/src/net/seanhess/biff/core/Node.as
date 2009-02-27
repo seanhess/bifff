@@ -1,4 +1,4 @@
-package magic.core
+package net.seanhess.biff.core
 {
 	public class Node
 	{

@@ -1,4 +1,4 @@
-package magic.behaviors
+package net.seanhess.biff.behaviors
 {
 	import flash.utils.Dictionary;
 	

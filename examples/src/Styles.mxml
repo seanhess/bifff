@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="magic.core.*" xmlns:b="magic.behaviors.*">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="net.seanhess.biff.core.*" xmlns:b="net.seanhess.biff.behaviors.*">
 
 	<mx:Style>
 		.test

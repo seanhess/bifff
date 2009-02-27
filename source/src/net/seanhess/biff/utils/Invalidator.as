@@ -1,4 +1,4 @@
-package magic.utils
+package net.seanhess.biff.utils
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
