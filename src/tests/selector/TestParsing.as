@@ -64,6 +64,15 @@ package tests.selector
 			assertEquals(Node.MULTI, node.type);
 			assertEquals(Node.MULTI, node1.type);
 			assertEquals(Node.MULTI, node2.type);
+
+			assertEquals(Node.TAG, 	 node.value[0].type);
+			assertEquals(Node.TAG, 	 node1.value[0].type);
+			assertEquals(Node.STYLE, node.value[1].type);
+			assertEquals(Node.ID, 	 node1.value[1].type);
+			assertEquals(Node.STYLE, node2.value[1].type);
+			assertEquals(Node.STYLE, node2.value[2].type);
+
+
 		}
 		
 		

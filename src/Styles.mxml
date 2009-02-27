@@ -7,14 +7,11 @@
 	</mx:Script>
 		
 	<Listener target="{this}">
-		<Selector>
-			<Node type="{Node.STYLE}" value="main"/>
-			<Node type="{Node.ANY}" />
-		</Selector>
+		<Selector match="mx.core.Container Button"/>
 	</Listener>
 	
 	<mx:VBox styleName="sub">
-		<mx:Button label="CHARLIE" styleName="one"/>		
+		<mx:Button id="charlie1" label="CHARLIE" styleName="one"/>		
 		<mx:Button label="CHARLIE"/>		
 		<mx:Button label="CHARLIE"/>		
 	</mx:VBox>

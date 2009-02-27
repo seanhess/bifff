@@ -22,59 +22,71 @@ package magic
 		
 		public function parseItem(item:String):Node
 		{
-			var node:Node = new Node();
+			var node:Node;
 			
 			if (item == "*")
-			{
-				node.type = Node.ANY;
-			}
+				node = new Node(Node.ANY);
 			
 			else if (item.indexOf(".") == 0)
-			{
-				node.type = Node.STYLE;
-				node.value = item.replace(".","");				
-			}
+				node = new Node(Node.STYLE, item.replace(".",""));				
 			
 			else if (item.indexOf("#") == 0)
-			{
-				node.type = Node.ID;
-				node.value = item.replace("#","");
-			}
+				node = new Node(Node.ID, item.replace("#",""));				
 			
 			else if (item.match(/^\w+$/)) 	// if all word characters.. 
-			{
-				node.type = Node.TAG;
-				node.value = item;
-			}
+				node = new Node(Node.TAG, item);
 			
 			else if (item.match(/^[a-z]+[\w\.]*$/))	// starts with a lower-case letter, then matches any word or '.' chars till the end
-			{
-				node.type = Node.CLASS;
-				node.value = getDefinitionByName(item);
-			}
+				node = new Node(Node.CLASS, getDefinitionByName(item));
 			
 			else if (item.match(/^[A-Z][\w\.\#]*$/))
-			{
-				node.type = Node.MULTI;
-				node.value = parseMulti(item);
-			}
+				node = new Node(Node.MULTI, parseMulti(item));
 			
 			else
-			{
 				throw new Error("Could not type item ("+item+")");
-			}
 			
 			return node;
 		}
 		
 		public function parseMulti(itemList:String):Array
 		{
-			var items:Array = itemList.split(/[\.\#]/);
+			var items:Array = itemList.split(/(\.|\#)/);
 			var nodes:Array = [];
+			
+			var nextIsStyle:Boolean = false;
+			var nextIsID:Boolean = false;
 			
 			for each (var item:String in items)
 			{
-				nodes.push(parseItem(item));
+				if (item == "#")
+				{
+					nextIsID = true;
+					nextIsStyle = false;
+					continue;
+				}
+				
+				if (item == ".")
+				{
+					nextIsStyle = true;
+					nextIsID = false;
+					continue;
+				}
+				
+				var value:Node;
+				
+				if (nextIsStyle)
+					value = new Node(Node.STYLE, item);
+				
+				else if (nextIsID)
+					value = new Node(Node.ID, item);
+					
+				else 
+					value = parseItem(item);
+				
+				nodes.push(value);
+				
+				nextIsID = false;
+				nextIsStyle = false;
 			}
 			
 			return nodes;
