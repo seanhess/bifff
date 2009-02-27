@@ -13,15 +13,19 @@
 	<magic:Node id="one" type="{Node.STYLE}" value="one"/>
 	<magic:Node id="myStyle" type="{Node.STYLE}" value="myStyle"/>
 	<magic:Node id="main" type="{Node.STYLE}" value="main"/>
-	<magic:Node id="button" type="{Node.TYPE}" value="{Button}"/>
-	<magic:Node id="vbox" type="{Node.TYPE}" value="{VBox}"/>
-	<magic:Node id="container" type="{Node.TYPE}" value="{Container}"/>
-	<magic:Node id="uicomponent" type="{Node.TYPE}" value="{UIComponent}"/>
-	<magic:Node id="data" type="{Node.TYPE}" value="{IDataRenderer}"/>
-	<magic:Node id="box" type="{Node.TYPE}" value="{Box}"/>
-	<magic:Node id="canvas" type="{Node.TYPE}" value="{Canvas}"/>
-	<magic:Node id="form" type="{Node.TYPE}" value="{Form}"/>
-	<magic:Node id="label" type="{Node.TYPE}" value="{Label}"/>
+	<magic:Node id="button" type="{Node.CLASS}" value="{Button}"/>
+	<magic:Node id="vbox" type="{Node.CLASS}" value="{VBox}"/>
+	<magic:Node id="container" type="{Node.CLASS}" value="{Container}"/>
+	<magic:Node id="uicomponent" type="{Node.CLASS}" value="{UIComponent}"/>
+	<magic:Node id="data" type="{Node.CLASS}" value="{IDataRenderer}"/>
+	<magic:Node id="box" type="{Node.CLASS}" value="{Box}"/>
+	<magic:Node id="canvas" type="{Node.CLASS}" value="{Canvas}"/>
+	<magic:Node id="form" type="{Node.CLASS}" value="{Form}"/>
+	<magic:Node id="label" type="{Node.CLASS}" value="{Label}"/>
+
+	<magic:Node id="vboxtag" 	type="{Node.TAG}" value="VBox"/>
+	<magic:Node id="canvastag" 	type="{Node.TAG}" value="Canvas"/>
+	<magic:Node id="buttontag" 	type="{Node.TAG}" value="Button"/>
 
 	<!-- Used in TestMatching -->
 	<mx:VBox id="buttonVBox">
@@ -30,7 +34,7 @@
 		<mx:Button id="threeButton" label="three" 	styleName="three"/>
 	</mx:VBox>
 	
-	<mx:Canvas styleName="one">
+	<mx:Canvas id="mainCanvas" styleName="one">
 		<mx:Box>
 			<mx:Form styleName="myStyle">
 				<mx:Label id="nestedLabel" text="HI"/>
@@ -39,13 +43,13 @@
 		</mx:Box>
 	</mx:Canvas>
 	
-	<mx:HBox styleName="main">
-		<mx:VBox styleName="list">
-			<mx:Button label="Henry" styleName="test one two"/>
-			<mx:Button id="henry" label="Henry" styleName="test one two"/>
-			<mx:Button label="Henry" styleName="test one two"/>
-			<mx:Button label="Henry" styleName="test one two"/>
-			<mx:Button label="Henry" styleName="test one two"/>
+	<mx:HBox id="mainHBox" styleName="main">
+		<mx:VBox id="mainVBox" styleName="list">
+			<mx:Button id="henry1" label="Henry" styleName="test one two"/>
+			<mx:Button id="henry2" label="Henry" styleName="test one two"/>
+			<mx:Button id="henry3" label="Henry" styleName="test one two"/>
+			<mx:Button id="henry4" label="Henry" styleName="test one two"/>
+			<mx:Button id="henry5" label="Henry" styleName="test one two"/>
 		</mx:VBox>
 	</mx:HBox>
 	

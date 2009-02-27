@@ -21,7 +21,7 @@ package tests.matcher
 		{
 			matcher = new Matcher();
 			views = new SampleViews();
-			button = new Node(Node.TYPE, Button);
+			button = new Node(Node.CLASS, Button);
 			oneStyle = new Node(Node.STYLE, "one");
 			myStyle = new Node(Node.STYLE, "myStyle");
 		}
@@ -48,7 +48,7 @@ package tests.matcher
 		[Test]
 		public function matchType():void
 		{
-			var button:Node = new Node(Node.TYPE, Button);
+			var button:Node = new Node(Node.CLASS, Button);
 			
 			assertEquals(true, matcher.matchClass(views.oneButton, button));
 			assertEquals(false, matcher.matchClass(views.buttonVBox, button));
@@ -57,7 +57,7 @@ package tests.matcher
 		[Test]
 		public function matchBoth():void
 		{
-			var button:Node = new Node(Node.TYPE, Button);
+			var button:Node = new Node(Node.CLASS, Button);
 			var style:Node = new Node(Node.STYLE, "one");
 			
 			assertEquals(true, matcher.matchNode(views.oneButton, button));
@@ -74,6 +74,25 @@ package tests.matcher
 			assertEquals(true, matcher.matchNode(views.buttonVBox, views.container));
 			assertEquals(true, matcher.matchNode(views.buttonVBox, views.uicomponent));
 			assertEquals(true, matcher.matchNode(views.buttonVBox, views.data));
+		}
+		
+		[Test]
+		public function matchTag():void
+		{
+			assertEquals(true, matcher.matchTag(views.oneButton, views.buttontag));
+			assertEquals(true, matcher.matchTag(views.mainVBox, views.vboxtag));
+			assertEquals(true, matcher.matchTag(views.mainCanvas, views.canvastag));
+			
+			assertEquals(false, matcher.matchTag(views.twoButton, views.canvastag));
+		}
+		
+		[Test]
+		public function matchID():void
+		{
+			assertEquals(true, matcher.matchID(views.oneButton, new Node(Node.TAG, "oneButton")));
+			assertEquals(true, matcher.matchID(views.mainCanvas, new Node(Node.TAG, "mainCanvas")));
+			assertEquals(true, matcher.matchID(views.mainVBox, new Node(Node.TAG, "mainVBox")));
+			assertEquals(false, matcher.matchID(views.twoButton, new Node(Node.TAG, "mainVBox")));
 		}
 	}
 }

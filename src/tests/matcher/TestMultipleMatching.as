@@ -38,7 +38,13 @@ package tests.matcher
 		[Test]
 		public function buttonBox():void
 		{
-			assertEquals(true, matcher.begin(views.henry, [views.main, views.any]));
+			assertEquals(false, matcher.begin(views.mainHBox, [views.main, views.any]));
+			assertEquals(true, matcher.begin(views.henry1, [views.main, views.any]));
+			assertEquals(true, matcher.begin(views.henry2, [views.main, views.any]));
+			assertEquals(true, matcher.begin(views.henry3, [views.main, views.any]));
+			assertEquals(true, matcher.begin(views.henry4, [views.main, views.any]));
+			assertEquals(true, matcher.begin(views.henry5, [views.main, views.any]));
+			assertEquals(true, matcher.begin(views.mainVBox, [views.main, views.any]));
 		}
 		
 

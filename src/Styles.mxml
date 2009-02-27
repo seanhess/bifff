@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="magic.*">
+	<mx:Script>
+		<![CDATA[
+			import flash.utils.getQualifiedClassName;
+		]]>
+	</mx:Script>
 		
 	<Listener target="{this}">
-		<rules>
-			<Rule>
-				<nodes>
-					<Node type="{Node.ANY}" />
-					<Node type="{Node.STYLE}" value="main"/>
-				</nodes>
-			</Rule>
-		</rules>
+		<Selector>
+			<Node type="{Node.STYLE}" value="main"/>
+			<Node type="{Node.ANY}" />
+		</Selector>
 	</Listener>
 	
 	<mx:VBox styleName="sub">
@@ -21,11 +22,11 @@
 	<mx:HBox id="main" styleName="main">
 		
 		<mx:VBox styleName="list">
-			<mx:Button label="Henry" styleName="test one two"/>
-			<mx:Button label="Henry" styleName="test one two"/>
-			<mx:Button label="Henry" styleName="test one two"/>
-			<mx:Button label="Henry" styleName="test one two"/>
-			<mx:Button label="Henry" styleName="test one two"/>
+			<mx:Button id="henry1" label="Henry" styleName="test one two"/>
+			<mx:Button id="henry2" label="Henry" styleName="test one two"/>
+			<mx:Button id="henry3" label="Henry" styleName="test one two"/>
+			<mx:Button id="henry4" label="Henry" styleName="test one two"/>
+			<mx:Button id="henry5" label="Henry" styleName="test one two"/>
 		</mx:VBox>
 		
 	</mx:HBox>

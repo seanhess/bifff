@@ -6,9 +6,10 @@ package magic
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
 	
+	[DefaultProperty("selectors")]
 	public class Listener extends Invalidator
 	{
-		public var rules:Array = [];
+		public var selectors:Array = [];
 		public var matcher:Matcher = new Matcher();
 		
 		public function set target(value:IEventDispatcher):void
@@ -53,19 +54,19 @@ package magic
 			
 			var matcher:Matcher = new Matcher();
 			
-			for each (var rule:Rule in rules)
-				matchRule(target, rule);
+			for each (var selector:Selector in selectors)
+				matchSelector(target, selector);
 		}
 		
-		protected function matchRule(target:UIComponent, rule:Rule):void
+		protected function matchSelector(target:UIComponent, selector:Selector):void
 		{
-			if (matcher.begin(target, rule.nodes))
-				executeRule(target, rule);
+			if (matcher.begin(target, selector.nodes))
+				executeRule(target, selector);
 		}
 		
-		protected function executeRule(target:UIComponent, rule:Rule):void
+		protected function executeRule(target:UIComponent, selector:Selector):void
 		{
-			trace("EXECUTING " + rule + " on " + target);
+			trace("EXECUTING " + selector + " on " + target);
 		}
 	}
 }
