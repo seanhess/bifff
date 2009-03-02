@@ -19,9 +19,9 @@
 			<Set right="200"/>
 		</Selector>
 		
-		<Selector match="VBox Item">
+		<!--<Selector match="VBox Item">
 			<Swap view="views.ButtonRenderer"/>
-		</Selector>
+		</Selector>-->
 		
 		<Selector match="ButtonRenderer">
 			<Set color="#FF0000"/>

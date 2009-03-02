@@ -1,17 +1,17 @@
 package tests.selector
 {
-	import net.seanhess.bif.core.Node;
-	import net.seanhess.bif.core.Selector;
-	
 	import net.digitalprimates.fluint.tests.TestCase;
+	import net.seanhess.bif.core.IParser;
+	import net.seanhess.bif.core.Node;
+	import net.seanhess.bif.core.Parser;
 	
 	public class TestParsing extends TestCase
 	{
-		protected var rule:Selector;
+		protected var rule:IParser;
 		
 		override protected function setUp():void
 		{
-			rule = new Selector();
+			rule = new Parser();
 		}
 		
 		override protected function tearDown():void
