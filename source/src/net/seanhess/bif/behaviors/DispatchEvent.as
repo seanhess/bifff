@@ -3,12 +3,14 @@ package net.seanhess.bif.behaviors
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	
+	import net.seanhess.bif.core.IScope;
+	
 	/**
 	 * Dispatches an event on the target.
 	 */
 	public class DispatchEvent implements IBehavior
 	{
-		public function apply(target:*):void
+		public function apply(scope:IScope):void
 		{
 			var arguments:Array = constructorArguments;
 			
@@ -20,7 +22,7 @@ package net.seanhess.bif.behaviors
 			for (var property:String in eventProperties)
 				event[property] = eventProperties[property];
 				
-			(target as IEventDispatcher).dispatchEvent(event);			
+			(scope.target as IEventDispatcher).dispatchEvent(event);			
 		}
 
 		/**

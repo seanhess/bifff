@@ -1,6 +1,7 @@
 package net.seanhess.bif.behaviors
 {
 	import net.seanhess.bif.core.DirectMatcher;
+	import net.seanhess.bif.core.IScope;
 	import net.seanhess.bif.core.ISelector;
 	import net.seanhess.bif.core.Selector;
 	
@@ -12,15 +13,15 @@ package net.seanhess.bif.behaviors
 		
 		public var matcher:DirectMatcher = new DirectMatcher();
 		
-		public function apply(target:*):void
+		public function apply(scope:IScope):void
 		{
 			generateSelector();
 				
 			if (searchDirection == SEARCH_PARENTS)
-				searchParents(target);
+				searchParents(scope.target);
 				
 			else
-				searchChildren(target);
+				searchChildren(scope.target);
 		}
 
 		public function set match(value:String):void

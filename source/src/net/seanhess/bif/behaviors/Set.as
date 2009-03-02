@@ -1,13 +1,13 @@
 package net.seanhess.bif.behaviors
 {
-	import flash.events.Event;
 	import flash.utils.Dictionary;
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
 	
-	import net.seanhess.bif.utils.Invalidator;
-	
 	import mx.styles.IStyleClient;
+	
+	import net.seanhess.bif.core.IScope;
+	import net.seanhess.bif.utils.Invalidator;
 	
 	/**
 	 * Sets styles (setStyle) and properties. 
@@ -23,24 +23,24 @@ package net.seanhess.bif.behaviors
 		protected var updates:Object = {};
 		protected var invalidator:Invalidator = new Invalidator(commit);
 		
-		public function apply(target:*):void
+		public function apply(scope:IScope):void
 		{
 			var old:Object = {};
 			
 			for (var property:String in values)
-				updateProperty(target, property, values[property], old);
+				updateProperty(scope.target, property, values[property], old);
 			
-			views[target] = old;
+			views[scope.target] = old;
 		}
 		
-		public function undo(target:*):void
+		public function undo(scope:IScope):void
 		{
-			var old:Object = views[target];
+			var old:Object = views[scope.target];
 			
 			for (var property:String in old)
-				updateProperty(target, property, old[property]); 
+				updateProperty(scope.target, property, old[property]); 
 			
-			delete views[target];
+			delete views[scope.target];
 		}
 		
 		protected function updateProperty(target:*, property:String, value:*, old:Object=null):void

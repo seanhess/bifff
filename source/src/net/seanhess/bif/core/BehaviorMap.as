@@ -90,7 +90,7 @@ package net.seanhess.bif.core
 			if (debug) trace(selector);
 			
 			for each (var behavior:IBehavior in selector.behaviors)
-				behavior.apply(target);
+				behavior.apply(new Scope(target, this));
 		}
 		
 		public function BehaviorMap()

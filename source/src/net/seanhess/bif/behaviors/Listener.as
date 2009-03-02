@@ -3,6 +3,10 @@ package net.seanhess.bif.behaviors
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	
+	import net.seanhess.bif.core.BehaviorMap;
+	import net.seanhess.bif.core.IScope;
+	import net.seanhess.bif.core.Scope;
+	
 	/**
 	 * This is going to allow you to listen to events on the object, and add behaviors as soon as they execute
 	 * These behaviors might just fire another event, or whatever
@@ -10,14 +14,22 @@ package net.seanhess.bif.behaviors
 	[DefaultProperty("behaviors")]
 	public class Listener implements IBehavior
 	{
-		public function apply(target:*):void
+		/**
+		 * So we can create a new scope object for our chilluns
+		 */
+		public var map:BehaviorMap;
+		
+		public function apply(scope:IScope):void
 		{
-			(target as IEventDispatcher).addEventListener(type, handler, false, 0, true);
+			if (!map && scope.map)
+				map = scope.map;
+			
+			(scope.target as IEventDispatcher).addEventListener(type, handler, false, 0, true);
 		}
 		
-		public function undo(target:*):void
+		public function undo(scope:IScope):void
 		{
-			(target as IEventDispatcher).removeEventListener(type, handler);	
+			(scope.target as IEventDispatcher).removeEventListener(type, handler);	
 		}
 		
 		public function set event(type:String):void
@@ -39,11 +51,12 @@ package net.seanhess.bif.behaviors
 		{
 			for each (var behavior:IBehavior in behaviors)
 			{
-				behavior.apply(event.currentTarget);
+				behavior.apply(new Scope(event.currentTarget, this.map, event));
 			}
 		}
 		
 		protected var type:String;
 		protected var _behaviors:Array;
+		
 	}
 }

@@ -16,9 +16,9 @@ package net.seanhess.bif.behaviors
 	 * to create views with nothing in them but a data 
 	 * property, and swap them out with a renderer
 	 */
-	public class Swap implements IBehavior
+	public class Swap// implements IBehavior
 	{
-		public function apply(target:*):void
+		/*public function apply(target:*):void
 		{
 			if (!_view)	throw new Error("View was not set");
 			
@@ -56,6 +56,6 @@ package net.seanhess.bif.behaviors
 			_view = value;
 		}
 		
-		protected var _view:Class = UIComponent;
+		protected var _view:Class = UIComponent;*/
 	}
 }

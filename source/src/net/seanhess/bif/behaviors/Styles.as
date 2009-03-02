@@ -6,6 +6,8 @@ package net.seanhess.bif.behaviors
 	import mx.styles.CSSStyleDeclaration;
 	import mx.styles.StyleManager;
 	
+	import net.seanhess.bif.core.IScope;
+	
 	/**
 	 * Allows you to set the style of the target. For now, this is a total hack, because it replaces the styleName, which 
 	 * is what we're using to get classnames. It would be nice if I could use another property instead of styleName
@@ -28,13 +30,13 @@ package net.seanhess.bif.behaviors
 		protected var classesToAdd:Array = [];
 		protected var classesToRemove:Array = [];
 		
-		public function apply(target:*):void
+		public function apply(scope:IScope):void
 		{
-			views[target] = true;
+			views[scope.target] = true;
 			
 			for each (var style:String in classesToAdd)
 			{
-				updateStyleDeclaration(target, style);
+				updateStyleDeclaration(scope.target, style);
 			}
 		}
 		

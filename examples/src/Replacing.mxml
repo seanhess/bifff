@@ -2,13 +2,13 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="http://bif.seanhess.net/2009">
 	
 	<BehaviorMap target="{this}">
-		<Selector match="Item.button">
+		<!--<Selector match="Item.button">
 			<Swap view="views.ButtonRenderer"/>
 		</Selector>
 		
 		<Selector match="Item.panel">
 			<Swap view="views.TitleWindowRenderer"/>
-		</Selector>
+		</Selector>-->
 	</BehaviorMap>
 	
 	<mx:VBox id="main">
