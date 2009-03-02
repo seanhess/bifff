@@ -1,25 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="http://bif.seanhess.net/2009">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns="http://bif.seanhess.net/2009">
 	
-	<BehaviorMap target="{this}">
-		<Selector match="#main > Button">
+	<!-- With debug on, double click to see matches in your console --> 
+	<BehaviorMap target="{this}" debug="true">
+	
+		<!-- Select by Tag -->
+		<Selector match="Button">
 			<Set fontSize="24"/>
 		</Selector>
 		
-		<Selector match="#main > *">
-			<Set width="400"/>
+		<!-- Select by StyleName -->
+		<Selector match=".fat">
+			<Set width="300"/>
 		</Selector>
+		
+		<Selector match=".short">
+			<Set height="25"/>
+		</Selector>
+		
+		<Selector match=".skinny">
+			<Set width="50"/>
+		</Selector>
+		
+		<Selector match=".tall">
+			<Set height="100"/>
+		</Selector>
+		
+		<!-- Select by id -->
+		<Selector match="#thirdButton">
+			<Set color="#FF0000"/>
+		</Selector>
+		
+		<!-- Select by superclass/interface (use the fully qualified name as a string) -->
+		<Selector match="mx.core.IButton">
+			<Set borderColor="#00FF00"/>
+		</Selector>
+		
+		<!-- Select Any -->
+		<Selector match="*">
+			<Set cornerRadius="15"/>
+		</Selector>
+		
+		<!-- Descendants -->
+		<Selector match="#nestedCanvas Button">
+			<Set color="#0000FF"/>
+		</Selector>
+		
+		<!-- Direct Child -->
+		<Selector match="#rowBox > mx.core.Container">
+			<Set width="300" height="50"/>
+		</Selector>
+		
+		<!-- Even and Odd -->
+		<Selector match="#rowBox > Canvas:odd">
+			<Set backgroundColor="#000000"/>
+		</Selector>
+		
+		<Selector match="#rowBox > Canvas:even">
+			<Set backgroundColor="#FFFFFF"/>
+		</Selector>
+		
+		<!-- Multiple Criteria -->
+		<Selector match="Button#firstButton.fat.short">
+			<Set textAlign="left"/>
+		</Selector>
+		
 	</BehaviorMap>
 	
-	<mx:VBox id="main">
-		<mx:Button label="inMain"/>
-		<mx:Button label="inMain"/>
+	<mx:Button label="First Button" styleName="fat short" id="firstButton"/>
+	<mx:Button label="Second Button" styleName="skinny tall"/>
+	<mx:Button label="Third Button" id="thirdButton"/>
+	
+	<mx:VBox id="rowBox">
+		<mx:Canvas></mx:Canvas>
+		<mx:Canvas></mx:Canvas>
+		<mx:Canvas></mx:Canvas>
+		<mx:Canvas></mx:Canvas>
+	</mx:VBox>
+	
+	<mx:VBox id="nestedCanvas">
+		<mx:Button label="hi"/>
 		<mx:HBox>
-			<mx:Button label="inHBox" styleName="one"/>
-			<mx:Button label="inHBox" styleName="two green"/>
-			<mx:Button label="inHBox"/>
+			<mx:Button label="hi"/>
+			<mx:Button label="hi"/>
+			<mx:VBox>
+				<mx:Button label="hi"/>
+				<mx:Button label="hi"/>
+			</mx:VBox>	
 		</mx:HBox>
-		<mx:Button label="inMain"/>
 	</mx:VBox>
 	
 </mx:Application>

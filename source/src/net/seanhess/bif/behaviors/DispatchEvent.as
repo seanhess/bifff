@@ -3,13 +3,17 @@ package net.seanhess.bif.behaviors
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	
+	import net.seanhess.bif.core.IResolver;
 	import net.seanhess.bif.core.IScope;
+	import net.seanhess.bif.core.Resolver;
 	
 	/**
 	 * Dispatches an event on the target.
 	 */
 	public class DispatchEvent implements IBehavior
 	{
+		public var resolver:IResolver = new Resolver();
+		
 		public function apply(scope:IScope):void
 		{
 			var arguments:Array = constructorArguments;
@@ -17,10 +21,10 @@ package net.seanhess.bif.behaviors
 			if (arguments == null && eventType != null )
 				arguments = [eventType];
 			
-			var event:Event = createInstance(factory, arguments) as Event;
+			var event:Event = createInstance(factory, arguments, scope) as Event;
 			
 			for (var property:String in eventProperties)
-				event[property] = eventProperties[property];
+				event[property] = resolver.resolveObject(eventProperties[property], scope);
 				
 			(scope.target as IEventDispatcher).dispatchEvent(event);			
 		}
@@ -62,8 +66,9 @@ package net.seanhess.bif.behaviors
 		
 		/**
 		 * can't use function.apply because stupid Class doesn't extend Function. Oh well :)
+		 * Thanks to Nahuel again
 		 */
-		public function createInstance(template:Class, p:Array):Object
+		public function createInstance(template:Class, p:Array, scope:IScope):Object
 		{
 			var newInstance:Object;
 			if(!p || p.length == 0)
@@ -73,6 +78,8 @@ package net.seanhess.bif.behaviors
 			}
 			else
 			{
+				p = resolver.resolveArguments(p, scope);
+				
 				// ugly way to call a constructor. 
 				// if someone knows a better way please let me know (nahuel at asfusion dot com).
 				switch(p.length)

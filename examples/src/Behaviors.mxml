@@ -1,52 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="http://bif.seanhess.net/2009" xmlns:core="net.seanhess.bif.core.*">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bif.seanhess.net/2009" xmlns:core="net.seanhess.bif.core.*">
 
+	<BehaviorMap target="{this}" debug="true">
+	
+		<!-- Set -->
+		<Selector match="Button">
+			<Set fontSize="24"/>
+		</Selector>
+		
+		<!-- Styles -->
+		<Selector match="#secondButton">
+			<Styles addClass="test"/>
+		</Selector>
+		
+		<!-- Listener + Trace -->
+		<Selector match="Button">
+			<Listener event="{MouseEvent.CLICK}">
+				<Trace message="A button was clicked"/>
+			</Listener>
+		</Selector>
+	
+		<!-- Listener + Call -->
+		<Selector match="#firstButton">
+			<Listener event="click">
+				<Call method="{this.alert}" arguments="{['I am a button', smart.target]}"/>
+			</Listener>
+		</Selector>
+		
+		<!-- Listener + Select -->
+		<Selector match="#green">
+			<Listener event="click">
+				<Select match="VBox">
+					<Set backgroundColor="#00FF00"/>
+				</Select>
+			</Listener>
+		</Selector>
+		
+		<!-- Listener + Select + Contents -->
+		<Selector match="#change">
+			<Listener event="click">
+				<Select match="VBox">
+					<Contents>
+						<replace>
+							<mx:Button label="I am a new Button"/>
+						</replace>
+					</Contents>
+				</Select>
+			</Listener>
+		</Selector>
+		
+		<!-- Swap -->
+		<Selector match="#toHBox">
+			<Listener event="click">
+				<Select match="VBox">
+					<Swap view="mx.containers.HBox"/>
+				</Select>
+			</Listener>
+		</Selector>
+		
+		<!-- Dispatch Event :: Mostly useful for tying into application frameworks -->
+		<Selector match="#secondButton">
+			<Listener event="click">
+				<DispatchEvent generator="{MyCustomEvent}" arguments="{MyCustomEvent.MY_TYPE}" properties="{{importantMessage:'i am a very important message'}}"/>
+				<DispatchEvent type="bob"/>
+			</Listener>			
+			<Listener event="bob">
+				<Trace message="Bob wuz here"/>
+			</Listener>
+			<Listener event="{MyCustomEvent.MY_TYPE}">
+				<Call method="{this.alert}" arguments="{[smart.event.importantMessage, smart.event.target]}"/>
+			</Listener>
+		</Selector>
+	</BehaviorMap>
+	
 	<mx:Script>
 		<![CDATA[
-			import net.seanhess.bif.core.ISmartObject;
-			import net.seanhess.bif.core.SmartObject;
 			import mx.controls.Alert;
+			import views.MyCustomEvent;
 			
-			protected function alert(message:String, one:*, two:*):void
+			protected function alert(message:String, from:*):void
 			{
-				Alert.show("Alert : " + message + " : " + one + " : " + two);
+				Alert.show(from + ": " + message);
 			}
 		]]>
 	</mx:Script>
 	
+	<mx:Style>
+		.test
+		{
+			color: #FFF000;	
+		}
+	</mx:Style>
+	
 	<SmartObjects id="smart"/>
 	
-	<BehaviorMap id="map" target="{this}" debug="true">
-		<Selector match="#main > Button">
-			<Set fontSize="24"/>
-		</Selector>
-		
-		<Selector match="#main > *">
-			<Set width="400"/>
-		</Selector>
-		
-		<Selector match="Button.one">
-			<Listener event="click">
-				<Call method="{this.alert}" 			arguments="{['hello', smart.target, smart.event.currentTarget.label]}"/>
-				<Call method="{smart.target.setStyle}" 	arguments="{['fontSize', 30]}"/>
-				<Select target="{[numba4, numba2]}">
-					<Set width="1000"/>
-				</Select>
-				<Trace message="clicked"/>
-			</Listener>
-		</Selector>
-		
-	</BehaviorMap>
 	
-	<mx:VBox id="main">
-		<mx:Button label="inMain" styleName="one"/>
-		<mx:Button id="numba2" label="inMain" styleName="two"/>
-		<mx:HBox styleName="three">
-			<mx:Button label="inHBox" styleName="one"/>
-			<mx:Button label="inHBox" styleName="two"/>
-			<mx:Button label="inHBox" styleName="three"/>
-		</mx:HBox>
-		<mx:Button id="numba4" label="inMain" styleName="four"/>
+	
+	<mx:Button id="firstButton" label="First Button"/>
+	<mx:Button id="secondButton" label="Second Button"/>
+	
+	<mx:Spacer height="100"/>
+	
+	<mx:VBox id="changingBox">
+		<mx:Button label="Green Background" id="green"/>
+		<mx:Button label="Change Contents" 	id="change" />
+		
+		<!-- The others will no longer match! -->
+		<mx:Button label="Switch to HBox" 	id="toHBox" />
 	</mx:VBox>
+	
 	
 </mx:Application>

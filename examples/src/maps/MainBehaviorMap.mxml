@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<BehaviorMap xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bif.seanhess.net/2009">
-	<Selector match="Button">
-		<Set fontSize="24"/>
-		<Listener event="click">
-			<Set width="200"/>
-		</Listener>
-	</Selector>
-</BehaviorMap>
