@@ -27,7 +27,8 @@
 		
 		<Selector match="Button.one">
 			<Listener event="click">
-				<Call method="{alert}" arguments="{['hello', smart.target, smart.event.currentTarget.label]}"/>
+				<Call method="{this.alert}" 			arguments="{['hello', smart.target, smart.event.currentTarget.label]}"/>
+				<Call method="{smart.target.setStyle}" 	arguments="{['fontSize', 30]}"/>
 				<Trace message="clicked"/>
 			</Listener>
 		</Selector>
