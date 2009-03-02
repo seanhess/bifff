@@ -1,10 +1,7 @@
 package net.seanhess.bif.views
 {
-	import mx.core.IDataRenderer;
-	
-	public interface ISimpleItem extends IDataRenderer
+	public interface ISimpleItem
 	{
-		function getChildren():Array;
-		function removeAllChildren():void;
+		function get data():Object
 	}
 }

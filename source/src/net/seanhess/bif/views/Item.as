@@ -1,6 +1,5 @@
 package net.seanhess.bif.views
 {
-	import mx.core.IDataRenderer;
 	import mx.core.UIComponent;
 	
 	/**
@@ -8,34 +7,43 @@ package net.seanhess.bif.views
 	 * I may add more functionality to this later.
 	 * 
 	 * Also allows you to copy children from it, even though it isn't a container
+	 * 
+	 * <Item label="henry" styleName="Josh">
+	 *   <Item label="child1"/>
+	 * </Item>
+	 * 
+	 * Sets the data property of the view you choose to a big ol' combination of all this stuff
+	 * 
 	 */
-	dynamic public class Item extends UIComponent implements ISimpleItem, IDataRenderer
+	[DefaultProperty("items")]
+	dynamic public class Item extends UIComponent implements ISimpleItem
 	{
-		protected var _data:Object;
-		
-		public function set data(value:Object):void
+		public function set items(value:Array):void
 		{
-			_data = value;
+			_items = value;
+		}
+		
+		public function get items():Array
+		{
+			return _items;
 		}
 		
 		public function get data():Object
 		{
-			return _data;
+			var obj:Object = {};
+			
+			// GET DYNAMIC PROPERTIES // 
+			for (var property:String in this) 
+				obj[property] = this[property];
+			
+			// GET ITEMS // 
+			obj.items = this.items;
+			
+			return obj;
 		}
 		
-		public function getChildren():Array
-		{
-			var children:Array = [];
-			
-			for (var i:int = 0; i < this.numChildren; i++)
-				children.push(this.getChildAt(i));
-				
-			return children;
-		}
+		public var renderChildren:Boolean = false;
 		
-		public function removeAllChildren():void
-		{
-			
-		}
+		public var _items:Array;
 	}
 }

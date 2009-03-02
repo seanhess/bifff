@@ -102,11 +102,11 @@
 	</mx:VBox>
 	
 	<mx:VBox styleName="buttons">
-		<Item data="one"/>
-		<Item data="two"/>
-		<mx:Canvas data="bob"/>
-		<Item data="three"/>
-		<Item data="four"/>
+		<Item label="one"/>
+		<Item label="two"/>
+		<mx:Canvas label="bob"/>
+		<Item label="three"/>
+		<Item label="four"/>
 	</mx:VBox>	
 	
 </mx:Application>

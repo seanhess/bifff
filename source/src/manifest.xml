@@ -18,6 +18,10 @@
 	<component class="net.seanhess.bif.core.Selector"/>
 	
 	<component class="net.seanhess.bif.utils.Invalidator"/>
+	<component class="net.seanhess.bif.utils.Defaults"/>
+	<component class="net.seanhess.bif.utils.ItemInserter"/>
+	<component class="net.seanhess.bif.utils.StructureDump"/>
 
 	<component class="net.seanhess.bif.views.Item"/>
+	<component class="net.seanhess.bif.views.ISimpleItem"/>
 </componentPackage>

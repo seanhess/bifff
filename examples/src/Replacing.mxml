@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="http://bif.seanhess.net/2009">
+	
+	<BehaviorMap target="{this}">
+		<Selector match="Item.button">
+			<Swap view="views.ButtonRenderer"/>
+		</Selector>
+		
+		<Selector match="Item.panel">
+			<Swap view="views.TitleWindowRenderer"/>
+		</Selector>
+	</BehaviorMap>
+	
+	<mx:VBox id="main">
+		<mx:Button label="normal button"/>
+		<Item styleName="button" label="bob"/>
+		<Item styleName="button" label="henry"/>
+		<Item styleName="button" label="david"/>
+		<Item styleName="panel" label="billy">
+			<Item styleName="button" label="charlie"/>
+			<Item styleName="button" label="woot"/>
+		</Item>
+	</mx:VBox>
+	
+</mx:Application>

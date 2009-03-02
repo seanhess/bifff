@@ -26,14 +26,14 @@ package net.seanhess.bif.behaviors
 			
 			if (target is UIComponent && newView is UIComponent)
 			{
-				newView.styleName = target.styleName;
+				newView.styleName = target.styleName; // should merge styles, not replace them!
 				newView.id = target.id;
 			}
 			
-			if (target is IDataRenderer && newView is IDataRenderer)
+			if ((target is IDataRenderer || target is ISimpleItem) && newView is IDataRenderer)
 				newView.data = target.data; 
 			
-			if ((target is Container || target is ISimpleItem) && newView is Container)
+			if (target is Container && newView is Container) // this will not  happen for ISimpleItems
 			{
 				var children:Array = target.getChildren();
 				target.removeAllChildren();
