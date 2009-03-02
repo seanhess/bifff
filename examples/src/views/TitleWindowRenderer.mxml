@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" layout="horizontal" width="400" height="300" title="{data.label}" xmlns="http://bif.seanhess.net/2009">
-	<ItemInserter target="{this}" items="{data.items}"/>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="vertical" 
+	width="400" height="300" 
+	xmlns="http://bif.seanhess.net/2009"
+	implements="net.seanhess.bif.views.ISwappable"
+	>
+	<ChildInserter id="inserter" target="{this}"/>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.core.Container;
+			import mx.core.UIComponent;
+			public function copyView(view:UIComponent):void
+			{
+				this.title = (view as Object).label;
+				inserter.items = (view as Container).getChildren();
+			}
+		]]>
+	</mx:Script>
 </mx:TitleWindow>

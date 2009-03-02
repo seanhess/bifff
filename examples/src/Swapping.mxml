@@ -2,24 +2,24 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="http://bif.seanhess.net/2009">
 	
 	<BehaviorMap target="{this}">
-		<!--<Selector match="Item.button">
+		<Selector match=".button">
 			<Swap view="views.ButtonRenderer"/>
 		</Selector>
 		
-		<Selector match="Item.panel">
+		<Selector match=".panel">
 			<Swap view="views.TitleWindowRenderer"/>
-		</Selector>-->
+		</Selector>
 	</BehaviorMap>
 	
 	<mx:VBox id="main">
 		<mx:Button label="normal button"/>
-		<Item styleName="button" label="bob"/>
-		<Item styleName="button" label="henry"/>
-		<Item styleName="button" label="david"/>
-		<Item styleName="panel" label="billy">
-			<Item styleName="button" label="charlie"/>
-			<Item styleName="button" label="woot"/>
-		</Item>
+		<mx:Canvas styleName="button" label="bob"/>
+		<mx:Canvas styleName="button" label="henry"/>
+		<mx:Canvas styleName="button" label="david"/>
+		<mx:Canvas styleName="panel" label="billy">
+			<mx:Canvas styleName="button" label="charlie"/>
+			<mx:Canvas styleName="button" label="woot"/>
+		</mx:Canvas>
 	</mx:VBox>
 	
 </mx:Application>

@@ -19,10 +19,6 @@
 			<Set right="200"/>
 		</Selector>
 		
-		<!--<Selector match="VBox Item">
-			<Swap view="views.ButtonRenderer"/>
-		</Selector>-->
-		
 		<Selector match="ButtonRenderer">
 			<Set color="#FF0000"/>
 		</Selector>
@@ -100,13 +96,5 @@
 		<mx:Canvas/>
 		<mx:Canvas/>
 	</mx:VBox>
-	
-	<mx:VBox styleName="buttons">
-		<Item label="one"/>
-		<Item label="two"/>
-		<mx:Canvas label="bob"/>
-		<Item label="three"/>
-		<Item label="four"/>
-	</mx:VBox>	
 	
 </mx:Application>

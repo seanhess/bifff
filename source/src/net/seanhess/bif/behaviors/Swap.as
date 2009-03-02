@@ -6,31 +6,54 @@ package net.seanhess.bif.behaviors
 	import mx.core.IDataRenderer;
 	import mx.core.UIComponent;
 	
-	import net.seanhess.bif.views.ISimpleItem;
+	import net.seanhess.bif.core.IScope;
+	import net.seanhess.bif.views.ISwappable;
 	
 	/**
 	 * Swaps you out with another view, copies your children
 	 * if both are containers, 
 	 * 
-	 * More importantly, it copies the data, allowing you 
-	 * to create views with nothing in them but a data 
-	 * property, and swap them out with a renderer
+	 * It also copies the data property from one to the other
+	 * 
+	 * It copies your ID, but not your styleName, so make sure
+	 * you set the styleName on the replacing one to whatever
+	 * you want. 
 	 */
-	public class Swap// implements IBehavior
+	public class Swap implements IBehavior
 	{
-		/*public function apply(target:*):void
+		public function apply(scope:IScope):void
 		{
+			var target:* = scope.target;
 			if (!_view)	throw new Error("View was not set");
 			
 			var newView:* = new _view();
 			
+			if (newView is ISwappable)
+				(newView as ISwappable).copyView(target);
+			
+			else 
+				copyRegular(target, newView);
+			
+			if (target.parent)
+			{
+				var parent:DisplayObjectContainer = target.parent as DisplayObjectContainer;
+				var index:int = parent.getChildIndex(target);
+				parent.removeChildAt(index);
+				parent.addChildAt(newView, index);
+			}
+			else
+				throw new Error("Could not swap view for " + target);
+		}
+		
+		protected function copyRegular(target:*, newView:*):void
+		{
 			if (target is UIComponent && newView is UIComponent)
 			{
-				newView.styleName = target.styleName; // should merge styles, not replace them!
+//				newView.styleName = target.styleName; // should merge styles eventually?
 				newView.id = target.id;
 			}
 			
-			if ((target is IDataRenderer || target is ISimpleItem) && newView is IDataRenderer)
+			if (target is IDataRenderer && newView is IDataRenderer)
 				newView.data = target.data; 
 			
 			if (target is Container && newView is Container) // this will not  happen for ISimpleItems
@@ -41,14 +64,6 @@ package net.seanhess.bif.behaviors
 				for each (var child:UIComponent in children)
 					newView.addChild(child);
 			}
-			
-			if (target.parent)
-			{
-				var parent:DisplayObjectContainer = target.parent as DisplayObjectContainer;
-				var index:int = parent.getChildIndex(target);
-				parent.removeChildAt(index);
-				parent.addChildAt(newView, index);
-			}
 		}
 		
 		public function set view(value:Class):void
@@ -56,6 +71,6 @@ package net.seanhess.bif.behaviors
 			_view = value;
 		}
 		
-		protected var _view:Class = UIComponent;*/
+		protected var _view:Class = UIComponent;
 	}
 }

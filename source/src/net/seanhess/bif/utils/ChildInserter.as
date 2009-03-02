@@ -3,7 +3,7 @@ package net.seanhess.bif.utils
 	import mx.core.Container;
 	import mx.core.UIComponent;
 	
-	public class ItemInserter
+	public class ChildInserter
 	{
 		protected var invalidator:Invalidator = new Invalidator(commit);
 		

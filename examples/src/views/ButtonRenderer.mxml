@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Button xmlns:mx="http://www.adobe.com/2006/mxml" label="Button Renderer: {data.label}">
-	
+<mx:Button xmlns:mx="http://www.adobe.com/2006/mxml" 
+	implements="net.seanhess.bif.views.ISwappable">
+	<mx:Script>
+		<![CDATA[
+			import mx.core.Container;
+			import mx.core.UIComponent;
+			
+			public function copyView(view:UIComponent):void
+			{
+				this.label = "Button Renderer: " + (view as Object).label;
+			}
+		]]>
+	</mx:Script>
 </mx:Button>
