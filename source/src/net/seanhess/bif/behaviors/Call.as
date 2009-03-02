@@ -21,7 +21,7 @@ package net.seanhess.bif.behaviors
 		
 		public function set arguments(value:Object):void
 		{
-			if (!value is Array)
+			if (!(value is Array))
 				value = [value];
 				 
 			_arguments = value as Array;

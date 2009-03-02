@@ -38,6 +38,17 @@ package net.seanhess.bif.core
 			return _match;
 		}
 		
+		/**
+		 * not implemented 
+		 */
+		public function set target(value:Object):void
+		{
+			if (!(value is Array))
+				value = [value];
+			
+			_targets = [value];
+		}
+		
 		public function toString():String
 		{
 			return " [ S ]  " + match;
@@ -46,5 +57,6 @@ package net.seanhess.bif.core
 		protected var _match:String;
 		protected var _behaviors:Array;
 		protected var _nodes:Array;
+		protected var _targets:Array;
 	}
 }

@@ -29,6 +29,9 @@
 			<Listener event="click">
 				<Call method="{this.alert}" 			arguments="{['hello', smart.target, smart.event.currentTarget.label]}"/>
 				<Call method="{smart.target.setStyle}" 	arguments="{['fontSize', 30]}"/>
+				<Select target="{[numba4, numba2]}">
+					<Set width="1000"/>
+				</Select>
 				<Trace message="clicked"/>
 			</Listener>
 		</Selector>
@@ -37,13 +40,13 @@
 	
 	<mx:VBox id="main">
 		<mx:Button label="inMain" styleName="one"/>
-		<mx:Button label="inMain" styleName="two"/>
+		<mx:Button id="numba2" label="inMain" styleName="two"/>
 		<mx:HBox styleName="three">
 			<mx:Button label="inHBox" styleName="one"/>
 			<mx:Button label="inHBox" styleName="two"/>
 			<mx:Button label="inHBox" styleName="three"/>
 		</mx:HBox>
-		<mx:Button label="inMain" styleName="four"/>
+		<mx:Button id="numba4" label="inMain" styleName="four"/>
 	</mx:VBox>
 	
 </mx:Application>
