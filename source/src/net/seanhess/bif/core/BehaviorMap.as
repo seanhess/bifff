@@ -8,6 +8,7 @@ package net.seanhess.bif.core
 	import mx.events.FlexEvent;
 	
 	import net.seanhess.bif.behaviors.IBehavior;
+	import net.seanhess.bif.utils.Debugger;
 	import net.seanhess.bif.utils.Defaults;
 	import net.seanhess.bif.utils.Invalidator;
 	
@@ -18,6 +19,7 @@ package net.seanhess.bif.core
 	public class BehaviorMap extends UIComponent
 	{
 		public var debug:Boolean = false;
+		public var debugger:Debugger = new Debugger();
 		
 		public var selectors:Array = [];
 		public var matcher:IMatcher = new Matcher();
@@ -29,6 +31,7 @@ package net.seanhess.bif.core
 			if (registered)	unregister();
 			
 			_target = value;	
+			debugger.target = value as UIComponent;
 			invalidator.invalidate("target");
 		}
 		
@@ -68,13 +71,6 @@ package net.seanhess.bif.core
 			{
 				if (matchSelector(target, selector))
 				{
-					if (debug && !printed)
-					{
-						printed = true;
-						trace("");
-						trace("<<< " + target + " >>>");
-					}
-					
 					executeRule(target, selector);
 				}
 			}
@@ -87,7 +83,7 @@ package net.seanhess.bif.core
 		
 		protected function executeRule(target:UIComponent, selector:ISelector):void
 		{
-			if (debug) trace(selector);
+			if (debug && debugger) debugger.match(target, selector);
 			
 			for each (var behavior:IBehavior in selector.behaviors)
 				behavior.apply(new Scope(target, this));

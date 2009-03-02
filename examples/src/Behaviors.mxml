@@ -16,7 +16,7 @@
 	
 	<SmartObjects id="smart"/>
 	
-	<BehaviorMap id="map" target="{this}">
+	<BehaviorMap id="map" target="{this}" debug="true">
 		<Selector match="#main > Button">
 			<Set fontSize="24"/>
 		</Selector>

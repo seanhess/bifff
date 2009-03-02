@@ -30,7 +30,8 @@ package net.seanhess.bif.core
 		
 		public function set match(value:String):void
 		{
-			this.nodes = parser.parseMatch(value);
+			_match = value;
+			nodes = parser.parseMatch(value);
 		}
 		
 		public function get match():String
@@ -51,7 +52,7 @@ package net.seanhess.bif.core
 		
 		public function toString():String
 		{
-			return " [ S ]  " + match;
+			return _match;
 		}
 		
 		protected var _match:String;

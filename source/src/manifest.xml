@@ -31,7 +31,7 @@
 	<component class="net.seanhess.bif.utils.Invalidator"/>
 	<component class="net.seanhess.bif.utils.ItemInserter"/>
 	<component class="net.seanhess.bif.utils.SmartObjects"/>
-	<component class="net.seanhess.bif.utils.StructureDump"/>
+	<component class="net.seanhess.bif.utils.Debugger"/>
 
 	<component class="net.seanhess.bif.views.ISimpleItem"/>
 	<component class="net.seanhess.bif.views.Item"/>
