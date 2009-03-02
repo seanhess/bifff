@@ -6,7 +6,7 @@ package net.seanhess.bif.utils
 	[Bindable]
 	public class SmartObjects
 	{
-		public var event:* = new SmartObject(SmartObject.EVENT);
-		public var target:* = new SmartObject(SmartObject.TARGET);
+		public var event:Object = new SmartObject(SmartObject.EVENT);
+		public var target:Object = new SmartObject(SmartObject.TARGET);
 	}
 }
