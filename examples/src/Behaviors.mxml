@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bif.seanhess.net/2009" xmlns:core="net.seanhess.bif.core.*">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bif.seanhess.net/2009" xmlns:core="net.seanhess.bif.core.*" viewSourceURL="srcview/index.html">
 
 	<BehaviorMap target="{this}" debug="true">
 	
