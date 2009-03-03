@@ -4,8 +4,11 @@ package net.seanhess.bif.core
 	
 	public class Parser implements IParser
 	{
-		public function parseMatch(value:String):Array
+		public function parseMatch(value:Object):Array
 		{
+			if (!(value is String))
+				return [new Node(Node.INSTANCE, value)]
+			
 			var items:Array = value.split(" ");
 			var nodes:Array = [];
 			

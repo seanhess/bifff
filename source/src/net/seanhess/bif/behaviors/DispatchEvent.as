@@ -19,7 +19,7 @@ package net.seanhess.bif.behaviors
 			var arguments:Array = constructorArguments;
 			
 			if (arguments == null && eventType != null )
-				arguments = [eventType];
+				arguments = [eventType, bubbles];
 			
 			var event:Event = createInstance(factory, arguments, scope) as Event;
 			
@@ -103,5 +103,6 @@ package net.seanhess.bif.behaviors
 		protected var constructorArguments:Array;
 		protected var eventProperties:Object;
 		protected var eventType:String;
+		public var bubbles:Boolean = false;
 	}
 }

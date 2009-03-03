@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns="http://bif.seanhess.net/2009">
+	
+	<!-- Note that setting the target to flipStack will not work. You can't set it to itself, because it won't catch
+			the match on time 
+	-->
+	<BehaviorMap target="{this}" debug="true">
+		<Selector match="{flipStack}">
+			<Listener event="one">
+				<Select target="{flipStack}">
+					<Set selectedIndex="0"/>
+				</Select>
+			</Listener>
+			<Listener event="two">
+				<Select target="{flipStack}">
+					<Set selectedIndex="1"/>
+				</Select>
+			</Listener>
+			<Set backgroundColor="#FFFFFF"/>
+		</Selector>
+	</BehaviorMap>
+	
+	<mx:ViewStack id="flipStack" width="100%" height="100%">
+		<mx:HBox>
+			<mx:Button label="two" click="dispatchEvent(new Event('two', true))"/>
+		</mx:HBox>
+		
+		<mx:HBox>
+			<mx:Button label="one" click="dispatchEvent(new Event('one', true))"/>
+		</mx:HBox>
+	</mx:ViewStack>
+	
+
+</mx:Application>

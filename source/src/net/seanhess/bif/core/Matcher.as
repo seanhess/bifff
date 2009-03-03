@@ -159,6 +159,7 @@ package net.seanhess.bif.core
 				case Node.STYLE:	return matchStyle(item, node);
 				case Node.MULTI:	return matchMultiple(item, node);
 				case Node.META:		return matchMeta(item, node);
+				case Node.INSTANCE:	return item == node.value;
 				case Node.ANY:		return true;
 			}
 			
