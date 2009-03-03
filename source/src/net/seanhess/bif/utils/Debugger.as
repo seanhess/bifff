@@ -14,15 +14,15 @@ package net.seanhess.bif.utils
 		
 		protected var matches:Dictionary;
 		
-		public function set target(value:UIComponent):void
+		public function set target(value:DisplayObject):void
 		{
 			matches = new Dictionary(true);
-			value.doubleClickEnabled = true;
+			value["doubleClickEnabled"] = true;
 			value.addEventListener(MouseEvent.DOUBLE_CLICK, onDoubleClick, false, 0, true);
 			_target = value;
 		}
 		
-		protected var _target:UIComponent;
+		protected var _target:DisplayObject;
 		
 		protected function onDoubleClick(event:MouseEvent):void
 		{

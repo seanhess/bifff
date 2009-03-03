@@ -3,8 +3,6 @@ package net.seanhess.bif.core
 	import flash.display.DisplayObject;
 	import flash.utils.getQualifiedClassName;
 	
-	import mx.core.UIComponent;
-	
 	public class Matcher implements IMatcher
 	{
 		/**
@@ -12,6 +10,9 @@ package net.seanhess.bif.core
 		 */
 		public function match(item:DisplayObject, nodes:Array, root:DisplayObject=null):Boolean
 		{
+			if (!item)
+				return false;
+			
 			if (nodes.length < 1)
 				return false;
 				
@@ -74,9 +75,9 @@ package net.seanhess.bif.core
 		
 		public function matchStyle(item:DisplayObject, node:Node):Boolean
 		{
-			var comp:UIComponent = item as UIComponent;
+			var comp:* = item;
 			
-			if (comp == null || comp.styleName == null)
+			if (comp == null || !comp.hasOwnProperty("styleName") || comp.styleName == null)
 				return false;
 				
 			// FIXME! // 
@@ -116,10 +117,10 @@ package net.seanhess.bif.core
 		 */
 		public function matchID(item:DisplayObject, node:Node):Boolean
 		{
-			if (!(item is UIComponent))
+			if (!item.hasOwnProperty("id"))
 				return false;
 				
-			return (item as UIComponent).id == node.value; 
+			return item["id"] == node.value; 
 		}
 		
 		public function matchMultiple(item:DisplayObject, node:Node):Boolean

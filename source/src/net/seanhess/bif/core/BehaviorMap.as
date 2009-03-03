@@ -18,8 +18,14 @@ package net.seanhess.bif.core
 	[DefaultProperty("selectors")]
 	public class BehaviorMap extends UIComponent
 	{
+		public static const STYLES_CHANGED:String = "stylesChanged";
+		
+		public var registerEvent:String = FlexEvent.CREATION_COMPLETE;
+		
 		public var debug:Boolean = false;
-		public var debugger:Debugger = new Debugger();
+		public var debugger:Debugger;
+		
+		public var applications:ApplicationTracker;
 		
 		public var selectors:Array = [];
 		public var matcher:IMatcher = new Matcher();
@@ -31,9 +37,19 @@ package net.seanhess.bif.core
 			if (registered)	unregister();
 			
 			_target = value;	
-			debugger.target = value as UIComponent;
+			
+			if (debug)
+				initializeDebugger(target);
+
 			invalidator.invalidate("target");
 		}
+		
+		protected function initializeDebugger(target:*):void
+		{
+			debugger = new Debugger();
+			debugger.target = target as DisplayObject;
+		}
+			
 		
 		public function get target():IEventDispatcher
 		{
@@ -49,21 +65,31 @@ package net.seanhess.bif.core
 			{
 				if (selectors == null || selectors.length == 0)
 					selectors = defaults.scan(ISelector);
+					
+				applications = new ApplicationTracker();
 
-				target.addEventListener(FlexEvent.CREATION_COMPLETE, onFoundTarget, true, 1, true);
+				target.addEventListener(registerEvent, onFoundTarget, true, 1, true);
+				target.addEventListener(STYLES_CHANGED, onStylesChanged, true, 1, true);
 				registered = true;
 			}
 		}
 		
 		protected function unregister():void
 		{
-			target.removeEventListener(FlexEvent.CREATION_COMPLETE, onFoundTarget);
+			target.removeEventListener(registerEvent, onFoundTarget);
+			target.addEventListener(STYLES_CHANGED, onStylesChanged);
 			registered = false;
+			applications = null;
+		}
+		
+		protected function onStylesChanged(event:Event):void
+		{
+			onFoundTarget(event);
 		}
 		
 		protected function onFoundTarget(event:Event):void
 		{
-			var target:UIComponent = event.target as UIComponent;
+			var target:* = event.target;
 			
 			var printed:Boolean = false;
 			
@@ -76,17 +102,23 @@ package net.seanhess.bif.core
 			}
 		}
 		
-		protected function matchSelector(target:UIComponent, selector:ISelector):Boolean
+		protected function matchSelector(target:*, selector:ISelector):Boolean
 		{
-			return matcher.match(target, selector.nodes, this.target as DisplayObject);
+			return matcher.match(target as DisplayObject, selector.nodes, this.target as DisplayObject);
 		}
 		
-		protected function executeRule(target:UIComponent, selector:ISelector):void
+		protected function executeRule(target:*, selector:ISelector):void
 		{
+			if (applications.applied(selector, target))
+				return;
+			
+			applications.apply(selector, target);
+
 			if (debug && debugger) debugger.match(target, selector);
 			
 			for each (var behavior:IBehavior in selector.behaviors)
 				behavior.apply(new Scope(target, this));
+				
 		}
 		
 		public function BehaviorMap()

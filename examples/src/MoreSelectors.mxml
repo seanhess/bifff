@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns="http://bif.seanhess.net/2009" viewSourceURL="srcview/index.html">
+	
+	<!-- With debug on, double click to see matches in your console --> 
+	<BehaviorMap target="{this}" debug="true">
+		
+		<!-- Multiple Classes -->
+		<Selector match=".a.b.c">
+			<Set width="500"/>
+		</Selector>
+		
+		<Selector match="#henry.a.b.c">
+			<Set height="10"/>
+		</Selector>
+		
+	</BehaviorMap>
+	
+	<mx:Button label="hello" styleName="a b c"/>
+	<mx:Button label="hello" id="henry" styleName="a b c"/>
+	
+</mx:Application>

@@ -65,6 +65,15 @@
 			<Set textAlign="left"/>
 		</Selector>
 		
+		<!-- Multiple Classes -->
+		<Selector match=".a.b.c">
+			<Set width="500"/>
+		</Selector>
+		
+		<Selector match="#a.a.b.c">
+			<Set height="20"/>
+		</Selector>
+		
 	</BehaviorMap>
 	
 	<mx:Button label="First Button" styleName="fat short" id="firstButton"/>
@@ -89,5 +98,5 @@
 			</mx:VBox>	
 		</mx:HBox>
 	</mx:VBox>
-	
+		
 </mx:Application>

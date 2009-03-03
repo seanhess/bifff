@@ -1,10 +1,10 @@
 package net.seanhess.bif.behaviors
 {
+	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	
 	import mx.core.Container;
 	import mx.core.IDataRenderer;
-	import mx.core.UIComponent;
 	
 	import net.seanhess.bif.core.IScope;
 	import net.seanhess.bif.views.ISwappable;
@@ -47,7 +47,7 @@ package net.seanhess.bif.behaviors
 		
 		protected function copyRegular(target:*, newView:*):void
 		{
-			if (target is UIComponent && newView is UIComponent)
+			if (target.hasOwnProperty("id") && newView.hasOwnProperty("id"))
 			{
 //				newView.styleName = target.styleName; // should merge styles eventually?
 				newView.id = target.id;
@@ -61,7 +61,7 @@ package net.seanhess.bif.behaviors
 				var children:Array = target.getChildren();
 				target.removeAllChildren();
 				
-				for each (var child:UIComponent in children)
+				for each (var child:DisplayObject in children)
 					newView.addChild(child);
 			}
 		}
@@ -71,6 +71,6 @@ package net.seanhess.bif.behaviors
 			_view = value;
 		}
 		
-		protected var _view:Class = UIComponent;
+		protected var _view:Class;
 	}
 }

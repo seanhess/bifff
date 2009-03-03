@@ -1,6 +1,6 @@
 package net.seanhess.bif.core
 {
-	import flash.utils.getDefinitionByName;
+	import flash.utils.Dictionary;
 	
 	[DefaultProperty("behaviors")]
 	public class Selector implements ISelector
@@ -37,17 +37,6 @@ package net.seanhess.bif.core
 		public function get match():String
 		{
 			return _match;
-		}
-		
-		/**
-		 * not implemented 
-		 */
-		public function set target(value:Object):void
-		{
-			if (!(value is Array))
-				value = [value];
-			
-			_targets = [value];
 		}
 		
 		public function toString():String

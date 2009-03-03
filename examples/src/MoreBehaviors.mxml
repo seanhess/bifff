@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bif.seanhess.net/2009" xmlns:core="net.seanhess.bif.core.*" viewSourceURL="srcview/index.html">
+
+	<BehaviorMap target="{this}" debug="true">
+
+		<!-- Set the height to 50 + read the .test style -->
+		<Selector match=".tall">
+			<Set height="50"/>
+			<Set style="test"/>
+		</Selector>
+
+		<!-- Add the style "tall" + add support for the CSS style .big -->
+		<Selector match=".big">
+			<Styles addClass="tall"/>
+			<Set style="big"/>
+		</Selector>
+		
+		<!-- Match two styles at once -->
+		<Selector match=".big.ugly">
+			<Set paddingRight="300"/>
+		</Selector>
+	</BehaviorMap>
+	
+	<mx:Style>
+		.test
+		{
+			color: #FFF000;	
+		}
+		
+		.big
+		{
+			fontSize:24pt;
+		}
+	</mx:Style>
+	
+	<SmartObjects id="smart"/>
+	
+	<mx:Button id="firstButton" label="First Button"	styleName="big fat ugly"/>
+	
+</mx:Application>

@@ -6,9 +6,9 @@
 			import mx.core.Container;
 			import mx.core.UIComponent;
 			
-			public function copyView(view:UIComponent):void
+			public function copyView(view:*):void
 			{
-				this.label = "Button Renderer: " + (view as Object).label;
+				this.label = "Button Renderer: " + view.label;
 			}
 		]]>
 	</mx:Script>

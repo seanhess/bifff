@@ -10,11 +10,11 @@
 	<mx:Script>
 		<![CDATA[
 			import mx.core.Container;
-			import mx.core.UIComponent;
-			public function copyView(view:UIComponent):void
+			import flash.display.DisplayObject;
+			public function copyView(view:*):void
 			{
-				this.title = (view as Object).label;
-				inserter.items = (view as Container).getChildren();
+				this.title = view.label;
+				inserter.items = view.getChildren();
 			}
 		]]>
 	</mx:Script>

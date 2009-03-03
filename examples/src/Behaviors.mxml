@@ -8,6 +8,10 @@
 			<Set fontSize="24"/>
 		</Selector>
 		
+		<Selector match=".test">
+			<Set color="#FFF000"/>
+		</Selector>
+		
 		<!-- Styles -->
 		<Selector match="#secondButton">
 			<Styles addClass="test"/>
@@ -84,20 +88,12 @@
 			}
 		]]>
 	</mx:Script>
-	
-	<mx:Style>
-		.test
-		{
-			color: #FFF000;	
-		}
-	</mx:Style>
-	
+
+
 	<SmartObjects id="smart"/>
 	
-	
-	
 	<mx:Button id="firstButton" label="First Button"/>
-	<mx:Button id="secondButton" label="Second Button"/>
+	<mx:Button id="secondButton" label="Second Button" color="#FF0000"/>
 	
 	<mx:Spacer height="100"/>
 	

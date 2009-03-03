@@ -38,19 +38,19 @@ package net.seanhess.bif.core
 			else if (item == ">")
 				node = new Node(Node.RECURSION_INSTRUCTION, Node.PARENT); // this actually tells
 			
-			else if (item.indexOf(".") == 0)
+			else if (item.match(/^\.[a-zA-Z0-9_]+$/))
 				node = new Node(Node.STYLE, item.replace(".",""));				
 			
-			else if (item.indexOf("#") == 0)
+			else if (item.match(/^\#[a-zA-Z0-9_]+$/))
 				node = new Node(Node.ID, item.replace("#",""));				
 			
-			else if (item.match(/^\w+$/)) 	// if all word characters.. 
+			else if (item.match(/^[a-zA-Z0-9_]+$/)) 	// if all word characters.. 
 				node = new Node(Node.TAG, item);
 			
-			else if (item.match(/^[a-z]+[\w\.]*$/))	// starts with a lower-case letter, then matches any word or '.' chars till the end
+			else if (item.match(/^[a-z]+[a-zA-Z0-9_\.]*$/))	// starts with a lower-case letter, then matches any word or '.' chars till the end
 				node = new Node(Node.CLASS, getDefinitionByName(item));
 			
-			else if (item.match(/^[A-Z][\w\.\#\:]*$/))
+			else if (item.match(/^[A-Z\.\#][\w\.\#\:]*$/))
 				node = new Node(Node.MULTI, parseMulti(item));
 			
 			else
@@ -70,6 +70,9 @@ package net.seanhess.bif.core
 			
 			for each (var item:String in items)
 			{
+				if (item == "")
+					continue;
+				
 				if (item == "#")
 				{
 					nextIsID = true;

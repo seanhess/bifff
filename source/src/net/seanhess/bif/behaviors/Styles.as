@@ -1,12 +1,10 @@
 package net.seanhess.bif.behaviors
 {
-	import flash.utils.Dictionary;
+	import flash.events.Event;
 	
-	import mx.core.UIComponent;
-	import mx.styles.CSSStyleDeclaration;
-	import mx.styles.StyleManager;
-	
+	import net.seanhess.bif.core.BehaviorMap;
 	import net.seanhess.bif.core.IScope;
+	import net.seanhess.bif.core.StyleMerger;
 	
 	/**
 	 * Allows you to set the style of the target. For now, this is a total hack, because it replaces the styleName, which 
@@ -26,28 +24,27 @@ package net.seanhess.bif.behaviors
 	 */
 	public class Styles implements IBehavior
 	{
-		protected var views:Dictionary = new Dictionary(true);
 		protected var classesToAdd:Array = [];
 		protected var classesToRemove:Array = [];
+		public var merger:StyleMerger = new StyleMerger();
 		
 		public function apply(scope:IScope):void
 		{
-			views[scope.target] = true;
+//			var declaration:CSSStyleDeclaration = StyleManager.getStyleDeclaration(".test");
+//				scope.target.styleName = declaration;
 			
-			for each (var style:String in classesToAdd)
+			for each (var add:String in classesToAdd)
 			{
-				updateStyleDeclaration(scope.target, style);
+				merger.addClass(scope.target, add);
 			}
-		}
-		
-		public function updateStyleDeclaration(target:*, styleName:String):void
-		{
-			var component:UIComponent = target as UIComponent;
-			var declaration:CSSStyleDeclaration = StyleManager.getStyleDeclaration("." + styleName);
 			
-			var oldStyleName:String = component.styleName as String;
+			for each (var remove:String in classesToRemove)
+			{
+				merger.removeClass(scope.target, remove);
+			}
 			
-			component.styleName = declaration;
+			// Get it to reinitialize // 
+			scope.target.dispatchEvent(new Event(BehaviorMap.STYLES_CHANGED, true));
 		}
 		
 		public function set addClass(value:Object):void
@@ -58,13 +55,16 @@ package net.seanhess.bif.behaviors
 			classesToAdd = value as Array;
 		}
 		
-		public function set removeClass(value:Object):void
-		{
-			if (value is String)
-				value = [value];
-				
-			classesToRemove = value as Array;
-		}
+		/**
+		 * TODO: Add support for undoing behaviors, otherwise, this won't do anything
+		 */
+//		public function set removeClass(value:Object):void
+//		{
+//			if (value is String)
+//				value = [value];
+//				
+//			classesToRemove = value as Array;
+//		}
 		
 	}
 }

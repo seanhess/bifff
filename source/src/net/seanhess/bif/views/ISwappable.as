@@ -1,6 +1,6 @@
 package net.seanhess.bif.views
 {
-	import mx.core.UIComponent;
+	import flash.display.DisplayObject;
 	
 	/**
 	 * You can implement this interface to get special consideration with
@@ -14,6 +14,6 @@ package net.seanhess.bif.views
 		 * try not to store a reference to the old view to avoid memory issues.
 		 * You can copy its children here yourself
 		 */
-		function copyView(view:UIComponent):void;
+		function copyView(view:*):void;
 	}
 }

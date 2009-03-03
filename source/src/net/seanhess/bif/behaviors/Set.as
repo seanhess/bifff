@@ -4,7 +4,9 @@ package net.seanhess.bif.behaviors
 	import flash.utils.Proxy;
 	import flash.utils.flash_proxy;
 	
+	import mx.styles.CSSStyleDeclaration;
 	import mx.styles.IStyleClient;
+	import mx.styles.StyleManager;
 	
 	import net.seanhess.bif.core.IScope;
 	import net.seanhess.bif.utils.Invalidator;
@@ -43,6 +45,20 @@ package net.seanhess.bif.behaviors
 			delete views[scope.target];
 		}
 		
+		/**
+		 * A stylename to copy properties from. Just pulls them like normal!
+		 */
+		public function set style(value:String):void
+		{
+			var declaration:CSSStyleDeclaration = StyleManager.getStyleDeclaration("." + value);
+			declaration.factory.prototype = {};
+			
+			var properties:Object = new declaration.factory;
+
+			for (var property:String in properties)
+				this[property] = properties[property];
+		}
+		
 		protected function updateProperty(target:*, property:String, value:*, old:Object=null):void
 		{
 			old = old || {};
@@ -61,7 +77,11 @@ package net.seanhess.bif.behaviors
 					styleClient.setStyle(property, value);
 				}
 				else
-					throw new Error("Could not set property " + property + " on " + target);
+				{
+					trace("Bifff: Silent Fail - Could not set property " + property + " on " + target); 
+//					throw new Error("Could not set property " + property + " on " + target);
+					
+				}
 			}
 		}
 		
