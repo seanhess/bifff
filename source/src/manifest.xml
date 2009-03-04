@@ -12,6 +12,7 @@
 	<component class="net.seanhess.bif.behaviors.Trace"/>
 
 	<component class="net.seanhess.bif.core.BehaviorMap"/>
+	<component class="net.seanhess.bif.core.BifffEvent"/>
 	<component class="net.seanhess.bif.core.DirectMatcher"/>
 	<component class="net.seanhess.bif.core.IMatcher"/>
 	<component class="net.seanhess.bif.core.IParser"/>

@@ -7,7 +7,12 @@ package net.seanhess.bif.core
 		public function parseMatch(value:Object):Array
 		{
 			if (!(value is String))
-				return [new Node(Node.INSTANCE, value)]
+			{
+				var instance:Node = new Node(Node.INSTANCE, value);
+					instance.recursion = Node.NONE;
+					
+				return [instance];	
+			}
 			
 			var items:Array = value.split(" ");
 			var nodes:Array = [];

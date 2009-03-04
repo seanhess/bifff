@@ -29,19 +29,21 @@ package net.seanhess.bif.core
 		
 		public var selectors:Array = [];
 		public var matcher:IMatcher = new Matcher();
-		public var invalidator:Invalidator = new Invalidator(commit, 5);
 		public var defaults:Defaults = new Defaults(this);
 		
 		public function set target(value:IEventDispatcher):void
 		{
 			if (registered)	unregister();
 			
-			_target = value;	
-			
-			if (debug)
-				initializeDebugger(target);
 
-			invalidator.invalidate("target");
+			if (_target != value)
+			{
+				if (debug)
+					initializeDebugger(value);
+
+				_target = value;	
+				commit();
+			}
 		}
 		
 		protected function initializeDebugger(target:*):void
@@ -61,17 +63,14 @@ package net.seanhess.bif.core
 		
 		protected function commit():void
 		{
-			if (invalidator.invalid("target"))
-			{
-				if (selectors == null || selectors.length == 0)
-					selectors = defaults.scan(ISelector);
-					
-				applications = new ApplicationTracker();
+			if (selectors == null || selectors.length == 0)
+				selectors = defaults.scan(ISelector);
+				
+			applications = new ApplicationTracker();
 
-				target.addEventListener(registerEvent, onFoundTarget, true, 1, true);
-				target.addEventListener(STYLES_CHANGED, onStylesChanged, true, 1, true);
-				registered = true;
-			}
+			target.addEventListener(registerEvent, onFoundTarget, true, 1, true);
+			target.addEventListener(STYLES_CHANGED, onStylesChanged, true, 1, true);
+			registered = true;
 		}
 		
 		protected function unregister():void
@@ -114,7 +113,16 @@ package net.seanhess.bif.core
 			
 			applications.apply(selector, target);
 
-			if (debug && debugger) debugger.match(target, selector);
+			if (debug)
+			{
+				debugger.match(target, selector);
+				
+				var event:BifffEvent = new BifffEvent(BifffEvent.FOUND_MATCH);
+					event.selector = selector;
+					event.matchedTarget = target;
+				
+				dispatchEvent(event);
+			}
 			
 			for each (var behavior:IBehavior in selector.behaviors)
 				behavior.apply(new Scope(target, this));
@@ -125,6 +133,8 @@ package net.seanhess.bif.core
 		{
 			this.includeInLayout = false;
 			this.visible = false;
+			this.width = 0;
+			this.height= 0;
 		}
 		
 	}

@@ -19,12 +19,16 @@ package net.seanhess.bif.behaviors
 		 */
 		public var map:BehaviorMap;
 		
+		public var debug:Boolean = false;
+		
 		public function apply(scope:IScope):void
 		{
 			if (!map && scope.map)
 				map = scope.map;
+				
+			if (debug) 	trace("[ LISTENING FOR ] \"" + type + "\" on " + scope.target); 
 			
-			(scope.target as IEventDispatcher).addEventListener(type, handler, false, 0, true);
+			(scope.target as IEventDispatcher).addEventListener(type, handler);
 		}
 		
 		public function undo(scope:IScope):void
@@ -49,6 +53,8 @@ package net.seanhess.bif.behaviors
 		
 		protected function handler(event:Event):void
 		{
+			if (debug)	trace(" [ LISTENER ] \"" + type + "\" on " + event.currentTarget + " with a regular target of " + event.target);
+			
 			for each (var behavior:IBehavior in behaviors)
 			{
 				behavior.apply(new Scope(event.currentTarget, this.map, event));

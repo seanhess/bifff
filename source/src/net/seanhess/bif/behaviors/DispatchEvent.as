@@ -14,6 +14,8 @@ package net.seanhess.bif.behaviors
 	{
 		public var resolver:IResolver = new Resolver();
 		
+		public var debug:Boolean = false;
+		
 		public function apply(scope:IScope):void
 		{
 			var arguments:Array = constructorArguments;
@@ -25,6 +27,8 @@ package net.seanhess.bif.behaviors
 			
 			for (var property:String in eventProperties)
 				event[property] = resolver.resolveObject(eventProperties[property], scope);
+				
+			if (debug)	trace(" [ DISPATCH EVENT ] " + event + " on " + scope.target);
 				
 			(scope.target as IEventDispatcher).dispatchEvent(event);			
 		}
