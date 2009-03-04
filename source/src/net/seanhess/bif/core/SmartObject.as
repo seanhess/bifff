@@ -13,20 +13,20 @@ package net.seanhess.bif.core
 		
 		public function SmartObject(type:String=null, source:Object=null, property:String=null):void
 		{
-			this.type = type;
-			this.source = source;
-			this.property = property;
+			this.soType = type;
+			this.soSource = source;
+			this.soProperty = property;
 		}
 		
 		/**
 		 * The type of obj
 		 */
-		public var type:String;
+		public var soType:String;
 		
 		/**
 		 * The name of the property to fetch on the parent smart object
 		 */
-		public var property:String;
+		public var soProperty:String;
 		
 		/**
 		 * All smart objects must point to one of the supported root
@@ -35,7 +35,7 @@ package net.seanhess.bif.core
 		 * So, for property smart objects, the source will be another 
 		 * smart object
 		 */
-		public var source:Object;
+		public var soSource:Object;
 		
 		/**
 		 * when they do something like event.myProperty, we want a smart 
@@ -49,7 +49,7 @@ package net.seanhess.bif.core
 	    
 	    public function resolve(scope:IScope):Object
 	    {
-			switch(this.type)
+			switch(this.soType)
 			{
 				case SmartObject.EVENT:	
 					return scope.event;
@@ -58,7 +58,7 @@ package net.seanhess.bif.core
 					return scope.target;
 					
 				case SmartObject.PROPERTY:
-					return this.source.resolve(scope)[this.property];
+					return this.source.resolve(scope)[this.soProperty];
 			}	
 			
 			return null;
