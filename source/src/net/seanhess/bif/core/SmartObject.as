@@ -58,7 +58,7 @@ package net.seanhess.bif.core
 					return scope.target;
 					
 				case SmartObject.PROPERTY:
-					return this.source.resolve(scope)[this.soProperty];
+					return this.soSource.resolve(scope)[this.soProperty];
 			}	
 			
 			return null;

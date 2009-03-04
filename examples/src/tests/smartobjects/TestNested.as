@@ -38,37 +38,37 @@ package tests.smartobjects
 			assertEquals("source", value.soProperty);
 		}
 		
-//		[Test]
-//		public function nestDoubleWithCheck():void
-//		{
-//			var value:SmartObject = smart.event.target.data;
-//			
-//			var event:Object = {
-//				target: {
-//					data: "hello"					
-//				}
-//			}
-//			
-//			assertEquals("data", value.property);
-//			assertEquals("hello", resolver.resolveObject(value, new Scope(null, null, event)));
-//		}
-//		
-//		[Test]
-//		public function nestObjects():void
-//		{
-//			var value:SmartObject = smart.event.target.data.source;
-//			
-//			var event:Object = {
-//				target: {
-//					data: {
-//						source: "hello"
-//					}
-//				}
-//			}
-//			
-//			assertEquals("data", value.source.property);
-//			assertEquals("source", value.property);
-//			assertEquals("hello", resolver.resolveObject(value, new Scope(null, null, event)));			
-//		}
+		[Test]
+		public function nestDoubleWithCheck():void
+		{
+			var value:SmartObject = smart.target.bob.data;
+			
+			var target:Object = {
+				bob: {
+					data: "hello"					
+				}
+			}
+			
+			assertEquals("data", value.soProperty);
+			assertEquals("hello", resolver.resolveObject(value, new Scope(target)));
+		}
+		
+		[Test]
+		public function nestObjects():void
+		{
+			var value:SmartObject = smart.target.bob.data.source;
+			
+			var target:Object = {
+				bob: {
+					data: {
+						source: "hello"
+					}
+				}
+			}
+			
+			assertEquals("data", value.soSource.soProperty);
+			assertEquals("source", value.soProperty);
+			assertEquals("hello", resolver.resolveObject(value, new Scope(target)));			
+		}
 	}
 }
