@@ -28,13 +28,13 @@ package net.seanhess.bif.core
 			return _behaviors;
 		}
 		
-		public function set match(value:Object):void
+		public function set match(value:String):void
 		{
 			_match = value;
 			nodes = parser.parseMatch(value);
 		}
 		
-		public function get match():Object
+		public function get match():String
 		{
 			return _match;
 		}
@@ -44,7 +44,7 @@ package net.seanhess.bif.core
 			return _match as String || _match.toString();
 		}
 		
-		protected var _match:Object;
+		protected var _match:String;
 		protected var _behaviors:Array;
 		protected var _nodes:Array;
 		protected var _targets:Array;

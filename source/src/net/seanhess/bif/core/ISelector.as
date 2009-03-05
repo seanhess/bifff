@@ -8,6 +8,6 @@ package net.seanhess.bif.core
 		function set nodes(value:Array):void;
 		function get nodes():Array;
 		
-		function set match(value:Object):void;
+		function set match(value:String):void;
 	}
 }

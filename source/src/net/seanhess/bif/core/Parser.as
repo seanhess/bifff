@@ -4,15 +4,16 @@ package net.seanhess.bif.core
 	
 	public class Parser implements IParser
 	{
-		public function parseMatch(value:Object):Array
+		public function parseMatch(value:String):Array
 		{
-			if (!(value is String))
-			{
-				var instance:Node = new Node(Node.INSTANCE, value);
-					instance.recursion = Node.NONE;
-					
-				return [instance];	
-			}
+			// I took this out when I added the apply tag
+//			if (!(value is String))
+//			{
+//				var instance:Node = new Node(Node.INSTANCE, value);
+//					instance.recursion = Node.NONE;
+//					
+//				return [instance];	
+//			}
 			
 			var items:Array = value.split(" ");
 			var nodes:Array = [];

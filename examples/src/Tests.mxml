@@ -17,7 +17,6 @@
 	<mx:Array id="tests">
 		<matcher:MatcherSuite/>
 		<selector:SelectorSuite/>
-		<realmatching:RealMatchingSuite/>
 		<smartobjects:SmartObjectSuite/>
 		<selfselection:SelectSelf/>
 	</mx:Array>
