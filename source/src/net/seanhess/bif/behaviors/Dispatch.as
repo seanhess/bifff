@@ -10,7 +10,7 @@ package net.seanhess.bif.behaviors
 	/**
 	 * Dispatches an event on the target.
 	 */
-	public class DispatchEvent implements IBehavior
+	dynamic public class Dispatch implements IBehavior
 	{
 		public var resolver:IResolver = new Resolver();
 		
@@ -25,12 +25,19 @@ package net.seanhess.bif.behaviors
 			
 			var event:Event = createInstance(factory, arguments, scope) as Event;
 			
-			for (var property:String in eventProperties)
-				event[property] = resolver.resolveObject(eventProperties[property], scope);
+			setProperties(event, scope);
 				
 			if (debug)	trace(" [ DISPATCH EVENT ] " + event + " on " + scope.target);
 				
 			(scope.target as IEventDispatcher).dispatchEvent(event);			
+		}
+		
+		protected function setProperties(event:Event, scope:IScope):void
+		{
+			var properties:Object = eventProperties || this;
+			
+			for (var property:String in properties)
+				event[property] = resolver.resolveObject(properties[property], scope);
 		}
 
 		/**

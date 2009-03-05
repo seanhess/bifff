@@ -65,8 +65,8 @@
 		<!-- Dispatch Event :: Mostly useful for tying into application frameworks -->
 		<Selector match="#secondButton">
 			<Listener event="click">
-				<DispatchEvent generator="{MyCustomEvent}" arguments="{MyCustomEvent.MY_TYPE}" properties="{{importantMessage:'i am a very important message'}}"/>
-				<DispatchEvent type="bob"/>
+				<Dispatch generator="{MyCustomEvent}" arguments="{MyCustomEvent.MY_TYPE}" importantMessage='i am a very important message'/>
+				<Dispatch type="bob"/>
 			</Listener>			
 			<Listener event="bob">
 				<Trace message="Bob wuz here"/>

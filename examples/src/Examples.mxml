@@ -45,7 +45,7 @@
 		
 		<Selector match=".two">
 			<Listener event="click">
-				<DispatchEvent type="test"/>
+				<Dispatch type="test"/>
 			</Listener>
 			<Listener event="test">
 				<Trace message="test"/>

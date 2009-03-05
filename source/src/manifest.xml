@@ -2,7 +2,7 @@
 <componentPackage>    
 	<component class="net.seanhess.bif.behaviors.Call"/>
 	<component class="net.seanhess.bif.behaviors.Contents"/>
-	<component class="net.seanhess.bif.behaviors.DispatchEvent"/>
+	<component class="net.seanhess.bif.behaviors.Dispatch"/>
 	<component class="net.seanhess.bif.behaviors.IBehavior"/>
 	<component class="net.seanhess.bif.behaviors.Listener"/>
 	<component class="net.seanhess.bif.behaviors.Select"/>
