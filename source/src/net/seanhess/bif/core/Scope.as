@@ -7,13 +7,11 @@ package net.seanhess.bif.core
 	{
 		public var event:Event;
 		public var target:*;
-		public var map:BehaviorMap;
 		
-		public function Scope(target:*=null, map:BehaviorMap=null, event:Event=null)
+		public function Scope(target:*=null, event:Event=null)
 		{
 			this.target = target;
 			this.event = event;
-			this.map = map;
 		}
 	}
 }

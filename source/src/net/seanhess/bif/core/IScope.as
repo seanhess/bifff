@@ -6,6 +6,5 @@ package net.seanhess.bif.core
 	{
 		function get event():Event;
 		function get target():*;
-		function get map():BehaviorMap;
 	}
 }

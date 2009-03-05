@@ -14,18 +14,10 @@ package net.seanhess.bif.behaviors
 	[DefaultProperty("behaviors")]
 	public class Listener implements IBehavior
 	{
-		/**
-		 * So we can create a new scope object for our chilluns
-		 */
-		public var map:BehaviorMap;
-		
 		public var debug:Boolean = false;
 		
 		public function apply(scope:IScope):void
 		{
-			if (!map && scope.map)
-				map = scope.map;
-				
 			if (debug) 	trace("[ LISTENING FOR ] \"" + type + "\" on " + scope.target); 
 			
 			(scope.target as IEventDispatcher).addEventListener(type, handler);
@@ -57,7 +49,7 @@ package net.seanhess.bif.behaviors
 			
 			for each (var behavior:IBehavior in behaviors)
 			{
-				behavior.apply(new Scope(event.currentTarget, this.map, event));
+				behavior.apply(new Scope(event.currentTarget, event));
 			}
 		}
 		

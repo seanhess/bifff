@@ -20,9 +20,6 @@ package net.seanhess.bif.behaviors
 		
 		public function apply(scope:IScope):void
 		{
-			if (map == null && scope.map)
-				map = scope.map;
-			
 			if (_targets)
 			{
 				executeMatches(_targets);
@@ -86,7 +83,7 @@ package net.seanhess.bif.behaviors
 			
 			for each (var target:* in matches)
 				for each (var behavior:IBehavior in _behaviors)
-					behavior.apply(new Scope(target, this.map));
+					behavior.apply(new Scope(target));
 		}
 		
 		protected var searchDirection:String = SEARCH_PARENTS;
@@ -94,6 +91,5 @@ package net.seanhess.bif.behaviors
 		protected var _behaviors:Array;
 		protected var _targets:Array;
 		protected var nodes:Array;
-		protected var map:BehaviorMap;
 	}
 }
