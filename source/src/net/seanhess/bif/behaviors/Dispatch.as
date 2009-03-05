@@ -6,6 +6,7 @@ package net.seanhess.bif.behaviors
 	import net.seanhess.bif.core.IResolver;
 	import net.seanhess.bif.core.IScope;
 	import net.seanhess.bif.core.Resolver;
+	import net.seanhess.bif.core.Scope;
 	
 	/**
 	 * Dispatches an event on the target.
