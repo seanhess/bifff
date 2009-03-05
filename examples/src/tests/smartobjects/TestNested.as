@@ -4,61 +4,64 @@ package tests.smartobjects
 	import net.seanhess.bif.core.Resolver;
 	import net.seanhess.bif.core.Scope;
 	import net.seanhess.bif.core.SmartObject;
-	import net.seanhess.bif.utils.SmartObjects;
+	import net.seanhess.bif.utils.SmartEvent;
+	import net.seanhess.bif.utils.SmartTarget;
 	
 	public class TestNested extends TestCase
 	{
-		protected var smart:SmartObjects;
+		protected var event:SmartEvent;
+		protected var target:SmartTarget;
 		protected var resolver:Resolver;
 		
 		override protected function setUp():void
 		{
-			smart = new SmartObjects();
+			event = new SmartEvent();
+			target = new SmartTarget();
 			resolver = new Resolver();
 		}
 		
 		[Test]
 		public function nestSingle():void
 		{
-			var value:SmartObject = smart.event.target;
+			var value:SmartObject = event.target;
 			assertEquals("target", value.soProperty);
 		}
 		
 		[Test]
 		public function nestDouble():void
 		{
-			var value:SmartObject = smart.event.target.data;
+			var value:SmartObject = event.target.data;
 			assertEquals("data", value.soProperty);
 		}
 		
 		[Test]
 		public function nestTriple():void
 		{
-			var value:SmartObject = smart.event.target.data.source;
+			var value:SmartObject = event.target.data.source;
 			assertEquals("source", value.soProperty);
 		}
 		
 		[Test]
 		public function nestDoubleWithCheck():void
 		{
-			var value:SmartObject = smart.target.bob.data;
+			var value:SmartObject = target.bob.data;
 			
-			var target:Object = {
+			var myTarget:Object = {
 				bob: {
 					data: "hello"					
 				}
 			}
 			
 			assertEquals("data", value.soProperty);
-			assertEquals("hello", resolver.resolveObject(value, new Scope({target:target})));
+			assertEquals("hello", resolver.resolveObject(value, new Scope({target:myTarget})));
 		}
 		
 		[Test]
 		public function nestObjects():void
 		{
-			var value:SmartObject = smart.target.bob.data.source;
+			var value:SmartObject = target.bob.data.source;
 			
-			var target:Object = {
+			var myTarget:Object = {
 				bob: {
 					data: {
 						source: "hello"
@@ -68,7 +71,7 @@ package tests.smartobjects
 			
 			assertEquals("data", value.soSource.soProperty);
 			assertEquals("source", value.soProperty);
-			assertEquals("hello", resolver.resolveObject(value, new Scope({target:target})));			
+			assertEquals("hello", resolver.resolveObject(value, new Scope({target:myTarget})));			
 		}
 	}
 }

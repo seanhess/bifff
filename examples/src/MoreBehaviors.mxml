@@ -33,8 +33,6 @@
 		}
 	</mx:Style>
 	
-	<SmartObjects id="smart"/>
-	
 	<mx:Button id="firstButton" label="First Button"	styleName="big fat ugly"/>
 	
 </mx:Application>
