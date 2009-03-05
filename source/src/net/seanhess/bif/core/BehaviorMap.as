@@ -16,6 +16,7 @@ package net.seanhess.bif.core
 	 * I want mate to be able to inject to me, so I'm hacking this to extend UIComponent
 	 */
 	[DefaultProperty("selectors")]
+	[Event(name="foundMatch", type="net.seanhess.bif.core.BifffEvent")]
 	public class BehaviorMap extends UIComponent
 	{
 		public static const STYLES_CHANGED:String = "stylesChanged";
@@ -34,7 +35,6 @@ package net.seanhess.bif.core
 		public function set target(value:IEventDispatcher):void
 		{
 			if (registered)	unregister();
-			
 
 			if (_target != value)
 			{

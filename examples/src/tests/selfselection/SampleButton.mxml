@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Button 
+	xmlns:mx="http://www.adobe.com/2006/mxml" 
+	label="hello"
+	xmlns="http://bif.seanhess.net/2009"
+	creationComplete="dispatchEvent(new Event('test'))"
+	>
+	
+	<Apply target="{this}">
+		<Listener event="test">
+			<Dispatch type="hello"/>
+			<Trace message="Hello"/>
+		</Listener>
+	</Apply>
+	
+</mx:Button>

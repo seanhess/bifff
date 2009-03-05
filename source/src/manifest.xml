@@ -11,6 +11,7 @@
 	<component class="net.seanhess.bif.behaviors.Swap"/>
 	<component class="net.seanhess.bif.behaviors.Trace"/>
 
+	<component class="net.seanhess.bif.core.Apply"/>
 	<component class="net.seanhess.bif.core.BehaviorMap"/>
 	<component class="net.seanhess.bif.core.BifffEvent"/>
 	<component class="net.seanhess.bif.core.DirectMatcher"/>
