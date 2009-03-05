@@ -7,10 +7,8 @@ package net.seanhess.bif.core
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
 	
-	import net.seanhess.bif.behaviors.IBehavior;
 	import net.seanhess.bif.utils.Debugger;
 	import net.seanhess.bif.utils.Defaults;
-	import net.seanhess.bif.utils.Invalidator;
 	
 	/**
 	 * I want mate to be able to inject to me, so I'm hacking this to extend UIComponent
@@ -26,8 +24,8 @@ package net.seanhess.bif.core
 		public var debug:Boolean = false;
 		public var debugger:Debugger;
 		
-		public var applications:ApplicationTracker;
-		
+		public var executor:IExecutor;
+				
 		public var selectors:Array = [];
 		public var matcher:IMatcher = new Matcher();
 		public var defaults:Defaults = new Defaults(this);
@@ -66,7 +64,10 @@ package net.seanhess.bif.core
 			if (selectors == null || selectors.length == 0)
 				selectors = defaults.scan(ISelector);
 				
-			applications = new ApplicationTracker();
+			executor = new Executor(debug);
+			
+			if (debug)
+				executor.addEventListener(BifffEvent.FOUND_MATCH, onFoundMatch, false, 0, true);
 
 			target.addEventListener(registerEvent, onFoundTarget, true, 1, true);
 			target.addEventListener(STYLES_CHANGED, onStylesChanged, true, 1, true);
@@ -77,8 +78,15 @@ package net.seanhess.bif.core
 		{
 			target.removeEventListener(registerEvent, onFoundTarget);
 			target.addEventListener(STYLES_CHANGED, onStylesChanged);
+			executor.removeEventListener(BifffEvent.FOUND_MATCH, onFoundMatch);
+			executor = null;
 			registered = false;
-			applications = null;
+		}
+		
+		protected function onFoundMatch(event:BifffEvent):void
+		{
+			if (debug)
+				debugger.match(event.matchedTarget, event.selector);
 		}
 		
 		protected function onStylesChanged(event:Event):void
@@ -93,40 +101,13 @@ package net.seanhess.bif.core
 			var printed:Boolean = false;
 			
 			for each (var selector:ISelector in selectors)
-			{
 				if (matchSelector(target, selector))
-				{
-					executeRule(target, selector);
-				}
-			}
+					executor.executeSelector(target, selector);
 		}
 		
 		protected function matchSelector(target:*, selector:ISelector):Boolean
 		{
 			return matcher.match(target as DisplayObject, selector.nodes, this.target as DisplayObject);
-		}
-		
-		protected function executeRule(target:*, selector:ISelector):void
-		{
-			if (applications.applied(selector, target))
-				return;
-			
-			applications.apply(selector, target);
-
-			if (debug)
-			{
-				debugger.match(target, selector);
-				
-				var event:BifffEvent = new BifffEvent(BifffEvent.FOUND_MATCH);
-					event.selector = selector;
-					event.matchedTarget = target;
-				
-				dispatchEvent(event);
-			}
-			
-			for each (var behavior:IBehavior in selector.behaviors)
-				behavior.apply(new Scope({target:target}));
-				
 		}
 		
 		public function BehaviorMap()

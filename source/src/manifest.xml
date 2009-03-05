@@ -31,8 +31,8 @@
 	<component class="net.seanhess.bif.utils.Defaults"/>
 	<component class="net.seanhess.bif.utils.Invalidator"/>
 	<component class="net.seanhess.bif.utils.ChildInserter"/>
-	<component class="net.seanhess.bif.utils.SmartObjects"/>
 	<component class="net.seanhess.bif.utils.Debugger"/>
+	<component class="net.seanhess.bif.utils.SmartObjects"/>
 
 	<component class="net.seanhess.bif.views.ISwappable"/>
 </componentPackage>

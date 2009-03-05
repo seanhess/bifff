@@ -9,15 +9,7 @@ package net.seanhess.bif.core
  	[DefaultProperty("behaviors")]
 	public class Apply
 	{
-		/**
-		 * apply the behaviors to all targets
-		 */
-		protected function executeMatches(matches:Array):void
-		{
-			for each (var target:* in matches)
-				for each (var behavior:IBehavior in _behaviors)
-					behavior.apply(new Scope({target:target}));
-		}
+		public var executor:IExecutor = new Executor();
 		
 		/**
 		 * Target or targets
@@ -29,7 +21,7 @@ package net.seanhess.bif.core
 				
 			targets = value as Array;
 			
-			executeMatches(targets);
+			executor.executeMatches(targets, _behaviors);
 		}
 		
 		public function set behaviors(value:Array):void

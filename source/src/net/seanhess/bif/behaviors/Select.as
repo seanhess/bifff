@@ -1,7 +1,8 @@
 package net.seanhess.bif.behaviors
 {
-	import net.seanhess.bif.core.BehaviorMap;
 	import net.seanhess.bif.core.DirectMatcher;
+	import net.seanhess.bif.core.Executor;
+	import net.seanhess.bif.core.IExecutor;
 	import net.seanhess.bif.core.IParser;
 	import net.seanhess.bif.core.Parser;
 	import net.seanhess.bif.core.Scope;
@@ -14,6 +15,7 @@ package net.seanhess.bif.behaviors
 		
 		public var matcher:DirectMatcher = new DirectMatcher();
 		public var parser:IParser = new Parser();
+		public var executor:IExecutor = new Executor();
 		
 		public var debug:Boolean = false;
 		
@@ -79,10 +81,7 @@ package net.seanhess.bif.behaviors
 		protected function executeMatches(matches:Array):void
 		{
 			if (debug) 	trace(" [ SELECT ] " + matches);
-			
-			for each (var target:* in matches)
-				for each (var behavior:IBehavior in _behaviors)
-					behavior.apply(new Scope({target:target}));
+			executor.executeMatches(matches, _behaviors);
 		}
 		
 		protected var searchDirection:String = SEARCH_PARENTS;

@@ -3,7 +3,8 @@ package net.seanhess.bif.behaviors
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	
-	import net.seanhess.bif.core.BehaviorMap;
+	import net.seanhess.bif.core.Executor;
+	import net.seanhess.bif.core.IExecutor;
 	import net.seanhess.bif.core.Scope;
 	
 	/**
@@ -14,6 +15,7 @@ package net.seanhess.bif.behaviors
 	public class Listener implements IBehavior
 	{
 		public var debug:Boolean = false;
+		public var executor:IExecutor = new Executor();
 		
 		public function apply(scope:Scope):void
 		{
@@ -45,11 +47,7 @@ package net.seanhess.bif.behaviors
 		protected function handler(event:Event):void
 		{
 			if (debug)	trace(" [ LISTENER ] \"" + type + "\" on " + event.currentTarget + " with a regular target of " + event.target);
-			
-			for each (var behavior:IBehavior in behaviors)
-			{
-				behavior.apply(new Scope({target:event.currentTarget, event:event}));
-			}
+			executor.executeBehaviors(event.currentTarget, behaviors, new Scope({event:event}));
 		}
 		
 		protected var type:String;
