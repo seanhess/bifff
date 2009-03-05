@@ -8,7 +8,7 @@ package net.seanhess.bif.behaviors
 	import mx.styles.IStyleClient;
 	import mx.styles.StyleManager;
 	
-	import net.seanhess.bif.core.IScope;
+	import net.seanhess.bif.core.Scope;
 	import net.seanhess.bif.utils.Invalidator;
 	
 	/**
@@ -25,7 +25,7 @@ package net.seanhess.bif.behaviors
 		protected var updates:Object = {};
 		protected var invalidator:Invalidator = new Invalidator(commit);
 		
-		public function apply(scope:IScope):void
+		public function apply(scope:Scope):void
 		{
 			var old:Object = {};
 			
@@ -35,7 +35,7 @@ package net.seanhess.bif.behaviors
 			views[scope.target] = old;
 		}
 		
-		public function undo(scope:IScope):void
+		public function undo(scope:Scope):void
 		{
 			var old:Object = views[scope.target];
 			

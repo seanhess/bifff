@@ -2,6 +2,6 @@ package net.seanhess.bif.core
 {
 	public interface ISmartObject
 	{
-		function resolve(scope:IScope):Object; 	
+		function resolve(scope:Scope):Object; 	
 	}
 }

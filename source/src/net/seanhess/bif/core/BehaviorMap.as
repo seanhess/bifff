@@ -125,7 +125,7 @@ package net.seanhess.bif.core
 			}
 			
 			for each (var behavior:IBehavior in selector.behaviors)
-				behavior.apply(new Scope(target));
+				behavior.apply(new Scope({target:target}));
 				
 		}
 		

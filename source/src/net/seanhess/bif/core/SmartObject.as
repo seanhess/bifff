@@ -7,21 +7,11 @@ package net.seanhess.bif.core
 	
 	dynamic public class SmartObject extends Proxy implements ISmartObject, IEventDispatcher
 	{
-		public static const TARGET:String = "target";
-		public static const EVENT:String = "event";
-		public static const PROPERTY:String = "property";
-		
-		public function SmartObject(type:String=null, source:Object=null, property:String=null):void
+		public function SmartObject(property:String=null, source:Object=null):void
 		{
-			this.soType = type;
 			this.soSource = source;
 			this.soProperty = property;
 		}
-		
-		/**
-		 * The type of obj
-		 */
-		public var soType:String;
 		
 		/**
 		 * The name of the property to fetch on the parent smart object
@@ -43,25 +33,27 @@ package net.seanhess.bif.core
 		 */
 		override flash_proxy function getProperty(name:*):* 
 		{
-			var child:SmartObject = new SmartObject(PROPERTY, this, name);
+			var child:SmartObject = new SmartObject(name, this);
         	return child;
 	    }
 	    
-	    public function resolve(scope:IScope):Object
+	    /**
+	    * If it is a smart object, resolve the parent, and fetch
+	    * the property on the resolution.
+	    * 
+	    * If anything else, just get the property on it
+	    */
+	    public function resolve(scope:Scope):Object
 	    {
-			switch(this.soType)
-			{
-				case SmartObject.EVENT:	
-					return scope.event;
+	    	var result:Object;
+	    	
+	    	if (soSource && soSource is ISmartObject)
+	    		result = this.soSource.resolve(scope)[this.soProperty];
+
+			else
+				result = scope[this.soProperty];
 				
-				case SmartObject.TARGET:
-					return scope.target;
-					
-				case SmartObject.PROPERTY:
-					return this.soSource.resolve(scope)[this.soProperty];
-			}	
-			
-			return null;
+			return result;
 	    }
 	    
 	    

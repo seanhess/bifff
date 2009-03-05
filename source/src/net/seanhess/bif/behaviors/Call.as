@@ -1,8 +1,8 @@
 package net.seanhess.bif.behaviors
 {
 	import net.seanhess.bif.core.IResolver;
-	import net.seanhess.bif.core.IScope;
 	import net.seanhess.bif.core.Resolver;
+	import net.seanhess.bif.core.Scope;
 	
 	/**
 	 * Calls a method
@@ -11,7 +11,7 @@ package net.seanhess.bif.behaviors
 	{
 		public var resolver:IResolver = new Resolver();
 		
-		public function apply(scope:IScope):void
+		public function apply(scope:Scope):void
 		{
 			var arguments:Array = resolver.resolveArguments(_arguments, scope);
 			var method:Function = resolver.resolveObject(_method, scope) as Function;	

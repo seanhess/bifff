@@ -3,7 +3,7 @@ package net.seanhess.bif.behaviors
 	import mx.core.Container;
 	import mx.core.UIComponent;
 	
-	import net.seanhess.bif.core.IScope;
+	import net.seanhess.bif.core.Scope;
 	
 	/**
 	 * Allows you to replace the contents of your view with new stuff. 
@@ -12,12 +12,12 @@ package net.seanhess.bif.behaviors
 	 */
 	public class Contents implements IBehavior
 	{
-		public function apply(scope:IScope):void
+		public function apply(scope:Scope):void
 		{
 			var container:Container = scope.target as Container;
 			
 			if (!container)
-				throw new Error("Target is not container " + scope.target);
+				throw new Error("Target is not container " + scope[Scope.TARGET]);
 				
 			if (_removeAll)
 				container.removeAllChildren();

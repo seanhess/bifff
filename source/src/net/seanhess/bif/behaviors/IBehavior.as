@@ -1,9 +1,9 @@
 package net.seanhess.bif.behaviors
 {
-	import net.seanhess.bif.core.IScope;
+	import net.seanhess.bif.core.Scope;
 	
 	public interface IBehavior
 	{
-		function apply(scope:IScope):void;
+		function apply(scope:Scope):void;
 	}
 }

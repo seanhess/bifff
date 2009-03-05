@@ -6,7 +6,7 @@ package net.seanhess.bif.behaviors
 	import mx.core.Container;
 	import mx.core.IDataRenderer;
 	
-	import net.seanhess.bif.core.IScope;
+	import net.seanhess.bif.core.Scope;
 	import net.seanhess.bif.views.ISwappable;
 	
 	/**
@@ -21,7 +21,7 @@ package net.seanhess.bif.behaviors
 	 */
 	public class Swap implements IBehavior
 	{
-		public function apply(scope:IScope):void
+		public function apply(scope:Scope):void
 		{
 			var target:* = scope.target;
 			if (!_view)	throw new Error("View was not set");

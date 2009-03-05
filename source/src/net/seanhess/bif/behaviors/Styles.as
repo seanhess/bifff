@@ -3,7 +3,7 @@ package net.seanhess.bif.behaviors
 	import flash.events.Event;
 	
 	import net.seanhess.bif.core.BehaviorMap;
-	import net.seanhess.bif.core.IScope;
+	import net.seanhess.bif.core.Scope;
 	import net.seanhess.bif.core.StyleMerger;
 	
 	/**
@@ -28,7 +28,7 @@ package net.seanhess.bif.behaviors
 		protected var classesToRemove:Array = [];
 		public var merger:StyleMerger = new StyleMerger();
 		
-		public function apply(scope:IScope):void
+		public function apply(scope:Scope):void
 		{
 //			var declaration:CSSStyleDeclaration = StyleManager.getStyleDeclaration(".test");
 //				scope.target.styleName = declaration;

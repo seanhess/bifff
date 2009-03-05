@@ -4,7 +4,6 @@ package net.seanhess.bif.behaviors
 	import flash.events.IEventDispatcher;
 	
 	import net.seanhess.bif.core.BehaviorMap;
-	import net.seanhess.bif.core.IScope;
 	import net.seanhess.bif.core.Scope;
 	
 	/**
@@ -16,14 +15,14 @@ package net.seanhess.bif.behaviors
 	{
 		public var debug:Boolean = false;
 		
-		public function apply(scope:IScope):void
+		public function apply(scope:Scope):void
 		{
 			if (debug) 	trace("[ LISTENING FOR ] \"" + type + "\" on " + scope.target); 
 			
 			(scope.target as IEventDispatcher).addEventListener(type, handler);
 		}
 		
-		public function undo(scope:IScope):void
+		public function undo(scope:Scope):void
 		{
 			(scope.target as IEventDispatcher).removeEventListener(type, handler);	
 		}
@@ -49,7 +48,7 @@ package net.seanhess.bif.behaviors
 			
 			for each (var behavior:IBehavior in behaviors)
 			{
-				behavior.apply(new Scope(event.currentTarget, event));
+				behavior.apply(new Scope({target:event.currentTarget, event:event}));
 			}
 		}
 		

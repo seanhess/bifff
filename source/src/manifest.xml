@@ -18,7 +18,6 @@
 	<component class="net.seanhess.bif.core.IMatcher"/>
 	<component class="net.seanhess.bif.core.IParser"/>
 	<component class="net.seanhess.bif.core.IResolver"/>
-	<component class="net.seanhess.bif.core.IScope"/>
 	<component class="net.seanhess.bif.core.ISelector"/>
 	<component class="net.seanhess.bif.core.ISmartObject"/>
 	<component class="net.seanhess.bif.core.Matcher"/>

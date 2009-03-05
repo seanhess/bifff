@@ -16,7 +16,7 @@ package net.seanhess.bif.core
 		{
 			for each (var target:* in matches)
 				for each (var behavior:IBehavior in _behaviors)
-					behavior.apply(new Scope(target));
+					behavior.apply(new Scope({target:target}));
 		}
 		
 		/**

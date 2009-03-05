@@ -3,15 +3,20 @@ package net.seanhess.bif.core
 	import flash.events.Event;
 	
 	[Bindable]
-	public class Scope implements IScope
+	/**
+	 * Stores anything you want to pass on in the scope, so it can be fetched with 
+	 * a smart object
+	 */
+	dynamic public class Scope
 	{
-		public var event:Event;
-		public var target:*;
+		public static const EVENT:String = "event";
+		public static const TARGET:String = "target";
 		
-		public function Scope(target:*=null, event:Event=null)
+		public function Scope(properties:Object=null)
 		{
-			this.target = target;
-			this.event = event;
+			if (properties)
+				for (var property:String in properties)
+					this[property] = properties[property];
 		}
 	}
 }

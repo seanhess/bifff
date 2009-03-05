@@ -4,7 +4,6 @@ package net.seanhess.bif.behaviors
 	import flash.events.IEventDispatcher;
 	
 	import net.seanhess.bif.core.IResolver;
-	import net.seanhess.bif.core.IScope;
 	import net.seanhess.bif.core.Resolver;
 	import net.seanhess.bif.core.Scope;
 	
@@ -17,7 +16,7 @@ package net.seanhess.bif.behaviors
 		
 		public var debug:Boolean = false;
 		
-		public function apply(scope:IScope):void
+		public function apply(scope:Scope):void
 		{
 			var arguments:Array = constructorArguments;
 			
@@ -28,12 +27,12 @@ package net.seanhess.bif.behaviors
 			
 			setProperties(event, scope);
 				
-			if (debug)	trace(" [ DISPATCH EVENT ] " + event + " on " + scope.target);
+			if (debug)	trace(" [ DISPATCH EVENT ] " + event + " on " + scope[Scope.TARGET]);
 				
 			(scope.target as IEventDispatcher).dispatchEvent(event);			
 		}
 		
-		protected function setProperties(event:Event, scope:IScope):void
+		protected function setProperties(event:Event, scope:Scope):void
 		{
 			var properties:Object = eventProperties || this;
 			
@@ -80,7 +79,7 @@ package net.seanhess.bif.behaviors
 		 * can't use function.apply because stupid Class doesn't extend Function. Oh well :)
 		 * Thanks to Nahuel again
 		 */
-		public function createInstance(template:Class, p:Array, scope:IScope):Object
+		public function createInstance(template:Class, p:Array, scope:Scope):Object
 		{
 			var newInstance:Object;
 			if(!p || p.length == 0)

@@ -2,7 +2,7 @@ package net.seanhess.bif.core
 {
 	public class Resolver implements IResolver
 	{
-		public function resolveArguments(arguments:Array, scope:IScope):Array
+		public function resolveArguments(arguments:Array, scope:Scope):Array
 		{
 			var resolved:Array = [];
 			
@@ -14,9 +14,9 @@ package net.seanhess.bif.core
 			return resolved;
 		}
 		
-		public function resolveObject(result:Object, scope:IScope):Object
+		public function resolveObject(result:Object, scope:Scope):Object
 		{
-			if (result is SmartObject)
+			if (result is ISmartObject)
 				result = result.resolve(scope); 
 			
 			return result;

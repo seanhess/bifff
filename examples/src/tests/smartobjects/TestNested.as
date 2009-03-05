@@ -50,7 +50,7 @@ package tests.smartobjects
 			}
 			
 			assertEquals("data", value.soProperty);
-			assertEquals("hello", resolver.resolveObject(value, new Scope(target)));
+			assertEquals("hello", resolver.resolveObject(value, new Scope({target:target})));
 		}
 		
 		[Test]
@@ -68,7 +68,7 @@ package tests.smartobjects
 			
 			assertEquals("data", value.soSource.soProperty);
 			assertEquals("source", value.soProperty);
-			assertEquals("hello", resolver.resolveObject(value, new Scope(target)));			
+			assertEquals("hello", resolver.resolveObject(value, new Scope({target:target})));			
 		}
 	}
 }
