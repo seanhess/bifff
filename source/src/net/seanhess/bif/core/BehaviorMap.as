@@ -2,9 +2,10 @@ package net.seanhess.bif.core
 {
 	import flash.display.DisplayObject;
 	import flash.events.Event;
+	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
 	
-	import mx.core.UIComponent;
+	import mx.core.IMXMLObject;
 	import mx.events.FlexEvent;
 	
 	import net.seanhess.bif.utils.Debugger;
@@ -15,7 +16,8 @@ package net.seanhess.bif.core
 	 */
 	[DefaultProperty("selectors")]
 	[Event(name="foundMatch", type="net.seanhess.bif.core.BifffEvent")]
-	public class BehaviorMap
+	[Event(name="initialize", type="mx.events.FlexEvent")]
+	public class BehaviorMap extends EventDispatcher implements IMXMLObject
 	{
 		public static const STYLES_CHANGED:String = "stylesChanged";
 		
@@ -29,6 +31,16 @@ package net.seanhess.bif.core
 		public var selectors:Array = [];
 		public var matcher:IMatcher = new Matcher();
 		public var defaults:Defaults = new Defaults(this);
+		
+		public var document:Object;
+		public var id:String;
+		
+		public function initialized(document:Object, id:String):void
+		{
+			this.document = document;
+			this.id = id;
+			dispatchEvent(new FlexEvent(FlexEvent.INITIALIZE));
+		}
 		
 		public function set target(value:IEventDispatcher):void
 		{
