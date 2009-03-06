@@ -15,7 +15,7 @@ package net.seanhess.bif.core
 	 */
 	[DefaultProperty("selectors")]
 	[Event(name="foundMatch", type="net.seanhess.bif.core.BifffEvent")]
-	public class BehaviorMap extends UIComponent
+	public class BehaviorMap
 	{
 		public static const STYLES_CHANGED:String = "stylesChanged";
 		
@@ -109,14 +109,5 @@ package net.seanhess.bif.core
 		{
 			return matcher.match(target as DisplayObject, selector.nodes, this.target as DisplayObject);
 		}
-		
-		public function BehaviorMap()
-		{
-			this.includeInLayout = false;
-			this.visible = false;
-			this.width = 0;
-			this.height= 0;
-		}
-		
 	}
 }

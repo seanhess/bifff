@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:digitalprimates="http://www.digitalprimates.net/2008/fluint" xmlns:listener="tests.listener.*" xmlns:matcher="tests.matcher.*"
-	creationComplete="startTestProcess()" xmlns:rule="tests.rule.*" xmlns:selector="tests.selector.*" viewSourceURL="srcview/index.html" xmlns:realmatching="tests.realmatching.*" xmlns:smartobjects="tests.smartobjects.*" xmlns:selfselection="tests.selfselection.*">
+	creationComplete="startTestProcess()" xmlns:rule="tests.rule.*" xmlns:selector="tests.selector.*" viewSourceURL="srcview/index.html" xmlns:realmatching="tests.realmatching.*" xmlns:smartobjects="tests.smartobjects.*" xmlns:selfselection="tests.selfselection.*" xmlns:mateintegration="tests.mateintegration.*">
 	
 	<mx:Script>
 		<![CDATA[
@@ -19,6 +19,7 @@
 		<selector:SelectorSuite/>
 		<smartobjects:SmartObjectSuite/>
 		<selfselection:SelectSelf/>
+		<mateintegration:MateIntegrationSuite/>
 	</mx:Array>
 	
 	<digitalprimates:TestResultDisplay width="100%" height="100%" />
