@@ -9,13 +9,18 @@
 		<State id="stateTwo" name="two" debug="true">
 			<Set string="two"/>
 		</State>
+		
+		<Bind id="binding" property="string" value="fat" debug="true">
+			<Set secondString="charlie"/>
+		</Bind>
 	</Apply>
-
+	
 	<mx:states>
 		<mx:State name="one"/>
 		<mx:State name="two"/>
 	</mx:states>
 	
 	<mx:String id="string">Nothing</mx:String>
+	<mx:String id="secondString">Nothing</mx:String>
 	
 </mx:Canvas>

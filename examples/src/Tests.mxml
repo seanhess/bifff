@@ -20,7 +20,7 @@
 		<smartobjects:SmartObjectSuite/>
 		<selfselection:SelectSelf/>
 		<mateintegration:MateIntegrationSuite/>
-		<state:StateSuite/>
+		<listener:ListenerSuite/>
 	</mx:Array>
 	
 	<digitalprimates:TestResultDisplay width="100%" height="100%" />
