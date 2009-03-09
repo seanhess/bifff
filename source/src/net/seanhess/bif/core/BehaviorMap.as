@@ -113,8 +113,21 @@ package net.seanhess.bif.core
 			var printed:Boolean = false;
 			
 			for each (var selector:ISelector in selectors)
+			{
 				if (matchSelector(target, selector))
+				{
 					executor.executeSelector(target, selector);
+					
+					if (debug)
+					{
+						var found:BifffEvent = new BifffEvent(BifffEvent.FOUND_MATCH);
+							found.matchedTarget = target;
+							found.selector = selector;
+							
+						dispatchEvent(found);
+					}
+				}
+			}
 		}
 		
 		protected function matchSelector(target:*, selector:ISelector):Boolean

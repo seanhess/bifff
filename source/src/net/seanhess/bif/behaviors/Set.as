@@ -29,10 +29,12 @@ package net.seanhess.bif.behaviors
 		{
 			var old:Object = {};
 			
-			for (var property:String in values)
-				updateProperty(scope.target, property, values[property], old);
+			var target:* = target || scope.target;
 			
-			views[scope.target] = old;
+			for (var property:String in values)
+				updateProperty(target, property, values[property], old);
+			
+			views[target] = old;
 		}
 		
 		public function undo(scope:Scope):void
@@ -104,5 +106,22 @@ package net.seanhess.bif.behaviors
 	    		}
 	    	}
 	    }
+	    
+	    /**
+	    * If you specify a target, it will set the values on the target you specify
+	    * only when apply is called. If you want to set to something in particular right
+	    * away, use the Apply tag. 
+	    */
+	    public function set target(value:*):void
+	    {
+	    	_target = value;
+	    }
+	    
+	    public function get target():*
+	    {
+	    	return _target;
+	    }
+	    
+	    protected var _target:*;
 	}
 }

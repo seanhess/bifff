@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" xmlns="http://bif.seanhess.net/2009">
+
+	<BehaviorMap id="map" target="{this}" debug="true">
+		<Selector id="selector" match="Button">
+			<Listener id="listener" event="test" debug="true">
+				<Set target="{this}" string="w00t"/>
+			</Listener>
+		</Selector>
+	</BehaviorMap>
+	
+	<mx:String id="string">Nothing</mx:String>
+	
+	<mx:Button id="button" label="{string}"/>
+	
+</mx:Canvas>

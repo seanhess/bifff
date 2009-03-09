@@ -13,7 +13,7 @@ package net.seanhess.bif.behaviors
 	 * These behaviors might just fire another event, or whatever
 	 */
 	[DefaultProperty("behaviors")]
-	[Event("handle")]
+	[Event(name="handle", type="flash.events.Event")]
 	public class Listener extends EventDispatcher implements IBehavior
 	{
 		public static const HANDLE:String = "handle";

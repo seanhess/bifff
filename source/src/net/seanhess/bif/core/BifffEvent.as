@@ -13,6 +13,15 @@ package net.seanhess.bif.core
 		{
 			super(type);
 		}
+		
+		override public function clone():Event
+		{
+			var newEvent:BifffEvent = new BifffEvent(type);
+				newEvent.selector = selector
+				newEvent.matchedTarget = matchedTarget;
+				
+			return newEvent;
+		}
 
 	}
 }
