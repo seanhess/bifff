@@ -1,6 +1,7 @@
 package net.seanhess.bif.behaviors
 {
 	import flash.events.Event;
+	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
 	
 	import net.seanhess.bif.core.Executor;
@@ -12,8 +13,11 @@ package net.seanhess.bif.behaviors
 	 * These behaviors might just fire another event, or whatever
 	 */
 	[DefaultProperty("behaviors")]
-	public class Listener implements IBehavior
+	[Event("handle")]
+	public class Listener extends EventDispatcher implements IBehavior
 	{
+		public static const HANDLE:String = "handle";
+		
 		public var debug:Boolean = false;
 		public var executor:IExecutor = new Executor();
 		
@@ -47,7 +51,10 @@ package net.seanhess.bif.behaviors
 		protected function handler(event:Event):void
 		{
 			if (debug)	trace(" [ LISTENER ] \"" + type + "\" on " + event.currentTarget + " with a regular target of " + event.target);
+						
 			executor.executeBehaviors(event.currentTarget, behaviors, new Scope({event:event}));
+			
+			if (debug)	dispatchEvent(new Event(HANDLE));
 		}
 		
 		protected var type:String;

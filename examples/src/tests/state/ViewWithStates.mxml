@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" xmlns="http://bif.seanhess.net/2009">
+
+	<Apply target="{this}">
+		<State id="stateOne" name="one" debug="true">
+			<Set string="one"/>
+		</State>
+		
+		<State id="stateTwo" name="two" debug="true">
+			<Set string="two"/>
+		</State>
+	</Apply>
+
+	<mx:states>
+		<mx:State name="one"/>
+		<mx:State name="two"/>
+	</mx:states>
+	
+	<mx:String id="string">Nothing</mx:String>
+	
+</mx:Canvas>

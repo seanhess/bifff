@@ -7,6 +7,7 @@
 	<component class="net.seanhess.bif.behaviors.Listener"/>
 	<component class="net.seanhess.bif.behaviors.Select"/>
 	<component class="net.seanhess.bif.behaviors.Set"/>
+	<component class="net.seanhess.bif.behaviors.State"/>
 	<component class="net.seanhess.bif.behaviors.Styles"/>
 	<component class="net.seanhess.bif.behaviors.Swap"/>
 	<component class="net.seanhess.bif.behaviors.Trace"/>

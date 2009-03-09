@@ -19,7 +19,23 @@
 		<Selector match=".big.ugly">
 			<Set paddingRight="300"/>
 		</Selector>
+				
 	</BehaviorMap>
+	
+	<Apply target="{this}">
+		<State name="one">
+			<Set backgroundColor="#FF0000"/>			
+		</State>
+		<State name="two">
+			<Set backgroundColor="#FF00FF"/>			
+		</State>
+	</Apply>
+
+	
+	<mx:states>
+		<mx:State name="one"/>		
+		<mx:State name="two"/>		
+	</mx:states>
 	
 	<mx:Style>
 		.test
@@ -33,6 +49,7 @@
 		}
 	</mx:Style>
 	
-	<mx:Button id="firstButton" label="First Button"	styleName="big fat ugly"/>
+	<mx:Button id="firstButton" label="First Button"	styleName="big fat ugly" click="currentState='one'"/>
+	<mx:Button id="secondButton" label="Second Button"	styleName="big fat ugly" click="currentState='two'"/>
 	
 </mx:Application>
