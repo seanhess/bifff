@@ -8,6 +8,8 @@ package net.seanhess.bif.behaviors
 	import mx.styles.IStyleClient;
 	import mx.styles.StyleManager;
 	
+	import net.seanhess.bif.core.IResolver;
+	import net.seanhess.bif.core.Resolver;
 	import net.seanhess.bif.core.Scope;
 	import net.seanhess.bif.utils.Invalidator;
 	
@@ -24,6 +26,7 @@ package net.seanhess.bif.behaviors
 		protected var values:Object = {};
 		protected var updates:Object = {};
 		protected var invalidator:Invalidator = new Invalidator(commit);
+		protected var resolver:IResolver = new Resolver();
 		
 		public function apply(scope:Scope):void
 		{
@@ -32,7 +35,10 @@ package net.seanhess.bif.behaviors
 			var target:* = target || scope.target;
 			
 			for (var property:String in values)
-				updateProperty(target, property, values[property], old);
+			{
+				var value:* = resolver.resolveObject(values[property], scope);
+				updateProperty(target, property, value, old);
+			}
 			
 			views[target] = old;
 		}

@@ -33,7 +33,6 @@ package tests.setandget
 		public function directSet():void
 		{
 			container.addChild(view);
-			
 			view.map.addEventListener(BifffEvent.FOUND_MATCH, asyncHandler(onFoundMatch,1000));
 		}
 		
@@ -50,6 +49,27 @@ package tests.setandget
 		{
 			assertEquals("w00t", view.string);
 			assertEquals("w00t", view.button.label);
+		}
+		
+		[Test]
+		public function resolveSet():void
+		{
+			container.addChild(view);
+			view.resolveMap.addEventListener(BifffEvent.FOUND_MATCH, asyncHandler(onFoundMatchResolve,1000));
+		}
+		
+		protected function onFoundMatchResolve(event:BifffEvent, blah:*):void
+		{
+			assertEquals(view.w00t, event.matchedTarget);
+			assertEquals(view.resolve, event.selector);
+
+			view.resolveListener.addEventListener(Listener.HANDLE, asyncHandler(onHandleResolve, 1000));
+			view.w00t.dispatchEvent(new Event("test"));
+		}
+		
+		protected function onHandleResolve(event:Event, blah:*):void
+		{
+			assertEquals("Hello", view.string);
 		}
 	}
 }

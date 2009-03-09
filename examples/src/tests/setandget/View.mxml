@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" xmlns="http://bif.seanhess.net/2009">
 
+	<SmartTarget id="target"/>
+	<SmartTarget id="event"/>
+
 	<BehaviorMap id="map" target="{this}" debug="true">
 		<Selector id="selector" match="Button">
 			<Listener id="listener" event="test" debug="true">
@@ -9,8 +12,17 @@
 		</Selector>
 	</BehaviorMap>
 	
+	<BehaviorMap id="resolveMap" target="{this}" debug="true">
+		<Selector id="resolve" match="#w00t">
+			<Listener id="resolveListener" event="test" debug="true">
+				<Set target="{this}" string="{target.label}"/>
+			</Listener>
+		</Selector>
+	</BehaviorMap>
+	
 	<mx:String id="string">Nothing</mx:String>
 	
 	<mx:Button id="button" label="{string}"/>
+	<mx:Button id="w00t" label="Hello"/>
 	
 </mx:Canvas>
