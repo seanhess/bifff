@@ -72,8 +72,11 @@ package net.seanhess.bif.behaviors
 			old = old || {};
 			
 			try {
-				old[property] = target[property];
 				target[property] = value;
+				
+				try {
+					old[property] = target[property];
+				} catch(e:Error) {}
 			}
 			catch (e:Error)
 			{

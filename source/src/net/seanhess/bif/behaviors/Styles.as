@@ -56,15 +56,17 @@ package net.seanhess.bif.behaviors
 		}
 		
 		/**
-		 * TODO: Add support for undoing behaviors, otherwise, this won't do anything
+		 * TODO: Add support for undoing behaviors, otherwise, this won't do anything.
+		 * 
+		 * Well, it will work so long as another styleName is undoing it
 		 */
-//		public function set removeClass(value:Object):void
-//		{
-//			if (value is String)
-//				value = [value];
-//				
-//			classesToRemove = value as Array;
-//		}
+		public function set removeClass(value:Object):void
+		{
+			if (value is String)
+				value = [value];
+				
+			classesToRemove = value as Array;
+		}
 		
 	}
 }

@@ -17,6 +17,7 @@ package net.seanhess.bif.core
 	[DefaultProperty("selectors")]
 	[Event(name="foundMatch", type="net.seanhess.bif.core.BifffEvent")]
 	[Event(name="initialize", type="mx.events.FlexEvent")]
+	[Bindable]
 	public class BehaviorMap extends EventDispatcher implements IMXMLObject
 	{
 		public static const STYLES_CHANGED:String = "stylesChanged";
@@ -42,6 +43,7 @@ package net.seanhess.bif.core
 			dispatchEvent(new FlexEvent(FlexEvent.INITIALIZE));
 		}
 		
+		[Bindable("target")]
 		public function set target(value:IEventDispatcher):void
 		{
 			if (registered)	unregister();
@@ -54,6 +56,13 @@ package net.seanhess.bif.core
 				_target = value;	
 				commit();
 			}
+			
+			dispatchEvent(new Event("target"));
+		}
+		
+		public function get target():IEventDispatcher
+		{
+			return _target;
 		}
 		
 		protected function initializeDebugger(target:*):void
@@ -63,10 +72,7 @@ package net.seanhess.bif.core
 		}
 			
 		
-		public function get target():IEventDispatcher
-		{
-			return _target;
-		}
+		
 		
 		private var _target:IEventDispatcher;
 		private var registered:Boolean = false;

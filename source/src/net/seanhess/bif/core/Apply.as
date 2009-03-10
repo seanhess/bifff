@@ -1,6 +1,6 @@
 package net.seanhess.bif.core
 {
-	import net.seanhess.bif.behaviors.IBehavior;
+	import net.seanhess.bif.utils.Invalidator;
 	
 	/**
 	 * Automatically matches and applies the behaviors to the target/targets specified
@@ -10,6 +10,7 @@ package net.seanhess.bif.core
 	public class Apply
 	{
 		public var executor:IExecutor = new Executor();
+		public var invalidator:Invalidator = new Invalidator(commit);
 		
 		/**
 		 * Target or targets
@@ -20,7 +21,11 @@ package net.seanhess.bif.core
 				value = [value];
 				
 			targets = value as Array;
-			
+			invalidator.invalidate();
+		}
+		
+		protected function commit():void
+		{
 			executor.executeMatches(targets, _behaviors);
 		}
 		
