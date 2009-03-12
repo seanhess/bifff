@@ -44,7 +44,10 @@ package net.seanhess.bifff.actions
 			else
 				throw new Error("Could not apply target to behavior: " + behavior);
 				
-			executor.executeActions(behavior, actions, new Scope({behavior:behavior, behaviorTarget:scope.target}));
+			scope.behavior = behavior;
+			scope.behaviorTarget = scope.target;
+				
+			executor.executeActions(behavior, actions, scope);
 		}
 
 		/**

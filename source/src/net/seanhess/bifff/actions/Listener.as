@@ -3,8 +3,8 @@ package net.seanhess.bifff.actions
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
+	import flash.utils.Dictionary;
 	
-	import net.seanhess.bifff.actions.IAction;
 	import net.seanhess.bifff.core.Executor;
 	import net.seanhess.bifff.core.IExecutor;
 	import net.seanhess.bifff.core.Scope;
@@ -22,9 +22,13 @@ package net.seanhess.bifff.actions
 		public var debug:Boolean = false;
 		public var executor:IExecutor = new Executor();
 		
+		public var scopes:Dictionary = new Dictionary(true);
+		
 		public function apply(scope:Scope):void
 		{
-			if (debug) 	trace("[ LISTENING FOR ] \"" + type + "\" on " + scope.target); 
+			if (debug) 	trace("[ LISTENING FOR ] \"" + type + "\" on " + scope.target);
+			
+			scopes[scope.target] = scope; 
 			
 			(scope.target as IEventDispatcher).addEventListener(type, handler);
 		}
@@ -53,7 +57,11 @@ package net.seanhess.bifff.actions
 		{
 			if (debug)	trace(" [ LISTENER ] \"" + type + "\" on " + event.currentTarget + " with a regular target of " + event.target);
 						
-			executor.executeActions(event.currentTarget, actions, new Scope({event:event}));
+			var scope:Scope = scopes[event.currentTarget] || new Scope();
+				scope.event = event;
+				scope.listenerTarget = event.currentTarget;
+						
+			executor.executeActions(event.currentTarget, actions, scope);
 			
 			if (debug)	dispatchEvent(new Event(HANDLE));
 		}

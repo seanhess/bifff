@@ -2,10 +2,10 @@ package net.seanhess.bifff.actions
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
+	import flash.utils.Dictionary;
 	
 	import mx.binding.utils.ChangeWatcher;
 	
-	import net.seanhess.bifff.actions.IAction;
 	import net.seanhess.bifff.core.Executor;
 	import net.seanhess.bifff.core.IExecutor;
 	import net.seanhess.bifff.core.Scope;
@@ -24,8 +24,11 @@ package net.seanhess.bifff.actions
 		public var executor:IExecutor = new Executor();
 		public var debug:Boolean = false;
 		
+		public var scopes:Dictionary = new Dictionary(true);
+		
 		public function apply(scope:Scope):void
 		{
+			scopes[scope.target] = scope;
 			var watcher:ChangeWatcher = ChangeWatcher.watch(scope.target, property, onChange);
 		}
 		
@@ -63,7 +66,11 @@ package net.seanhess.bifff.actions
 		{
 			if ((value == null || !event.hasOwnProperty("newValue") || event["newValue"] == value))
 			{
-				executor.executeActions(event.target, actions, new Scope({event:event}));
+				var scope:Scope = scopes[event.currentTarget] || new Scope();
+					scope.bindTarget = event.target;
+					scope.event = event;
+				
+				executor.executeActions(event.target, actions, scope);
 				
 				if (debug)
 				{

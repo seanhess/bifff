@@ -5,13 +5,28 @@
 			import net.seanhess.bifff.behaviors.TestClick;
 		]]>
 	</mx:Script>
+	
+	<SmartObject id="behavior" soProperty="behavior"/>
 
 	<BehaviorMap target="{this}" debug="true">
+		
 		<Selector match="#button">
 			<Behavior generator="{TestClick}"/>
 		</Selector>
+		
+		<Selector match="#b2">
+			<Behavior generator="{TestClick}">
+				<Listener event="test">
+					<Trace message="test"/>
+					<Trace message="{behavior}"/>
+				</Listener>
+			</Behavior>
+		</Selector>
+		
 	</BehaviorMap>
 	
 	<mx:Button id="button" label="First Button"/>
+
+	<mx:Button id="b2" label="Second Button"/>
 	
 </mx:Application>

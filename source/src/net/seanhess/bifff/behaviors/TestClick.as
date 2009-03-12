@@ -1,6 +1,7 @@
 package net.seanhess.bifff.behaviors
 {
 	import flash.events.Event;
+	import flash.events.EventDispatcher;
 	import flash.events.MouseEvent;
 	
 	import mx.controls.Alert;
@@ -8,7 +9,8 @@ package net.seanhess.bifff.behaviors
 	/**
 	 * Alerts when you click it 
 	 */
-	public class TestClick implements IBehavior
+	[Event(name="test", type="flash.events.Event")]
+	public class TestClick extends EventDispatcher implements IBehavior
 	{
 		public function set target(value:*):void
 		{
@@ -24,6 +26,7 @@ package net.seanhess.bifff.behaviors
 		protected function onClick(event:Event):void
 		{
 			Alert.show("Clicked: " + _target);
+			dispatchEvent(new Event("test"));
 		}
 		
 		protected var _target:*;
