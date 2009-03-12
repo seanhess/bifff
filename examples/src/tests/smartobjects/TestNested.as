@@ -2,21 +2,21 @@ package tests.smartobjects
 {
 	import net.digitalprimates.fluint.tests.TestCase;
 	import net.seanhess.bifff.core.Resolver;
-	import net.seanhess.bifff.core.Scope;
-	import net.seanhess.bifff.core.SmartObject;
-	import net.seanhess.bifff.utils.SmartEvent;
-	import net.seanhess.bifff.utils.SmartTarget;
+	import net.seanhess.bifff.scope.Scope;
+	import net.seanhess.bifff.scope.SmartCurrentTarget;
+	import net.seanhess.bifff.scope.SmartEvent;
+	import net.seanhess.bifff.scope.SmartObject;
 	
 	public class TestNested extends TestCase
 	{
 		protected var event:SmartEvent;
-		protected var target:SmartTarget;
+		protected var target:SmartCurrentTarget;
 		protected var resolver:Resolver;
 		
 		override protected function setUp():void
 		{
 			event = new SmartEvent();
-			target = new SmartTarget();
+			target = new SmartCurrentTarget();
 			resolver = new Resolver();
 		}
 		

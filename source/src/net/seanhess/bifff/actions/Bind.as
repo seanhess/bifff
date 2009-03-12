@@ -8,7 +8,7 @@ package net.seanhess.bifff.actions
 	
 	import net.seanhess.bifff.core.Executor;
 	import net.seanhess.bifff.core.IExecutor;
-	import net.seanhess.bifff.core.Scope;
+	import net.seanhess.bifff.scope.Scope;
 	
 	/**
 	 * Executes its actions only when a property is changed to a certain value, or any time it is changed

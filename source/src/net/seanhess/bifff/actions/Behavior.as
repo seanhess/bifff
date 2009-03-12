@@ -5,7 +5,7 @@ package net.seanhess.bifff.actions
 	import net.seanhess.bifff.behaviors.IBehavior;
 	import net.seanhess.bifff.core.Executor;
 	import net.seanhess.bifff.core.IExecutor;
-	import net.seanhess.bifff.core.Scope;
+	import net.seanhess.bifff.scope.Scope;
 	import net.seanhess.bifff.utils.Generator;
 	
 	/**

@@ -2,7 +2,7 @@ package net.seanhess.bifff.actions
 {
 	import net.seanhess.bifff.core.IResolver;
 	import net.seanhess.bifff.core.Resolver;
-	import net.seanhess.bifff.core.Scope;
+	import net.seanhess.bifff.scope.Scope;
 	
 	public class Trace implements IAction
 	{

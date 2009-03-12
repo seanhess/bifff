@@ -1,7 +1,7 @@
-package net.seanhess.bifff.utils
+package net.seanhess.bifff.scope
 {
-	import net.seanhess.bifff.core.Scope;
-	import net.seanhess.bifff.core.SmartObject;
+	import net.seanhess.bifff.scope.Scope;
+	import net.seanhess.bifff.scope.SmartObject;
 	
 	[Bindable]
 	dynamic public class SmartEvent extends SmartObject

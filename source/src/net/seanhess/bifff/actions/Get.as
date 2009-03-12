@@ -1,6 +1,6 @@
 package net.seanhess.bifff.actions
 {
-	import net.seanhess.bifff.core.Scope;
+	import net.seanhess.bifff.scope.Scope;
 	
 	/**
 	 * Fetches values from the first or last matched target

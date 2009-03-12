@@ -90,7 +90,7 @@
 	</mx:Script>
 
 	<SmartEvent id="event"/>
-	<SmartTarget id="target"/>
+	<SmartCurrentTarget id="target"/>
 	
 	<mx:Button id="firstButton" label="First Button"/>
 	<mx:Button id="secondButton" label="Second Button" color="#FF0000"/>

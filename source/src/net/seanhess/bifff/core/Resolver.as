@@ -1,5 +1,8 @@
 package net.seanhess.bifff.core
 {
+	import net.seanhess.bifff.scope.ISmartObject;
+	import net.seanhess.bifff.scope.Scope;
+	
 	public class Resolver implements IResolver
 	{
 		public function resolveArguments(arguments:Array, scope:Scope):Array

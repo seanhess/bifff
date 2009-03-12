@@ -4,7 +4,7 @@ package net.seanhess.bifff.actions
 	
 	import net.seanhess.bifff.actions.IAction;
 	import net.seanhess.bifff.core.BehaviorMap;
-	import net.seanhess.bifff.core.Scope;
+	import net.seanhess.bifff.scope.Scope;
 	import net.seanhess.bifff.core.StyleMerger;
 	
 	/**

@@ -7,7 +7,7 @@ package net.seanhess.bifff.actions
 	import mx.core.IDataRenderer;
 	
 	import net.seanhess.bifff.actions.IAction;
-	import net.seanhess.bifff.core.Scope;
+	import net.seanhess.bifff.scope.Scope;
 	import net.seanhess.bifff.views.ISwappable;
 	
 	/**

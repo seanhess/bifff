@@ -6,7 +6,7 @@
 		]]>
 	</mx:Script>
 	
-	<SmartObject id="behavior" soProperty="behavior"/>
+	<SmartBehavior id="behavior"/>
 
 	<BehaviorMap target="{this}" debug="true">
 		

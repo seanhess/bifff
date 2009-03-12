@@ -3,7 +3,7 @@ package net.seanhess.bifff.actions
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	
-	import net.seanhess.bifff.core.Scope;
+	import net.seanhess.bifff.scope.Scope;
 	import net.seanhess.bifff.utils.Generator;
 	
 	/**

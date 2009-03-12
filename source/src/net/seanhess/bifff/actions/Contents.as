@@ -4,7 +4,7 @@ package net.seanhess.bifff.actions
 	import mx.core.UIComponent;
 	
 	import net.seanhess.bifff.actions.IAction;
-	import net.seanhess.bifff.core.Scope;
+	import net.seanhess.bifff.scope.Scope;
 	
 	/**
 	 * Allows you to replace the contents of your view with new stuff. 
@@ -18,7 +18,7 @@ package net.seanhess.bifff.actions
 			var container:Container = scope.target as Container;
 			
 			if (!container)
-				throw new Error("Target is not container " + scope[Scope.TARGET]);
+				throw new Error("Target is not container " + scope.target);
 				
 			if (_removeAll)
 				container.removeAllChildren();

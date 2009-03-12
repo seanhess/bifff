@@ -3,6 +3,7 @@ package net.seanhess.bifff.core
 	import flash.events.EventDispatcher;
 	
 	import net.seanhess.bifff.actions.IAction;
+	import net.seanhess.bifff.scope.Scope;
 	
 	public class Executor extends EventDispatcher implements IExecutor
 	{

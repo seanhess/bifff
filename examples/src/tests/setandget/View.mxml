@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" xmlns="http://bifff.seanhess.net/2009">
 
-	<SmartTarget id="target"/>
-	<SmartTarget id="event"/>
+	<SmartCurrentTarget id="currentTarget"/>
+	<SmartEvent 		id="event"/>
 
 	<BehaviorMap id="map" target="{this}" debug="true">
 		<Selector id="selector" match="Button">
@@ -15,7 +15,7 @@
 	<BehaviorMap id="resolveMap" target="{this}" debug="true">
 		<Selector id="resolve" match="#w00t">
 			<Listener id="resolveListener" event="test" debug="true">
-				<Set target="{this}" string="{target.label}"/>
+				<Set target="{this}" string="{currentTarget.label}"/>
 			</Listener>
 		</Selector>
 	</BehaviorMap>

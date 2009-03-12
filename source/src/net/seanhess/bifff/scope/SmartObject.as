@@ -1,4 +1,4 @@
-package net.seanhess.bifff.core
+package net.seanhess.bifff.scope
 {
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;

@@ -7,7 +7,7 @@ package net.seanhess.bifff.actions
 	
 	import net.seanhess.bifff.core.Executor;
 	import net.seanhess.bifff.core.IExecutor;
-	import net.seanhess.bifff.core.Scope;
+	import net.seanhess.bifff.scope.Scope;
 	
 	/**
 	 * This is going to allow you to listen to events on the object, and add actions as soon as they execute

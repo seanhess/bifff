@@ -6,7 +6,7 @@ package net.seanhess.bifff.actions
 	import net.seanhess.bifff.core.IExecutor;
 	import net.seanhess.bifff.core.IParser;
 	import net.seanhess.bifff.core.Parser;
-	import net.seanhess.bifff.core.Scope;
+	import net.seanhess.bifff.scope.Scope;
 	
 	[DefaultProperty("actions")]
 	public class Select implements IAction

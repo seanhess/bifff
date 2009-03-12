@@ -26,21 +26,26 @@
 	<component class="net.seanhess.bifff.core.IParser"/>
 	<component class="net.seanhess.bifff.core.IResolver"/>
 	<component class="net.seanhess.bifff.core.ISelector"/>
-	<component class="net.seanhess.bifff.core.ISmartObject"/>
 	<component class="net.seanhess.bifff.core.Matcher"/>
 	<component class="net.seanhess.bifff.core.Node"/>
 	<component class="net.seanhess.bifff.core.Parser"/>
 	<component class="net.seanhess.bifff.core.Resolver"/>
-	<component class="net.seanhess.bifff.core.Scope"/>
 	<component class="net.seanhess.bifff.core.Selector"/>
-	<component class="net.seanhess.bifff.core.SmartObject"/>
+	
+	<component class="net.seanhess.bifff.scope.ISmartObject"/>
+	<component class="net.seanhess.bifff.scope.Scope"/>
+	<component class="net.seanhess.bifff.scope.SmartBehavior"/>
+	<component class="net.seanhess.bifff.scope.SmartBehaviorTarget"/>
+	<component class="net.seanhess.bifff.scope.SmartCurrentTarget"/>
+	<component class="net.seanhess.bifff.scope.SmartEvent"/>
+	<component class="net.seanhess.bifff.scope.SmartListenerTarget"/>
+	<component class="net.seanhess.bifff.scope.SmartObject"/>
+	
 	
 	<component class="net.seanhess.bifff.utils.Defaults"/>
 	<component class="net.seanhess.bifff.utils.Invalidator"/>
 	<component class="net.seanhess.bifff.utils.ChildInserter"/>
 	<component class="net.seanhess.bifff.utils.Debugger"/>
-	<component class="net.seanhess.bifff.utils.SmartEvent"/>
-	<component class="net.seanhess.bifff.utils.SmartTarget"/>
 
 	<component class="net.seanhess.bifff.views.ISwappable"/>
 </componentPackage>

@@ -6,7 +6,7 @@ package tests.behaviors
 	
 	import net.digitalprimates.fluint.tests.TestCase;
 	import net.seanhess.bifff.actions.Behavior;
-	import net.seanhess.bifff.core.Scope;
+	import net.seanhess.bifff.scope.Scope;
 	
 	public class TestSimpleBehavior extends TestCase
 	{
