@@ -3,8 +3,6 @@ package net.seanhess.bifff.actions
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	
-	import net.seanhess.bifff.core.IResolver;
-	import net.seanhess.bifff.core.Resolver;
 	import net.seanhess.bifff.core.Scope;
 	import net.seanhess.bifff.utils.Generator;
 	
@@ -15,7 +13,6 @@ package net.seanhess.bifff.actions
 	{
 		public var debug:Boolean = false;
 
-		public var resolver:IResolver = new Resolver();
 		public var creator:Generator;
 		public var defaultArguments:Array;
 		

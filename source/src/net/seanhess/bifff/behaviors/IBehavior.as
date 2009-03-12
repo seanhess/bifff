@@ -5,6 +5,6 @@ package net.seanhess.bifff.behaviors
 	 */
 	public interface IBehavior
 	{
-		function set target(value:Object):void;
+		function set target(value:*):void;
 	}
 }
