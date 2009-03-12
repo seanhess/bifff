@@ -1,4 +1,4 @@
-package net.seanhess.bif.utils
+package net.seanhess.bifff.utils
 {
 	import flash.utils.Dictionary;
 	import flash.utils.describeType;

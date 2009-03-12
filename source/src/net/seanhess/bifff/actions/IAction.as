@@ -1,9 +1,11 @@
-package net.seanhess.bif.actions
+package net.seanhess.bifff.actions
 {
+	import net.seanhess.bifff.core.Scope;
+	
 	/**
 	 * Actions are tags that can go inside of <selectors>.
 	 * 
-	 * They apply behaviors to matched targets
+	 * They apply actions to matched targets
 	 */
 	public interface IAction
 	{

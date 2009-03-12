@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" xmlns="http://bif.seanhess.net/2009">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" xmlns="http://bifff.seanhess.net/2009">
 
-	<Apply target="{this}">
+	<Apply id="apply" target="{this}" debug="true">
 		<State id="stateOne" name="one" debug="true">
 			<Set string="one"/>
 		</State>

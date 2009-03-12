@@ -1,9 +1,8 @@
-package net.seanhess.bif.actions
+package net.seanhess.bifff.actions
 {
-	import net.seanhess.bif.actions.IAction;
-	import net.seanhess.bif.core.IResolver;
-	import net.seanhess.bif.core.Resolver;
-	import net.seanhess.bif.core.Scope;
+	import net.seanhess.bifff.core.IResolver;
+	import net.seanhess.bifff.core.Resolver;
+	import net.seanhess.bifff.core.Scope;
 	
 	public class Trace implements IAction
 	{

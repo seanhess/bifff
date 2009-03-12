@@ -1,4 +1,4 @@
-package net.seanhess.bif.utils
+package net.seanhess.bifff.utils
 {
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
@@ -7,7 +7,7 @@ package net.seanhess.bif.utils
 	
 	import mx.core.UIComponent;
 	
-	import net.seanhess.bif.core.ISelector;
+	import net.seanhess.bifff.core.ISelector;
 	
 	public class Debugger
 	{

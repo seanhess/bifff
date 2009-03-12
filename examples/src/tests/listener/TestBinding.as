@@ -6,7 +6,8 @@ package tests.listener
 	import mx.core.Application;
 	
 	import net.digitalprimates.fluint.tests.TestCase;
-	import net.seanhess.bif.behaviors.Bind;
+	import net.seanhess.bifff.actions.Bind;
+	import net.seanhess.bifff.core.Apply;
 	
 	public class TestBinding extends TestCase
 	{
@@ -34,9 +35,14 @@ package tests.listener
 			container.addChild(view);
 			
 			assertEquals("Nothing", view.string);
+			view.apply.addEventListener(Apply.INITIALIZED, asyncHandler(onInit,1000));
+		}
+		
+		protected function onInit(event:Event, blah:*):void
+		{
 			view.binding.addEventListener(Bind.UPDATE, asyncHandler(onUpdate, 1000));
 			view.string = "fat";
-		}			
+		}
 		
 		protected function onUpdate(event:Event, blah:*):void
 		{	

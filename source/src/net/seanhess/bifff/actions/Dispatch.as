@@ -1,16 +1,17 @@
-package net.seanhess.bif.behaviors
+package net.seanhess.bifff.actions
 {
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	
-	import net.seanhess.bif.core.IResolver;
-	import net.seanhess.bif.core.Resolver;
-	import net.seanhess.bif.core.Scope;
+	import net.seanhess.bifff.actions.IAction;
+	import net.seanhess.bifff.core.IResolver;
+	import net.seanhess.bifff.core.Resolver;
+	import net.seanhess.bifff.core.Scope;
 	
 	/**
 	 * Dispatches an event on the target.
 	 */
-	dynamic public class Dispatch implements IBehavior
+	dynamic public class Dispatch implements IAction
 	{
 		public var resolver:IResolver = new Resolver();
 		

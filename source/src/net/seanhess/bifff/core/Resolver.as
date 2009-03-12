@@ -1,4 +1,4 @@
-package net.seanhess.bif.core
+package net.seanhess.bifff.core
 {
 	public class Resolver implements IResolver
 	{

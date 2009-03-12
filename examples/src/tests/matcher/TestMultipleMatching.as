@@ -1,7 +1,7 @@
 package tests.matcher
 {
-	import net.seanhess.bif.core.Matcher;
-	import net.seanhess.bif.core.Node;
+	import net.seanhess.bifff.core.Matcher;
+	import net.seanhess.bifff.core.Node;
 	
 	import mx.controls.Button;
 	

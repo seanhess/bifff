@@ -1,4 +1,4 @@
-package net.seanhess.bif.core
+package net.seanhess.bifff.core
 {
 	import flash.display.DisplayObject;
 	import flash.events.Event;
@@ -8,14 +8,14 @@ package net.seanhess.bif.core
 	import mx.core.IMXMLObject;
 	import mx.events.FlexEvent;
 	
-	import net.seanhess.bif.utils.Debugger;
-	import net.seanhess.bif.utils.Defaults;
+	import net.seanhess.bifff.utils.Debugger;
+	import net.seanhess.bifff.utils.Defaults;
 	
 	/**
 	 * I want mate to be able to inject to me, so I'm hacking this to extend UIComponent
 	 */
 	[DefaultProperty("selectors")]
-	[Event(name="foundMatch", type="net.seanhess.bif.core.BifffEvent")]
+	[Event(name="foundMatch", type="net.seanhess.bifff.core.BifffEvent")]
 	[Event(name="initialize", type="mx.events.FlexEvent")]
 	[Bindable]
 	public class BehaviorMap extends EventDispatcher implements IMXMLObject

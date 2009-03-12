@@ -1,20 +1,21 @@
-package net.seanhess.bif.behaviors
+package net.seanhess.bifff.actions
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
 	
-	import net.seanhess.bif.core.Executor;
-	import net.seanhess.bif.core.IExecutor;
-	import net.seanhess.bif.core.Scope;
+	import net.seanhess.bifff.actions.IAction;
+	import net.seanhess.bifff.core.Executor;
+	import net.seanhess.bifff.core.IExecutor;
+	import net.seanhess.bifff.core.Scope;
 	
 	/**
-	 * This is going to allow you to listen to events on the object, and add behaviors as soon as they execute
-	 * These behaviors might just fire another event, or whatever
+	 * This is going to allow you to listen to events on the object, and add actions as soon as they execute
+	 * These actions might just fire another event, or whatever
 	 */
-	[DefaultProperty("behaviors")]
+	[DefaultProperty("actions")]
 	[Event(name="handle", type="flash.events.Event")]
-	public class Listener extends EventDispatcher implements IBehavior
+	public class Listener extends EventDispatcher implements IAction
 	{
 		public static const HANDLE:String = "handle";
 		
@@ -38,27 +39,27 @@ package net.seanhess.bif.behaviors
 			this.type = type;
 		}
 		
-		public function set behaviors(value:Array):void
+		public function set actions(value:Array):void
 		{
-			_behaviors = value;
+			_actions = value;
 		}
 		
-		public function get behaviors():Array
+		public function get actions():Array
 		{
-			return _behaviors;
+			return _actions;
 		}
 		
 		protected function handler(event:Event):void
 		{
 			if (debug)	trace(" [ LISTENER ] \"" + type + "\" on " + event.currentTarget + " with a regular target of " + event.target);
 						
-			executor.executeBehaviors(event.currentTarget, behaviors, new Scope({event:event}));
+			executor.executeActions(event.currentTarget, actions, new Scope({event:event}));
 			
 			if (debug)	dispatchEvent(new Event(HANDLE));
 		}
 		
 		protected var type:String;
-		protected var _behaviors:Array;
+		protected var _actions:Array;
 		
 	}
 }

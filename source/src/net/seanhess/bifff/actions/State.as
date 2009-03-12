@@ -1,11 +1,11 @@
-package net.seanhess.bif.behaviors
+package net.seanhess.bifff.actions
 {
 	import flash.events.Event;
 	
 	import mx.events.StateChangeEvent;
 	
 	/**
-	 * Executes its behaviors only when the currentState is changed
+	 * Executes its actions only when the currentState is changed
 	 */
 	public class State extends Listener
 	{

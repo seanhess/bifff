@@ -2,11 +2,10 @@
 <mx:Button 
 	xmlns:mx="http://www.adobe.com/2006/mxml" 
 	label="hello"
-	xmlns="http://bif.seanhess.net/2009"
-	creationComplete="dispatchEvent(new Event('test'))"
+	xmlns="http://bifff.seanhess.net/2009"
 	>
 	
-	<Apply target="{this}">
+	<Apply id="apply" target="{this}" debug="true">
 		<Listener event="test">
 			<Dispatch type="hello"/>
 			<Trace message="Hello"/>

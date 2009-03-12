@@ -2,8 +2,8 @@
 <mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" 
 	layout="vertical" 
 	width="400" height="300" 
-	xmlns="http://bif.seanhess.net/2009"
-	implements="net.seanhess.bif.views.ISwappable"
+	xmlns="http://bifff.seanhess.net/2009"
+	implements="net.seanhess.bifff.views.ISwappable"
 	>
 	<ChildInserter id="inserter" target="{this}"/>
 	

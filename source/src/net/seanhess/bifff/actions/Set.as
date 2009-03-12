@@ -1,4 +1,4 @@
-package net.seanhess.bif.behaviors
+package net.seanhess.bifff.actions
 {
 	import flash.utils.Dictionary;
 	import flash.utils.Proxy;
@@ -8,10 +8,11 @@ package net.seanhess.bif.behaviors
 	import mx.styles.IStyleClient;
 	import mx.styles.StyleManager;
 	
-	import net.seanhess.bif.core.IResolver;
-	import net.seanhess.bif.core.Resolver;
-	import net.seanhess.bif.core.Scope;
-	import net.seanhess.bif.utils.Invalidator;
+	import net.seanhess.bifff.actions.IAction;
+	import net.seanhess.bifff.core.IResolver;
+	import net.seanhess.bifff.core.Resolver;
+	import net.seanhess.bifff.core.Scope;
+	import net.seanhess.bifff.utils.Invalidator;
 	
 	/**
 	 * Sets styles (setStyle) and properties. 
@@ -20,7 +21,7 @@ package net.seanhess.bif.behaviors
 	 * 
 	 * If the property is updated on the setter, it will update all the views  
 	 */
-	dynamic public class Set extends Proxy implements IBehavior
+	dynamic public class Set extends Proxy implements IAction
 	{
 		protected var views:Dictionary = new Dictionary(true);
 		protected var values:Object = {};

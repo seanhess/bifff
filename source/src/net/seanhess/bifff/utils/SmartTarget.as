@@ -1,7 +1,7 @@
-package net.seanhess.bif.utils
+package net.seanhess.bifff.utils
 {
-	import net.seanhess.bif.core.Scope;
-	import net.seanhess.bif.core.SmartObject;
+	import net.seanhess.bifff.core.Scope;
+	import net.seanhess.bifff.core.SmartObject;
 	
 	[Bindable]
 	dynamic public class SmartTarget extends SmartObject

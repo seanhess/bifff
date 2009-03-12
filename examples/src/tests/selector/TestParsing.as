@@ -1,9 +1,9 @@
 package tests.selector
 {
 	import net.digitalprimates.fluint.tests.TestCase;
-	import net.seanhess.bif.core.IParser;
-	import net.seanhess.bif.core.Node;
-	import net.seanhess.bif.core.Parser;
+	import net.seanhess.bifff.core.IParser;
+	import net.seanhess.bifff.core.Node;
+	import net.seanhess.bifff.core.Parser;
 	
 	public class TestParsing extends TestCase
 	{

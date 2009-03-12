@@ -1,4 +1,4 @@
-package net.seanhess.bif.behaviors
+package net.seanhess.bifff.actions
 {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
@@ -6,8 +6,9 @@ package net.seanhess.bif.behaviors
 	import mx.core.Container;
 	import mx.core.IDataRenderer;
 	
-	import net.seanhess.bif.core.Scope;
-	import net.seanhess.bif.views.ISwappable;
+	import net.seanhess.bifff.actions.IAction;
+	import net.seanhess.bifff.core.Scope;
+	import net.seanhess.bifff.views.ISwappable;
 	
 	/**
 	 * Swaps you out with another view, copies your children
@@ -19,7 +20,7 @@ package net.seanhess.bif.behaviors
 	 * you set the styleName on the replacing one to whatever
 	 * you want. 
 	 */
-	public class Swap implements IBehavior
+	public class Swap implements IAction
 	{
 		public function apply(scope:Scope):void
 		{

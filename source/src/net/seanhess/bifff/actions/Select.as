@@ -1,14 +1,15 @@
-package net.seanhess.bif.behaviors
+package net.seanhess.bifff.actions
 {
-	import net.seanhess.bif.core.DirectMatcher;
-	import net.seanhess.bif.core.Executor;
-	import net.seanhess.bif.core.IExecutor;
-	import net.seanhess.bif.core.IParser;
-	import net.seanhess.bif.core.Parser;
-	import net.seanhess.bif.core.Scope;
+	import net.seanhess.bifff.actions.IAction;
+	import net.seanhess.bifff.core.DirectMatcher;
+	import net.seanhess.bifff.core.Executor;
+	import net.seanhess.bifff.core.IExecutor;
+	import net.seanhess.bifff.core.IParser;
+	import net.seanhess.bifff.core.Parser;
+	import net.seanhess.bifff.core.Scope;
 	
-	[DefaultProperty("behaviors")]
-	public class Select implements IBehavior
+	[DefaultProperty("actions")]
+	public class Select implements IAction
 	{
 		public static const SEARCH_PARENTS:String = "parents";
 		public static const SEARCH_CHILDREN:String = "children"
@@ -47,9 +48,9 @@ package net.seanhess.bif.behaviors
 			searchDirection = value;
 		}
 		
-		public function set behaviors(value:Array):void
+		public function set actions(value:Array):void
 		{
-			_behaviors = value;
+			_actions = value;
 		}
 		
 		/**
@@ -81,12 +82,12 @@ package net.seanhess.bif.behaviors
 		protected function executeMatches(matches:Array):void
 		{
 			if (debug) 	trace(" [ SELECT ] " + matches);
-			executor.executeMatches(matches, _behaviors);
+			executor.executeMatches(matches, _actions);
 		}
 		
 		protected var searchDirection:String = SEARCH_PARENTS;
 		protected var matchString:String = "";
-		protected var _behaviors:Array;
+		protected var _actions:Array;
 		protected var _targets:Array;
 		protected var nodes:Array;
 	}

@@ -1,22 +1,23 @@
-package net.seanhess.bif.behaviors
+package net.seanhess.bifff.actions
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	
 	import mx.binding.utils.ChangeWatcher;
 	
-	import net.seanhess.bif.core.Executor;
-	import net.seanhess.bif.core.IExecutor;
-	import net.seanhess.bif.core.Scope;
+	import net.seanhess.bifff.actions.IAction;
+	import net.seanhess.bifff.core.Executor;
+	import net.seanhess.bifff.core.IExecutor;
+	import net.seanhess.bifff.core.Scope;
 	
 	/**
-	 * Executes its behaviors only when a property is changed to a certain value, or any time it is changed
+	 * Executes its actions only when a property is changed to a certain value, or any time it is changed
 	 * This would probably be more useful if you could do a full binding expression?
 	 * 
 	 * TODO: Use weak references... Flight?
 	 */
-	[DefaultProperty("behaviors")]
-	public class Bind extends EventDispatcher implements IBehavior
+	[DefaultProperty("actions")]
+	public class Bind extends EventDispatcher implements IAction
 	{
 		public static const UPDATE:String = "update";
 		
@@ -48,21 +49,21 @@ package net.seanhess.bif.behaviors
 			return _value;
 		}
 		
-		public function set behaviors(value:Array):void
+		public function set actions(value:Array):void
 		{
-			_behaviors = value;
+			_actions = value;
 		}
 		
-		public function get behaviors():Array
+		public function get actions():Array
 		{
-			return _behaviors;
+			return _actions;
 		}
 		
 		protected function onChange(event:Event):void
 		{
 			if ((value == null || !event.hasOwnProperty("newValue") || event["newValue"] == value))
 			{
-				executor.executeBehaviors(event.target, behaviors, new Scope({event:event}));
+				executor.executeActions(event.target, actions, new Scope({event:event}));
 				
 				if (debug)
 				{
@@ -71,7 +72,7 @@ package net.seanhess.bif.behaviors
 			}
 		}
 		
-		protected var _behaviors:Array;
+		protected var _actions:Array;
 		protected var _name:String;
 		protected var _value:*;
 	}

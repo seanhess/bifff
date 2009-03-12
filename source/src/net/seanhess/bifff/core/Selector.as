@@ -1,8 +1,8 @@
-package net.seanhess.bif.core
+package net.seanhess.bifff.core
 {
 	import flash.utils.Dictionary;
 	
-	[DefaultProperty("behaviors")]
+	[DefaultProperty("actions")]
 	public class Selector implements ISelector
 	{
 		public var debug:Boolean = false;
@@ -18,14 +18,14 @@ package net.seanhess.bif.core
 			return _nodes;
 		}
 		
-		public function set behaviors(value:Array):void
+		public function set actions(value:Array):void
 		{
-			_behaviors = value;
+			_actions = value;
 		}
 		
-		public function get behaviors():Array
+		public function get actions():Array
 		{
-			return _behaviors;
+			return _actions;
 		}
 		
 		public function set match(value:String):void
@@ -45,7 +45,7 @@ package net.seanhess.bif.core
 		}
 		
 		protected var _match:String;
-		protected var _behaviors:Array;
+		protected var _actions:Array;
 		protected var _nodes:Array;
 		protected var _targets:Array;
 	}

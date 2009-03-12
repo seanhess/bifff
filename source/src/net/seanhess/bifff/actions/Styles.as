@@ -1,10 +1,11 @@
-package net.seanhess.bif.behaviors
+package net.seanhess.bifff.actions
 {
 	import flash.events.Event;
 	
-	import net.seanhess.bif.core.BehaviorMap;
-	import net.seanhess.bif.core.Scope;
-	import net.seanhess.bif.core.StyleMerger;
+	import net.seanhess.bifff.actions.IAction;
+	import net.seanhess.bifff.core.BehaviorMap;
+	import net.seanhess.bifff.core.Scope;
+	import net.seanhess.bifff.core.StyleMerger;
 	
 	/**
 	 * Allows you to set the style of the target. For now, this is a total hack, because it replaces the styleName, which 
@@ -22,7 +23,7 @@ package net.seanhess.bif.behaviors
 	 * 
 	 * TODO: Support remove (after multiple is working
 	 */
-	public class Styles implements IBehavior
+	public class Styles implements IAction
 	{
 		protected var classesToAdd:Array = [];
 		protected var classesToRemove:Array = [];
@@ -56,7 +57,7 @@ package net.seanhess.bif.behaviors
 		}
 		
 		/**
-		 * TODO: Add support for undoing behaviors, otherwise, this won't do anything.
+		 * TODO: Add support for undoing actions, otherwise, this won't do anything.
 		 * 
 		 * Well, it will work so long as another styleName is undoing it
 		 */

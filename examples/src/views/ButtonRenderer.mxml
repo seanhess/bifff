@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Button xmlns:mx="http://www.adobe.com/2006/mxml" 
-	implements="net.seanhess.bif.views.ISwappable">
+	implements="net.seanhess.bifff.views.ISwappable">
 	<mx:Script>
 		<![CDATA[
 			import mx.core.Container;

@@ -1,16 +1,17 @@
-package net.seanhess.bif.behaviors
+package net.seanhess.bifff.actions
 {
 	import mx.core.Container;
 	import mx.core.UIComponent;
 	
-	import net.seanhess.bif.core.Scope;
+	import net.seanhess.bifff.actions.IAction;
+	import net.seanhess.bifff.core.Scope;
 	
 	/**
 	 * Allows you to replace the contents of your view with new stuff. 
 	 * 
 	 * Requires that it is a container
 	 */
-	public class Contents implements IBehavior
+	public class Contents implements IAction
 	{
 		public function apply(scope:Scope):void
 		{

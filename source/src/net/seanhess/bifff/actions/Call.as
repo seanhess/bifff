@@ -1,13 +1,14 @@
-package net.seanhess.bif.behaviors
+package net.seanhess.bifff.actions
 {
-	import net.seanhess.bif.core.IResolver;
-	import net.seanhess.bif.core.Resolver;
-	import net.seanhess.bif.core.Scope;
+	import net.seanhess.bifff.actions.IAction;
+	import net.seanhess.bifff.core.IResolver;
+	import net.seanhess.bifff.core.Resolver;
+	import net.seanhess.bifff.core.Scope;
 	
 	/**
 	 * Calls a method
 	 */
-	public class Call implements IBehavior
+	public class Call implements IAction
 	{
 		public var resolver:IResolver = new Resolver();
 		

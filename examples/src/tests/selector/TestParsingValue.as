@@ -3,9 +3,9 @@ package tests.selector
 	import mx.containers.VBox;
 	
 	import net.digitalprimates.fluint.tests.TestCase;
-	import net.seanhess.bif.core.IParser;
-	import net.seanhess.bif.core.Node;
-	import net.seanhess.bif.core.Parser;
+	import net.seanhess.bifff.core.IParser;
+	import net.seanhess.bifff.core.Node;
+	import net.seanhess.bifff.core.Parser;
 	
 	public class TestParsingValue extends TestCase
 	{

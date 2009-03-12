@@ -1,4 +1,4 @@
-package net.seanhess.bif.views
+package net.seanhess.bifff.views
 {
 	import flash.display.DisplayObject;
 	

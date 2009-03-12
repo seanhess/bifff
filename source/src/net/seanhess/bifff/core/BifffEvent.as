@@ -1,4 +1,4 @@
-package net.seanhess.bif.core
+package net.seanhess.bifff.core
 {
 	import flash.events.Event;
 	

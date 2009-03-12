@@ -1,11 +1,11 @@
-package net.seanhess.bif.actions
+package net.seanhess.bifff.actions
 {
-	import net.seanhess.bif.core.Scope;
+	import net.seanhess.bifff.core.Scope;
 	
 	/**
 	 * Fetches values from the first or last matched target
 	 */
-	public class Get implements IBehavior
+	public class Get implements IAction
 	{
 		/**
 		 * The first matched item

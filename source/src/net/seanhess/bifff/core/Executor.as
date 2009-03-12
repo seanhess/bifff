@@ -1,8 +1,8 @@
-package net.seanhess.bif.core
+package net.seanhess.bifff.core
 {
 	import flash.events.EventDispatcher;
 	
-	import net.seanhess.bif.behaviors.IBehavior;
+	import net.seanhess.bifff.actions.IAction;
 	
 	public class Executor extends EventDispatcher implements IExecutor
 	{
@@ -32,23 +32,23 @@ package net.seanhess.bif.core
 				dispatchEvent(event);
 			}
 			
-			executeBehaviors(target, selector.behaviors);
+			executeActions(target, selector.actions);
 		}
 		
-		public function executeMatches(matches:Array, behaviors:Array):void
+		public function executeMatches(matches:Array, actions:Array):void
 		{
 			for each (var target:* in matches)
-				executeBehaviors(target, behaviors);
+				executeActions(target, actions);
 		}
 		
-		public function executeBehaviors(target:*, behaviors:Array, scope:Scope=null):void
+		public function executeActions(target:*, actions:Array, scope:Scope=null):void
 		{
 			scope = scope || new Scope();
 			
 			scope.target = target;
 			
-			for each (var behavior:IBehavior in behaviors)
-				behavior.apply(scope);
+			for each (var action:IAction in actions)
+				action.apply(scope);
 		}
 	}
 }

@@ -6,8 +6,8 @@ package tests.setandget
 	import mx.core.Application;
 	
 	import net.digitalprimates.fluint.tests.TestCase;
-	import net.seanhess.bif.behaviors.Listener;
-	import net.seanhess.bif.core.BifffEvent;
+	import net.seanhess.bifff.actions.Listener;
+	import net.seanhess.bifff.core.BifffEvent;
 	
 	public class TestSet extends TestCase
 	{

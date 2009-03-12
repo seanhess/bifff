@@ -4,10 +4,9 @@ package tests.selfselection
 	import flash.events.Event;
 	
 	import mx.core.Application;
-	import mx.events.FlexEvent;
 	
 	import net.digitalprimates.fluint.tests.TestCase;
-	import net.seanhess.bif.core.BifffEvent;
+	import net.seanhess.bifff.core.Apply;
 	
 	public class SelectSelf extends TestCase
 	{
@@ -32,8 +31,14 @@ package tests.selfselection
 		[Test]
 		public function buttonSelfSelect():void
 		{
-			button.addEventListener("hello", asyncHandler(onHello, 1000));
 			container.addChild(button);
+			button.apply.addEventListener(Apply.INITIALIZED, asyncHandler(onInit, 1000));
+		}
+		
+		protected function onInit(event:Event, pass:*):void
+		{
+			button.addEventListener("hello", asyncHandler(onHello, 1000));
+			button.dispatchEvent(new Event("test"));
 		}
 		
 		protected function onHello(event:Event, pass:*):void

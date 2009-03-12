@@ -1,11 +1,11 @@
 package tests.smartobjects
 {
 	import net.digitalprimates.fluint.tests.TestCase;
-	import net.seanhess.bif.core.Resolver;
-	import net.seanhess.bif.core.Scope;
-	import net.seanhess.bif.core.SmartObject;
-	import net.seanhess.bif.utils.SmartEvent;
-	import net.seanhess.bif.utils.SmartTarget;
+	import net.seanhess.bifff.core.Resolver;
+	import net.seanhess.bifff.core.Scope;
+	import net.seanhess.bifff.core.SmartObject;
+	import net.seanhess.bifff.utils.SmartEvent;
+	import net.seanhess.bifff.utils.SmartTarget;
 	
 	public class TestNested extends TestCase
 	{

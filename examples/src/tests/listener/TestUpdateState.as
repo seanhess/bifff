@@ -6,7 +6,8 @@ package tests.listener
 	import mx.core.Application;
 	
 	import net.digitalprimates.fluint.tests.TestCase;
-	import net.seanhess.bif.behaviors.Listener;
+	import net.seanhess.bifff.actions.Listener;
+	import net.seanhess.bifff.core.Apply;
 	
 	public class TestUpdateState extends TestCase
 	{
@@ -34,6 +35,11 @@ package tests.listener
 			container.addChild(view);
 			
 			assertEquals("Nothing", view.string);
+			view.apply.addEventListener(Apply.INITIALIZED, asyncHandler(onInit, 1000));
+		}
+		
+		protected function onInit(event:Event, blah:*):void
+		{
 			view.stateOne.addEventListener(Listener.HANDLE, asyncHandler(onHandleOne, 1000));
 			view.currentState = "one";
 		}			
