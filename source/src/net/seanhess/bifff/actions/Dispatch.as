@@ -3,42 +3,39 @@ package net.seanhess.bifff.actions
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	
-	import net.seanhess.bifff.actions.IAction;
 	import net.seanhess.bifff.core.IResolver;
 	import net.seanhess.bifff.core.Resolver;
 	import net.seanhess.bifff.core.Scope;
+	import net.seanhess.bifff.utils.Generator;
 	
 	/**
 	 * Dispatches an event on the target.
 	 */
 	dynamic public class Dispatch implements IAction
 	{
-		public var resolver:IResolver = new Resolver();
-		
 		public var debug:Boolean = false;
+
+		public var resolver:IResolver = new Resolver();
+		public var creator:Generator;
+		public var defaultArguments:Array;
+		
+		public function Dispatch()
+		{
+			defaultArguments = ["nothing", false];
+			
+			creator = new Generator();
+			creator.properties = this; // will then read from us unless overridden
+			creator.factory = Event;
+			creator.arguments = defaultArguments;
+		}
 		
 		public function apply(scope:Scope):void
 		{
-			var arguments:Array = constructorArguments;
-			
-			if (arguments == null && eventType != null )
-				arguments = [eventType, bubbles];
-			
-			var event:Event = createInstance(factory, arguments, scope) as Event;
-			
-			setProperties(event, scope);
+			var event:Event = creator.generate(scope) as Event;
 				
-			if (debug)	trace(" [ DISPATCH EVENT ] " + event + " on " + scope[Scope.TARGET]);
+			if (debug)	trace(" [ DISPATCH EVENT ] " + event + " on " + scope.target);
 				
 			(scope.target as IEventDispatcher).dispatchEvent(event);			
-		}
-		
-		protected function setProperties(event:Event, scope:Scope):void
-		{
-			var properties:Object = eventProperties || this;
-			
-			for (var property:String in properties)
-				event[property] = resolver.resolveObject(properties[property], scope);
 		}
 
 		/**
@@ -46,7 +43,15 @@ package net.seanhess.bifff.actions
 		 */
 		public function set generator(value:Class):void
 		{
-			factory = value;
+			creator.factory = value;
+		}
+		
+		/**
+		 * Bubbling
+		 */
+		public function set bubbles(value:Boolean):void
+		{
+			defaultArguments[1] = value;
 		}
 		
 		/**
@@ -54,10 +59,7 @@ package net.seanhess.bifff.actions
 		 */
 		public function set arguments(value:Object):void
 		{
-			if (!(value is Array))
-				value = [value];
-				
-			constructorArguments = value as Array;
+			creator.arguments = value;
 		}
 		
 		/**
@@ -65,7 +67,7 @@ package net.seanhess.bifff.actions
 		 */
 		public function set type(value:String):void
 		{
-			eventType = value;
+			defaultArguments[0] = value;
 		}
 		
 		/**
@@ -73,48 +75,9 @@ package net.seanhess.bifff.actions
 		 */
 		public function set properties(value:Object):void
 		{
-			eventProperties = value;
+			creator.properties = value;
 		}
 		
-		/**
-		 * can't use function.apply because stupid Class doesn't extend Function. Oh well :)
-		 * Thanks to Nahuel again
-		 */
-		public function createInstance(template:Class, p:Array, scope:Scope):Object
-		{
-			var newInstance:Object;
-			if(!p || p.length == 0)
-			{
-				newInstance = new template();
-				
-			}
-			else
-			{
-				p = resolver.resolveArguments(p, scope);
-				
-				// ugly way to call a constructor. 
-				// if someone knows a better way please let me know (nahuel at asfusion dot com).
-				switch(p.length)
-				{
-					case 1:	newInstance = new template(p[0]); break;
-					case 2:	newInstance = new template(p[0], p[1]); break;
-					case 3:	newInstance = new template(p[0], p[1], p[2]); break;
-					case 4:	newInstance = new template(p[0], p[1], p[2], p[3]); break;
-					case 5:	newInstance = new template(p[0], p[1], p[2], p[3], p[4]); break;
-					case 6:	newInstance = new template(p[0], p[1], p[2], p[3], p[4], p[5]); break;
-					case 7:	newInstance = new template(p[0], p[1], p[2], p[3], p[4], p[5], p[6]); break;
-					case 8:	newInstance = new template(p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7]); break;
-					case 9:	newInstance = new template(p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8]); break;
-					case 10:newInstance = new template(p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9]); break;
-				}
-			}
-			return newInstance;
-		}
-		
-		protected var factory:Class = Event;
-		protected var constructorArguments:Array;
-		protected var eventProperties:Object;
 		protected var eventType:String;
-		public var bubbles:Boolean = false;
 	}
 }
