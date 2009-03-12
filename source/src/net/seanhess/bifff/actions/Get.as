@@ -1,4 +1,4 @@
-package net.seanhess.bif.behaviors
+package net.seanhess.bif.actions
 {
 	import net.seanhess.bif.core.Scope;
 	
