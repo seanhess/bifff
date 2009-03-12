@@ -36,10 +36,10 @@ package net.seanhess.bifff.core
 			executeActions(target, selector.actions);
 		}
 		
-		public function executeMatches(matches:Array, actions:Array):void
+		public function executeMatches(matches:Array, actions:Array, scope:Scope=null):void
 		{
 			for each (var target:* in matches)
-				executeActions(target, actions);
+				executeActions(target, actions, scope);
 		}
 		
 		public function executeActions(target:*, actions:Array, scope:Scope=null):void

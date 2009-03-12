@@ -8,6 +8,6 @@ package net.seanhess.bifff.core
 	{
 		function executeSelector(target:*, selector:ISelector):void;
 		function executeActions(target:*, actions:Array, scope:Scope=null):void;
-		function executeMatches(matches:Array, actions:Array):void;
+		function executeMatches(matches:Array, actions:Array, scope:Scope=null):void;
 	}
 }

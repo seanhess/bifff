@@ -1,6 +1,5 @@
 package net.seanhess.bifff.actions
 {
-	import net.seanhess.bifff.actions.IAction;
 	import net.seanhess.bifff.core.DirectMatcher;
 	import net.seanhess.bifff.core.Executor;
 	import net.seanhess.bifff.core.IExecutor;
@@ -22,20 +21,26 @@ package net.seanhess.bifff.actions
 		
 		public function apply(scope:Scope):void
 		{
+			var targets:Array;
+			
 			if (_targets)
 			{
-				executeMatches(_targets);
-				return;				
+				targets = _targets;
 			}
-			
-			if (nodes == null)
-				nodes = parser.parseMatch(matchString);
-				
-			if (searchDirection == SEARCH_PARENTS)
-				searchParents(scope.target);
-				
 			else
-				searchChildren(scope.target);
+			{
+				if (nodes == null)
+					nodes = parser.parseMatch(matchString);
+					
+				if (searchDirection == SEARCH_PARENTS)
+					targets = matcher.anscestors(scope.target, nodes);
+					
+				else
+					throw new Error("Select: Search Children not supported yet");
+			}
+				
+			executeMatches(targets, scope);
+			return;				
 		}
 
 		public function set match(value:String):void
@@ -64,25 +69,10 @@ package net.seanhess.bifff.actions
 			_targets = value as Array;
 		}
 		
-		protected function searchParents(target:*):void
-		{
-			var matches:Array = matcher.anscestors(target, nodes);
-						
-			executeMatches(matches);
-		}
-		
-		/**
-		 * Not Implemented Yet
-		 */
-		protected function searchChildren(target:*):void
-		{
-			
-		}
-		
-		protected function executeMatches(matches:Array):void
+		protected function executeMatches(matches:Array, scope:Scope):void
 		{
 			if (debug) 	trace(" [ SELECT ] " + matches);
-			executor.executeMatches(matches, _actions);
+			executor.executeMatches(matches, _actions, scope);
 		}
 		
 		protected var searchDirection:String = SEARCH_PARENTS;

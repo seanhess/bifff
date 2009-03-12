@@ -7,6 +7,7 @@
 	</mx:Script>
 	
 	<SmartBehavior id="behavior"/>
+	<SmartCurrentTarget id="currentTarget"/>
 
 	<BehaviorMap target="{this}" debug="true">
 		
@@ -17,8 +18,11 @@
 		<Selector match="#b2">
 			<Behavior generator="{TestClick}">
 				<Listener event="test">
-					<Trace message="test"/>
-					<Trace message="{behavior}"/>
+					<Select target="{button}">
+						<Trace message="test"/>
+						<Trace message="{currentTarget}"/>
+						<Trace message="{behavior}"/>
+					</Select>
 				</Listener>
 			</Behavior>
 		</Selector>
