@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bifff.seanhess.net/2009" xmlns:core="net.seanhess.bifff.core.*" viewSourceURL="srcview/index.html">
+
+	<BehaviorMap target="{this}" debug="true">
+	
+		<!-- Set -->
+		<Selector match="Button">
+			<Set fontSize="24"/>
+		</Selector>
+		
+		<Selector match=".test">
+			<Set color="#FFF000"/>
+		</Selector>
+		
+		<!-- Styles -->
+		<Selector match="#secondButton">
+			<Styles addClass="test"/>
+		</Selector>
+		
+		<!-- Listener + Trace -->
+		<Selector match="Button">
+			<Listener event="{MouseEvent.CLICK}">
+				<Trace message="A button was clicked"/>
+			</Listener>
+		</Selector>
+	
+		<!-- Listener + Call -->
+		<Selector match="#firstButton">
+			<Listener event="click">
+				<Call method="{this.alert}" arguments="{['I am a button', target]}"/>
+			</Listener>
+		</Selector>
+		
+		<!-- Listener + Select -->
+		<Selector match="#green">
+			<Listener event="click">
+				<Select match="VBox">
+					<Set backgroundColor="#00FF00"/>
+				</Select>
+			</Listener>
+		</Selector>
+		
+		<!-- Listener + Select + Contents -->
+		<Selector match="#change">
+			<Listener event="click">
+				<Select match="VBox">
+					<Contents>
+						<replace>
+							<mx:Button label="I am a new Button"/>
+						</replace>
+					</Contents>
+				</Select>
+			</Listener>
+		</Selector>
+		
+		<!-- Swap -->
+		<Selector match="#toHBox">
+			<Listener event="click">
+				<Select match="VBox">
+					<Swap view="mx.containers.HBox"/>
+				</Select>
+			</Listener>
+		</Selector>
+		
+		<!-- Dispatch Event :: Mostly useful for tying into application frameworks -->
+		<Selector match="#secondButton">
+			<Listener event="click">
+				<Dispatch generator="{MyCustomEvent}" arguments="{MyCustomEvent.MY_TYPE}" importantMessage='i am a very important message'/>
+				<Dispatch type="bob"/>
+			</Listener>			
+			<Listener event="bob">
+				<Trace message="Bob wuz here"/>
+			</Listener>
+			<Listener event="{MyCustomEvent.MY_TYPE}">
+				<Call method="{this.alert}" arguments="{[event.importantMessage, event.target]}"/>
+			</Listener>
+		</Selector>
+	</BehaviorMap>
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import views.MyCustomEvent;
+			
+			protected function alert(message:String, from:*):void
+			{
+				Alert.show(from + ": " + message);
+			}
+		]]>
+	</mx:Script>
+
+	<SmartEvent id="event"/>
+	<SmartTarget id="target"/>
+	
+	<mx:Button id="firstButton" label="First Button"/>
+	<mx:Button id="secondButton" label="Second Button" color="#FF0000"/>
+	
+	<mx:Spacer height="100"/>
+	
+	<mx:VBox id="changingBox">
+		<mx:Button label="Green Background" id="green"/>
+		<mx:Button label="Change Contents" 	id="change" />
+		
+		<!-- The others will no longer match! -->
+		<mx:Button label="Switch to HBox" 	id="toHBox" />
+	</mx:VBox>
+	
+	
+</mx:Application>

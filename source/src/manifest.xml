@@ -15,6 +15,7 @@
 	<component class="net.seanhess.bifff.actions.Styles"/>
 	<component class="net.seanhess.bifff.actions.Swap"/>
 	
+	<component class="net.seanhess.bifff.behaviors.TestClick"/>
 	<component class="net.seanhess.bifff.behaviors.IBehavior"/>
 
 	<component class="net.seanhess.bifff.core.Apply"/>
