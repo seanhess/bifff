@@ -3,17 +3,21 @@ package net.seanhess.bifff.actions
 	import flash.events.Event;
 	
 	import net.seanhess.bifff.behaviors.IBehavior;
+	import net.seanhess.bifff.core.Executor;
+	import net.seanhess.bifff.core.IExecutor;
 	import net.seanhess.bifff.core.Scope;
 	import net.seanhess.bifff.utils.Generator;
 	
 	/**
 	 * Dispatches an event on the target.
 	 */
+	[DefaultProperty("actions")]
 	dynamic public class Behavior implements IAction
 	{
 		public var debug:Boolean = false;
 
 		public var creator:Generator;
+		public var executor:IExecutor = new Executor();
 		
 		public function Behavior()
 		{
@@ -39,6 +43,8 @@ package net.seanhess.bifff.actions
 				
 			else
 				throw new Error("Could not apply target to behavior: " + behavior);
+				
+			executor.executeActions(behavior, actions, new Scope({behavior:behavior, behaviorTarget:scope.target}));
 		}
 
 		/**
@@ -65,6 +71,17 @@ package net.seanhess.bifff.actions
 			creator.properties = value;
 		}
 		
+		public function set actions(value:Array):void
+		{
+			_actions = value;
+		}
+		
+		public function get actions():Array
+		{
+			return _actions;
+		}
+		
 		protected var eventType:String;
+		protected var _actions:Array;
 	}
 }
