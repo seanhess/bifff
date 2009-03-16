@@ -1,12 +1,13 @@
 package net.seanhess.bifff.core
 {
-	import flash.utils.Dictionary;
+	import flash.display.DisplayObject;
 	
 	[DefaultProperty("actions")]
 	public class Selector implements ISelector
 	{
 		public var debug:Boolean = false;
 		public var parser:IParser = new Parser();
+		public var matcher:IMatcher = new Matcher();
 		
 		public function set nodes(value:Array):void
 		{
@@ -42,6 +43,11 @@ package net.seanhess.bifff.core
 		public function toString():String
 		{
 			return _match as String || _match.toString();
+		}
+		
+		public function matches(target:*, root:*=null):Boolean
+		{
+			return matcher.match(target as DisplayObject, nodes, root as DisplayObject);
 		}
 		
 		protected var _match:String;

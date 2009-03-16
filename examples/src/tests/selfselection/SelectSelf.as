@@ -31,7 +31,7 @@ package tests.selfselection
 		[Test]
 		public function buttonSelfSelect():void
 		{
-			container.addChild(button);
+ 			container.addChild(button);
 			button.apply.addEventListener(Apply.INITIALIZED, asyncHandler(onInit, 1000));
 		}
 		

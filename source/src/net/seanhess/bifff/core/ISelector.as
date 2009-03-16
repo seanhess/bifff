@@ -9,5 +9,7 @@ package net.seanhess.bifff.core
 		function get nodes():Array;
 		
 		function set match(value:String):void;
+		
+		function matches(target:*, root:*=null):Boolean;
 	}
 }

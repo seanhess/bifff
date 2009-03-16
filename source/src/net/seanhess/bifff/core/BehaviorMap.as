@@ -30,7 +30,6 @@ package net.seanhess.bifff.core
 		public var executor:IExecutor;
 				
 		public var selectors:Array = [];
-		public var matcher:IMatcher = new Matcher();
 		public var defaults:Defaults = new Defaults(this);
 		
 		public var document:Object;
@@ -120,7 +119,7 @@ package net.seanhess.bifff.core
 			
 			for each (var selector:ISelector in selectors)
 			{
-				if (matchSelector(target, selector))
+				if (selector.matches(target, this.target))
 				{
 					executor.executeSelector(target, selector);
 					
@@ -136,9 +135,6 @@ package net.seanhess.bifff.core
 			}
 		}
 		
-		protected function matchSelector(target:*, selector:ISelector):Boolean
-		{
-			return matcher.match(target as DisplayObject, selector.nodes, this.target as DisplayObject);
-		}
+		
 	}
 }
