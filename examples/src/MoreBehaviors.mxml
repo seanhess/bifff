@@ -6,13 +6,11 @@
 		<!-- Set the height to 50 + read the .test style -->
 		<Selector match=".tall">
 			<Set height="50"/>
-			<Set style="test"/>
 		</Selector>
 
 		<!-- Add the style "tall" + add support for the CSS style .big -->
 		<Selector match=".big">
 			<Styles addClass="tall"/>
-			<Set style="big"/>
 		</Selector>
 		
 		<!-- Match two styles at once -->
@@ -38,7 +36,7 @@
 	</mx:states>
 	
 	<mx:Style>
-		.test
+		.tall
 		{
 			color: #FFF000;	
 		}

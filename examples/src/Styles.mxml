@@ -34,12 +34,26 @@
 		.six {
 			text-decoration:underline;
 		}
+		
+		.seven {
+			padding-top: 200;
+		}
 	</mx:Style>
 	
 	<BehaviorMap target="{this}">
+	
 		<Selector match="*">
 			<Behavior generator="{MultiStyle}"/>
 		</Selector>
+		
+		<Selector match=".one">
+			<Set width="500"/>
+		</Selector>
+		
+		<Selector match=".one.two.three">
+			<Styles addClass="seven"/>
+		</Selector>
+		
 	</BehaviorMap>
 	
 	<mx:Button label="w00t" styleName="{new MultiStyleDeclaration('five six')}"/>

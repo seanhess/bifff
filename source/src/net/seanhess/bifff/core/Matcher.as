@@ -80,11 +80,12 @@ package net.seanhess.bifff.core
 			if (comp == null || !comp.hasOwnProperty("styleName") || comp.styleName == null)
 				return false;
 				
-			// FIXME! // 
-			if (!(comp.styleName is String))
+			var styleName:String = comp.styleName;
+			
+			if (styleName == null)
 				return false;
 
-			var styles:Array = comp.styleName.split(" ");
+			var styles:Array = styleName.split(" ");
 			
 			for each (var style:String in styles)
 				if (style == node.value)

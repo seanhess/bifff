@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" xmlns="http://bifff.seanhess.net/2009">
 
+	<mx:Script>
+		<![CDATA[
+			import net.seanhess.bifff.behaviors.MultiStyle;
+		]]>
+	</mx:Script>
 
+	<mx:Style>
+		.one {
+			font-size:24;
+		}
+		
+		.two {
+			text-decoration:underline;
+		}
+	</mx:Style>
+	
+	<Apply target="{button}">
+		<Behavior generator="{MultiStyle}"/>
+	</Apply>
 
-	<mx:Button id="button" label="hello" width="50"/>
+	<mx:Button id="button" label="hello" width="50" styleName="one two"/>
 	<mx:Button id="button2" label="yarr"/>
 	
 </mx:Canvas>

@@ -24,7 +24,8 @@ package net.seanhess.bifff.core
 			// find all the css declarations and call them all!
 			
 			for each (var declaration:CSSStyleDeclaration in styleMap)
-				chain = declaration.addStyleToProtoChain(chain, target, filterMap);
+				if (declaration)
+					chain = declaration.addStyleToProtoChain(chain, target, filterMap);
 				
 			return chain;
 		}

@@ -1,8 +1,10 @@
 package tests.styles
 {
 	import flash.display.DisplayObjectContainer;
+	import flash.events.Event;
 	
 	import mx.core.Application;
+	import mx.events.FlexEvent;
 	
 	import net.digitalprimates.fluint.tests.TestCase;
 	import net.seanhess.bifff.core.MultiStyleDeclaration;
@@ -34,11 +36,15 @@ package tests.styles
 		public function addRemoveSetString():void
 		{
 			multi.styleNames = "one two three";
-			assertEquals("one two three", multi.toString());
+			assertTrue("has one", multi.toString().match("one"));
+			assertTrue("has two", multi.toString().match("two"));
+			assertTrue("has three", multi.toString().match("three"));
 			
 			multi.addStyle("four");
 			assertTrue("has four", multi.toString().match("four"));
-			assertTrue("has one two three", multi.toString().match("one two three"));
+			assertTrue("has one", multi.toString().match("one"));
+			assertTrue("has two", multi.toString().match("two"));
+			assertTrue("has three", multi.toString().match("three"));
 			
 			multi.removeStyle("two");
 			assertTrue("has one", multi.toString().match("one"));
@@ -50,8 +56,13 @@ package tests.styles
 		[Test]
 		public function testAutomaticStyles():void
 		{
-						
-			
+			container.addChild(view);
+			view.addEventListener(FlexEvent.CREATION_COMPLETE, asyncHandler(onComplete,1000));
+		}
+		
+		protected function onComplete(event:Event, blah:*):void
+		{
+//			assertTrue("Is Multi? " , view.button.styleName is MultiStyleDeclaration);
 		}
 	}
 }
