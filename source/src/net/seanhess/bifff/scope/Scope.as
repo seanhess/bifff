@@ -22,6 +22,16 @@ package net.seanhess.bifff.scope
 					this[property] = properties[property];
 		}
 		
+		public function clone():Scope
+		{
+			var newScope:Scope = new Scope();
+			
+			for (var property:String in this)
+				newScope[property] = this[property];
+				
+			return newScope;
+		}
+		
 		/**
 		 * Just to avoid naming conflicts with BehaviorMap.target
 		 */

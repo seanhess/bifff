@@ -2,9 +2,7 @@ package net.seanhess.bifff.core
 {
 	import flash.events.EventDispatcher;
 	
-	import net.seanhess.bifff.actions.Behavior;
 	import net.seanhess.bifff.actions.IAction;
-	import net.seanhess.bifff.behaviors.IBehavior;
 	import net.seanhess.bifff.scope.Scope;
 	
 	public class Executor extends EventDispatcher implements IExecutor
@@ -41,7 +39,10 @@ package net.seanhess.bifff.core
 		public function executeMatches(matches:Array, actions:Array, scope:Scope=null):void
 		{
 			for each (var target:* in matches)
+			{
+				scope = (scope) ? scope.clone() : new Scope();
 				executeActions(target, actions, scope);
+			}
 		}
 		
 		public function executeActions(target:*, actions:Array, scope:Scope=null):void

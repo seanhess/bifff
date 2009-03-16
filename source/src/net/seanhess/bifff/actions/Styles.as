@@ -1,8 +1,8 @@
 package net.seanhess.bifff.actions
 {
-	import flash.events.Event;
+	import flash.events.EventDispatcher;
 	
-	import net.seanhess.bifff.core.BehaviorMap;
+	import net.seanhess.bifff.core.BifffEvent;
 	import net.seanhess.bifff.core.MultiStyleDeclaration;
 	import net.seanhess.bifff.core.StyleMerger;
 	import net.seanhess.bifff.scope.Scope;
@@ -10,11 +10,13 @@ package net.seanhess.bifff.actions
 	/**
 	 * Allows you to add and remove styles
 	 */
-	public class Styles implements IAction
+	[Event(name="updatedStyle",type="net.seanhess.bifff.core.BifffEvent")]
+	public class Styles extends EventDispatcher implements IAction
 	{
 		protected var classesToAdd:Array = [];
 		protected var classesToRemove:Array = [];
 		public var merger:StyleMerger = new StyleMerger();
+		public var debug:Boolean = false;
 		
 		public function apply(scope:Scope):void
 		{
@@ -31,6 +33,14 @@ package net.seanhess.bifff.actions
 			}
 			
 			declaration.forceUpdate();	// sets itself to the target
+			
+			if (debug)
+			{
+				var event:BifffEvent = new BifffEvent(BifffEvent.UPDATED_STYLE);
+					event.matchedTarget = scope.target;
+					
+				dispatchEvent(event);	
+			}
 		}
 		
 		public function set addClass(value:Object):void

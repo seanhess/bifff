@@ -4,6 +4,7 @@ package net.seanhess.bifff.core
 	import flash.events.Event;
 	import flash.utils.Dictionary;
 	
+	import mx.collections.ArrayCollection;
 	import mx.core.UIComponent;
 	import mx.core.mx_internal;
 	import mx.styles.CSSStyleDeclaration;
@@ -40,9 +41,13 @@ package net.seanhess.bifff.core
 			
 			targets[target] = true;
 			
-			for each (var declaration:CSSStyleDeclaration in styleMap)
+			for each (var name:String in styles)
+			{
+				var declaration:CSSStyleDeclaration = styleMap[name];
+				
 				if (declaration)
 					chain = declaration.addStyleToProtoChain(chain, target, filterMap);
+			}
 				
 			return chain;
 		}
@@ -56,14 +61,13 @@ package net.seanhess.bifff.core
 			
 			var newStyles:Array = (value) ? value.split(/\s+/) : [];
 			
-			setting = true;
-			
 			for each (var style:String in newStyles)
 				addStyle(style);	
-
-			setting = false;
-				
-			invalidate();	
+		}
+		
+		public function get styleNames():String
+		{
+			return this.toString();
 		}
 		
 		/**
@@ -71,40 +75,21 @@ package net.seanhess.bifff.core
 		 */
 		public function addStyle(name:String):void
 		{
+			styles.addItem(name);
 			styleMap[name] = StyleManager.getStyleDeclaration("." + name);
-			invalidate();
 		}
 		
 		public function removeStyle(name:String):void
 		{
+			if (styles.contains(name))
+				styles.removeItemAt(styles.getItemIndex(name));
+				
 			delete styleMap[name];
-			invalidate();
 		}
 		
 		public function hasStyle(name:String):Boolean
 		{
-			return styleMap[name];
-		}
-		
-		public function get styles():Array
-		{
-			if (invalid)
-			{
-				var styleNames:Array = [];
-			
-				for (var style:String in styleMap)
-					styleNames.push(style);
-					
-				_stylesList = styleNames;
-				invalid = false;
-			}
-			
-			return _stylesList;
-		}
-		
-		protected function invalidate():void
-		{
-			invalid = true;
+			return styles.contains(name);
 		}
 		
 		public function forceUpdate():void
@@ -127,21 +112,23 @@ package net.seanhess.bifff.core
 		 */
 		override public function toString():String
 		{
-			return styles.join(" ");
+			return styles.source.join(" ");
 		}
 		
 		public function clone():MultiStyleDeclaration
 		{
 			var declaration:MultiStyleDeclaration = new MultiStyleDeclaration();
+				declaration.styles = this.styles;
 				declaration.styleMap = this.styleMap;
 				declaration.targets = this.targets;
 				
 			return declaration;
 		}
 		
-		public var styleMap:Dictionary = new Dictionary(true);
+		public var styles:ArrayCollection = new ArrayCollection();
+		public var styleMap:Dictionary = new Dictionary(true); // maps names to declarations
+		
 		protected var invalid:Boolean = true;
-		protected var _stylesList:Array;
 		protected var setting:Boolean = false;
 	}
 }

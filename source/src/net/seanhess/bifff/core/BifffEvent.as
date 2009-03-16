@@ -5,6 +5,7 @@ package net.seanhess.bifff.core
 	public class BifffEvent extends Event
 	{
 		public static const FOUND_MATCH:String = "foundMatch";
+		public static const UPDATED_STYLE:String = "updatedStyle";
 		
 		public var selector:ISelector;
 		public var matchedTarget:*;
