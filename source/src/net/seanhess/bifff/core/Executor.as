@@ -2,7 +2,9 @@ package net.seanhess.bifff.core
 {
 	import flash.events.EventDispatcher;
 	
+	import net.seanhess.bifff.actions.Behavior;
 	import net.seanhess.bifff.actions.IAction;
+	import net.seanhess.bifff.behaviors.IBehavior;
 	import net.seanhess.bifff.scope.Scope;
 	
 	public class Executor extends EventDispatcher implements IExecutor
@@ -48,8 +50,28 @@ package net.seanhess.bifff.core
 			
 			scope.target = target;
 			
-			for each (var action:IAction in actions)
-				action.apply(scope);
+			// actions can be IActions, Classes (behaviors), or objects that conform to IBehavior (set target)
+			for each (var action:Object in actions)
+			{
+//				var behavior:Behavior;
+//				
+//				if (!(action is IAction
+//				
+//				if (action is Class)
+//				{
+//					behavior = new Behavior();
+//					behavior.generator = action;
+//					action = behavior;
+//				}
+//				
+//				else if (!(action is IAction))
+//				{
+//					if (action is IBehavior || action.hasOwnProperty("target") || action.hasOwnProperty("actions")
+//				}
+				
+				if (action is IAction)
+					action.apply(scope);
+			}
 		}
 	}
 }

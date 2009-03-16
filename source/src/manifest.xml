@@ -15,8 +15,9 @@
 	<component class="net.seanhess.bifff.actions.Styles"/>
 	<component class="net.seanhess.bifff.actions.Swap"/>
 	
-	<component class="net.seanhess.bifff.behaviors.TestClick"/>
 	<component class="net.seanhess.bifff.behaviors.IBehavior"/>
+	<component class="net.seanhess.bifff.behaviors.MultiStyle"/>
+	<component class="net.seanhess.bifff.behaviors.TestClick"/>
 
 	<component class="net.seanhess.bifff.core.Apply"/>
 	<component class="net.seanhess.bifff.core.BehaviorMap"/>
@@ -27,6 +28,7 @@
 	<component class="net.seanhess.bifff.core.IResolver"/>
 	<component class="net.seanhess.bifff.core.ISelector"/>
 	<component class="net.seanhess.bifff.core.Matcher"/>
+	<component class="net.seanhess.bifff.core.MultiStyleDeclaration"/>
 	<component class="net.seanhess.bifff.core.Node"/>
 	<component class="net.seanhess.bifff.core.Parser"/>
 	<component class="net.seanhess.bifff.core.Resolver"/>
