@@ -6,6 +6,12 @@
 			import net.seanhess.bifff.behaviors.MultiStyle;
 			import net.seanhess.bifff.core.MultiStyleDeclaration;
 			
+			
+			protected function onClick():void
+			{
+				(woot.styleName as MultiStyleDeclaration).addStyle("seven");
+				(woot.styleName as MultiStyleDeclaration).forceUpdate();
+			}
 		]]>
 	</mx:Script>
 	
@@ -56,7 +62,7 @@
 		
 	</BehaviorMap>
 	
-	<mx:Button label="w00t" styleName="{new MultiStyleDeclaration('five six')}"/>
+	<mx:Button id="woot" label="w00t" styleName="{new MultiStyleDeclaration('five six')}" click="onClick()"/>
 	
 	<mx:Box styleName="one two three">
 		<mx:Button styleName="four five six" label="styles"/>

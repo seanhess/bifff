@@ -35,8 +35,11 @@ package net.seanhess.bifff.actions
 				if (searchDirection == SEARCH_PARENTS)
 					targets = matcher.anscestors(scope.target, nodes);
 					
+				else if (searchDirection == SEARCH_CHILDREN)
+					targets = matcher.descendants(scope.target, nodes);
+					
 				else
-					throw new Error("Select: Search Children not supported yet");
+					throw new Error("Select: Unsupported search direction");
 			}
 				
 			executeMatches(targets, scope);

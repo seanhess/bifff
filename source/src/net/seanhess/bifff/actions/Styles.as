@@ -18,14 +18,7 @@ package net.seanhess.bifff.actions
 		
 		public function apply(scope:Scope):void
 		{
-			var declaration:MultiStyleDeclaration;
-			
-			if (!(scope.target.styleName is MultiStyleDeclaration))
-				declaration = new MultiStyleDeclaration(scope.target.styleName);
-			else
-				declaration = scope.target.styleName;
-			
-			declaration = scope.target.styleName;
+			var declaration:MultiStyleDeclaration = scope.target.styleName as MultiStyleDeclaration || new MultiStyleDeclaration(scope.target.styleName, scope.target);
 			
 			for each (var add:String in classesToAdd)
 			{
@@ -36,9 +29,8 @@ package net.seanhess.bifff.actions
 			{
 				declaration.removeStyle(remove);
 			}
-
-			scope.target.styleName = new MultiStyleDeclaration(declaration.toString());
-			scope.target.dispatchEvent(new Event(BehaviorMap.STYLES_CHANGED, true));
+			
+			declaration.forceUpdate();	// sets itself to the target
 		}
 		
 		public function set addClass(value:Object):void

@@ -5,7 +5,7 @@
 
 		<!-- Set the height to 50 + read the .test style -->
 		<Selector match=".tall">
-			<Set height="50"/>
+			<Set height="100"/>
 		</Selector>
 
 		<!-- Add the style "tall" + add support for the CSS style .big -->

@@ -2,6 +2,9 @@ package net.seanhess.bifff.core
 {
 	import flash.display.DisplayObject;
 	
+	import mx.core.Container;
+	import mx.core.UIComponent;
+	
 	/**
 	 * This class helps Select, allowing it to find particular nodes
 	 */
@@ -32,17 +35,38 @@ package net.seanhess.bifff.core
 		
 		
 		
-		
-		
+		/**
+		 * Matches containers' children
+		 */
 		public function descendants(target:DisplayObject, nodes:Array):Array
 		{
-			throw new Error("descendants not implemented yet");
-			return [];
+			return matchChildren(target, nodes, []);
+		}
+		
+		protected function matchChildren(target:DisplayObject, nodes:Array, matched:Array):Array
+		{
+			if (!(target is Container))
+				return matched;
+			
+			var container:Container = target as Container;
+			
+			if (!container || container.numChildren < 1)
+				return matched;
+				
+			for each (var child:UIComponent in container.getChildren());
+				matched = matchDescendant(child, nodes, matched);
+				
+			return matched;			
 		}
 		
 		protected function matchDescendant(target:DisplayObject, nodes:Array, matched:Array):Array
 		{
-			return [];
+			if (matcher.match(target, nodes)) // you have to match everything!
+				matched.push(target);
+				
+			matched = matchChildren(target, nodes, matched);
+				
+			return matched;
 		}
 	}
 }
