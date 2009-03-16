@@ -1,5 +1,8 @@
 package net.seanhess.bifff.actions
 {
+	import flash.events.Event;
+	import flash.events.EventDispatcher;
+	
 	import net.seanhess.bifff.core.DirectMatcher;
 	import net.seanhess.bifff.core.Executor;
 	import net.seanhess.bifff.core.IExecutor;
@@ -8,16 +11,21 @@ package net.seanhess.bifff.actions
 	import net.seanhess.bifff.scope.Scope;
 	
 	[DefaultProperty("actions")]
-	public class Select implements IAction
+	[Event(name="selected",type="flash.events.Event")]
+	public class Select extends EventDispatcher implements IAction
 	{
 		public static const SEARCH_PARENTS:String = "parents";
 		public static const SEARCH_CHILDREN:String = "children"
+		
+		public static const SELECTED:String = "selected";
 		
 		public var matcher:DirectMatcher = new DirectMatcher();
 		public var parser:IParser = new Parser();
 		public var executor:IExecutor = new Executor();
 		
 		public var debug:Boolean = false;
+		
+		public var selectedTargets:Array;
 		
 		public function apply(scope:Scope):void
 		{
@@ -41,8 +49,11 @@ package net.seanhess.bifff.actions
 				else
 					throw new Error("Select: Unsupported search direction");
 			}
+			
+			selectedTargets = targets;
 				
 			executeMatches(targets, scope);
+			dispatchEvent(new Event(SELECTED));
 			return;				
 		}
 

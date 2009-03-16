@@ -21,14 +21,15 @@ package net.seanhess.bifff.core
 	 */
 	public class MultiStyleDeclaration extends CSSStyleDeclaration
 	{
-		protected var target:UIComponent;
+		public var targets:Dictionary = new Dictionary(true);
 		
 		public function MultiStyleDeclaration(styleNames:String=null, target:UIComponent=null):void
 		{
 			if (styleNames)
 				this.styleNames = styleNames;
 				
-			this.target = target;
+			if (target)
+				targets[target] = true;
 		}
 		
 		override mx_internal function addStyleToProtoChain(chain:Object,
@@ -37,7 +38,7 @@ package net.seanhess.bifff.core
 		{
 			// find all the css declarations and call them all!
 			
-			this.target = target as UIComponent;
+			targets[target] = true;
 			
 			for each (var declaration:CSSStyleDeclaration in styleMap)
 				if (declaration)
@@ -108,10 +109,15 @@ package net.seanhess.bifff.core
 		
 		public function forceUpdate():void
 		{
-			if (setting == false && this.target)
+			if (setting == false)
 			{
-				this.target.styleName = this.clone(); // regenerate! // I only want to do this  												
-				this.target.dispatchEvent(new Event(BehaviorMap.STYLES_CHANGED, true)); 	// it will be picked up by the map again
+				var clone:MultiStyleDeclaration = this.clone();
+				
+				for (var target:Object in targets)
+				{
+					target.styleName = clone;											
+					target.dispatchEvent(new Event(BehaviorMap.STYLES_CHANGED, true)); 	// it will be picked up by the map again
+				}
 			}
 		}
 		
@@ -128,6 +134,7 @@ package net.seanhess.bifff.core
 		{
 			var declaration:MultiStyleDeclaration = new MultiStyleDeclaration();
 				declaration.styleMap = this.styleMap;
+				declaration.targets = this.targets;
 				
 			return declaration;
 		}
