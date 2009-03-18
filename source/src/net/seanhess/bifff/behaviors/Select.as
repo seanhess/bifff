@@ -23,7 +23,6 @@ package net.seanhess.bifff.behaviors
 	{
 		public static const SEARCH_PARENTS:String = "parents";
 		public static const SEARCH_CHILDREN:String = "children"
-		public static const SELF:String = "self";
 		
 		public static const SELECTED:String = "selected";
 		
@@ -39,6 +38,7 @@ package net.seanhess.bifff.behaviors
 		
 		public function set target(value:*):void
 		{
+			scope.target = value;				
 			registry.applyTargets(value);	
 		}
 		
@@ -49,24 +49,19 @@ package net.seanhess.bifff.behaviors
 		
 		public function apply(target:*):void
 		{
-			scope.target = target;
-			
 			var targets:Array;
-			
-			if (matchString == null)
-				return;
-			
+						
 			if (nodes == null)
 				nodes = parser.parseMatch(matchString);
 				
-			if (searchDirection == SEARCH_PARENTS)
+			if (_redirect)
+				targets = _redirect;
+
+			else if (searchDirection == SEARCH_PARENTS)
 				targets = matcher.anscestors(scope.target, nodes);
 				
 			else if (searchDirection == SEARCH_CHILDREN)
 				targets = matcher.descendants(scope.target, nodes);
-				
-			else if (searchDirection == SELF)
-				targets = [target];
 				
 			else
 				throw new Error("Select: Unsupported search direction");
@@ -92,6 +87,14 @@ package net.seanhess.bifff.behaviors
 			scoper.parentScopes(value, scope);
 		}
 		
+		public function set redirect(value:*):void
+		{
+			if (!(value is Array))
+				value = [value]
+			
+			_redirect = value as Array;
+		}
+		
 		protected function executeMatches(matches:Array):void
 		{
 			if (debug) 	trace(" [ SELECT ] " + matches);
@@ -102,5 +105,6 @@ package net.seanhess.bifff.behaviors
 		protected var matchString:String;
 		protected var _actions:Array;
 		protected var nodes:Array;
+		protected var _redirect:Array;
 	}
 }

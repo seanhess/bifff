@@ -14,6 +14,9 @@ package net.seanhess.bifff.core
 //					
 //				return [instance];	
 //			}
+
+			if (!value || value == "" || value == " ")
+				return [];
 			
 			var items:Array = value.split(" ");
 			var nodes:Array = [];

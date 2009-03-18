@@ -18,7 +18,7 @@
 		<Selector match="#b2">
 			<Behavior generator="{TestClick}">
 				<Listener event="test">
-					<Select target="{button}">
+					<Select redirect="{button}">
 						<Trace message="test"/>
 						<Trace message="{currentTarget}"/>
 						<Trace message="{behavior}"/>
@@ -26,11 +26,9 @@
 				</Listener>
 			</Behavior>
 		</Selector>
-		
 	</BehaviorMap>
 	
 	<mx:Button id="button" label="First Button"/>
-
 	<mx:Button id="b2" label="Second Button"/>
 	
 </mx:Application>

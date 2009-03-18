@@ -41,24 +41,14 @@ package net.seanhess.bifff.behaviors
 		 */
 		public function set target(value:*):void
 		{
-			registry.apply = apply;
+			scope.target = value;
+			
+			if (_redirect)	value = _redirect;
+			
 			registry.applyTargets(value);
 		}
 		
 		public function apply(target:*):void
-		{
-			scope.target = target;
-			
-			if (_redirect)
-			{
-				registry.apply = applyDirectly;
-				registry.applyTargets(_redirect)
-			}
-			else
-				applyDirectly(target);
-		}
-		
-		public function applyDirectly(target:*):void
 		{
 			var old:Object = registry.getStore(target);
 			for (var property:String in values)
