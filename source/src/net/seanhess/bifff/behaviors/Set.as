@@ -1,4 +1,4 @@
-package net.seanhess.bifff.actions
+package net.seanhess.bifff.behaviors
 {
 	import flash.utils.Dictionary;
 	import flash.utils.Proxy;
@@ -8,9 +8,10 @@ package net.seanhess.bifff.actions
 	import mx.styles.IStyleClient;
 	import mx.styles.StyleManager;
 	
-	import net.seanhess.bifff.actions.IAction;
+	import net.seanhess.bifff.behaviors.IBehavior;
 	import net.seanhess.bifff.core.IResolver;
 	import net.seanhess.bifff.core.Resolver;
+	import net.seanhess.bifff.scope.IScopeable;
 	import net.seanhess.bifff.scope.Scope;
 	import net.seanhess.bifff.utils.Invalidator;
 	
@@ -21,38 +22,56 @@ package net.seanhess.bifff.actions
 	 * 
 	 * If the property is updated on the setter, it will update all the views  
 	 */
-	dynamic public class Set extends Proxy implements IAction
+	dynamic public class Set extends Proxy implements IBehavior, IScopeable
 	{
 		protected var views:Dictionary = new Dictionary(true);
 		protected var values:Object = {};
 		protected var updates:Object = {};
 		protected var invalidator:Invalidator = new Invalidator(commit);
 		protected var resolver:IResolver = new Resolver();
+		protected var scope:Scope = new Scope();
 		
-		public function apply(scope:Scope):void
+		/**
+		 * Let's see, whenever the target changes, apply yourself to it!
+		 * 
+		 * This is supposed to work for multiple targets?
+		 */
+		public function set target(value:*):void
 		{
-			var old:Object = {};
+			if (value)
+			{
+				views[value] = {};
+				updateTarget(value);
+			}
+		}
+		
+		public function set parent(value:Scope):void
+		{
+			scope.parent = value;
+		}
+		
+		protected function updateTarget(target:*):void
+		{
+			var old:Object = views[target];
 			
-			var target:* = target || scope.target;
+			scope.target = target;
 			
 			for (var property:String in values)
 			{
 				var value:* = resolver.resolveObject(values[property], scope);
 				updateProperty(target, property, value, old);
 			}
-			
-			views[target] = old;
 		}
 		
-		public function undo(scope:Scope):void
-		{
-			var old:Object = views[scope.target];
-			
-			for (var property:String in old)
-				updateProperty(scope.target, property, old[property]); 
-			
-			delete views[scope.target];
-		}
+//		public function undo(scope:Scope):void
+//		{
+//			var old:Object = views[scope.target];
+//			
+//			for (var property:String in old)
+//				updateProperty(scope.target, property, old[property]); 
+//			
+//			delete views[scope.target];
+//		}
 		
 		/**
 		 * A stylename to copy properties from. Just pulls them like normal!
@@ -103,6 +122,9 @@ package net.seanhess.bifff.actions
 	        invalidator.invalidate("updates");
 	    }
 	    
+	    /**
+	    * Updates are not resolved.
+	    */
 	    protected function commit():void
 	    {
 	    	if (invalidator.invalid("updates"))
@@ -116,22 +138,5 @@ package net.seanhess.bifff.actions
 	    		}
 	    	}
 	    }
-	    
-	    /**
-	    * If you specify a target, it will set the values on the target you specify
-	    * only when apply is called. If you want to set to something in particular right
-	    * away, use the Apply tag. 
-	    */
-	    public function set target(value:*):void
-	    {
-	    	_target = value;
-	    }
-	    
-	    public function get target():*
-	    {
-	    	return _target;
-	    }
-	    
-	    protected var _target:*;
 	}
 }

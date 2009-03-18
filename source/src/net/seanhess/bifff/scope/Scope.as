@@ -20,6 +20,7 @@ package net.seanhess.bifff.scope
 		public var map:BehaviorMap;
 		public var mapTarget:*;
 		public var selector:ISelector;
+		public var target:*;
 		
 		public function Scope(properties:Object=null)
 		{

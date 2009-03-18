@@ -25,8 +25,11 @@ package net.seanhess.bifff.behaviors
 		
 		public function set target(target:*):void
 		{
-			scope.target = target;
-			trace(resolver.resolveObject(message, scope));
+			if (target != scope.target)
+			{
+				scope.target = target;
+				trace(resolver.resolveObject(message, scope));
+			}
 		}
 		
 		public function set parent(value:Scope):void

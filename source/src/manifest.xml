@@ -2,6 +2,7 @@
 <componentPackage>    
 	<component class="net.seanhess.bifff.behaviors.IBehavior"/>
 	<component class="net.seanhess.bifff.behaviors.MultiStyle"/>
+	<component class="net.seanhess.bifff.behaviors.Set"/>
 	<component class="net.seanhess.bifff.behaviors.TestClick"/>
 	<component class="net.seanhess.bifff.behaviors.Trace"/>
 
