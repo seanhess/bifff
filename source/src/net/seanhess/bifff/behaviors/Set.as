@@ -8,7 +8,6 @@ package net.seanhess.bifff.behaviors
 	import mx.styles.IStyleClient;
 	import mx.styles.StyleManager;
 	
-	import net.seanhess.bifff.behaviors.IBehavior;
 	import net.seanhess.bifff.core.IResolver;
 	import net.seanhess.bifff.core.Resolver;
 	import net.seanhess.bifff.scope.IScopeable;
@@ -38,10 +37,22 @@ package net.seanhess.bifff.behaviors
 		 */
 		public function set target(value:*):void
 		{
-			if (value)
+			if (value is Array)
 			{
-				views[value] = {};
-				updateTarget(value);
+				for each (var target:* in value)
+					apply(target);
+			}
+			
+			else
+				apply(value);
+		}
+		
+		public function apply(target:*):void
+		{
+			if (target && views[target] == null)
+			{
+				views[target] = {};
+				updateTarget(target);
 			}
 		}
 		
