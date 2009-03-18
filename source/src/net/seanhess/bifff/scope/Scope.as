@@ -1,6 +1,7 @@
 package net.seanhess.bifff.scope
 {
-	import net.seanhess.bifff.behaviors.IBehavior;
+	import flash.events.Event;
+	
 	import net.seanhess.bifff.core.BehaviorMap;
 	import net.seanhess.bifff.core.ISelector;
 	
@@ -27,6 +28,8 @@ package net.seanhess.bifff.scope
 		public var target:*;
 		public var behavior:*;
 		public var behaviorTarget:*;
+		public var event:Event;
+		public var listenerTarget:*;
 		
 		public function Scope(properties:Object=null)
 		{

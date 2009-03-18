@@ -13,6 +13,9 @@ package net.seanhess.bifff.behaviors
 	/**
 	 * Associates a new instance of a behavior with all targets.
 	 * 
+	 * This is not a base class. It is a behavior that creates 
+	 * another behavior and associates it with the targets
+	 * 
 	 * It will create a new behavior based on the class you pass
 	 * in on the generator setter.
 	 */
