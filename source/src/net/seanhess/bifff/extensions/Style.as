@@ -48,7 +48,7 @@ package net.seanhess.bifff.extensions
 			var selectors:Array = [];
 
 			// 1 // Split into declarations
-			var declarations:RegExp = /[\w\.\s_#:]+\s*\{.*?}/gmsi
+			var declarations:RegExp = /[\w\.\s_#:\-]+\s*\{.*?}/gmsi
 			var matches:Array = data.match(declarations);
 			
 			if (matches == null)
@@ -70,7 +70,7 @@ package net.seanhess.bifff.extensions
 			var selector:Selector = new Selector();
 			
 			// 2 // Set the match
-			var parts:RegExp = /\s*([\w\.\s_#:]+?)\s*\{(.*?)}/imsg
+			var parts:RegExp = /\s*([\w\.\s_#:\-]+?)\s*\{(.*?)}/imsg
 			var matches:Array = parts.exec(data);
 			
 			if (matches == null || matches.length < 3)
@@ -89,7 +89,7 @@ package net.seanhess.bifff.extensions
 			var setter:Set = new Set();
 			
 			// 3 // Parse the properties
-			var parts:RegExp = /[\w_]+\s*\:\s*.*?;/gism
+			var parts:RegExp = /[\w_\-]+\s*\:\s*.*?;/gism
 			var matches:Array = data.match(parts);
 			
 			for (var i:int = 0; i < matches.length; i++)
@@ -104,13 +104,17 @@ package net.seanhess.bifff.extensions
 		
 		protected function parseValue(data:String):Object
 		{
-			var parts:RegExp = /([\w_]+)\s*\:\s*(.*?)\s*;/gism
+			var parts:RegExp = /([\w_\-]+)\s*\:\s*(.*?)\s*;/gism
 			var matches:Array = parts.exec(data);
 			
 			if (matches == null || matches.length < 3)
 				throw new Error("Could not parse value: " + data);
 				
-			return {property: matches[1], value: matches[2]};
+			var property:String = matches[1].replace(/\-([a-z])/, function():String { 
+				return arguments[1].toUpperCase();
+			});
+				
+			return {property: property, value: matches[2]};
 		}
 	}
 }

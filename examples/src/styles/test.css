@@ -1,9 +1,9 @@
 Button 
 {
 	width: 300;
-	fontSize: 20;
+	height: 700;
+	font-size: 72;
 	label: "YO";
-	backgroundColor: #FFF000;
 	color: #FF0000;
-	selected: true;
+	cornerRadius: 100;
 }
