@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
 <componentPackage>    
-	<component class="net.seanhess.bifff.actions.IAction"/>
-	
 	<component class="net.seanhess.bifff.behaviors.IBehavior"/>
 	<component class="net.seanhess.bifff.behaviors.MultiStyle"/>
 	<component class="net.seanhess.bifff.behaviors.TestClick"/>
@@ -22,6 +20,7 @@
 	<component class="net.seanhess.bifff.core.Resolver"/>
 	<component class="net.seanhess.bifff.core.Selector"/>
 	
+	<component class="net.seanhess.bifff.scope.IScopeable"/>
 	<component class="net.seanhess.bifff.scope.ISmartObject"/>
 	<component class="net.seanhess.bifff.scope.Scope"/>
 	<component class="net.seanhess.bifff.scope.SmartBehavior"/>

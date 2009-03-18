@@ -1,11 +1,11 @@
 package net.seanhess.bifff.behaviors
 {
-	import net.seanhess.bifff.actions.IAction;
 	import net.seanhess.bifff.core.IResolver;
 	import net.seanhess.bifff.core.Resolver;
+	import net.seanhess.bifff.scope.IScopeable;
 	import net.seanhess.bifff.scope.Scope;
 	
-	public class Trace implements IAction, IBehavior
+	public class Trace implements IBehavior, IScopeable
 	{
 		private var scope:Scope = new Scope();
 		

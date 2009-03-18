@@ -2,12 +2,12 @@ package net.seanhess.bifff.core
 {
 	import flash.display.DisplayObject;
 	
-	import net.seanhess.bifff.actions.IAction;
+	import net.seanhess.bifff.scope.IScopeable;
 	import net.seanhess.bifff.scope.Scope;
 	import net.seanhess.bifff.utils.Scoper;
 	
 	[DefaultProperty("actions")]
-	public class Selector implements ISelector, IAction
+	public class Selector implements ISelector, IScopeable
 	{
 		public var debug:Boolean = false;
 		public var parser:IParser = new Parser();

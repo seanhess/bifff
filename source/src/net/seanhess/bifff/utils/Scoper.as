@@ -1,6 +1,6 @@
 package net.seanhess.bifff.utils
 {
-	import net.seanhess.bifff.actions.IAction;
+	import net.seanhess.bifff.scope.IScopeable;
 	import net.seanhess.bifff.scope.Scope;
 	
 	public class Scoper
@@ -13,7 +13,7 @@ package net.seanhess.bifff.utils
 		
 		public function parentScope(target:*, scope:Scope):void
 		{
-			if (target && target is IAction)
+			if (target && target is IScopeable)
 				target.parent = scope;
 		}
 	}
