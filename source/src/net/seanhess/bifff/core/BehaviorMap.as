@@ -103,6 +103,7 @@ package net.seanhess.bifff.core
 				executor.addEventListener(BifffEvent.FOUND_MATCH, onFoundMatch, false, 0, true);
 
 			target.addEventListener(registerEvent, onFoundTarget, true, 1, true);
+			target.addEventListener(registerEvent, onFoundTarget, false, 1, true);
 			target.addEventListener(STYLES_CHANGED, onStylesChanged, true, 1, true);
 			registered = true;
 			
@@ -133,15 +134,16 @@ package net.seanhess.bifff.core
 		
 		protected function onStylesChanged(event:Event):void
 		{
-			onFoundTarget(event);
+			match(event.target);
 		}
 		
 		protected function onFoundTarget(event:Event):void
 		{
-			var target:* = event.target;
-			
-			var printed:Boolean = false;
-			
+			match(event.target);
+		}
+		
+		protected function match(target:*):void
+		{
 			for each (var selector:ISelector in selectors)
 			{
 				if (selector.matches(target, this.target))

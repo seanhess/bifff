@@ -30,7 +30,8 @@
 	
 	<component class="net.seanhess.bifff.events.BifffEvent"/>
 	<component class="net.seanhess.bifff.events.CreationComplete"/>
-	<component class="net.seanhess.bifff.events.HijackedEvent"/>
+
+	<component class="net.seanhess.bifff.extensions.Style"/>
 
 	<component class="net.seanhess.bifff.scope.IScopeable"/>
 	<component class="net.seanhess.bifff.scope.ISmartObject"/>
@@ -39,8 +40,8 @@
 	
 	<component class="net.seanhess.bifff.utils.Defaults"/>
 	<component class="net.seanhess.bifff.utils.Invalidator"/>
-	<component class="net.seanhess.bifff.utils.ChildInserter"/>
 	<component class="net.seanhess.bifff.utils.Debugger"/>
-
-	<component class="net.seanhess.bifff.views.ISwappable"/>
+	<component class="net.seanhess.bifff.utils.TargetRegistry"/>
+	<component class="net.seanhess.bifff.utils.Scoper"/>
+	<component class="net.seanhess.bifff.utils.Generator"/>
 </componentPackage>

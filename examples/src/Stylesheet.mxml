@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:text="flash.text.*" xmlns="http://bifff.seanhess.net/2009">
+	
+	<Style url="styles/test.css" target="{this}"/>
+	
+	<mx:Button label="henry"/>
+	
+</mx:Application>
