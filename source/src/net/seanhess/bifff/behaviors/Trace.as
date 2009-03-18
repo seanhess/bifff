@@ -1,11 +1,14 @@
-package net.seanhess.bifff.actions
+package net.seanhess.bifff.behaviors
 {
+	import net.seanhess.bifff.actions.IAction;
 	import net.seanhess.bifff.core.IResolver;
 	import net.seanhess.bifff.core.Resolver;
 	import net.seanhess.bifff.scope.Scope;
 	
-	public class Trace implements IAction
+	public class Trace implements IAction, IBehavior
 	{
+		private var scope:Scope = new Scope();
+		
 		public var resolver:IResolver = new Resolver();
 		
 		public function set message(value:Object):void
@@ -20,9 +23,15 @@ package net.seanhess.bifff.actions
 		
 		protected var _message:Object = "trace";
 		
-		public function apply(scope:Scope):void
+		public function set target(target:*):void
 		{
+			scope.target = target;
 			trace(resolver.resolveObject(message, scope));
+		}
+		
+		public function set parent(value:Scope):void
+		{
+			scope.parent = value;
 		}
 	}
 }

@@ -2,12 +2,24 @@ package net.seanhess.bifff.core
 {
 	import flash.display.DisplayObject;
 	
+	import net.seanhess.bifff.actions.IAction;
+	import net.seanhess.bifff.scope.Scope;
+	import net.seanhess.bifff.utils.Scoper;
+	
 	[DefaultProperty("actions")]
-	public class Selector implements ISelector
+	public class Selector implements ISelector, IAction
 	{
 		public var debug:Boolean = false;
 		public var parser:IParser = new Parser();
 		public var matcher:IMatcher = new Matcher();
+		public var scoper:Scoper = new Scoper();
+		
+		private var scope:Scope;
+		
+		public function Selector()
+		{
+			scope = new Scope({selector:this});
+		}
 		
 		public function set nodes(value:Array):void
 		{
@@ -22,6 +34,7 @@ package net.seanhess.bifff.core
 		public function set actions(value:Array):void
 		{
 			_actions = value;
+			scoper.parentScopes(_actions, scope);
 		}
 		
 		public function get actions():Array
@@ -48,6 +61,11 @@ package net.seanhess.bifff.core
 		public function matches(target:*, root:*=null):Boolean
 		{
 			return matcher.match(target as DisplayObject, nodes, root as DisplayObject);
+		}
+		
+		public function set parent(value:Scope):void
+		{
+			scope.parent = value;
 		}
 		
 		protected var _match:String;

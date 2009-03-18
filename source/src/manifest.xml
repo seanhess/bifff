@@ -1,23 +1,11 @@
 <?xml version="1.0"?>
 <componentPackage>    
-	<component class="net.seanhess.bifff.actions.Behavior"/>
-	<component class="net.seanhess.bifff.actions.Get"/>
-	<component class="net.seanhess.bifff.actions.Trace"/>
-	<component class="net.seanhess.bifff.actions.Call"/>
-	<component class="net.seanhess.bifff.actions.Contents"/>
-	<component class="net.seanhess.bifff.actions.Dispatch"/>
 	<component class="net.seanhess.bifff.actions.IAction"/>
-	<component class="net.seanhess.bifff.actions.Listener"/>
-	<component class="net.seanhess.bifff.actions.Select"/>
-	<component class="net.seanhess.bifff.actions.Set"/>
-	<component class="net.seanhess.bifff.actions.State"/>
-	<component class="net.seanhess.bifff.actions.Bind"/>
-	<component class="net.seanhess.bifff.actions.Styles"/>
-	<component class="net.seanhess.bifff.actions.Swap"/>
 	
 	<component class="net.seanhess.bifff.behaviors.IBehavior"/>
 	<component class="net.seanhess.bifff.behaviors.MultiStyle"/>
 	<component class="net.seanhess.bifff.behaviors.TestClick"/>
+	<component class="net.seanhess.bifff.behaviors.Trace"/>
 
 	<component class="net.seanhess.bifff.core.Apply"/>
 	<component class="net.seanhess.bifff.core.BehaviorMap"/>

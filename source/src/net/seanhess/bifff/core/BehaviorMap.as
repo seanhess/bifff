@@ -8,8 +8,10 @@ package net.seanhess.bifff.core
 	import mx.core.IMXMLObject;
 	import mx.events.FlexEvent;
 	
+	import net.seanhess.bifff.scope.Scope;
 	import net.seanhess.bifff.utils.Debugger;
 	import net.seanhess.bifff.utils.Defaults;
+	import net.seanhess.bifff.utils.Scoper;
 	
 	/**
 	 * I want mate to be able to inject to me, so I'm hacking this to extend UIComponent
@@ -29,11 +31,18 @@ package net.seanhess.bifff.core
 		
 		public var executor:IExecutor;
 				
-		public var selectors:Array = [];
 		public var defaults:Defaults = new Defaults(this);
 		
 		public var document:Object;
 		public var id:String;
+		
+		public var scope:Scope;
+		public var scoper:Scoper = new Scoper();
+		
+		public function BehaviorMap()
+		{
+			scope = new Scope({map:this});
+		}
 		
 		public function initialized(document:Object, id:String):void
 		{
@@ -77,7 +86,9 @@ package net.seanhess.bifff.core
 		private var registered:Boolean = false;
 		
 		protected function commit():void
-		{
+		{			
+			scope.mapTarget = target;
+			
 			if (selectors == null || selectors.length == 0)
 				selectors = defaults.scan(ISelector);
 				
@@ -134,6 +145,20 @@ package net.seanhess.bifff.core
 				}
 			}
 		}
+		
+		public function set selectors(value:Array):void
+		{
+			_selectors = value;	
+			scoper.parentScopes(value, scope);				
+		}
+		
+		public function get selectors():Array
+		{
+			return _selectors;	
+		}
+		
+		protected var _selectors:Array = [];
+		
 		
 		
 	}

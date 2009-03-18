@@ -36,24 +36,19 @@ package net.seanhess.bifff.core
 			executeActions(target, selector.actions);
 		}
 		
-		public function executeMatches(matches:Array, actions:Array, scope:Scope=null):void
+		public function executeMatches(matches:Array, actions:Array):void
 		{
 			for each (var target:* in matches)
-			{
-				scope = (scope) ? scope.clone() : new Scope();
-				executeActions(target, actions, scope);
-			}
+				executeActions(target, actions);
 		}
 		
-		public function executeActions(target:*, actions:Array, scope:Scope=null):void
+		public function executeActions(target:*, actions:Array):void
 		{
-			scope = scope || new Scope();
-			
-			scope.target = target;
-			
-			// actions can be IActions, Classes (behaviors), or objects that conform to IBehavior (set target)
 			for each (var action:Object in actions)
 			{
+				if (action.hasOwnProperty("target"))
+					action.target = target;
+				
 //				var behavior:Behavior;
 //				
 //				if (!(action is IAction
@@ -70,8 +65,8 @@ package net.seanhess.bifff.core
 //					if (action is IBehavior || action.hasOwnProperty("target") || action.hasOwnProperty("actions")
 //				}
 				
-				if (action is IAction)
-					action.apply(scope);
+//				if (action is IAction)
+//					action.apply(scope);
 			}
 		}
 	}

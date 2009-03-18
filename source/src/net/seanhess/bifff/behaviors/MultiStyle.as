@@ -7,6 +7,9 @@ package net.seanhess.bifff.behaviors
 	/**
 	 * This allows a UIComponent to have multiple styles
 	 * and to have them all apply (from the stylesheet)
+	 * 
+	 * See, this is a classic example. I immediately apply
+	 * myself it. 
 	 */
 	public class MultiStyle
 	{

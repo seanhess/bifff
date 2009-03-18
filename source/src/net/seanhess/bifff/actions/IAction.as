@@ -9,6 +9,7 @@ package net.seanhess.bifff.actions
 	 */
 	public interface IAction
 	{
-		function apply(scope:Scope):void;
+//		function apply(scope:Scope):void;
+		function set parent(value:Scope):void; // the parent scope
 	}
 }

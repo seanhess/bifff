@@ -55,6 +55,9 @@ package net.seanhess.bifff.scope
 	    	if (soSource && soSource is ISmartObject)
 	    		result = this.soSource.resolve(scope)[this.soProperty];
 
+			else if (scope[this.soProperty] == null && scope.parent)
+				result = resolve(scope.parent);
+			
 			else
 				result = scope[this.soProperty];
 				

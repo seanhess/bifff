@@ -9,7 +9,7 @@ package net.seanhess.bifff.actions
 	import net.seanhess.bifff.utils.Generator;
 	
 	/**
-	 * Dispatches an event on the target.
+	 * Associates a new instance of a behavior with all targets
 	 */
 	[DefaultProperty("actions")]
 	dynamic public class Behavior implements IAction

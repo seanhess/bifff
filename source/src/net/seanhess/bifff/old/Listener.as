@@ -5,6 +5,7 @@ package net.seanhess.bifff.actions
 	import flash.events.IEventDispatcher;
 	import flash.utils.Dictionary;
 	
+	import net.seanhess.bifff.behaviors.IBehavior;
 	import net.seanhess.bifff.core.Executor;
 	import net.seanhess.bifff.core.IExecutor;
 	import net.seanhess.bifff.scope.Scope;
@@ -15,22 +16,32 @@ package net.seanhess.bifff.actions
 	 */
 	[DefaultProperty("actions")]
 	[Event(name="handle", type="flash.events.Event")]
-	public class Listener extends EventDispatcher implements IAction
+	public class Listener extends EventDispatcher implements IBehavior, IAction
 	{
 		public static const HANDLE:String = "handle";
 		
 		public var debug:Boolean = false;
 		public var executor:IExecutor = new Executor();
 		
-		public var scopes:Dictionary = new Dictionary(true);
+		protected var targets:Dictionary = new Dictionary(true);
+		protected var initialized:Boolean = false;
+		
+		/**
+		 * This might be set before anything else is ready though
+		 */
+		public function set target(value:*):void
+		{
+			apply(new Scope({target:value}));
+		}
 		
 		public function apply(scope:Scope):void
 		{
 			if (debug) 	trace("[ LISTENING FOR ] \"" + type + "\" on " + scope.target);
 			
-			scopes[scope.target] = scope; 
+			targets[scope.target] = scope;
 			
-			(scope.target as IEventDispatcher).addEventListener(type, handler);
+			if (type)
+				(scope.target as IEventDispatcher).addEventListener(type, handler);
 		}
 		
 		public function undo(scope:Scope):void
