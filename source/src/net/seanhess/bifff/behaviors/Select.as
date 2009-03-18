@@ -53,6 +53,9 @@ package net.seanhess.bifff.behaviors
 			
 			var targets:Array;
 			
+			if (matchString == null)
+				return;
+			
 			if (nodes == null)
 				nodes = parser.parseMatch(matchString);
 				
@@ -96,7 +99,7 @@ package net.seanhess.bifff.behaviors
 		}
 		
 		protected var searchDirection:String = SEARCH_PARENTS;
-		protected var matchString:String = "";
+		protected var matchString:String;
 		protected var _actions:Array;
 		protected var nodes:Array;
 	}

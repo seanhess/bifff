@@ -6,8 +6,8 @@
 		]]>
 	</mx:Script>
 	
-	<SmartBehavior id="behavior"/>
-	<SmartCurrentTarget id="currentTarget"/>
+	<SmartObject id="behavior"/>
+	<SmartObject id="currentTarget"/>
 
 	<BehaviorMap target="{this}" debug="true">
 		

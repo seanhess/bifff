@@ -3,20 +3,18 @@ package tests.smartobjects
 	import net.digitalprimates.fluint.tests.TestCase;
 	import net.seanhess.bifff.core.Resolver;
 	import net.seanhess.bifff.scope.Scope;
-	import net.seanhess.bifff.scope.SmartCurrentTarget;
-	import net.seanhess.bifff.scope.SmartEvent;
 	import net.seanhess.bifff.scope.SmartObject;
 	
 	public class TestNested extends TestCase
 	{
-		protected var event:SmartEvent;
-		protected var target:SmartCurrentTarget;
+		protected var event:SmartObject;
+		protected var target:SmartObject;
 		protected var resolver:Resolver;
 		
 		override protected function setUp():void
 		{
-			event = new SmartEvent();
-			target = new SmartCurrentTarget();
+			event = new SmartObject("event");
+			target = new SmartObject("currentTarget");
 			resolver = new Resolver();
 		}
 		
@@ -24,21 +22,21 @@ package tests.smartobjects
 		public function nestSingle():void
 		{
 			var value:SmartObject = event.target;
-			assertEquals("target", value.soProperty);
+			assertEquals("target event", value.toString());
 		}
 		
 		[Test]
 		public function nestDouble():void
 		{
 			var value:SmartObject = event.target.data;
-			assertEquals("data", value.soProperty);
+			assertEquals("data target event", value.toString());
 		}
 		
 		[Test]
 		public function nestTriple():void
 		{
 			var value:SmartObject = event.target.data.source;
-			assertEquals("source", value.soProperty);
+			assertEquals("source data target event", value.toString());
 		}
 		
 		[Test]
@@ -52,7 +50,7 @@ package tests.smartobjects
 				}
 			}
 			
-			assertEquals("data", value.soProperty);
+			assertEquals("data bob currentTarget", value.toString());
 			assertEquals("hello", resolver.resolveObject(value, new Scope({target:myTarget})));
 		}
 		
@@ -69,8 +67,7 @@ package tests.smartobjects
 				}
 			}
 			
-			assertEquals("data", value.soSource.soProperty);
-			assertEquals("source", value.soProperty);
+			assertEquals("source data bob currentTarget", value.toString());
 			assertEquals("hello", resolver.resolveObject(value, new Scope({target:myTarget})));			
 		}
 	}

@@ -5,7 +5,7 @@ package tests.behaviors
 	import mx.core.Application;
 	
 	import net.digitalprimates.fluint.tests.TestCase;
-	import net.seanhess.bifff.actions.Behavior;
+	import net.seanhess.bifff.behaviors.Behavior;
 	import net.seanhess.bifff.scope.Scope;
 	
 	public class TestSimpleBehavior extends TestCase
@@ -34,12 +34,9 @@ package tests.behaviors
 			container.addChild(view);
 			assertEquals(50, view.button.width);
 			
-			var scope:Scope = new Scope();
-				scope.target = view.button;
-				
 			var behavior:Behavior = new Behavior();
 				behavior.generator = SimpleBehavior;
-				behavior.apply(scope);
+				behavior.target = view.button;
 				
 			assertEquals(300, view.button.width);
 		}

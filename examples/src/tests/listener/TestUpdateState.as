@@ -6,7 +6,7 @@ package tests.listener
 	import mx.core.Application;
 	
 	import net.digitalprimates.fluint.tests.TestCase;
-	import net.seanhess.bifff.actions.Listener;
+	import net.seanhess.bifff.behaviors.Listener;
 	import net.seanhess.bifff.core.Apply;
 	
 	public class TestUpdateState extends TestCase

@@ -12,9 +12,8 @@
 		
 		<Selector match="Button#three">
 			<Listener event="click">
-				<Select target="{this}">
-					<Set theLabelEveryoneShouldUse="New label from #3!"/>					
-				</Select>
+				<Trace message="OK"/>
+				<Set redirect="{this}" theLabelEveryoneShouldUse="New label from #3!"/>					
 			</Listener>
 		</Selector>
 	</BehaviorMap>

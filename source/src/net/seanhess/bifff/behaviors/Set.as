@@ -24,12 +24,13 @@ package net.seanhess.bifff.behaviors
 	 */
 	dynamic public class Set extends Proxy implements IBehavior, IScopeable
 	{
-		protected var views:Dictionary = new Dictionary(true);
 		protected var values:Object = {};
 		protected var updates:Object = {};
 		protected var invalidator:Invalidator = new Invalidator(commit);
 		protected var resolver:IResolver = new Resolver();
 		protected var scope:Scope = new Scope();
+		
+		protected var _redirect:Array;
 		
 		public var registry:TargetRegistry = new TargetRegistry(apply, true);
 		
@@ -40,15 +41,26 @@ package net.seanhess.bifff.behaviors
 		 */
 		public function set target(value:*):void
 		{
+			registry.apply = apply;
 			registry.applyTargets(value);
 		}
 		
 		public function apply(target:*):void
 		{
-			var old:Object = registry.getStore(target);
-			
 			scope.target = target;
 			
+			if (_redirect)
+			{
+				registry.apply = applyDirectly;
+				registry.applyTargets(_redirect)
+			}
+			else
+				applyDirectly(target);
+		}
+		
+		public function applyDirectly(target:*):void
+		{
+			var old:Object = registry.getStore(target);
 			for (var property:String in values)
 			{
 				var value:* = resolver.resolveObject(values[property], scope);
@@ -59,6 +71,17 @@ package net.seanhess.bifff.behaviors
 		public function set parent(value:Scope):void
 		{
 			scope.parent = value;
+		}
+		
+		/**
+		 * The targets to set the stuff on
+		 */
+		public function set redirect(value:*):void
+		{
+			if (!(value is Array))
+				value = [value];
+			
+			_redirect = value as Array;
 		}
 		
 //		public function undo(scope:Scope):void
@@ -127,11 +150,11 @@ package net.seanhess.bifff.behaviors
 	    {
 	    	if (invalidator.invalid("updates"))
 	    	{
-	    		for (var target:* in views)
+	    		for (var target:* in registry.map)
 	    		{
 	    			for (var property:String in updates)
 	    			{
-	    				updateProperty(target, property, values[property], views[target]);
+	    				updateProperty(target, property, values[property], registry.map[target]);
 	    			}
 	    		}
 	    	}

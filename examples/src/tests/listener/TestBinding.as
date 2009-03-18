@@ -6,7 +6,7 @@ package tests.listener
 	import mx.core.Application;
 	
 	import net.digitalprimates.fluint.tests.TestCase;
-	import net.seanhess.bifff.actions.Bind;
+	import net.seanhess.bifff.behaviors.Bind;
 	import net.seanhess.bifff.core.Apply;
 	
 	public class TestBinding extends TestCase

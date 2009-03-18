@@ -54,13 +54,6 @@
 		
 		<Selector match="#ooga Button">
 			<Listener event="click">
-				<Select direction="parents" match="HBox .list">
-					<Contents>
-						<replace>
-							<mx:Button label="LIVE!"/>
-						</replace>
-					</Contents>
-				</Select>
 				<Trace message="ooga"/>
 			</Listener>
 		</Selector>

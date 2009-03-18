@@ -24,11 +24,19 @@ package net.seanhess.bifff.scope
 		}
 		
 		/**
-		 * The name of the property to fetch on the parent smart object
+		 * The name of the property to fetch on the parent smart object.
+		 * 
+		 * Note that the getter uses the standard getProperty, and doesn't
+		 * return the property you set
 		 */
-		public function set property(value:String):void
+		public function set property(value:Object):void
 		{
-			_property = value;
+			_property = value as String;
+		}
+		
+		public function get property():Object
+		{
+			return getProperty("source");
 		}
 		
 		/**
@@ -37,10 +45,18 @@ package net.seanhess.bifff.scope
 		 * 
 		 * So, for property smart objects, the source will be another 
 		 * smart object
+		 * 
+		 * * Note that the getter uses the standard getProperty, and doesn't
+		 * return the source that you set.
 		 */
 		public function set source(value:Object):void
 		{
 			_source = value;
+		}
+		
+		public function get source():Object
+		{
+			return getProperty("source");
 		}
 		
 		/**
@@ -73,6 +89,16 @@ package net.seanhess.bifff.scope
 				result = scope[_property];
 				
 			return result;
+	    }
+	    
+	    public function toString():String
+	    {
+	    	var out:String = _property;
+	    	
+	    	if (_source)
+	    		out += " " + _source.toString();
+	    		
+	    	return out;
 	    }
 	    
 	    protected var _property:String;

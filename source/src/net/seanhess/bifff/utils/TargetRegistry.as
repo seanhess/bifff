@@ -4,8 +4,8 @@ package net.seanhess.bifff.utils
 	
 	public class TargetRegistry
 	{
-		protected var map:Dictionary = new Dictionary(true);
-		protected var apply:Function;
+		public var map:Dictionary = new Dictionary(true);
+		public var apply:Function;
 		protected var onlyOnce:Boolean = false;
 		
 		public function TargetRegistry(apply:Function=null, onlyOnce:Boolean=false)

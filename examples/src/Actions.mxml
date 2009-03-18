@@ -27,7 +27,7 @@
 		<!-- Listener + Call -->
 		<Selector match="#firstButton">
 			<Listener event="click">
-				<Call method="{this.alert}" arguments="{['I am a button', target]}"/>
+				<Call method="{this.alert}" arguments="{['I am a button', currentTarget]}"/>
 			</Listener>
 		</Selector>
 		
@@ -41,7 +41,7 @@
 		</Selector>
 		
 		<!-- Listener + Select + Contents -->
-		<Selector match="#change">
+		<!--<Selector match="#change">
 			<Listener event="click">
 				<Select match="VBox">
 					<Contents>
@@ -51,16 +51,16 @@
 					</Contents>
 				</Select>
 			</Listener>
-		</Selector>
+		</Selector>-->
 		
 		<!-- Swap -->
-		<Selector match="#toHBox">
+		<!--<Selector match="#toHBox">
 			<Listener event="click">
 				<Select match="VBox">
 					<Swap view="mx.containers.HBox"/>
 				</Select>
 			</Listener>
-		</Selector>
+		</Selector>-->
 		
 		<!-- Dispatch Event :: Mostly useful for tying into application frameworks -->
 		<Selector match="#secondButton">
@@ -89,8 +89,8 @@
 		]]>
 	</mx:Script>
 
-	<SmartEvent id="event"/>
-	<SmartCurrentTarget id="target"/>
+	<SmartObject id="event"/>
+	<SmartObject id="currentTarget"/>
 	
 	<mx:Button id="firstButton" label="First Button"/>
 	<mx:Button id="secondButton" label="Second Button" color="#FF0000"/>
