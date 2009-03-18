@@ -1,5 +1,6 @@
 package net.seanhess.bifff.scope
 {
+	import net.seanhess.bifff.behaviors.IBehavior;
 	import net.seanhess.bifff.core.BehaviorMap;
 	import net.seanhess.bifff.core.ISelector;
 	
@@ -24,6 +25,8 @@ package net.seanhess.bifff.scope
 		public var mapTarget:*;
 		public var selector:ISelector;
 		public var target:*;
+		public var behavior:*;
+		public var behaviorTarget:*;
 		
 		public function Scope(properties:Object=null)
 		{

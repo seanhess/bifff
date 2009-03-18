@@ -1,23 +1,31 @@
-package net.seanhess.bifff.actions
+package net.seanhess.bifff.behaviors
 {
 	import flash.events.Event;
 	
-	import net.seanhess.bifff.behaviors.IBehavior;
 	import net.seanhess.bifff.core.Executor;
 	import net.seanhess.bifff.core.IExecutor;
+	import net.seanhess.bifff.scope.IScopeable;
 	import net.seanhess.bifff.scope.Scope;
 	import net.seanhess.bifff.utils.Generator;
+	import net.seanhess.bifff.utils.Scoper;
+	import net.seanhess.bifff.utils.TargetRegistry;
 	
 	/**
-	 * Associates a new instance of a behavior with all targets
+	 * Associates a new instance of a behavior with all targets.
+	 * 
+	 * It will create a new behavior based on the class you pass
+	 * in on the generator setter.
 	 */
 	[DefaultProperty("actions")]
-	dynamic public class Behavior implements IAction
+	dynamic public class Behavior implements IBehavior, IScopeable
 	{
 		public var debug:Boolean = false;
 
 		public var creator:Generator;
 		public var executor:IExecutor = new Executor();
+		public var registry:TargetRegistry = new TargetRegistry(apply);
+		public var scope:Scope = new Scope();
+		public var scoper:Scoper = new Scoper();
 		
 		public function Behavior()
 		{
@@ -26,8 +34,20 @@ package net.seanhess.bifff.actions
 			creator.factory = Event;
 		}
 		
-		public function apply(scope:Scope):void
+		public function set target(value:*):void
 		{
+			registry.applyTargets(value);
+		}
+		
+		public function set parent(value:Scope):void
+		{
+			scope.parent = value;
+		}
+		
+		public function apply(target:*):void
+		{
+			scope.target = target;
+			
 			var behavior:* = creator.generate(scope);
 				
 			if (debug)	trace(" [ BEHAVIOR ] " + behavior + " on " + scope.target);
@@ -45,9 +65,9 @@ package net.seanhess.bifff.actions
 				throw new Error("Could not apply target to behavior: " + behavior);
 				
 			scope.behavior = behavior;
-			scope.behaviorTarget = scope.target;
+			scope.behaviorTarget = target;
 				
-			executor.executeActions(behavior, actions, scope);
+			executor.executeActions(behavior, actions);
 		}
 
 		/**
@@ -77,6 +97,7 @@ package net.seanhess.bifff.actions
 		public function set actions(value:Array):void
 		{
 			_actions = value;
+			scoper.parentScopes(value, scope);
 		}
 		
 		public function get actions():Array

@@ -6,29 +6,30 @@ package net.seanhess.bifff.behaviors
 	
 	import mx.controls.Alert;
 	
+	import net.seanhess.bifff.utils.TargetRegistry;
+	
 	/**
 	 * Alerts when you click it 
 	 */
 	[Event(name="test", type="flash.events.Event")]
 	public class TestClick extends EventDispatcher implements IBehavior
 	{
+		protected var registry:TargetRegistry = new TargetRegistry(apply);
+		
 		public function set target(value:*):void
 		{
-			_target = value;
-			_target.addEventListener(MouseEvent.CLICK, onClick);
+			registry.applyTargets(value);
 		}
 		
-		public function get target():*
+		protected function apply(value:*):void
 		{
-			return _target;
+			value.addEventListener(MouseEvent.CLICK, onClick);
 		}
 		
 		protected function onClick(event:Event):void
 		{
-			Alert.show("Clicked: " + _target);
+			Alert.show("Clicked: " + event.target);
 			dispatchEvent(new Event("test"));
 		}
-		
-		protected var _target:*;
 	}
 }

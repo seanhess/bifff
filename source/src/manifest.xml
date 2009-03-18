@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <componentPackage>    
+	<component class="net.seanhess.bifff.behaviors.Behavior"/>
 	<component class="net.seanhess.bifff.behaviors.IBehavior"/>
 	<component class="net.seanhess.bifff.behaviors.MultiStyle"/>
 	<component class="net.seanhess.bifff.behaviors.Set"/>
