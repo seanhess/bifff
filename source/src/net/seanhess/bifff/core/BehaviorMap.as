@@ -8,16 +8,19 @@ package net.seanhess.bifff.core
 	import mx.core.IMXMLObject;
 	import mx.events.FlexEvent;
 	
+	import net.seanhess.bifff.events.BifffEvent;
+	import net.seanhess.bifff.events.CreationComplete;
 	import net.seanhess.bifff.scope.Scope;
 	import net.seanhess.bifff.utils.Debugger;
 	import net.seanhess.bifff.utils.Defaults;
+	import net.seanhess.bifff.utils.Invalidator;
 	import net.seanhess.bifff.utils.Scoper;
 	
 	/**
 	 * I want mate to be able to inject to me, so I'm hacking this to extend UIComponent
 	 */
 	[DefaultProperty("selectors")]
-	[Event(name="foundMatch", type="net.seanhess.bifff.core.BifffEvent")]
+	[Event(name="foundMatch", type="net.seanhess.bifff.events.BifffEvent")]
 	[Event(name="initialize", type="mx.events.FlexEvent")]
 	[Bindable]
 	public class BehaviorMap extends EventDispatcher implements IMXMLObject
@@ -35,9 +38,11 @@ package net.seanhess.bifff.core
 		
 		public var document:Object;
 		public var id:String;
+		public var styleName:String = "";
 		
 		public var scope:Scope;
 		public var scoper:Scoper = new Scoper();
+		public var invalidator:Invalidator = new Invalidator(finished);
 		
 		public function BehaviorMap()
 		{
@@ -100,6 +105,15 @@ package net.seanhess.bifff.core
 			target.addEventListener(registerEvent, onFoundTarget, true, 1, true);
 			target.addEventListener(STYLES_CHANGED, onStylesChanged, true, 1, true);
 			registered = true;
+			
+			invalidator.invalidate("creationComplete");
+		}
+		
+		protected function finished():void
+		{
+			// Dispatch Fake Creation Complete // 
+			var event:CreationComplete = new CreationComplete(this);
+			target.dispatchEvent(event);
 		}
 		
 		protected function unregister():void

@@ -16,7 +16,6 @@
 
 	<component class="net.seanhess.bifff.core.Apply"/>
 	<component class="net.seanhess.bifff.core.BehaviorMap"/>
-	<component class="net.seanhess.bifff.core.BifffEvent"/>
 	<component class="net.seanhess.bifff.core.DirectMatcher"/>
 	<component class="net.seanhess.bifff.core.IMatcher"/>
 	<component class="net.seanhess.bifff.core.IParser"/>
@@ -29,6 +28,10 @@
 	<component class="net.seanhess.bifff.core.Resolver"/>
 	<component class="net.seanhess.bifff.core.Selector"/>
 	
+	<component class="net.seanhess.bifff.events.BifffEvent"/>
+	<component class="net.seanhess.bifff.events.CreationComplete"/>
+	<component class="net.seanhess.bifff.events.HijackedEvent"/>
+
 	<component class="net.seanhess.bifff.scope.IScopeable"/>
 	<component class="net.seanhess.bifff.scope.ISmartObject"/>
 	<component class="net.seanhess.bifff.scope.Scope"/>

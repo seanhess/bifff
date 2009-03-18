@@ -1,6 +1,8 @@
-package net.seanhess.bifff.core
+package net.seanhess.bifff.events
 {
 	import flash.events.Event;
+	
+	import net.seanhess.bifff.core.ISelector;
 	
 	public class BifffEvent extends Event
 	{

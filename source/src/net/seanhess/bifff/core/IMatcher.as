@@ -4,6 +4,6 @@ package net.seanhess.bifff.core
 	
 	public interface IMatcher
 	{
-		function match(item:DisplayObject, nodes:Array, root:DisplayObject=null):Boolean;
+		function match(item:*, nodes:Array, root:DisplayObject=null):Boolean;
 	}
 }

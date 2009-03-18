@@ -60,7 +60,7 @@ package net.seanhess.bifff.core
 		
 		public function matches(target:*, root:*=null):Boolean
 		{
-			return matcher.match(target as DisplayObject, nodes, root as DisplayObject);
+			return matcher.match(target, nodes, root as DisplayObject);
 		}
 		
 		public function set parent(value:Scope):void

@@ -3,7 +3,7 @@ package net.seanhess.bifff.behaviors
 	import flash.events.EventDispatcher;
 	
 	import net.seanhess.bifff.behaviors.IBehavior;
-	import net.seanhess.bifff.core.BifffEvent;
+	import net.seanhess.bifff.events.BifffEvent;
 	import net.seanhess.bifff.core.MultiStyleDeclaration;
 	import net.seanhess.bifff.core.StyleMerger;
 	import net.seanhess.bifff.scope.IScopeable;
@@ -13,7 +13,7 @@ package net.seanhess.bifff.behaviors
 	/**
 	 * Allows you to add and remove styles
 	 */
-	[Event(name="updatedStyle",type="net.seanhess.bifff.core.BifffEvent")]
+	[Event(name="updatedStyle",type="net.seanhess.bifff.events.BifffEvent")]
 	public class Styles extends EventDispatcher implements IBehavior, IScopeable
 	{
 		protected var classesToAdd:Array = [];

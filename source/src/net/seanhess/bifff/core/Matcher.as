@@ -8,7 +8,7 @@ package net.seanhess.bifff.core
 		/**
 		 * To be called once, only at the beginning
 		 */
-		public function match(item:DisplayObject, nodes:Array, root:DisplayObject=null):Boolean
+		public function match(item:*, nodes:Array, root:DisplayObject=null):Boolean
 		{
 			if (!item)
 				return false;
@@ -29,7 +29,7 @@ package net.seanhess.bifff.core
 			}
 		}
 		
-		public function matchNone(item:DisplayObject, nodes:Array, root:DisplayObject = null):Boolean
+		public function matchNone(item:*, nodes:Array, root:DisplayObject = null):Boolean
 		{
 			if (!matchNode(item, last(nodes)))
 				return false;
@@ -43,7 +43,7 @@ package net.seanhess.bifff.core
 			return match(item.parent, next(nodes), root);
 		}
 		
-		public function matchAncestor(item:DisplayObject, nodes:Array, root:DisplayObject = null):Boolean
+		public function matchAncestor(item:*, nodes:Array, root:DisplayObject = null):Boolean
 		{
 			if (item == null)
 				return false;
@@ -73,7 +73,7 @@ package net.seanhess.bifff.core
 		
 		///// BASIC STUFF ///////
 		
-		public function matchStyle(item:DisplayObject, node:Node):Boolean
+		public function matchStyle(item:*, node:Node):Boolean
 		{
 			var comp:* = item;
 			
@@ -97,7 +97,7 @@ package net.seanhess.bifff.core
 		/**
 		 * Matches an exact type
 		 */
-		public function matchClass(item:DisplayObject, node:Node):Boolean
+		public function matchClass(item:*, node:Node):Boolean
 		{
 			return item is node.value;
 		}
@@ -105,7 +105,7 @@ package net.seanhess.bifff.core
 		/**
 		 * Matches the shallow class name "VBox" of the item. 
 		 */
-		public function matchTag(item:DisplayObject, node:Node):Boolean
+		public function matchTag(item:*, node:Node):Boolean
 		{
 			var className:String = getQualifiedClassName(item);
 			
@@ -116,7 +116,7 @@ package net.seanhess.bifff.core
 		/**
 		 * Matches the ID
 		 */
-		public function matchID(item:DisplayObject, node:Node):Boolean
+		public function matchID(item:*, node:Node):Boolean
 		{
 			if (!item.hasOwnProperty("id"))
 				return false;
@@ -124,7 +124,7 @@ package net.seanhess.bifff.core
 			return item["id"] == node.value; 
 		}
 		
-		public function matchMultiple(item:DisplayObject, node:Node):Boolean
+		public function matchMultiple(item:*, node:Node):Boolean
 		{
 			var nodes:Array = node.value as Array;
 			
@@ -135,7 +135,7 @@ package net.seanhess.bifff.core
 			return true; // if they have all matched
 		}
 		
-		public function matchMeta(item:DisplayObject, node:Node):Boolean
+		public function matchMeta(item:*, node:Node):Boolean
 		{
 			if (!(item.parent))
 				return false;
@@ -150,7 +150,7 @@ package net.seanhess.bifff.core
 				return false;
 		}
 		
-		public function matchNode(item:DisplayObject, node:Node):Boolean
+		public function matchNode(item:*, node:Node):Boolean
 		{
 			switch(node.type)
 			{
