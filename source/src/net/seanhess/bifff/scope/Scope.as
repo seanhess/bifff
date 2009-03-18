@@ -15,6 +15,9 @@ package net.seanhess.bifff.scope
 		public static const BEHAVIOR:String = "behavior";
 		public static const BEHAVIOR_TARGET:String = "behaviorTarget";
 		public static const LISTENER_TARGET:String = "listenerTarget";
+		public static const MAP:String = "map";
+		public static const MAP_TARGET:String = "mapTarget";
+		public static const SELECTOR:String = "selector";
 		
 		public var parent:Scope;
 		public var map:BehaviorMap;

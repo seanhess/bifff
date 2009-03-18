@@ -24,13 +24,7 @@
 	<component class="net.seanhess.bifff.scope.IScopeable"/>
 	<component class="net.seanhess.bifff.scope.ISmartObject"/>
 	<component class="net.seanhess.bifff.scope.Scope"/>
-	<component class="net.seanhess.bifff.scope.SmartBehavior"/>
-	<component class="net.seanhess.bifff.scope.SmartBehaviorTarget"/>
-	<component class="net.seanhess.bifff.scope.SmartCurrentTarget"/>
-	<component class="net.seanhess.bifff.scope.SmartEvent"/>
-	<component class="net.seanhess.bifff.scope.SmartListenerTarget"/>
 	<component class="net.seanhess.bifff.scope.SmartObject"/>
-	
 	
 	<component class="net.seanhess.bifff.utils.Defaults"/>
 	<component class="net.seanhess.bifff.utils.Invalidator"/>
