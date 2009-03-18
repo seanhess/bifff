@@ -13,6 +13,7 @@ package net.seanhess.bifff.behaviors
 	import net.seanhess.bifff.scope.IScopeable;
 	import net.seanhess.bifff.scope.Scope;
 	import net.seanhess.bifff.utils.Invalidator;
+	import net.seanhess.bifff.utils.TargetRegistry;
 	
 	/**
 	 * Sets styles (setStyle) and properties. 
@@ -30,6 +31,8 @@ package net.seanhess.bifff.behaviors
 		protected var resolver:IResolver = new Resolver();
 		protected var scope:Scope = new Scope();
 		
+		public var registry:TargetRegistry = new TargetRegistry(apply);
+		
 		/**
 		 * Let's see, whenever the target changes, apply yourself to it!
 		 * 
@@ -37,33 +40,12 @@ package net.seanhess.bifff.behaviors
 		 */
 		public function set target(value:*):void
 		{
-			if (value is Array)
-			{
-				for each (var target:* in value)
-					apply(target);
-			}
-			
-			else
-				apply(value);
+			registry.applyTargets(value);
 		}
 		
 		public function apply(target:*):void
 		{
-			if (target && views[target] == null)
-			{
-				views[target] = {};
-				updateTarget(target);
-			}
-		}
-		
-		public function set parent(value:Scope):void
-		{
-			scope.parent = value;
-		}
-		
-		protected function updateTarget(target:*):void
-		{
-			var old:Object = views[target];
+			var old:Object = registry.getStore(target);
 			
 			scope.target = target;
 			
@@ -72,6 +54,11 @@ package net.seanhess.bifff.behaviors
 				var value:* = resolver.resolveObject(values[property], scope);
 				updateProperty(target, property, value, old);
 			}
+		}
+		
+		public function set parent(value:Scope):void
+		{
+			scope.parent = value;
 		}
 		
 //		public function undo(scope:Scope):void
