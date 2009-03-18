@@ -37,6 +37,8 @@
 	<component class="net.seanhess.bifff.scope.ISmartObject"/>
 	<component class="net.seanhess.bifff.scope.Scope"/>
 	<component class="net.seanhess.bifff.scope.SmartObject"/>
+
+	<component class="net.seanhess.bifff.sugar.Injector"/>
 	
 	<component class="net.seanhess.bifff.utils.Defaults"/>
 	<component class="net.seanhess.bifff.utils.Invalidator"/>
