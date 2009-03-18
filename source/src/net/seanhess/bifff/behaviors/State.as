@@ -1,4 +1,4 @@
-package net.seanhess.bifff.actions
+package net.seanhess.bifff.behaviors
 {
 	import flash.events.Event;
 	

@@ -20,6 +20,8 @@ package net.seanhess.bifff.scope
 		public static const MAP:String = "map";
 		public static const MAP_TARGET:String = "mapTarget";
 		public static const SELECTOR:String = "selector";
+		public static const BIND_TARGET:String = "bindTarget";
+		public static const BIND_EVENT:String = "bindEvent";
 		
 		public var parent:Scope;
 		public var map:BehaviorMap;
@@ -30,6 +32,8 @@ package net.seanhess.bifff.scope
 		public var behaviorTarget:*;
 		public var event:Event;
 		public var listenerTarget:*;
+		public var bindTarget:*;
+		public var bindEvent:Event;
 		
 		public function Scope(properties:Object=null)
 		{

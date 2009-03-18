@@ -1,4 +1,4 @@
-package net.seanhess.bifff.actions
+package net.seanhess.bifff.behaviors
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -6,9 +6,13 @@ package net.seanhess.bifff.actions
 	
 	import mx.binding.utils.ChangeWatcher;
 	
+	import net.seanhess.bifff.behaviors.IBehavior;
 	import net.seanhess.bifff.core.Executor;
 	import net.seanhess.bifff.core.IExecutor;
+	import net.seanhess.bifff.scope.IScopeable;
 	import net.seanhess.bifff.scope.Scope;
+	import net.seanhess.bifff.utils.Scoper;
+	import net.seanhess.bifff.utils.TargetRegistry;
 	
 	/**
 	 * Executes its actions only when a property is changed to a certain value, or any time it is changed
@@ -17,7 +21,7 @@ package net.seanhess.bifff.actions
 	 * TODO: Use weak references... Flight?
 	 */
 	[DefaultProperty("actions")]
-	public class Bind extends EventDispatcher implements IAction
+	public class Bind extends EventDispatcher implements IBehavior, IScopeable
 	{
 		public static const UPDATE:String = "update";
 		
@@ -26,10 +30,23 @@ package net.seanhess.bifff.actions
 		
 		public var scopes:Dictionary = new Dictionary(true);
 		
-		public function apply(scope:Scope):void
+		protected var scope:Scope = new Scope();
+		protected var registry:TargetRegistry = new TargetRegistry(apply);
+		protected var scoper:Scoper = new Scoper();
+		
+		public function set target(value:*):void
 		{
-			scopes[scope.target] = scope;
-			var watcher:ChangeWatcher = ChangeWatcher.watch(scope.target, property, onChange);
+			registry.applyTargets(value);
+		}
+		
+		public function set parent(value:Scope):void
+		{
+			scope.parent = value;
+		}
+		
+		public function apply(target:*):void
+		{
+			var watcher:ChangeWatcher = ChangeWatcher.watch(target, property, onChange);
 		}
 		
 		public function set property(value:String):void
@@ -64,19 +81,27 @@ package net.seanhess.bifff.actions
 		
 		protected function onChange(event:Event):void
 		{
-			if ((value == null || !event.hasOwnProperty("newValue") || event["newValue"] == value))
+			var target:* = event.target;
+			
+			if ((value == null || (target[property] == value && (target[property] != registry.getStore(target).value))))
 			{
-				var scope:Scope = scopes[event.currentTarget] || new Scope();
+				var scope:Scope = new Scope();
 					scope.bindTarget = event.target;
-					scope.event = event;
+					scope.bindEvent = event;
+					scope.target = event.target;
+					scope.parent = this.scope;
 				
-				executor.executeActions(event.target, actions, scope);
+				scoper.parentScopes(actions, scope);
+				
+				executor.executeActions(target, actions);
 				
 				if (debug)
 				{
 					dispatchEvent(new Event(UPDATE));
-				}				
+				}
 			}
+			
+			registry.getStore(target).value = target[property];
 		}
 		
 		protected var _actions:Array;
