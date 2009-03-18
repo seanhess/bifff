@@ -40,7 +40,11 @@ package net.seanhess.bifff.core
 			if (item == root)
 				return false;
 				
-			return match(item.parent, next(nodes), root);
+			if (item.hasOwnProperty("parent"))
+				return match(item.parent, next(nodes), root);
+				
+			else 
+				return false;
 		}
 		
 		public function matchAncestor(item:*, nodes:Array, root:DisplayObject = null):Boolean
@@ -58,7 +62,7 @@ package net.seanhess.bifff.core
 				nodes = next(nodes)		 			// get the next one in the list
 			}
 				
-			if (item.parent && item != root)
+			if (item.hasOwnProperty("parent") && item.parent && item != root)
 				return match(item.parent, nodes, root);
 				
 			return false;							// no more parents, return false
@@ -137,7 +141,7 @@ package net.seanhess.bifff.core
 		
 		public function matchMeta(item:*, node:Node):Boolean
 		{
-			if (!(item.parent))
+			if (!(item.hasOwnProperty("parent") && item.parent))
 				return false;
 				
 			if (node.value == "even" && (item.parent.getChildIndex(item) % 2 == 0))
