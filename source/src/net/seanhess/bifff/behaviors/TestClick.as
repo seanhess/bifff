@@ -14,7 +14,7 @@ package net.seanhess.bifff.behaviors
 	[Event(name="test", type="flash.events.Event")]
 	public class TestClick extends EventDispatcher implements IBehavior
 	{
-		protected var registry:TargetRegistry = new TargetRegistry(apply);
+		protected var registry:TargetRegistry = new TargetRegistry(apply, true);
 		
 		public function set target(value:*):void
 		{

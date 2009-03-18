@@ -14,7 +14,7 @@ package net.seanhess.bifff.behaviors
 	 */
 	public class MultiStyle
 	{
-		protected var registry:TargetRegistry = new TargetRegistry(apply);
+		protected var registry:TargetRegistry = new TargetRegistry(apply, true);
 		
 		public function set target(value:*):void
 		{

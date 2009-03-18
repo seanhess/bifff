@@ -31,7 +31,7 @@ package net.seanhess.bifff.behaviors
 		protected var resolver:IResolver = new Resolver();
 		protected var scope:Scope = new Scope();
 		
-		public var registry:TargetRegistry = new TargetRegistry(apply);
+		public var registry:TargetRegistry = new TargetRegistry(apply, true);
 		
 		/**
 		 * Let's see, whenever the target changes, apply yourself to it!

@@ -1,17 +1,22 @@
-package net.seanhess.bifff.actions
+package net.seanhess.bifff.behaviors
 {
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
 	
+	import net.seanhess.bifff.scope.IScopeable;
 	import net.seanhess.bifff.scope.Scope;
 	import net.seanhess.bifff.utils.Generator;
+	import net.seanhess.bifff.utils.TargetRegistry;
 	
 	/**
 	 * Dispatches an event on the target.
 	 */
-	dynamic public class Dispatch implements IAction
+	dynamic public class Dispatch implements IBehavior, IScopeable
 	{
 		public var debug:Boolean = false;
+		
+		protected var scope:Scope = new Scope();
+		protected var registry:TargetRegistry = new TargetRegistry(apply);
 
 		public var creator:Generator;
 		public var defaultArguments:Array;
@@ -26,8 +31,20 @@ package net.seanhess.bifff.actions
 			creator.arguments = defaultArguments;
 		}
 		
-		public function apply(scope:Scope):void
+		public function set target(value:*):void
 		{
+			registry.applyTargets(value);
+		}
+		
+		public function set parent(value:Scope):void
+		{
+			scope.parent = value;
+		}
+		
+		public function apply(target:*):void
+		{
+			scope.target = target;
+			
 			var event:Event = creator.generate(scope) as Event;
 				
 			if (debug)	trace(" [ DISPATCH EVENT ] " + event + " on " + scope.target);

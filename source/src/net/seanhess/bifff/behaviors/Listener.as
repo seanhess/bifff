@@ -24,7 +24,7 @@ package net.seanhess.bifff.behaviors
 		public var debug:Boolean = false;
 		public var executor:IExecutor = new Executor();
 		
-		public var registry:TargetRegistry = new TargetRegistry(apply);
+		public var registry:TargetRegistry = new TargetRegistry(apply, true);
 		public var scope:Scope = new Scope();
 		public var scoper:Scoper = new Scoper();
 		

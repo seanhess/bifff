@@ -6,10 +6,12 @@ package net.seanhess.bifff.utils
 	{
 		protected var map:Dictionary = new Dictionary(true);
 		protected var apply:Function;
+		protected var onlyOnce:Boolean = false;
 		
-		public function TargetRegistry(apply:Function=null)
+		public function TargetRegistry(apply:Function=null, onlyOnce:Boolean=false)
 		{
 			this.apply = apply;
+			this.onlyOnce = onlyOnce;
 		}
 		
 		public function applyTargets(targets:*):void
@@ -22,13 +24,13 @@ package net.seanhess.bifff.utils
 						checkApply(item);
 				}
 				else
-					apply(targets);					
+					checkApply(targets);					
 			}
 		}	
 		
 		protected function checkApply(value:*):void
 		{
-			if (value && map[value] == null)
+			if (value && (onlyOnce == false || map[value] == null))
 			{
 				map[value] = {};				
 				apply(value);
