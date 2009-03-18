@@ -3,6 +3,7 @@ package net.seanhess.bifff.behaviors
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
+	import flash.utils.Dictionary;
 	
 	import net.seanhess.bifff.core.Executor;
 	import net.seanhess.bifff.core.IExecutor;
@@ -42,6 +43,9 @@ package net.seanhess.bifff.behaviors
 		{
 			if (debug) 	trace("[ LISTENING FOR ] \"" + type + "\" on " + target);
 			
+			if (type == null)
+				throw new Error("Listener: type was null");
+			
 			(target as IEventDispatcher).addEventListener(type, handler);
 		}
 		
@@ -67,7 +71,12 @@ package net.seanhess.bifff.behaviors
 		
 		protected function handler(event:Event):void
 		{
+			if (caught[event])
+				return;
+
 			if (debug)	trace(" [ LISTENER ] \"" + type + "\" on " + event.currentTarget + " with a regular target of " + event.target);
+						
+			caught[event] = true;
 			
 			var scope:Scope = new Scope();
 				scope.event = event;
@@ -83,6 +92,8 @@ package net.seanhess.bifff.behaviors
 		
 		protected var type:String;
 		protected var _actions:Array;
+		protected var caught:Dictionary = new Dictionary(true);
+		
 		
 	}
 }
