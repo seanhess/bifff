@@ -12,4 +12,5 @@ Button#henry
 Panel#panel
 {
 	width: 300;
+	behavior: net.seanhess.bifff.behaviors.TestClick;
 }

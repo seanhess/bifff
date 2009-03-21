@@ -1,9 +1,12 @@
 package net.seanhess.bifff.extensions
 {
+	import flash.utils.getDefinitionByName;
+	
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.http.HTTPService;
 	
+	import net.seanhess.bifff.behaviors.Behavior;
 	import net.seanhess.bifff.behaviors.Set;
 	import net.seanhess.bifff.core.BehaviorMap;
 	import net.seanhess.bifff.core.Selector;
@@ -13,6 +16,8 @@ package net.seanhess.bifff.extensions
 	 */
 	public class Style
 	{
+		public static const BEHAVIOR:String = "behavior";
+		
 		public var map:BehaviorMap = new CachingBehaviorMap();
 		
 		/**
@@ -82,14 +87,21 @@ package net.seanhess.bifff.extensions
 			selector.match = matches[1];
 			
 			// 3 // Parse the setters
-			selector.actions = [parseValues(matches[2])];
+			selector.actions = parseValues(matches[2]);
 			
 			return selector;
 		}
 		
-		protected function parseValues(data:String):Set
+		/**
+		 * Returns an array of actions. If they specify
+		 * a behavior, it adds that behavior to the list
+		 */
+		protected function parseValues(data:String):Array
 		{
+			var actions:Array = new Array();
 			var setter:Set = new Set();
+			
+			actions.push(setter);
 			
 			// 3 // Parse the properties
 			var parts:RegExp = /[\w_\-]+\s*\:\s*.*?;/gism
@@ -99,15 +111,29 @@ package net.seanhess.bifff.extensions
 			{
 				var match:String = matches[i];
 				var value:Object = parseValue(match);
-				setter[value.property] = value.value;
+				
+				if (value is Behavior)
+				{
+					actions.push(value);
+				}
+				else if (value != null)
+				{
+					setter[value.property] = value.value;
+				}
 			}
 			
-			return setter;
+			return actions;
 		}
 		
-		protected function parseValue(data:String):Object
+		/**
+		 * Returns either a normal object with a key/value pair
+		 * to be put into the set tag
+		 * 
+		 * Or returns a full behavior to be added
+		 */
+		protected function parseValue(data:String):*
 		{
-			var parts:RegExp = /([\w_\-]+)\s*\:\s*(.*?)\s*;/gism
+			var parts:RegExp = /([\w_\-]+)\s*\:\s*(.*?)\s*(;|,)/gism
 			var matches:Array = parts.exec(data);
 			
 			if (matches == null || matches.length < 3)
@@ -118,8 +144,13 @@ package net.seanhess.bifff.extensions
 			});
 			
 			var value:* = matches[2];
+			
+			if (property == BEHAVIOR)
+			{
+				return parseBehavior(value);
+			}
 
-			if (value.match(/^([\d\.]+)(px|em|pt)?$/i))
+			else if (value.match(/^([\d\.]+)(px|em|pt)?$/i))
 			{
 				value = new Number(value.replace(/[^\d]/gi, ""));
 			}
@@ -135,6 +166,23 @@ package net.seanhess.bifff.extensions
 			}
 			
 			return {property: property, value: value};
+		}
+		
+		protected function parseBehavior(value:String):Behavior
+		{
+			var behavior:Behavior = new Behavior();
+			
+			var className:String = value; 
+			
+			try {
+				behavior.generator = getDefinitionByName(className) as Class;
+			}
+			catch (e:Error)
+			{
+				throw new Error("Could not find class: " + className);
+			}
+					
+			return behavior;
 		}
 	}
 }

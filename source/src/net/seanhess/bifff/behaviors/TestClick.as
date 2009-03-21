@@ -28,7 +28,7 @@ package net.seanhess.bifff.behaviors
 		
 		protected function onClick(event:Event):void
 		{
-			Alert.show("Clicked: " + event.target);
+			Alert.show(event.target.toString(), "Clicked");
 			dispatchEvent(new Event("test"));
 		}
 	}
