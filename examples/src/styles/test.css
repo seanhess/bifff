@@ -9,8 +9,9 @@ Button#henry
 	text-decoration:underline;
 }
 
-Panel#panel
+.panel
 {
 	width: 300;
 	behavior: net.seanhess.bifff.behaviors.TestClick;
+	behavior: net.seanhess.bifff.behaviors.Trace(message:"hello");
 }

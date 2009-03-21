@@ -14,7 +14,8 @@ package net.seanhess.bifff.extensions
 	/**
 	 * Generates a behavior map based on a style sheet
 	 */
-	public class Style
+	[DefaultProperty("data")]
+	public class BehaviorSheet
 	{
 		public static const BEHAVIOR:String = "behavior";
 		
@@ -33,9 +34,14 @@ package net.seanhess.bifff.extensions
 				service.send();
 		}
 		
+		public function set data(value:String):void
+		{
+			map.selectors = parse(value);
+		}
+		
 		protected function onResult(event:ResultEvent):void
 		{
-			map.selectors = parse(event.result as String);
+			this.data = event.result as String;
 		}
 		
 		protected function onFault(event:FaultEvent):void
@@ -133,7 +139,7 @@ package net.seanhess.bifff.extensions
 		 */
 		protected function parseValue(data:String):*
 		{
-			var parts:RegExp = /([\w_\-]+)\s*\:\s*(.*?)\s*(;|,)/gism
+			var parts:RegExp = /([\w_\-]+)\s*\:\s*(.*?)\s*(;|,|$)/gism
 			var matches:Array = parts.exec(data);
 			
 			if (matches == null || matches.length < 3)
@@ -172,8 +178,24 @@ package net.seanhess.bifff.extensions
 		{
 			var behavior:Behavior = new Behavior();
 			
-			var className:String = value; 
+			var sections:Array = value.match(/([\w\.]+)(\((.*)\))?/im);
 			
+			if (sections == null)
+				throw new Error("Error parsing Behavior: " + value);
+			
+			var className:String = sections[1]; 
+			
+			if (sections[3])
+			{
+				var matches:Array = sections[3].split(/\s*,\s*/gi);
+				
+				for each (var match:String in matches)
+				{
+					var pair:Object = parseValue(match);
+					behavior[pair.property] = pair.value;
+				}
+			}
+						
 			try {
 				behavior.generator = getDefinitionByName(className) as Class;
 			}

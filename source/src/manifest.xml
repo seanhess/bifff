@@ -31,7 +31,8 @@
 	<component class="net.seanhess.bifff.events.BifffEvent"/>
 	<component class="net.seanhess.bifff.events.CreationComplete"/>
 
-	<component class="net.seanhess.bifff.extensions.Style"/>
+	<component class="net.seanhess.bifff.extensions.BehaviorSheet"/>
+	<component class="net.seanhess.bifff.extensions.CachingBehaviorMap"/>
 
 	<component class="net.seanhess.bifff.scope.IScopeable"/>
 	<component class="net.seanhess.bifff.scope.ISmartObject"/>
