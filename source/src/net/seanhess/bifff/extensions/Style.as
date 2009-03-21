@@ -46,6 +46,9 @@ package net.seanhess.bifff.extensions
 		protected function parse(data:String):Array
 		{
 			var selectors:Array = [];
+			
+			// 0 // Remove Comments
+			data = data.replace(/\/\*.*?\*\//gmsi, "");
 
 			// 1 // Split into declarations
 			var declarations:RegExp = /[\w\.\s_#:\-]+\s*\{.*?}/gmsi
@@ -110,11 +113,28 @@ package net.seanhess.bifff.extensions
 			if (matches == null || matches.length < 3)
 				throw new Error("Could not parse value: " + data);
 				
-			var property:String = matches[1].replace(/\-([a-z])/, function():String { 
+			var property:String = matches[1].replace(/\-([a-z])/gi, function():String { 
 				return arguments[1].toUpperCase();
 			});
-				
-			return {property: property, value: matches[2]};
+			
+			var value:* = matches[2];
+
+			if (value.match(/^([\d\.]+)(px|em|pt)?$/i))
+			{
+				value = new Number(value.replace(/[^\d]/gi, ""));
+			}
+			
+			else if (value == "true" || value == "false")
+			{
+				value = new Boolean(value);
+			}
+			
+			else
+			{
+				value = value.replace(/(^[\"\']|[\"\']$)/gi, "");
+			}
+			
+			return {property: property, value: value};
 		}
 	}
 }

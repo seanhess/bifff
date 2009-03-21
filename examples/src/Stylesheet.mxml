@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns:text="flash.text.*" xmlns="http://bifff.seanhess.net/2009">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:text="flash.text.*" xmlns="http://bifff.seanhess.net/2009">
 	
 	<Style url="styles/test.css" target="{this}"/>
 	
-	<mx:Button label="henry"/>
+	<mx:Button label="henry" id="henry"/>
+	
+	<mx:Panel id="panel" styleName="panel">
+		<mx:Button label="Hello"/>
+		<mx:Button label="Hello"/>
+		<mx:Button label="Hello"/>
+		<mx:Button label="Hello"/>
+	</mx:Panel>
 	
 </mx:Application>

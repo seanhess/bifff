@@ -1,9 +1,15 @@
-Button 
+Button#henry
 {
-	width: 300;
-	height: 700;
+	height: 300;
 	font-size: 72;
-	label: "YO";
+	label: "I am a button";
 	color: #FF0000;
 	cornerRadius: 100;
+	font-style: italic;
+	text-decoration:underline;
+}
+
+Panel#panel
+{
+	width: 300;
 }
