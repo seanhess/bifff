@@ -11,6 +11,8 @@
 
 	<BehaviorMap target="{this}" debug="true">
 		
+		<!-- Associate a behavior by setting the generator -->
+		<!-- This can be useful if your behavior doesn't support multiple targets -->
 		<Selector match="#button">
 			<Behavior generator="{TestClick}"/>
 		</Selector>
