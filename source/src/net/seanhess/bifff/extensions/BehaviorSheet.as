@@ -7,7 +7,9 @@ package net.seanhess.bifff.extensions
 	import mx.rpc.http.HTTPService;
 	
 	import net.seanhess.bifff.behaviors.Behavior;
+	import net.seanhess.bifff.behaviors.IBehavior;
 	import net.seanhess.bifff.behaviors.Set;
+	import net.seanhess.bifff.behaviors.Styles;
 	import net.seanhess.bifff.core.BehaviorMap;
 	import net.seanhess.bifff.core.Selector;
 	
@@ -18,6 +20,7 @@ package net.seanhess.bifff.extensions
 	public class BehaviorSheet
 	{
 		public static const BEHAVIOR:String = "behavior";
+		public static const STYLE:String = "style";
 		
 		public var map:BehaviorMap = new CachingBehaviorMap();
 		
@@ -118,7 +121,7 @@ package net.seanhess.bifff.extensions
 				var match:String = matches[i];
 				var value:Object = parseValue(match);
 				
-				if (value is Behavior)
+				if (value is IBehavior)
 				{
 					actions.push(value);
 				}
@@ -155,6 +158,11 @@ package net.seanhess.bifff.extensions
 			{
 				return parseBehavior(value);
 			}
+			
+			else if (property == STYLE)
+			{
+				return parseStyle(value);
+			}
 
 			else if (value.match(/^([\d\.]+)(px|em|pt)?$/i))
 			{
@@ -172,6 +180,14 @@ package net.seanhess.bifff.extensions
 			}
 			
 			return {property: property, value: value};
+		}
+		
+		protected function parseStyle(value:String):Styles
+		{
+			var styles:Styles = new Styles();
+				styles.addClass = value;
+				
+			return styles;
 		}
 		
 		protected function parseBehavior(value:String):Behavior

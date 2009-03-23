@@ -11,7 +11,12 @@ Button#henry
 
 .panel
 {
-	width: 300;
+	style: wide;
 	behavior: net.seanhess.bifff.behaviors.TestClick;
 	behavior: net.seanhess.bifff.behaviors.Trace(message:"hello");
+}
+
+.wide
+{
+	width: 300;
 }
