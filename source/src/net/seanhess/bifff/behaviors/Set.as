@@ -32,7 +32,7 @@ package net.seanhess.bifff.behaviors
 		
 		protected var _redirect:Array;
 		
-		public var registry:TargetRegistry = new TargetRegistry(apply, true);
+		public var registry:TargetRegistry = new TargetRegistry(apply);
 		
 		/**
 		 * Let's see, whenever the target changes, apply yourself to it!
