@@ -166,7 +166,8 @@ package net.seanhess.bifff.extensions
 
 			else if (value.match(/^([\d\.]+)(px|em|pt)?$/i))
 			{
-				value = new Number(value.replace(/[^\d]/gi, ""));
+				var sanitized:String = value.replace(/[^\d\.]/gi, ""); 
+				value = parseFloat(sanitized);
 			}
 			
 			else if (value == "true" || value == "false")
