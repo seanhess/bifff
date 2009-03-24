@@ -17,6 +17,12 @@
 		<Selector match=".big.ugly">
 			<Set paddingRight="300"/>
 		</Selector>
+		
+		<Selector match="#secondButton">
+			<Listener event="click">
+				<Set width="1000"/>
+			</Listener>
+		</Selector>
 				
 	</BehaviorMap>
 	
