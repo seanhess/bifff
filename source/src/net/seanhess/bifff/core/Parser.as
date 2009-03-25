@@ -60,7 +60,15 @@ package net.seanhess.bifff.core
 				node = new Node(Node.TAG, item);
 			
 			else if (item.match(/^[a-z]+[a-zA-Z0-9_\.]*$/))	// starts with a lower-case letter, then matches any word or '.' chars till the end
-				node = new Node(Node.CLASS, getDefinitionByName(item));
+			{
+				try {
+					var type:Class = getDefinitionByName(item) as Class;
+					node = new Node(Node.CLASS, type);
+				}
+				catch (e:Error) {
+					node = new Node(Node.FAIL);
+				}
+			}
 			
 			else if (item.match(/^[A-Z\.\#][\w\.\#\:]*$/))
 				node = new Node(Node.MULTI, parseMulti(item));

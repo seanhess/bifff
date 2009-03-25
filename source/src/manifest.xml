@@ -2,6 +2,7 @@
 <componentPackage>    
 	<component class="net.seanhess.bifff.behaviors.Behavior"/>
 	<component class="net.seanhess.bifff.behaviors.Bind"/>
+	<component class="net.seanhess.bifff.behaviors.Cache"/>
 	<component class="net.seanhess.bifff.behaviors.Call"/>
 	<component class="net.seanhess.bifff.behaviors.Dispatch"/>
 	<component class="net.seanhess.bifff.behaviors.IBehavior"/>

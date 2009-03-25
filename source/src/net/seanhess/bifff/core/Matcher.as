@@ -166,6 +166,7 @@ package net.seanhess.bifff.core
 				case Node.META:		return matchMeta(item, node);
 				case Node.INSTANCE:	return item == node.value;
 				case Node.ANY:		return true;
+				default:			return false;
 			}
 			
 			return false;

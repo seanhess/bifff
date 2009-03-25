@@ -10,6 +10,7 @@ package net.seanhess.bifff.core
 		public static const ANY:String = "any";			// * - matches anything.. Be careful, this is less performance-happy
 		public static const META:String = "meta";		// :even and :odd
 		public static const INSTANCE:String = "instance"; // the node value is an actual object that must be the same
+		public static const FAIL:String = "fail";		// If this should never match anything
 		
 		public static const RECURSION_INSTRUCTION:String = "recursionInstruction"; 
 

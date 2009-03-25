@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns="http://bifff.seanhess.net/2009">
+	
+	
+	<SmartObject id="currentTarget"/>
+	
+	<BehaviorMap target="{this}">
+		<Selector match="#one">
+			<Listener event="click">
+				<Cache id="btn" value="{this.currentTarget.label}"/>
+				<Trace message="Cached"/>
+			</Listener>
+		</Selector>
+		
+		<Selector match="#two">
+			<Listener event="click">
+				<Trace message="Two Click"/>
+				<Trace message="{btn}"/>
+			</Listener>
+		</Selector>
+	</BehaviorMap>
+	
+	<mx:Button id="one" label="henry"/>
+	<mx:Button id="two" label="Bob"/>
+</mx:Application>
