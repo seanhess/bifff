@@ -28,6 +28,11 @@ package net.seanhess.bifff.behaviors
 			_value = value;
 		}
 		
+		public function get value():*
+		{
+			return this.resolve(null);
+		}
+		
 		override public function resolve(scope:Scope):Object
 		{
 			return resolver.resolveObject(_value, this.scope); // ignore their scope, resolve it with our scope!

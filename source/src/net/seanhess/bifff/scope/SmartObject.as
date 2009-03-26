@@ -80,7 +80,10 @@ package net.seanhess.bifff.scope
 	    	var result:Object;
 	    	
 	    	if (_source && _source is ISmartObject)
-	    		result = _source.resolve(scope)[_property];
+	    	{
+	    		var obj:Object = _source.resolve(scope);
+	    		result = (obj) ? obj[_property] : null;
+	    	}
 
 			else if (scope[_property] == null && scope.parent)
 				result = resolve(scope.parent);
