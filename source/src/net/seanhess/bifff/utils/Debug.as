@@ -66,7 +66,7 @@ package net.seanhess.bifff.utils
 			return list;
 		}
 		
-		public function message(value:String):void
+		public function log(value:String):void
 		{
 			if (!enabled) return;
 			
