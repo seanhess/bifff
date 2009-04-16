@@ -35,12 +35,12 @@ package tests.listener
 			container.addChild(view);
 			
 			assertEquals("Nothing", view.string);
-			view.apply.addEventListener(Apply.INITIALIZED, asyncHandler(onInit,1000));
+//			view.apply.addEventListener(Apply.INITIALIZED, asyncHandler(onInit,1000));
 		}
 		
 		protected function onInit(event:Event, blah:*):void
 		{
-			view.binding.addEventListener(Bind.UPDATE, asyncHandler(onUpdate, 1000));
+//			view.binding.addEventListener(Bind.UPDATE, asyncHandler(onUpdate, 1000));
 			view.string = "fat";
 		}
 		

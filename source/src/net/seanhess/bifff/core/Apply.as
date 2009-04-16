@@ -13,12 +13,8 @@ package net.seanhess.bifff.core
  	[Event(name="initialized",type="flash.events.Event")]
 	public class Apply extends EventDispatcher
 	{
-		public static const INITIALIZED:String = "initialized";
-		
 		public var executor:IExecutor = new Executor();
 		public var invalidator:Invalidator = new Invalidator(commit);
-		
-		public var debug:Boolean = false;
 		
 		/**
 		 * Target or targets
@@ -35,9 +31,6 @@ package net.seanhess.bifff.core
 		protected function commit():void
 		{
 			executor.executeMatches(targets, _actions);
-			
-			if (debug)
-				dispatchEvent(new Event(INITIALIZED));
 		}
 		
 		public function set actions(value:Array):void

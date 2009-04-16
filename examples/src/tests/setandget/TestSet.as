@@ -41,7 +41,7 @@ package tests.setandget
 			assertEquals(view.button, event.matchedTarget);
 			assertEquals(view.selector, event.selector);
 
-			view.listener.addEventListener(Listener.HANDLE, asyncHandler(onHandle, 1000));
+//			view.listener.addEventListener(Listener.HANDLE, asyncHandler(onHandle, 1000));
 			view.button.dispatchEvent(new Event("test"));
 		}
 		
@@ -63,7 +63,7 @@ package tests.setandget
 			assertEquals(view.w00t, event.matchedTarget);
 			assertEquals(view.resolve, event.selector);
 
-			view.resolveListener.addEventListener(Listener.HANDLE, asyncHandler(onHandleResolve, 1000));
+//			view.resolveListener.addEventListener(Listener.HANDLE, asyncHandler(onHandleResolve, 1000));
 			view.w00t.dispatchEvent(new Event("test"));
 		}
 		

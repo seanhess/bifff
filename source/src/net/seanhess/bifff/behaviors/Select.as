@@ -30,8 +30,6 @@ package net.seanhess.bifff.behaviors
 		public var parser:IParser = new Parser();
 		public var executor:IExecutor = new Executor();
 		
-		public var debug:Boolean = false;
-		
 		protected var scope:Scope = new Scope();
 		protected var scoper:Scoper = new Scoper();
 		protected var registry:TargetRegistry = new TargetRegistry(apply);
@@ -97,7 +95,6 @@ package net.seanhess.bifff.behaviors
 		
 		protected function executeMatches(matches:Array):void
 		{
-			if (debug) 	trace(" [ SELECT ] " + matches);
 			executor.executeMatches(matches, _actions);
 		}
 		

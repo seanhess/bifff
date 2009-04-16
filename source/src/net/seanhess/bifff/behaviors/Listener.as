@@ -20,9 +20,6 @@ package net.seanhess.bifff.behaviors
 	[Event(name="handle", type="flash.events.Event")]
 	public class Listener extends EventDispatcher implements IBehavior, IScopeable
 	{
-		public static const HANDLE:String = "handle";
-		
-		public var debug:Boolean = false;
 		public var executor:IExecutor = new Executor();
 		
 		public var registry:TargetRegistry = new TargetRegistry(apply);
@@ -41,8 +38,6 @@ package net.seanhess.bifff.behaviors
 		
 		public function apply(target:*):void
 		{
-			if (debug) 	trace("[ LISTENING FOR ] \"" + type + "\" on " + target);
-			
 			if (type == null)
 				throw new Error("Listener: type was null");
 			
@@ -74,8 +69,6 @@ package net.seanhess.bifff.behaviors
 			if (caught[event])
 				return;
 
-			if (debug)	trace(" [ LISTENER ] \"" + type + "\" on " + event.currentTarget + " with a regular target of " + event.target);
-						
 			caught[event] = true;
 			
 			var scope:Scope = new Scope();
@@ -86,8 +79,6 @@ package net.seanhess.bifff.behaviors
 			scoper.parentScopes(actions, scope);
 						
 			executor.executeActions(event.currentTarget, actions);
-			
-			if (debug)	dispatchEvent(new Event(HANDLE));
 		}
 		
 		protected var type:String;

@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns="http://bifff.seanhess.net/2009" viewSourceURL="srcview/index.html">
 	
-	<!-- With debug on, double click to see matches in your console --> 
-	<BehaviorMap target="{this}" debug="true">
+	
+	<SmartObject id="currentTarget"/>
+	
+	<BehaviorMap target="{this}">
+		<DebugConsole id="console"/>
 	
 		<!-- Select by Tag -->
 		<Selector match="Button">
 			<Set fontSize="24"/>
+			<Listener event="click">
+				<Call method="{this.console.open}"/>
+			</Listener>
 		</Selector>
 		
 		<!-- Select by StyleName -->
@@ -38,7 +44,7 @@
 		
 		<!-- Select Any -->
 		<Selector match="*">
-			<Set cornerRadius="15"/>
+			<Trace message="{currentTarget}"/>
 		</Selector>
 		
 		<!-- Descendants -->

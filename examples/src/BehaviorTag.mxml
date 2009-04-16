@@ -9,7 +9,7 @@
 	<SmartObject id="behavior"/>
 	<SmartObject id="currentTarget"/>
 
-	<BehaviorMap target="{this}" debug="true">
+	<BehaviorMap target="{this}">
 		
 		<!-- Associate a behavior by setting the generator -->
 		<!-- This can be useful if your behavior doesn't support multiple targets -->

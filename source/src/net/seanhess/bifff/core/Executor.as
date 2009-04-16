@@ -8,11 +8,8 @@ package net.seanhess.bifff.core
 	{
 		public var applications:ApplicationTracker;
 		
-		public var debug:Boolean = false;
-		
-		public function Executor(debug:Boolean = false)
+		public function Executor()
 		{
-			this.debug = debug;
 			applications = new ApplicationTracker();
 		}
 		
@@ -22,16 +19,6 @@ package net.seanhess.bifff.core
 				return;
 			
 			applications.apply(selector, target);
-
-			if (debug)
-			{
-				var event:BifffEvent = new BifffEvent(BifffEvent.FOUND_MATCH);
-					event.selector = selector;
-					event.matchedTarget = target;
-				
-				dispatchEvent(event);
-			}
-			
 			executeActions(target, selector.actions);
 		}
 		

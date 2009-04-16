@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bifff.seanhess.net/2009" xmlns:core="net.seanhess.bifff.core.*" viewSourceURL="srcview/index.html">
 
-	<BehaviorMap target="{this}" debug="true">
+	<BehaviorMap target="{this}">
 	
 		<!-- Set -->
 		<Selector match="Button">

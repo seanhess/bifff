@@ -9,7 +9,6 @@ package net.seanhess.bifff.core
 	[DefaultProperty("actions")]
 	public class Selector implements ISelector, IScopeable
 	{
-		public var debug:Boolean = false;
 		public var parser:IParser = new Parser();
 		public var matcher:IMatcher = new Matcher();
 		public var scoper:Scoper = new Scoper();
@@ -68,7 +67,7 @@ package net.seanhess.bifff.core
 			scope.parent = value;
 		}
 		
-		protected var _match:String;
+		protected var _match:String = "";
 		protected var _actions:Array;
 		protected var _nodes:Array;
 		protected var _targets:Array;

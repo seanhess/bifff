@@ -13,8 +13,6 @@ package net.seanhess.bifff.behaviors
 	 */
 	dynamic public class Dispatch implements IBehavior, IScopeable
 	{
-		public var debug:Boolean = false;
-		
 		protected var scope:Scope = new Scope();
 		protected var registry:TargetRegistry = new TargetRegistry(apply);
 
@@ -46,9 +44,7 @@ package net.seanhess.bifff.behaviors
 			scope.target = target;
 			
 			var event:Event = creator.generate(scope) as Event;
-				
-			if (debug)	trace(" [ DISPATCH EVENT ] " + event + " on " + scope.target);
-				
+
 			(scope.target as IEventDispatcher).dispatchEvent(event);			
 		}
 

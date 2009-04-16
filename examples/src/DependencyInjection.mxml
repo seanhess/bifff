@@ -5,7 +5,7 @@
 	<!-- In real life, you would be injecting domain objects (vos, presentation models, etc) -->
 	<mx:String id="theLabelEveryoneShouldUse">Super Label!</mx:String>
 	
-	<BehaviorMap target="{this}" debug="true">
+	<BehaviorMap target="{this}">
 		<Selector match="Button">
 			<Set label="{theLabelEveryoneShouldUse}"/>
 		</Selector>

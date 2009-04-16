@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" xmlns="http://bifff.seanhess.net/2009">
 
-	<Apply id="apply" target="{this}" debug="true">
-		<State id="stateOne" name="one" debug="true">
+	<Apply id="apply" target="{this}">
+		<State id="stateOne" name="one">
 			<Set string="one"/>
 		</State>
 		
-		<State id="stateTwo" name="two" debug="true">
+		<State id="stateTwo" name="two">
 			<Set string="two"/>
 		</State>
 		
-		<Bind id="binding" property="string" value="fat" debug="true">
+		<Bind id="binding" property="string" value="fat">
 			<Set secondString="charlie"/>
 		</Bind>
 	</Apply>

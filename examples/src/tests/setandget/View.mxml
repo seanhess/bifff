@@ -4,17 +4,17 @@
 	<SmartObject id="currentTarget"/>
 	<SmartObject 		id="event"/>
 
-	<BehaviorMap id="map" target="{this}" debug="true">
+	<BehaviorMap id="map" target="{this}">
 		<Selector id="selector" match="Button">
-			<Listener id="listener" event="test" debug="true">
+			<Listener id="listener" event="test">
 				<Set redirect="{this}" string="w00t"/>
 			</Listener>
 		</Selector>
 	</BehaviorMap>
 	
-	<BehaviorMap id="resolveMap" target="{this}" debug="true">
+	<BehaviorMap id="resolveMap" target="{this}">
 		<Selector id="resolve" match="#w00t">
-			<Listener id="resolveListener" event="test" debug="true">
+			<Listener id="resolveListener" event="test">
 				<Set redirect="{this}" string="{currentTarget.label}"/>
 			</Listener>
 		</Selector>

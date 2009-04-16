@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns="http://bifff.seanhess.net/2009">
+	
+	<BehaviorMap>
+		<DebugConsole id="debug"/>
+	
+		<Selector match="Button">
+			<Set paddingLeft="100"/>
+		</Selector>	
+	</BehaviorMap>
+	
+	<mx:Button label="Charlie" click="debug.open()"/>
+	
+</mx:Application>

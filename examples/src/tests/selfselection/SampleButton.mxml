@@ -5,7 +5,7 @@
 	xmlns="http://bifff.seanhess.net/2009"
 	>
 	
-	<Apply id="apply" target="{this}" debug="true">
+	<Apply id="apply" target="{this}">
 		<Listener event="test">
 			<Dispatch type="hello"/>
 			<Trace message="Hello"/>

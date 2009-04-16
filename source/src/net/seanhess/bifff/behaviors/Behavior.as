@@ -22,8 +22,6 @@ package net.seanhess.bifff.behaviors
 	[DefaultProperty("actions")]
 	dynamic public class Behavior implements IBehavior, IScopeable
 	{
-		public var debug:Boolean = false;
-
 		public var creator:Generator;
 		public var executor:IExecutor = new Executor();
 		public var registry:TargetRegistry = new TargetRegistry(apply);
@@ -53,8 +51,6 @@ package net.seanhess.bifff.behaviors
 			
 			var behavior:* = creator.generate(scope);
 				
-			if (debug)	trace(" [ BEHAVIOR ] " + behavior + " on " + scope.target);
-			
 			if (behavior is IBehavior)
 				(behavior as IBehavior).target = scope.target;
 			

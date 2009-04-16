@@ -35,19 +35,19 @@ package tests.listener
 			container.addChild(view);
 			
 			assertEquals("Nothing", view.string);
-			view.apply.addEventListener(Apply.INITIALIZED, asyncHandler(onInit, 1000));
+//			view.apply.addEventListener(Apply.INITIALIZED, asyncHandler(onInit, 1000));
 		}
 		
 		protected function onInit(event:Event, blah:*):void
 		{
-			view.stateOne.addEventListener(Listener.HANDLE, asyncHandler(onHandleOne, 1000));
+//			view.stateOne.addEventListener(Listener.HANDLE, asyncHandler(onHandleOne, 1000));
 			view.currentState = "one";
 		}			
 		
 		protected function onHandleOne(event:Event, blah:*):void
 		{	
 			assertEquals("one", view.string);
-			view.stateTwo.addEventListener(Listener.HANDLE, asyncHandler(onHandleTwo, 1000));
+//			view.stateTwo.addEventListener(Listener.HANDLE, asyncHandler(onHandleTwo, 1000));
 			view.currentState = "two"
 		}
 		

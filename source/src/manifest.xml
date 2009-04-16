@@ -10,6 +10,7 @@
 	<component class="net.seanhess.bifff.behaviors.MultiStyle"/>
 	<component class="net.seanhess.bifff.behaviors.Select"/>
 	<component class="net.seanhess.bifff.behaviors.Set"/>
+	<component class="net.seanhess.bifff.behaviors.Inject"/>
 	<component class="net.seanhess.bifff.behaviors.State"/>
 	<component class="net.seanhess.bifff.behaviors.Styles"/>
 	<component class="net.seanhess.bifff.behaviors.TestClick"/>
@@ -40,11 +41,9 @@
 	<component class="net.seanhess.bifff.scope.Scope"/>
 	<component class="net.seanhess.bifff.scope.SmartObject"/>
 
-	<component class="net.seanhess.bifff.sugar.Injector"/>
-	
+	<component class="net.seanhess.bifff.utils.DebugConsole"/>
 	<component class="net.seanhess.bifff.utils.Defaults"/>
 	<component class="net.seanhess.bifff.utils.Invalidator"/>
-	<component class="net.seanhess.bifff.utils.Debugger"/>
 	<component class="net.seanhess.bifff.utils.TargetRegistry"/>
 	<component class="net.seanhess.bifff.utils.Scoper"/>
 	<component class="net.seanhess.bifff.utils.Generator"/>

@@ -19,7 +19,6 @@ package net.seanhess.bifff.behaviors
 		protected var classesToAdd:Array = [];
 		protected var classesToRemove:Array = [];
 		public var merger:StyleMerger = new StyleMerger();
-		public var debug:Boolean = false;
 		
 		protected var scope:Scope = new Scope();
 		protected var registry:TargetRegistry = new TargetRegistry(apply);
@@ -51,14 +50,6 @@ package net.seanhess.bifff.behaviors
 			}
 			
 			declaration.forceUpdate();	// sets itself to the target
-			
-			if (debug)
-			{
-				var event:BifffEvent = new BifffEvent(BifffEvent.UPDATED_STYLE);
-					event.matchedTarget = scope.target;
-					
-				dispatchEvent(event);	
-			}
 		}
 		
 		public function set addClass(value:Object):void

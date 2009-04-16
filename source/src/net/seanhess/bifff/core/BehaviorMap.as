@@ -1,6 +1,5 @@
 package net.seanhess.bifff.core
 {
-	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
@@ -11,7 +10,7 @@ package net.seanhess.bifff.core
 	import net.seanhess.bifff.events.BifffEvent;
 	import net.seanhess.bifff.events.CreationComplete;
 	import net.seanhess.bifff.scope.Scope;
-	import net.seanhess.bifff.utils.Debugger;
+	import net.seanhess.bifff.utils.Debug;
 	import net.seanhess.bifff.utils.Defaults;
 	import net.seanhess.bifff.utils.Invalidator;
 	import net.seanhess.bifff.utils.Scoper;
@@ -29,9 +28,6 @@ package net.seanhess.bifff.core
 		
 		public var registerEvent:String = FlexEvent.CREATION_COMPLETE;
 		
-		public var debug:Boolean = false;
-		public var debugger:Debugger;
-		
 		public var executor:IExecutor;
 				
 		public var defaults:Defaults = new Defaults(this);
@@ -46,11 +42,15 @@ package net.seanhess.bifff.core
 		
 		public function BehaviorMap()
 		{
-			scope = new Scope({map:this});
+			scope = new Scope();
+			scope[Scope.MAP] = this;
 		}
 		
 		public function initialized(document:Object, id:String):void
 		{
+			if (target == null && document is IEventDispatcher)
+				target = document as IEventDispatcher;
+			
 			this.document = document;
 			this.id = id;
 			dispatchEvent(new FlexEvent(FlexEvent.INITIALIZE));
@@ -59,18 +59,13 @@ package net.seanhess.bifff.core
 		[Bindable("target")]
 		public function set target(value:IEventDispatcher):void
 		{
-			if (registered)	unregister();
-
-			if (_target != value)
+			if (value && _target != value)
 			{
-				if (debug)
-					initializeDebugger(value);
-
+				if (registered)	unregister();
 				_target = value;	
 				commit();
+				dispatchEvent(new Event("target"));
 			}
-			
-			dispatchEvent(new Event("target"));
 		}
 		
 		public function get target():IEventDispatcher
@@ -78,30 +73,18 @@ package net.seanhess.bifff.core
 			return _target;
 		}
 		
-		protected function initializeDebugger(target:*):void
-		{
-			debugger = new Debugger();
-			debugger.target = target as DisplayObject;
-		}
-			
-		
-		
-		
 		private var _target:IEventDispatcher;
 		private var registered:Boolean = false;
 		
 		protected function commit():void
 		{			
-			scope.mapTarget = target;
+			scope[Scope.MAP_TARGET] = target;
 			
 			if (selectors == null || selectors.length == 0)
 				selectors = defaults.scan(ISelector);
 				
-			executor = new Executor(debug);
+			executor = new Executor();
 			
-			if (debug)
-				executor.addEventListener(BifffEvent.FOUND_MATCH, onFoundMatch, false, 0, true);
-
 			target.addEventListener(registerEvent, onFoundTarget, true, 1, true);
 			target.addEventListener(registerEvent, onFoundTarget, false, 1, true);
 			target.addEventListener(STYLES_CHANGED, onStylesChanged, true, 1, true);
@@ -121,15 +104,8 @@ package net.seanhess.bifff.core
 		{
 			target.removeEventListener(registerEvent, onFoundTarget);
 			target.addEventListener(STYLES_CHANGED, onStylesChanged);
-			executor.removeEventListener(BifffEvent.FOUND_MATCH, onFoundMatch);
 			executor = null;
 			registered = false;
-		}
-		
-		protected function onFoundMatch(event:BifffEvent):void
-		{
-			if (debug)
-				debugger.match(event.matchedTarget, event.selector);
 		}
 		
 		protected function onStylesChanged(event:Event):void
@@ -144,20 +120,18 @@ package net.seanhess.bifff.core
 		
 		protected function match(target:*):void
 		{
-			for each (var selector:ISelector in selectors)
+			for each (var child:* in selectors)
 			{
-				if (selector.matches(target, this.target))
+				var selector:ISelector = child as ISelector;
+
+				if (selector)
 				{
-					executor.executeSelector(target, selector);
+					var matched:Boolean = selector.matches(target, this.target); 
 					
-					if (debug)
-					{
-						var found:BifffEvent = new BifffEvent(BifffEvent.FOUND_MATCH);
-							found.matchedTarget = target;
-							found.selector = selector;
-							
-						dispatchEvent(found);
-					}
+					if (matched)
+						executor.executeSelector(target, selector);
+						
+					Debug.instance.match(selector, target, matched); 
 				}
 			}
 		}

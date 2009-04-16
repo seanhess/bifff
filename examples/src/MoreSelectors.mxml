@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns="http://bifff.seanhess.net/2009" viewSourceURL="srcview/index.html">
 	
-	<!-- With debug on, double click to see matches in your console --> 
-	<BehaviorMap target="{this}" debug="true">
+	<BehaviorMap target="{this}">
 		
 		<!-- Multiple Classes -->
 		<Selector match=".a.b.c">

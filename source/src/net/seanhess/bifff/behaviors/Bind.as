@@ -23,10 +23,7 @@ package net.seanhess.bifff.behaviors
 	[DefaultProperty("actions")]
 	public class Bind extends EventDispatcher implements IBehavior, IScopeable
 	{
-		public static const UPDATE:String = "update";
-		
 		public var executor:IExecutor = new Executor();
-		public var debug:Boolean = false;
 		
 		public var scopes:Dictionary = new Dictionary(true);
 		
@@ -94,11 +91,6 @@ package net.seanhess.bifff.behaviors
 				scoper.parentScopes(actions, scope);
 				
 				executor.executeActions(target, actions);
-				
-				if (debug)
-				{
-					dispatchEvent(new Event(UPDATE));
-				}
 			}
 			
 			registry.getStore(target).value = target[property];

@@ -32,7 +32,7 @@ package tests.selfselection
 		public function buttonSelfSelect():void
 		{
  			container.addChild(button);
-			button.apply.addEventListener(Apply.INITIALIZED, asyncHandler(onInit, 1000));
+//			button.apply.addEventListener(Apply.INITIALIZED, asyncHandler(onInit, 1000));
 		}
 		
 		protected function onInit(event:Event, pass:*):void

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" width="600" height="400" title="Bifff Debug Console">
+	
+	<!-- this thing can open itself up -->
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.collections.IList;
+			import net.seanhess.bifff.core.ISelector;
+			import mx.managers.SystemManager;
+			import mx.core.Application;
+			import mx.managers.PopUpManager;
+			import net.seanhess.bifff.core.BehaviorMap;
+			
+			[Bindable] public var debug:Debug = Debug.instance;
+			[Bindable] public var selectors:IList;
+			[Bindable] public var targets:IList;
+			[Bindable] public var currentSelector:ISelector;
+			[Bindable] public var currentTarget:*;
+
+			public function close():void
+			{
+				PopUpManager.removePopUp(this);
+			}
+			
+			public function open():void
+			{
+				PopUpManager.addPopUp(this, Application.application as DisplayObject);
+				PopUpManager.centerPopUp(this);
+				selectors = debug.selectorList;
+				targets = debug.targetList;
+			}
+			
+			private function clickSelector():void
+			{
+				currentSelector = selectorList.selectedItem as ISelector;
+			}
+			
+			private function clickTarget():void
+			{
+				currentTarget = targetList.selectedItem;	
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:ViewStack id="stack" width="100%" height="100%">
+		<mx:HDividedBox width="100%" height="100%" label="Selectors">
+			<mx:List id="selectorList" height="100%" width="50%" dataProvider="{selectors}" itemClick="clickSelector()" itemRenderer="{renderer}"/>
+			<mx:List height="100%" width="50%" dataProvider="{debug.getList(currentSelector)}" itemRenderer="{renderer}"/>
+		</mx:HDividedBox>
+		
+		<mx:HDividedBox width="100%" height="100%" label="Targets">
+			<mx:List id="targetList" height="100%" width="50%" dataProvider="{targets}" itemClick="clickTarget()" itemRenderer="{renderer}"/>
+			<mx:List height="100%" width="50%" dataProvider="{debug.getList(currentTarget)}" itemRenderer="{renderer}"/>
+		</mx:HDividedBox>
+	</mx:ViewStack>
+	
+	<mx:Component id="renderer">
+			<mx:Label text="{selectorItem(data)}" color="{hasMatches ? 0x006600 : 0x000000}" fontWeight="{hasMatches ? 'bold' : 'normal'}">
+				<mx:Script>
+					<![CDATA[
+						import mx.collections.IList;
+						[Bindable] public var debug:Debug = Debug.instance;
+						[Bindable] public var hasMatches:Boolean = false;
+						
+						override public function set data(value:Object):void
+						{
+							super.data = value;
+							hasMatches = (debug.getList(value).length > 0);
+						}
+						
+						private function selectorItem(item:*):String
+						{
+							if (item == null) return null;
+							
+							var list:IList = debug.getList(item);
+							return "(" + list.length + ") " + item.toString();
+						}
+					]]>
+				</mx:Script>
+			</mx:Label>
+	</mx:Component>
+	
+	<mx:ControlBar>
+		<mx:ToggleButtonBar id="buttons" dataProvider="{stack}"/>
+		
+		<mx:Spacer width="100%"/>
+		
+		<mx:Button label="Close" click="close()"/>
+		
+	</mx:ControlBar>
+	
+</mx:TitleWindow>
