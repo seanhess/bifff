@@ -55,6 +55,15 @@ package net.seanhess.bifff.utils
 			commit();
 		}
 		
+		public function skipWait():void
+		{
+			if (invalidationTimer)
+			{
+				invalidationTimer.stop();
+				onTimer(null);
+			}
+		}
+		
 		protected var invalidationTimer:Timer;
 	}
 }

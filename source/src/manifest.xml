@@ -1,50 +1,20 @@
 <?xml version="1.0"?>
 <componentPackage>    
-	<component class="net.seanhess.bifff.behaviors.Behavior"/>
-	<component class="net.seanhess.bifff.behaviors.Bind"/>
-	<component class="net.seanhess.bifff.behaviors.Cache"/>
-	<component class="net.seanhess.bifff.behaviors.Call"/>
-	<component class="net.seanhess.bifff.behaviors.Dispatch"/>
-	<component class="net.seanhess.bifff.behaviors.IBehavior"/>
-	<component class="net.seanhess.bifff.behaviors.Listener"/>
+	<component class="net.seanhess.bifff.behaviors.Listen"/>
 	<component class="net.seanhess.bifff.behaviors.MultiStyle"/>
-	<component class="net.seanhess.bifff.behaviors.Select"/>
 	<component class="net.seanhess.bifff.behaviors.Set"/>
-	<component class="net.seanhess.bifff.behaviors.Inject"/>
-	<component class="net.seanhess.bifff.behaviors.State"/>
 	<component class="net.seanhess.bifff.behaviors.Styles"/>
-	<component class="net.seanhess.bifff.behaviors.TestClick"/>
-	<component class="net.seanhess.bifff.behaviors.Trace"/>
 
-	<component class="net.seanhess.bifff.core.Apply"/>
 	<component class="net.seanhess.bifff.core.BehaviorMap"/>
-	<component class="net.seanhess.bifff.core.DirectMatcher"/>
 	<component class="net.seanhess.bifff.core.IMatcher"/>
 	<component class="net.seanhess.bifff.core.IParser"/>
-	<component class="net.seanhess.bifff.core.IResolver"/>
 	<component class="net.seanhess.bifff.core.ISelector"/>
 	<component class="net.seanhess.bifff.core.Matcher"/>
 	<component class="net.seanhess.bifff.core.MultiStyleDeclaration"/>
 	<component class="net.seanhess.bifff.core.Node"/>
 	<component class="net.seanhess.bifff.core.Parser"/>
-	<component class="net.seanhess.bifff.core.Resolver"/>
 	<component class="net.seanhess.bifff.core.Selector"/>
 	
 	<component class="net.seanhess.bifff.events.BifffEvent"/>
 	<component class="net.seanhess.bifff.events.CreationComplete"/>
-
-	<component class="net.seanhess.bifff.extensions.BehaviorSheet"/>
-	<component class="net.seanhess.bifff.extensions.CachingBehaviorMap"/>
-
-	<component class="net.seanhess.bifff.scope.IScopeable"/>
-	<component class="net.seanhess.bifff.scope.ISmartObject"/>
-	<component class="net.seanhess.bifff.scope.Scope"/>
-	<component class="net.seanhess.bifff.scope.SmartObject"/>
-
-	<component class="net.seanhess.bifff.utils.DebugConsole"/>
-	<component class="net.seanhess.bifff.utils.Defaults"/>
-	<component class="net.seanhess.bifff.utils.Invalidator"/>
-	<component class="net.seanhess.bifff.utils.TargetRegistry"/>
-	<component class="net.seanhess.bifff.utils.Scoper"/>
-	<component class="net.seanhess.bifff.utils.Generator"/>
 </componentPackage>

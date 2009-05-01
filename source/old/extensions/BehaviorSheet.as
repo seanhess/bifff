@@ -1,13 +1,9 @@
 package net.seanhess.bifff.extensions
 {
-	import flash.utils.getDefinitionByName;
-	
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.http.HTTPService;
 	
-	import net.seanhess.bifff.behaviors.Behavior;
-	import net.seanhess.bifff.behaviors.IBehavior;
 	import net.seanhess.bifff.behaviors.Set;
 	import net.seanhess.bifff.behaviors.Styles;
 	import net.seanhess.bifff.core.BehaviorMap;
@@ -156,7 +152,8 @@ package net.seanhess.bifff.extensions
 			
 			if (property == BEHAVIOR)
 			{
-				return parseBehavior(value);
+				throw new Error("Deprecated");
+//				return parseBehavior(value);
 			}
 			
 			else if (property == STYLE)
@@ -191,37 +188,37 @@ package net.seanhess.bifff.extensions
 			return styles;
 		}
 		
-		protected function parseBehavior(value:String):Behavior
-		{
-			var behavior:Behavior = new Behavior();
-			
-			var sections:Array = value.match(/([\w\.]+)(\((.*)\))?/im);
-			
-			if (sections == null)
-				throw new Error("Error parsing Behavior: " + value);
-			
-			var className:String = sections[1]; 
-			
-			if (sections[3])
-			{
-				var matches:Array = sections[3].split(/\s*,\s*/gi);
-				
-				for each (var match:String in matches)
-				{
-					var pair:Object = parseValue(match);
-					behavior[pair.property] = pair.value;
-				}
-			}
-						
-			try {
-				behavior.generator = getDefinitionByName(className) as Class;
-			}
-			catch (e:Error)
-			{
-				throw new Error("Could not find class: " + className);
-			}
-					
-			return behavior;
-		}
+//		protected function parseBehavior(value:String):Behavior
+//		{
+//			var behavior:Behavior = new Behavior();
+//			
+//			var sections:Array = value.match(/([\w\.]+)(\((.*)\))?/im);
+//			
+//			if (sections == null)
+//				throw new Error("Error parsing Behavior: " + value);
+//			
+//			var className:String = sections[1]; 
+//			
+//			if (sections[3])
+//			{
+//				var matches:Array = sections[3].split(/\s*,\s*/gi);
+//				
+//				for each (var match:String in matches)
+//				{
+//					var pair:Object = parseValue(match);
+//					behavior[pair.property] = pair.value;
+//				}
+//			}
+//						
+//			try {
+//				behavior.generator = getDefinitionByName(className) as Class;
+//			}
+//			catch (e:Error)
+//			{
+//				throw new Error("Could not find class: " + className);
+//			}
+//					
+//			return behavior;
+//		}
 	}
 }

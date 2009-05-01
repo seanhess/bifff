@@ -1,32 +1,26 @@
 package net.seanhess.bifff.behaviors
 {
-	import mx.core.UIComponent;
-	
 	import net.seanhess.bifff.core.MultiStyleDeclaration;
-	import net.seanhess.bifff.utils.TargetRegistry;
 	
 	/**
 	 * This allows a UIComponent to have multiple styles
 	 * and to have them all apply (from the stylesheet)
 	 * 
-	 * See, this is a classic example. I immediately apply
-	 * myself it. 
+	 * Notice you don't have to implement IBehavior
 	 */
 	public class MultiStyle
 	{
-		protected var registry:TargetRegistry = new TargetRegistry(apply);
-		
 		public function set target(value:*):void
 		{
-			registry.applyTargets(value);
+			if (value.hasOwnProperty("styleName"))
+			{
+				var current:String = value.styleName as String;
+				
+				if (current == null)
+					current = "";
+
+				value.styleName = new MultiStyleDeclaration(current);
+			}
 		}
-		
-		public function apply(value:*):void
-		{
-			if (value is UIComponent)
-				if (value.styleName is String)
-					value.styleName = new MultiStyleDeclaration(value.styleName as String);
-		}
-		
 	}
 }

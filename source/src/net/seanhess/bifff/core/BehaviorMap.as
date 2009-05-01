@@ -9,11 +9,9 @@ package net.seanhess.bifff.core
 	
 	import net.seanhess.bifff.events.BifffEvent;
 	import net.seanhess.bifff.events.CreationComplete;
-	import net.seanhess.bifff.scope.Scope;
 	import net.seanhess.bifff.utils.Debug;
 	import net.seanhess.bifff.utils.Defaults;
 	import net.seanhess.bifff.utils.Invalidator;
-	import net.seanhess.bifff.utils.Scoper;
 	
 	/**
 	 * I want mate to be able to inject to me, so I'm hacking this to extend UIComponent
@@ -36,15 +34,7 @@ package net.seanhess.bifff.core
 		public var id:String;
 		public var styleName:String = "";
 		
-		public var scope:Scope;
-		public var scoper:Scoper = new Scoper();
 		public var invalidator:Invalidator = new Invalidator(finished);
-		
-		public function BehaviorMap()
-		{
-			scope = new Scope();
-			scope[Scope.MAP] = this;
-		}
 		
 		public function initialized(document:Object, id:String):void
 		{
@@ -78,8 +68,6 @@ package net.seanhess.bifff.core
 		
 		protected function commit():void
 		{			
-			scope[Scope.MAP_TARGET] = target;
-			
 			if (selectors == null || selectors.length == 0)
 				selectors = defaults.scan(ISelector);
 				
@@ -136,10 +124,10 @@ package net.seanhess.bifff.core
 			}
 		}
 		
+		[ArrayElementType("Object")]
 		public function set selectors(value:Array):void
 		{
 			_selectors = value;	
-			scoper.parentScopes(value, scope);				
 		}
 		
 		public function get selectors():Array

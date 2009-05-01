@@ -4,7 +4,6 @@ package net.seanhess.bifff.core
 	import flash.events.Event;
 	import flash.utils.Dictionary;
 	
-	import mx.collections.ArrayCollection;
 	import mx.core.UIComponent;
 	import mx.core.mx_internal;
 	import mx.styles.CSSStyleDeclaration;
@@ -41,9 +40,9 @@ package net.seanhess.bifff.core
 			
 			targets[target] = true;
 			
-			for each (var name:String in styles)
+			for (var name:String in styles)
 			{
-				var declaration:CSSStyleDeclaration = styleMap[name];
+				var declaration:CSSStyleDeclaration = declarations[name];
 				
 				if (declaration)
 					chain = declaration.addStyleToProtoChain(chain, target, filterMap);
@@ -57,7 +56,8 @@ package net.seanhess.bifff.core
 		 */
 		public function set styleNames(value:String):void
 		{
-			styleMap = new Dictionary(true);
+			declarations = new Dictionary(true);
+			styles = new Dictionary(true);
 			
 			var newStyles:Array = (value) ? value.split(/\s+/) : [];
 			
@@ -75,34 +75,29 @@ package net.seanhess.bifff.core
 		 */
 		public function addStyle(name:String):void
 		{
-			styles.addItem(name);
-			styleMap[name] = StyleManager.getStyleDeclaration("." + name);
+			styles[name] = true;
+			declarations[name] = StyleManager.getStyleDeclaration("." + name);
 		}
 		
 		public function removeStyle(name:String):void
 		{
-			if (styles.contains(name))
-				styles.removeItemAt(styles.getItemIndex(name));
-				
-			delete styleMap[name];
+			delete styles[name];
+			delete declarations[name];
 		}
 		
 		public function hasStyle(name:String):Boolean
 		{
-			return styles.contains(name);
+			return (styles[name] != null);
 		}
 		
 		public function forceUpdate():void
 		{
-			if (setting == false)
+			var clone:MultiStyleDeclaration = this.clone();
+			
+			for (var target:Object in targets)
 			{
-				var clone:MultiStyleDeclaration = this.clone();
-				
-				for (var target:Object in targets)
-				{
-					target.styleName = clone;											
-					target.dispatchEvent(new Event(BehaviorMap.STYLES_CHANGED, true)); 	// it will be picked up by the map again
-				}
+				target.styleName = clone;											
+				target.dispatchEvent(new Event(BehaviorMap.STYLES_CHANGED, true)); 	// it will be picked up by the map again
 			}
 		}
 		
@@ -112,23 +107,31 @@ package net.seanhess.bifff.core
 		 */
 		override public function toString():String
 		{
-			return styles.source.join(" ");
+			return toArray().join(" ");
+		}
+		
+		public function toArray():Array
+		{
+			var styleNames:Array = [];
+			for (var name:String in styles)
+			{
+				styleNames.push(name);
+			}
+			
+			return styleNames;
 		}
 		
 		public function clone():MultiStyleDeclaration
 		{
 			var declaration:MultiStyleDeclaration = new MultiStyleDeclaration();
 				declaration.styles = this.styles;
-				declaration.styleMap = this.styleMap;
+				declaration.declarations = this.declarations;
 				declaration.targets = this.targets;
 				
 			return declaration;
 		}
 		
-		public var styles:ArrayCollection = new ArrayCollection();
-		public var styleMap:Dictionary = new Dictionary(true); // maps names to declarations
-		
-		protected var invalid:Boolean = true;
-		protected var setting:Boolean = false;
+		public var styles:Dictionary = new Dictionary(true);
+		public var declarations:Dictionary = new Dictionary(true); // maps names to declarations
 	}
 }

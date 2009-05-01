@@ -2,42 +2,27 @@ package net.seanhess.bifff.behaviors
 {
 	import flash.events.EventDispatcher;
 	
-	import net.seanhess.bifff.behaviors.IBehavior;
-	import net.seanhess.bifff.events.BifffEvent;
 	import net.seanhess.bifff.core.MultiStyleDeclaration;
-	import net.seanhess.bifff.core.StyleMerger;
-	import net.seanhess.bifff.scope.IScopeable;
-	import net.seanhess.bifff.scope.Scope;
-	import net.seanhess.bifff.utils.TargetRegistry;
+	import net.seanhess.bifff.utils.Targets;
 	
 	/**
 	 * Allows you to add and remove styles
 	 */
-	[Event(name="updatedStyle",type="net.seanhess.bifff.events.BifffEvent")]
-	public class Styles extends EventDispatcher implements IBehavior, IScopeable
+	public class Styles extends EventDispatcher
 	{
 		protected var classesToAdd:Array = [];
 		protected var classesToRemove:Array = [];
-		public var merger:StyleMerger = new StyleMerger();
-		
-		protected var scope:Scope = new Scope();
-		protected var registry:TargetRegistry = new TargetRegistry(apply);
+		protected var targets:Targets = new Targets();
 		
 		public function set target(value:*):void
 		{
-			registry.applyTargets(value);
-		}
-		
-		public function set parent(value:Scope):void
-		{
-			scope.parent = value;
+			targets.add(value);
+			apply(value);
 		}
 		
 		public function apply(target:*):void
 		{
-			scope.target = target;
-			
-			var declaration:MultiStyleDeclaration = scope.target.styleName as MultiStyleDeclaration || new MultiStyleDeclaration(scope.target.styleName, scope.target);
+			var declaration:MultiStyleDeclaration = target.styleName as MultiStyleDeclaration || new MultiStyleDeclaration(target.styleName, target);
 			
 			for each (var add:String in classesToAdd)
 			{
