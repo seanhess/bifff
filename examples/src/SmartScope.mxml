@@ -3,6 +3,7 @@
 
 	<mx:Script>
 		<![CDATA[
+			import net.seanhess.bifff.core.BehaviorMap;
 			import mx.controls.Alert;
 			import net.seanhess.bifff.core.Scope;
 			
@@ -16,18 +17,25 @@
 				button.width = 400;
 			}
 			
-			public function findMap(scope:Scope):void
+			public function findMap(map:BehaviorMap):void
 			{
-				trace("Checking ... " + scope.map.target);
+				trace("Checking ... " + map.target);
 			}
 		]]>
 	</mx:Script>
 	
+	<!-- 
+		One of these is instantiated in BehaviorMap, so if you create
+		a map in a separate file (the recommendation), you can just say
+		scope.whatever and it will work
+	-->
+	<CurrentScope id="scope"/>
+	
 	<BehaviorMap>
 		<Selector match=".test">
-			<Listen event="click" call="showMessage(Scope.current.event.target.label)"/>
-			<Listen event="click" call="makeBig(Scope.current.target as Button)"/>
-			<Listen event="click" call="findMap(Scope.current)"/>
+			<Listen event="click" call="showMessage(scope.event.target.label)"/>
+			<Listen event="click" call="makeBig(scope.target as Button)"/>
+			<Listen event="click" call="findMap(scope.map)"/>
 		</Selector>
 	</BehaviorMap>
 

@@ -6,7 +6,7 @@ package net.seanhess.bifff.core
 	[Bindable]
 	dynamic public class Scope extends Proxy
 	{
-		public static var current:Scope;
+		public static var current:Scope = new Scope();
 		
 		public var parent:Scope;
 		public var values:Object;
@@ -41,6 +41,11 @@ package net.seanhess.bifff.core
 	    override flash_proxy function setProperty(name:*, value:*):void 
 		{
 			values[name] = value;
+	    }
+	    
+	    public function get current():Scope
+	    {
+	    	return Scope.current;
 	    }
 		
 		/**

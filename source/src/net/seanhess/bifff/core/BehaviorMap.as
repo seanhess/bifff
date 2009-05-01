@@ -36,12 +36,14 @@ package net.seanhess.bifff.core
 		
 		public var invalidator:Invalidator = new Invalidator(finished);
 		
-		public var scope:Scope;
+		private var parentScope:Scope;
+		
+		public var scope:CurrentScope = new CurrentScope();
 		
 		public function BehaviorMap()
 		{
-			scope = new Scope();
-			scope.map = this;
+			parentScope = new Scope();
+			parentScope.map = this;
 		}
 		
 		[Bindable("target")]
@@ -126,7 +128,7 @@ package net.seanhess.bifff.core
 
 				if (selector)
 				{
-					selector.parent = scope;
+					selector.parent = parentScope;
 					
 					var matched:Boolean = selector.matches(target, this.target); 
 					
