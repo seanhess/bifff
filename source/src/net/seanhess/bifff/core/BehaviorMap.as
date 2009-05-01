@@ -36,16 +36,6 @@ package net.seanhess.bifff.core
 		
 		public var invalidator:Invalidator = new Invalidator(finished);
 		
-		public function initialized(document:Object, id:String):void
-		{
-			if (target == null && document is IEventDispatcher)
-				target = document as IEventDispatcher;
-			
-			this.document = document;
-			this.id = id;
-			dispatchEvent(new FlexEvent(FlexEvent.INITIALIZE));
-		}
-		
 		[Bindable("target")]
 		public function set target(value:IEventDispatcher):void
 		{
@@ -63,8 +53,18 @@ package net.seanhess.bifff.core
 			return _target;
 		}
 		
-		private var _target:IEventDispatcher;
-		private var registered:Boolean = false;
+		/**
+		 * Called when created in MXML
+		 */
+		public function initialized(document:Object, id:String):void
+		{
+			if (target == null && document is IEventDispatcher)
+				target = document as IEventDispatcher;
+			
+			this.document = document;
+			this.id = id;
+			dispatchEvent(new FlexEvent(FlexEvent.INITIALIZE));
+		}
 		
 		protected function commit():void
 		{			
@@ -81,6 +81,10 @@ package net.seanhess.bifff.core
 			invalidator.invalidate("creationComplete");
 		}
 		
+		/**
+		 * Dispatches a creation complete event onto the
+		 * target as if we were a visual child of it
+		 */
 		protected function finished():void
 		{
 			// Dispatch Fake Creation Complete // 
@@ -136,7 +140,8 @@ package net.seanhess.bifff.core
 		}
 		
 		protected var _selectors:Array = [];
-		
+		private var _target:IEventDispatcher;
+		private var registered:Boolean = false;
 		
 		
 	}

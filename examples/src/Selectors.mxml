@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="http://bifff.seanhess.net/2009">
 
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+		]]>
+	</mx:Script>
+
 	<BehaviorMap>
 		<Selector match="Button">
-			<Listen event="click" call="trace('test')"/>
-			<Listen event="creationComplete" call="trace('complete')"/>
-			<Bind property="selected" call="asdf.cusot = value;"/>
-			<!-- Do you REALLY want this here? -->
-			<!-- Or is listen enough :) -->
-			<!-- you can always have somebody dispatch an event... -->
-			<!-- Maybe more minor changes are in order -->
+			<Listen event="click" call="Alert.show('test')"/>
+		</Selector>
+		
+		<Selector match=".test">
+			<Set width="400" fontSize="24"/>			
 		</Selector>
 	</BehaviorMap>
 
-	<mx:Button id="button" label="test"/>
-	<!--<Listen target="{button}" event="click" call="trace('test2')"/>-->
-	<!--<Listen target="{button}" event="creationComplete" call="trace('complete')"/>-->
+	<mx:Button id="button" label="test" styleName="test"/>
 
 </mx:Application>

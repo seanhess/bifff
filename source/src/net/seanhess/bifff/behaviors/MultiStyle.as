@@ -4,9 +4,9 @@ package net.seanhess.bifff.behaviors
 	
 	/**
 	 * This allows a UIComponent to have multiple styles
-	 * and to have them all apply (from the stylesheet)
-	 * 
-	 * Notice you don't have to implement IBehavior
+	 * and to have them all apply (from a normal
+	 * flex stylesheet). You don't need to add this behavior
+	 * to get multiple styles to match selectors
 	 */
 	public class MultiStyle
 	{

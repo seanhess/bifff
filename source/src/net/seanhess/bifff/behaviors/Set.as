@@ -11,6 +11,10 @@ package net.seanhess.bifff.behaviors
 	import net.seanhess.bifff.utils.Targets;
 	
 	/**
+	 * Allows you to set properties and styles on the target.
+	 * 
+	 * If you update them afterward, they will forward the new
+	 * values to all the targets. 
 	 */
 	dynamic public class Set extends Proxy
 	{
