@@ -2,8 +2,6 @@ package net.seanhess.bifff.core
 {
 	import flash.events.EventDispatcher;
 	
-	import net.seanhess.bifff.events.BifffEvent;
-	
 	public class Executor extends EventDispatcher implements IExecutor
 	{
 		public var applications:ApplicationTracker;
@@ -19,40 +17,20 @@ package net.seanhess.bifff.core
 				return;
 			
 			applications.apply(selector, target);
-			executeActions(target, selector.actions);
+			executeActions(target, selector.actions, selector.scope);
 		}
 		
-		public function executeMatches(matches:Array, actions:Array):void
-		{
-			for each (var target:* in matches)
-				executeActions(target, actions);
-		}
-		
-		public function executeActions(target:*, actions:Array):void
+		public function executeActions(target:*, actions:Array, scope:Scope):void
 		{
 			for each (var action:Object in actions)
 			{
 				if (action.hasOwnProperty("target"))
+				{
+					if (action is IScopeable)
+						(action as IScopeable).parent = scope;
+						
 					action.target = target;
-				
-//				var behavior:Behavior;
-//				
-//				if (!(action is IAction
-//				
-//				if (action is Class)
-//				{
-//					behavior = new Behavior();
-//					behavior.generator = action;
-//					action = behavior;
-//				}
-//				
-//				else if (!(action is IAction))
-//				{
-//					if (action is IBehavior || action.hasOwnProperty("target") || action.hasOwnProperty("actions")
-//				}
-				
-//				if (action is IAction)
-//					action.apply(scope);
+				}
 			}
 		}
 	}

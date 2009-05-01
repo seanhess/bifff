@@ -4,13 +4,18 @@ package net.seanhess.bifff.behaviors
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
 	
+	import net.seanhess.bifff.core.IScopeable;
+	import net.seanhess.bifff.core.Scope;
 	import net.seanhess.bifff.utils.Targets;
 	
 	[Event(name="call", type="flash.events.Event")] 
-	public class Listen extends EventDispatcher
+	[Bindable]
+	public class Listen extends EventDispatcher implements IScopeable
 	{		
 		private var _event:String;
 		private var targets:Targets = new Targets();
+		
+		public var parent:Scope = new Scope();	// a parent can set this from the outside
 
 		public function set target(value:*):void
 		{			
@@ -37,6 +42,14 @@ package net.seanhess.bifff.behaviors
 			targets.applied(target); 		// remember it was already applied
 			
 			dispatcher.addEventListener(_event, function(event:Event):void {
+				
+				var scope:Scope = new Scope();
+					scope.parent = parent;
+					scope.event = event;
+					scope.target = target;
+					
+				Scope.current = scope;
+					
 				dispatchEvent(new Event("call"));
 			});
 		}

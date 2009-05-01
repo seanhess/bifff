@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" width="600" height="400" title="Bifff Debug Console">
 	
-	<!-- this thing can open itself up -->
-	
 	<mx:Script>
 		<![CDATA[
 			import mx.collections.ArrayCollection;

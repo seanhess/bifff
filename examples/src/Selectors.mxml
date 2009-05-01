@@ -1,22 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="http://bifff.seanhess.net/2009">
-
-	<mx:Script>
-		<![CDATA[
-			import mx.controls.Alert;
-		]]>
-	</mx:Script>
-
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns="http://bifff.seanhess.net/2009" viewSourceURL="srcview/index.html">
+		
 	<BehaviorMap>
+		<!-- Select by Tag -->
 		<Selector match="Button">
-			<Listen event="click" call="Alert.show('test')"/>
+			<Set fontSize="24"/>
 		</Selector>
 		
-		<Selector match=".test">
-			<Set width="400" fontSize="24"/>			
+		<!-- Select by StyleName -->
+		<Selector match=".fat">
+			<Set width="300"/>
 		</Selector>
+		
+		<Selector match=".short">
+			<Set height="25"/>
+		</Selector>
+		
+		<Selector match=".skinny">
+			<Set width="50"/>
+		</Selector>
+		
+		<Selector match=".tall">
+			<Set height="100"/>
+		</Selector>
+		
+		<!-- Select by id -->
+		<Selector match="#thirdButton">
+			<Set color="#FF0000"/>
+		</Selector>
+		
+		<!-- Select by superclass/interface (use the fully qualified name as a string) -->
+		<Selector match="mx.core.IButton">
+			<Set borderColor="#00FF00"/>
+		</Selector>
+		
+		<!-- Select Any -->
+		<Selector match="*">
+			<!-- Don't do anything.... this is a little too much juice -->
+			<!-- It can be useful in more complicated selectors -->
+		</Selector>
+		
+		<!-- Descendants -->
+		<Selector match="#nestedCanvas Button">
+			<Set color="#0000FF"/>
+		</Selector>
+		
+		<!-- Direct Child -->
+		<Selector match="#rowBox > mx.core.Container">
+			<Set width="300" height="50"/>
+		</Selector>
+		
+		<!-- Even and Odd -->
+		<Selector match="#rowBox > Canvas:odd">
+			<Set backgroundColor="#000000"/>
+		</Selector>
+		
+		<Selector match="#rowBox > Canvas:even">
+			<Set backgroundColor="#FFFFFF"/>
+		</Selector>
+		
+		<!-- Multiple Criteria -->
+		<Selector match="Button#firstButton.fat.short">
+			<Set textAlign="left"/>
+		</Selector>
+		
+		<!-- Multiple Classes -->
+		<Selector match=".a.b.c">
+			<Set width="500"/>
+		</Selector>
+		
+		<Selector match="#a.a.b.c">
+			<Set height="20"/>
+		</Selector>
+		
 	</BehaviorMap>
-
-	<mx:Button id="button" label="test" styleName="test"/>
-
+	
+	<mx:Button label="First Button" styleName="fat short" id="firstButton"/>
+	<mx:Button label="Second Button" styleName="skinny tall"/>
+	<mx:Button label="Third Button" id="thirdButton"/>
+	
+	<mx:VBox id="rowBox">
+		<mx:Canvas></mx:Canvas>
+		<mx:Canvas></mx:Canvas>
+		<mx:Canvas></mx:Canvas>
+		<mx:Canvas></mx:Canvas>
+	</mx:VBox>
+	
+	<mx:VBox id="nestedCanvas">
+		<mx:Button label="hi"/>
+		<mx:HBox>
+			<mx:Button label="hi"/>
+			<mx:Button label="hi"/>
+			<mx:VBox>
+				<mx:Button label="hi"/>
+				<mx:Button label="hi"/>
+			</mx:VBox>	
+		</mx:HBox>
+	</mx:VBox>
+		
 </mx:Application>

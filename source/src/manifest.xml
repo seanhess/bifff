@@ -14,7 +14,14 @@
 	<component class="net.seanhess.bifff.core.Node"/>
 	<component class="net.seanhess.bifff.core.Parser"/>
 	<component class="net.seanhess.bifff.core.Selector"/>
+	<component class="net.seanhess.bifff.core.Scope"/>
 	
 	<component class="net.seanhess.bifff.events.BifffEvent"/>
 	<component class="net.seanhess.bifff.events.CreationComplete"/>
+
+	<component class="net.seanhess.bifff.utils.DebugConsole"/>
+	<component class="net.seanhess.bifff.utils.Debug"/>
+	<component class="net.seanhess.bifff.utils.Targets"/>
+	<component class="net.seanhess.bifff.utils.Invalidator"/>
+	<component class="net.seanhess.bifff.utils.Defaults"/>
 </componentPackage>

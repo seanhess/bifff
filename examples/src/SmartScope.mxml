@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" xmlns="http://bifff.seanhess.net/2009">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import net.seanhess.bifff.core.Scope;
+			
+			public function showMessage(message:String):void
+			{
+				trace("Message: " + message);
+			}
+			
+			public function makeBig(button:Button):void
+			{
+				button.width = 400;
+			}
+			
+			public function findMap(scope:Scope):void
+			{
+				trace("Checking ... " + scope.map.target);
+			}
+		]]>
+	</mx:Script>
+	
+	<BehaviorMap>
+		<Selector match=".test">
+			<Listen event="click" call="showMessage(Scope.current.event.target.label)"/>
+			<Listen event="click" call="makeBig(Scope.current.target as Button)"/>
+			<Listen event="click" call="findMap(Scope.current)"/>
+		</Selector>
+	</BehaviorMap>
+
+	<mx:Button id="button" label="test" styleName="test"/>
+
+</mx:Application>

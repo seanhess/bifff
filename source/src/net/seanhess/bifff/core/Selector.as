@@ -3,10 +3,24 @@ package net.seanhess.bifff.core
 	import flash.display.DisplayObject;
 	
 	[DefaultProperty("actions")]
+	[Bindable]
 	public class Selector implements ISelector
 	{
 		public var parser:IParser = new Parser();
 		public var matcher:IMatcher = new Matcher();
+		
+		public var scope:Scope;
+		
+		public function Selector()
+		{
+			scope = new Scope();
+			scope.selector = this;
+		}
+		
+		public function set parent(value:Scope):void
+		{
+			scope.parent = value;
+		}
 		
 		public function set nodes(value:Array):void
 		{
@@ -49,11 +63,6 @@ package net.seanhess.bifff.core
 		{
 			return matcher.match(target, nodes, root as DisplayObject);
 		}
-		
-//		public function set parent(value:Scope):void
-//		{
-//			scope.parent = value;
-//		}
 		
 		protected var _match:String = "";
 		protected var _actions:Array;

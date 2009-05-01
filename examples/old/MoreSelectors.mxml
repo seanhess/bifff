@@ -3,14 +3,7 @@
 	
 	<BehaviorMap target="{this}">
 		
-		<!-- Multiple Classes -->
-		<Selector match=".a.b.c">
-			<Set width="500"/>
-		</Selector>
-		
-		<Selector match="#henry.a.b.c">
-			<Set height="10"/>
-		</Selector>
+
 		
 	</BehaviorMap>
 	
