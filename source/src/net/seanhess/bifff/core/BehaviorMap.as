@@ -83,6 +83,8 @@ package net.seanhess.bifff.core
 				
 			executor = new Executor();
 			
+			parentScope.mapTarget = target;
+			
 			target.addEventListener(registerEvent, onFoundTarget, true, 1, true);
 			target.addEventListener(registerEvent, onFoundTarget, false, 1, true);
 			target.addEventListener(STYLES_CHANGED, onStylesChanged, true, 1, true);
@@ -128,27 +130,45 @@ package net.seanhess.bifff.core
 
 				if (selector)
 				{
-					selector.parent = parentScope;
-					
 					var matched:Boolean = selector.matches(target, this.target); 
 					
 					if (matched)
-						executor.executeSelector(target, selector);
+						matchedSelector(target, selector);
 						
-					Debug.instance.match(selector, target, matched); 
+					else
+						notMatchedSelector(target, selector);						
 				}
 			}
+		}
+		
+		public function matchedSelector(target:*, selector:ISelector):void
+		{
+			executor.executeSelector(target, selector);
+			Debug.instance.match(selector, target, true);
+		}
+		
+		public function notMatchedSelector(target:*, selector:ISelector):void
+		{
+			Debug.instance.match(selector, target, false); 
 		}
 		
 		[ArrayElementType("Object")]
 		public function set selectors(value:Array):void
 		{
 			_selectors = value;	
+			
+			for each (var selector:ISelector in value)
+				initializeSelector(selector);
 		}
 		
 		public function get selectors():Array
 		{
 			return _selectors;	
+		}
+		
+		protected function initializeSelector(selector:ISelector):void
+		{
+			selector.parent = parentScope;
 		}
 		
 		protected var _selectors:Array = [];

@@ -1,6 +1,6 @@
 package net.seanhess.bifff.core
 {
-	import net.seanhess.bifff.core.Scope;
+	import flash.events.IEventDispatcher;
 	
 	public interface IScopeable
 	{

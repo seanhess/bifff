@@ -34,24 +34,34 @@ package net.seanhess.bifff.behaviors
 		
 		public function apply(target:*):void
 		{
+			var dispatcher:IEventDispatcher = getDispatcher(target);
+				
+			targets.applied(target); 		// remember it was already applied
+			
+			dispatcher.addEventListener(_event, function(event:Event):void {
+				generateScope(target, event);
+				dispatchEvent(new Event("call"));
+			});
+		}
+		
+		protected function getDispatcher(target:*):IEventDispatcher
+		{
 			var dispatcher:IEventDispatcher = target as IEventDispatcher;
 			
 			if (dispatcher == null)
 				throw new Error("Target was not an IEventDispatcher: " + target);
 				
-			targets.applied(target); 		// remember it was already applied
-			
-			dispatcher.addEventListener(_event, function(event:Event):void {
-				
-				var scope:Scope = new Scope();
-					scope.parent = parent;
-					scope.event = event;
-					scope.target = target;
+			return dispatcher;
+		}
+		
+		protected function generateScope(target:*, event:Event):void
+		{
+			var scope:Scope = new Scope();
+				scope.parent = parent;
+				scope.event = event;
+				scope.target = target;
 					
-				Scope.current = scope;
-					
-				dispatchEvent(new Event("call"));
-			});
+			Scope.current = scope;
 		}
 	}
 }

@@ -12,6 +12,9 @@ package net.seanhess.bifff.core
 		{
 			if (!item)
 				return false;
+				
+			if (nodes == null || item == null)
+				throw new Error("Nodes: '"+nodes+"' or Item: '"+item+"' were null in Matcher.match ");
 			
 			if (nodes.length < 1)
 				return false;

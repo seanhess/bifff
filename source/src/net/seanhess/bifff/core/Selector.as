@@ -1,10 +1,11 @@
 package net.seanhess.bifff.core
 {
 	import flash.display.DisplayObject;
+	import flash.events.EventDispatcher;
 	
 	[DefaultProperty("actions")]
 	[Bindable]
-	public class Selector implements ISelector
+	public class Selector extends EventDispatcher implements ISelector
 	{
 		public var parser:IParser = new Parser();
 		public var matcher:IMatcher = new Matcher();
@@ -54,13 +55,16 @@ package net.seanhess.bifff.core
 			return _match;
 		}
 		
-		public function toString():String
+		override public function toString():String
 		{
 			return _match as String || _match.toString();
 		}
 		
 		public function matches(target:*, root:*=null):Boolean
 		{
+			if (nodes == null)
+				throw new Error("Could not match with selector: " + this + ". Perhaps you forgot to set match?");
+			
 			return matcher.match(target, nodes, root as DisplayObject);
 		}
 		
