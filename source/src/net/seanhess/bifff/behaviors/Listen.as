@@ -39,7 +39,7 @@ package net.seanhess.bifff.behaviors
 			targets.applied(target); 		// remember it was already applied
 			
 			dispatcher.addEventListener(_event, function(event:Event):void {
-				generateScope(target, event);
+				eventFiring(target, event);
 				dispatchEvent(new Event("call"));
 			});
 		}
@@ -54,7 +54,7 @@ package net.seanhess.bifff.behaviors
 			return dispatcher;
 		}
 		
-		protected function generateScope(target:*, event:Event):void
+		protected function eventFiring(target:*, event:Event):void
 		{
 			var scope:Scope = new Scope();
 				scope.parent = parent;
