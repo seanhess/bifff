@@ -22,6 +22,7 @@ package net.seanhess.bifff.core
 	{
 		public static const STYLES_CHANGED:String = "stylesChanged";
 		public static const NEW_TARGET:String = "target";
+		public static const MATCHED:String = "matched";
 		
 		public var registerEvent:String = FlexEvent.CREATION_COMPLETE;
 		
@@ -151,6 +152,12 @@ package net.seanhess.bifff.core
 		public function matchedSelector(target:*, selector:ISelector):void
 		{
 			executor.executeSelector(target, selector);
+			
+			if (target is IEventDispatcher)
+			{
+				(target as IEventDispatcher).dispatchEvent(new Event(MATCHED));
+			}
+			
 			Debug.instance.match(selector, target, true);
 		}
 		

@@ -14,11 +14,17 @@ package net.seanhess.bifff.behaviors
 		{
 			if (value.hasOwnProperty("styleName"))
 			{
-				var current:String = value.styleName as String;
+				var current:String = "";
+								
+				if (value.styleName is MultiStyleDeclaration)
+					return;
+					
+				if (value.styleName is String)
+					current = value.styleName;
+					
+				else if (value.styleName == null)
+					return;
 				
-				if (current == null)
-					current = "";
-
 				value.styleName = new MultiStyleDeclaration(current);
 			}
 		}
