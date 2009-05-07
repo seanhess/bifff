@@ -4,6 +4,9 @@
 	<component class="net.seanhess.bifff.behaviors.MultiStyle"/>
 	<component class="net.seanhess.bifff.behaviors.Set"/>
 	<component class="net.seanhess.bifff.behaviors.Styles"/>
+	<component class="net.seanhess.bifff.behaviors.Inject"/>
+	<component class="net.seanhess.bifff.behaviors.SelectChildren"/>
+	<component class="net.seanhess.bifff.behaviors.Target"/>
 
 	<component class="net.seanhess.bifff.core.BehaviorMap"/>
 	<component class="net.seanhess.bifff.core.IMatcher"/>
@@ -17,10 +20,11 @@
 	<component class="net.seanhess.bifff.core.CurrentScope"/>
 	<component class="net.seanhess.bifff.core.Scope"/>
 	
-	<component class="net.seanhess.bifff.events.BifffEvent"/>
 	<component class="net.seanhess.bifff.events.CreationComplete"/>
+	
+	<component class="net.seanhess.bifff.extensions.CachingBehaviorMap"/>
 
-	<component class="net.seanhess.bifff.utils.DebugConsole"/>
+	<!--<component class="net.seanhess.bifff.utils.DebugConsole"/>-->
 	<component class="net.seanhess.bifff.utils.Debug"/>
 	<component class="net.seanhess.bifff.utils.Targets"/>
 	<component class="net.seanhess.bifff.utils.Invalidator"/>

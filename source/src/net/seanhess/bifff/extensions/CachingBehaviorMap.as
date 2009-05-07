@@ -8,7 +8,7 @@ package net.seanhess.bifff.extensions
 	{
 		protected var found:Dictionary = new Dictionary(true);
 		
-		override protected function match(target:*):void
+		override public function match(target:*):void
 		{
 			found[target] = true;
 			super.match(target);

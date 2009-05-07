@@ -7,7 +7,6 @@ package net.seanhess.bifff.core
 	import mx.core.IMXMLObject;
 	import mx.events.FlexEvent;
 	
-	import net.seanhess.bifff.events.BifffEvent;
 	import net.seanhess.bifff.events.CreationComplete;
 	import net.seanhess.bifff.utils.Debug;
 	import net.seanhess.bifff.utils.Defaults;
@@ -17,12 +16,12 @@ package net.seanhess.bifff.core
 	 * I want mate to be able to inject to me, so I'm hacking this to extend UIComponent
 	 */
 	[DefaultProperty("selectors")]
-	[Event(name="foundMatch", type="net.seanhess.bifff.events.BifffEvent")]
 	[Event(name="initialize", type="mx.events.FlexEvent")]
 	[Bindable]
 	public class BehaviorMap extends EventDispatcher implements IMXMLObject
 	{
 		public static const STYLES_CHANGED:String = "stylesChanged";
+		public static const NEW_TARGET:String = "target";
 		
 		public var registerEvent:String = FlexEvent.CREATION_COMPLETE;
 		
@@ -40,6 +39,8 @@ package net.seanhess.bifff.core
 		
 		public var scope:CurrentScope = new CurrentScope();
 		
+		public var autoTarget:Boolean = true;
+		
 		public function BehaviorMap()
 		{
 			parentScope = new Scope();
@@ -54,7 +55,7 @@ package net.seanhess.bifff.core
 				if (registered)	unregister();
 				_target = value;	
 				commit();
-				dispatchEvent(new Event("target"));
+				dispatchEvent(new Event(NEW_TARGET));
 			}
 		}
 		
@@ -68,7 +69,7 @@ package net.seanhess.bifff.core
 		 */
 		public function initialized(document:Object, id:String):void
 		{
-			if (target == null && document is IEventDispatcher)
+			if (autoTarget && target == null && document is IEventDispatcher)
 				target = document as IEventDispatcher;
 			
 			this.document = document;
@@ -85,8 +86,8 @@ package net.seanhess.bifff.core
 			
 			parentScope.mapTarget = target;
 			
-			target.addEventListener(registerEvent, onFoundTarget, true, 1, true);
-			target.addEventListener(registerEvent, onFoundTarget, false, 1, true);
+			target.addEventListener(registerEvent, onFoundTargetCapture, true, 1, true);
+			target.addEventListener(registerEvent, onFoundTargetNormal, false, 1, true);
 			target.addEventListener(STYLES_CHANGED, onStylesChanged, true, 1, true);
 			registered = true;
 			
@@ -106,7 +107,8 @@ package net.seanhess.bifff.core
 		
 		protected function unregister():void
 		{
-			target.removeEventListener(registerEvent, onFoundTarget);
+			target.removeEventListener(registerEvent, onFoundTargetCapture);
+			target.removeEventListener(registerEvent, onFoundTargetNormal);
 			target.addEventListener(STYLES_CHANGED, onStylesChanged);
 			executor = null;
 			registered = false;
@@ -117,12 +119,17 @@ package net.seanhess.bifff.core
 			match(event.target);
 		}
 		
-		protected function onFoundTarget(event:Event):void
+		protected function onFoundTargetCapture(event:Event):void
 		{
 			match(event.target);
 		}
 		
-		protected function match(target:*):void
+		protected function onFoundTargetNormal(event:Event):void
+		{
+			match(event.target);
+		}
+		
+		public function match(target:*):void
 		{
 			for each (var child:* in selectors)
 			{

@@ -29,7 +29,7 @@ package net.seanhess.bifff.core
 				this.styleNames = styleNames;
 				
 			if (target)
-				targets[target] = true;
+				targets[target] = true; 
 		}
 		
 		override mx_internal function addStyleToProtoChain(chain:Object,
