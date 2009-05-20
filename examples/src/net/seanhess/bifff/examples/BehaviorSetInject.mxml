@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bifff.seanhess.net/2009">
+	<BehaviorMap>
+		<Selector match="Button">
+			<Inject label="Injected Label"/><!-- Injecting asdf="nothing" would throw an error -->
+			<Set width="300" fontSize="20"/>
+		</Selector>
+	</BehaviorMap>
+	
+	<mx:Button label="hi"/>
+</mx:Canvas>

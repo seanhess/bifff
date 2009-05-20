@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bifff.seanhess.net/2009">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Button;
+			import mx.controls.Alert;
+			
+			private function showAlert(message:String, number:Number):void
+			{
+				Alert.show(message + " " + number);
+			}
+		]]>
+	</mx:Script>
+	
+	<CurrentScope id="scope"/>
+
+	<BehaviorMap>
+		<Selector match="Button">
+			<Listen event="click" call="showAlert(scope.target.label, scope.event.localY)"/>
+		</Selector>
+	</BehaviorMap>
+	
+	<mx:Button label="one"/>
+	<mx:Button label="two"/>
+	<mx:Button label="three"/>
+	<mx:Button label="four"/>
+</mx:VBox>

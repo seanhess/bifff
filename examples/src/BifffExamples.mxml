@@ -5,20 +5,42 @@
 
 	<behavior:ApplicationBehaviors/>
 
-	<mx:Panel width="100%" height="100%" layout="horizontal" title="{stack.selectedChild.label}" paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10">
-	
+	<mx:ViewStack id="mainStack" width="100%" height="100%" styleName="fadeChildren">
+		<mx:Panel width="100%" height="100%" layout="horizontal" title="{selectorsStack.selectedChild.label}" paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10">
 		
-		<mx:ToggleButtonBar dataProvider="{stack}" direction="vertical"/>
+			<mx:ToggleButtonBar dataProvider="{selectorsStack}" direction="vertical"/>
 		
-		<mx:ViewStack id="stack" width="100%" height="100%" styleName="fadeChildren">
-			<examples:SelectByTag label="Simple"/>
-			<examples:SelectByStyleName label="Styles"/>
-			<examples:SelectByID label="IDs"/>
-			<examples:SelectByClass label="Class"/>
-			<examples:SelectDescendants label="Descendants"/>
-			<examples:SelectMoreDescendents label="More Descendants"/>
-			<examples:SelectMixed label="Mixed"/>
-		</mx:ViewStack>
+			<mx:ViewStack id="selectorsStack" width="100%" height="100%" styleName="fadeChildren">
+				<examples:SelectByTag label="Simple"/>
+				<examples:SelectByStyleName label="Styles"/>
+				<examples:SelectByID label="IDs"/>
+				<examples:SelectByClass label="Class"/>
+				<examples:SelectDescendants label="Descendants"/>
+				<examples:SelectMoreDescendents label="More Descendants"/>
+				<examples:SelectMixed label="Mixed"/>
+			</mx:ViewStack>
+			
+			<mx:ControlBar>
+				<mx:Button label="Behaviors" click="mainStack.selectedIndex=1"/>
+			</mx:ControlBar>
+					
+		</mx:Panel>
+		<mx:Panel width="100%" height="100%" layout="horizontal" title="{behaviorsStack.selectedChild.label}" paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10">
 		
-	</mx:Panel>
+			<mx:ToggleButtonBar dataProvider="{behaviorsStack}" direction="vertical"/>
+		
+			<mx:ViewStack id="behaviorsStack" width="100%" height="100%" styleName="fadeChildren">
+				<examples:BehaviorSetInject label="Set and Inject"/>
+				<examples:BehaviorListen label="Listen"/>
+				<examples:BehaviorListenScope label="Scope"/>
+				<examples:BehaviorStyles label="Styles"/>
+			</mx:ViewStack>
+			
+			<mx:ControlBar>
+				<mx:Button label="Selectors" click="mainStack.selectedIndex=0"/>
+			</mx:ControlBar>
+					
+		</mx:Panel>
+	</mx:ViewStack>
+
 </mx:Application>

@@ -6,7 +6,6 @@
 	<component class="net.seanhess.bifff.behaviors.Styles"/>
 	<component class="net.seanhess.bifff.behaviors.Inject"/>
 	<component class="net.seanhess.bifff.behaviors.SelectChildren"/>
-	<component class="net.seanhess.bifff.behaviors.Target"/>
 
 	<component class="net.seanhess.bifff.core.BehaviorMap"/>
 	<component class="net.seanhess.bifff.core.IMatcher"/>

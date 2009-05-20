@@ -6,4 +6,5 @@
 	<Selector match=".fadeChildren > mx.core.Container">
 		<Set hideEffect="{fade}" showEffect="{fade}"/>
 	</Selector>
+	
 </BehaviorMap>

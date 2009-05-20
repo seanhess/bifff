@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bifff.seanhess.net/2009">
+
+	<mx:Style>
+		.big {
+			font-size: 24;
+		}
+		
+		.italic {
+			font-style: italic;
+		}
+		
+		.red {
+			color: #FF0000;
+		}
+			
+	</mx:Style>
+
+	<BehaviorMap>
+		<Selector match="Button">
+			<Styles addClass="red"/>
+		</Selector>
+		
+		<Selector match="#multi">
+			<MultiStyle/>
+		</Selector>
+	</BehaviorMap>
+	
+	<mx:Button label="one"/>
+	<mx:Button label="two"/>
+	
+	<!-- We can use the multistyle behavior to apply more than one from a css sheet -->
+	<mx:Button id="multi" label="Multi" styleName="big italic"/>
+</mx:VBox>

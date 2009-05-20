@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bifff.seanhess.net/2009">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			private function showAlert():void
+			{
+				Alert.show("Hello World");
+			}
+		]]>
+	</mx:Script>
+
+	<BehaviorMap>
+		<Selector match="Button">
+			<Listen event="click" call="showAlert()"/>
+		</Selector>
+	</BehaviorMap>
+	
+	<mx:Button label="Say Hello"/>
+</mx:Canvas>
