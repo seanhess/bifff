@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bifff.seanhess.net/2009" xmlns:model="net.seanhess.bifff.examples.model.*">
+	
+	<!-- Runtime Stylesheet example :: Preferred method! -->
+	<BehaviorSheet url="styles/test.css" target="{this}"/>
+	
+	<!-- Inline Styles example -->
+	<BehaviorSheet target="{this}">
+		<mx:String>
+			<![CDATA[
+				Button {
+					font-size: 24pt;
+				}
+			]]>
+		</mx:String>
+	</BehaviorSheet>
+	
+	<!-- Embedded Styles example -->
+	<mx:Script>
+		<![CDATA[
+			[Embed(source="/styles/embedded.css",mimeType="application/octet-stream")]
+			private var EmbeddedSheet : Class;
+			
+			[Bindable]
+			private var sheetData:String = new EmbeddedSheet();
+		]]>
+	</mx:Script>
+	
+	<BehaviorSheet target="{this}" data="{sheetData}"/>
+	
+	<mx:Button label="henry" id="henry"/>
+	
+	<mx:Panel id="panel" styleName="panel">
+		<mx:Button label="Hello"/>
+		<mx:Button label="Hello"/>
+		<mx:Button label="Hello"/>
+		<mx:Button label="Hello"/>
+	</mx:Panel>
+
+</mx:VBox>

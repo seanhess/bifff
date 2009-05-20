@@ -52,6 +52,7 @@
 		
 			<mx:ViewStack id="otherStack" width="100%" height="100%" styleName="fadeChildren">
 				<examples:OtherDataInjection label="Data Injection"/>
+				<examples:OtherBehaviorSheet label="Behavior Sheet"/>
 			</mx:ViewStack>
 			
 			<mx:ControlBar>

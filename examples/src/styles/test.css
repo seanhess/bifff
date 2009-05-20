@@ -1,0 +1,22 @@
+Button#henry
+{
+	height: 300;
+	font-size: 72;
+	label: "I am a button";
+	color: #FF0000;
+	cornerRadius: 100;
+	font-style: italic;
+	text-decoration:underline;
+}
+
+
+.panel
+{
+	style: wide;
+	behavior: net.seanhess.bifff.examples.behavior.Padding;
+}
+
+.wide
+{
+	width: 300;
+}

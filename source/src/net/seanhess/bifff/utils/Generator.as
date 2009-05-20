@@ -1,28 +1,20 @@
 package net.seanhess.bifff.utils
 {
-	import net.seanhess.bifff.core.IResolver;
-	import net.seanhess.bifff.core.Resolver;
-	import net.seanhess.bifff.scope.Scope;
-	
 	public class Generator
 	{
-		public var resolver:IResolver = new Resolver();
-		
-		public function generate(scope:Scope):*
+		public function generate():*
 		{
-			var instance:* = createInstance(factory, constructorArguments, scope);
-			
-			setProperties(instance, scope);
-			
+			var instance:* = createInstance(factory, constructorArguments);
+			setProperties(instance);
 			return instance;
 		}
 		
-		protected function setProperties(instance:*, scope:Scope):void
+		protected function setProperties(instance:*):void
 		{
 			var properties:Object = this.properties || this;
 			
 			for (var property:String in properties)
-				instance[property] = resolver.resolveObject(properties[property], scope);
+				instance[property] = properties[property];
 		}
 
 		/**
@@ -72,7 +64,7 @@ package net.seanhess.bifff.utils
 		 * can't use function.apply because stupid Class doesn't extend Function. Oh well :)
 		 * Thanks to Nahuel again
 		 */
-		public function createInstance(template:Class, p:Array, scope:Scope):Object
+		public function createInstance(template:Class, p:Array):Object
 		{
 			var newInstance:Object;
 			if(!p || p.length == 0)
@@ -82,8 +74,6 @@ package net.seanhess.bifff.utils
 			}
 			else
 			{
-				p = resolver.resolveArguments(p, scope);
-				
 				// ugly way to call a constructor. 
 				// if someone knows a better way please let me know (nahuel at asfusion dot com).
 				switch(p.length)

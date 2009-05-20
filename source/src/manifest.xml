@@ -6,6 +6,7 @@
 	<component class="net.seanhess.bifff.behaviors.Styles"/>
 	<component class="net.seanhess.bifff.behaviors.Inject"/>
 	<component class="net.seanhess.bifff.behaviors.SelectChildren"/>
+	<component class="net.seanhess.bifff.behaviors.Behavior"/>
 
 	<component class="net.seanhess.bifff.core.BehaviorMap"/>
 	<component class="net.seanhess.bifff.core.IMatcher"/>
@@ -22,6 +23,7 @@
 	<component class="net.seanhess.bifff.events.CreationComplete"/>
 	
 	<component class="net.seanhess.bifff.extensions.CachingBehaviorMap"/>
+	<component class="net.seanhess.bifff.extensions.BehaviorSheet"/>
 
 	<!--<component class="net.seanhess.bifff.utils.DebugConsole"/>-->
 	<component class="net.seanhess.bifff.utils.Debug"/>
