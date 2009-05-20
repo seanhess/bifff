@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bifff.seanhess.net/2009">
+	
+	<BehaviorMap>
+		<Selector match=".one">
+			<Set width="100"/>
+		</Selector>
+		
+		<Selector match=".two">
+			<Set width="200"/>
+		</Selector>
+		
+		<Selector match=".three">
+			<Set width="300"/>
+		</Selector>
+	</BehaviorMap>
+	
+	<mx:Button label="one" styleName="one"/>
+	<mx:Button label="two" styleName="two"/>
+	<mx:Button label="three" styleName="three"/>
+	
+</mx:VBox>

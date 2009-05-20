@@ -10,10 +10,12 @@ package net.seanhess.bifff.core
 		
 		public var parent:Scope;
 		public var values:Object;
+		public var definedValues:Object;
 		
 		public function Scope(properties:Object=null)
 		{
 			values = {};
+			definedValues = {};
 			
 			if (properties)
 				copy(properties);
@@ -29,10 +31,13 @@ package net.seanhess.bifff.core
 		}
 
 		override flash_proxy function getProperty(name:*):* 
-		{
+		{			
 			var value:* = values[name];
 			
-			if (value == null && parent)
+			if (!defined(name))
+				throw new Error("Could not find '" + name + "' in scope");
+			
+			if (!definedLocally(name) && parent)
 				value = parent[name]; 
 				
 			return value;
@@ -40,7 +45,23 @@ package net.seanhess.bifff.core
 	    
 	    override flash_proxy function setProperty(name:*, value:*):void 
 		{
+			definedValues[name] = true;
 			values[name] = value;
+	    }
+	    
+	    public function defined(name:*):Boolean
+	    {
+	    	var isDefined:Boolean = definedLocally(name);
+	    	
+	    	if (parent && isDefined == false)
+	    		isDefined = parent.defined(name);
+
+	    	return isDefined;
+	    }
+	    
+	    public function definedLocally(name:*):Boolean
+	    {
+	    	return definedValues[name] == true;
 	    }
 	    
 	    public function get current():Scope

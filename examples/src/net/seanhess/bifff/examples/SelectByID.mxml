@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bifff.seanhess.net/2009">
+	
+	<BehaviorMap>
+		<Selector match="#yes">
+			<Set width="100"/>
+		</Selector>
+	</BehaviorMap>
+	
+	<mx:Button label="no"/>
+	<mx:Button label="no"/>
+	<mx:Button label="no"/>
+	<mx:Button label="yes!" id="yes"/>
+	<mx:Button label="no"/>
+	<mx:Button label="no"/>
+	
+</mx:VBox>

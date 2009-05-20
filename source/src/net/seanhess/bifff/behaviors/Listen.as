@@ -40,8 +40,13 @@ package net.seanhess.bifff.behaviors
 			
 			dispatcher.addEventListener(_event, function(event:Event):void {
 				eventFiring(target, event);
-				dispatchEvent(new Event("call"));
+				fireEvent();
 			});
+		}
+		
+		protected function fireEvent():void
+		{
+			dispatchEvent(new Event("call"));
 		}
 		
 		protected function getDispatcher(target:*):IEventDispatcher

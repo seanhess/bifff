@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns="http://bifff.seanhess.net/2009" viewSourceURL="srcview/index.html">
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bifff.seanhess.net/2009">
 		
 	<BehaviorMap>
 		<!-- Select by Tag -->
@@ -98,4 +98,4 @@
 		</mx:HBox>
 	</mx:VBox>
 		
-</mx:Application>
+</mx:VBox>

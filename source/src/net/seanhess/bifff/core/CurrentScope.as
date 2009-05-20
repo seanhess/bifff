@@ -8,5 +8,10 @@ package net.seanhess.bifff.core
 		{
 			return Scope.current[name];
 	    }
+	    
+	    override flash_proxy function setProperty(name:*, value:*):void
+	    {
+	    	Scope.current[name] = value;
+	    } 
 	}
 }

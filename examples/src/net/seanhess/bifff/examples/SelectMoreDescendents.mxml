@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bifff.seanhess.net/2009">
+	
+	<BehaviorMap>
+		<Selector match="#main > Button">
+			<Set color="#FF0000"/>
+		</Selector>
+		
+		<Selector match="#second > Button:even">
+			<Set label="even"/>
+		</Selector>
+		
+		<Selector match="#second > Button:odd">
+			<Set label="odd"/>
+		</Selector>
+	</BehaviorMap>
+	
+	<mx:Panel id="main">
+		<mx:Button label="Main"/>
+		<mx:Button label="Main"/>
+		<mx:Button label="Main"/>
+
+		<mx:Panel id="second" title="Second Panel">
+			<mx:Button label="SEcond"/>
+			<mx:Button label="SEcond"/>
+			<mx:Button label="SEcond"/>
+			<mx:Button label="SEcond"/>
+			<mx:Button label="SEcond"/>
+			<mx:Button label="SEcond"/>
+		</mx:Panel>
+		
+		<mx:Button label="Main"/>
+		<mx:Button label="Main"/>
+		<mx:Button label="Main"/>
+
+	</mx:Panel>
+	
+</mx:VBox>

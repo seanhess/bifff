@@ -116,7 +116,7 @@ package net.seanhess.bifff.core
 		{
 			var className:String = getQualifiedClassName(item);
 			
-			var regex:RegExp = new RegExp(node.value + "$");
+			var regex:RegExp = new RegExp("::" + node.value + "$");
 			return regex.test(className);
 		}
 		

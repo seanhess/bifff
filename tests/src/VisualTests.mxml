@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application  
+	layout="vertical" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:manual="net.seanhess.bifff.tests.manual.*">
+	
+	<mx:Panel width="100%" height="100%" title="{stack.selectedChild.label}">
+		<mx:ViewStack id="stack" width="100%" height="100%">
+			<manual:Behaviors label="Behaviors"/>
+			<manual:Selectors label="Selectors"/>
+			<manual:SmartScope label="Scope"/>
+		</mx:ViewStack>
+		<mx:ControlBar>
+			<mx:ToggleButtonBar dataProvider="{stack}"/>
+		</mx:ControlBar>
+	</mx:Panel>
+	
+</mx:Application>

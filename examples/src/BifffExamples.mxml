@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" minWidth="1024" minHeight="768">
+<mx:Application  
+	layout="vertical" 
+	xmlns:mx="http://www.adobe.com/2006/mxml" viewSourceURL="srcview/index.html" xmlns:examples="net.seanhess.bifff.examples.*" xmlns:behavior="net.seanhess.bifff.examples.behavior.*">
+
+	<behavior:ApplicationBehaviors/>
+
+	<mx:Panel width="100%" height="100%" layout="horizontal" title="{stack.selectedChild.label}" paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10">
 	
+		
+		<mx:ToggleButtonBar dataProvider="{stack}" direction="vertical"/>
+		
+		<mx:ViewStack id="stack" width="100%" height="100%" styleName="fadeChildren">
+			<examples:SelectByTag label="Simple"/>
+			<examples:SelectByStyleName label="Styles"/>
+			<examples:SelectByID label="IDs"/>
+			<examples:SelectByClass label="Class"/>
+			<examples:SelectDescendants label="Descendants"/>
+			<examples:SelectMoreDescendents label="More Descendants"/>
+			<examples:SelectMixed label="Mixed"/>
+		</mx:ViewStack>
+		
+	</mx:Panel>
 </mx:Application>

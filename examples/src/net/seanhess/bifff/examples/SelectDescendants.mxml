@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bifff.seanhess.net/2009">
+	
+	<BehaviorMap>
+		<Selector match="HBox Button">
+			<Set color="#FF0000"/>
+		</Selector>
+		
+		<Selector match="VBox #two">
+			<Set color="#00FF00"/>
+		</Selector>
+		
+		<Selector match="TabNavigator mx.controls.TabBar mx.controls.Button">
+			<Set height="100"/>
+		</Selector>
+		
+	</BehaviorMap>
+	
+	<mx:VBox>
+		<mx:Button label="VBox One"/>
+		<mx:Button label="VBox Two" id="two"/>
+		<mx:Button label="VBox Three"/>
+	</mx:VBox>
+	
+	<mx:HBox>
+		<mx:Button label="HBox One"/>
+		<mx:Button label="HBox Two"/>
+		<mx:Button label="HBox Three"/>
+	</mx:HBox>
+	
+	<mx:TabNavigator width="200" height="200">
+		<mx:Canvas label="one">
+			<mx:Button label="hi"/>
+		</mx:Canvas>
+		<mx:Canvas label="two"/>
+		<mx:Canvas label="three"/>
+	</mx:TabNavigator>
+	
+</mx:VBox>

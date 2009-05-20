@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bifff.seanhess.net/2009">
+	
+	<BehaviorMap>
+		<Selector match=".a">
+			<Set width="200"/>
+		</Selector>
+		
+		<Selector match=".b">
+			<Set height="100"/>
+		</Selector>
+		
+		<Selector match=".c">
+			<Set borderColor="#00FF00"/>
+		</Selector>
+	</BehaviorMap>
+	
+	<mx:Button label="a" styleName="a"/>
+	<mx:Button label="b" styleName="b"/>
+	<mx:Button label="c" styleName="c"/>
+	
+	<mx:Button label="a b" styleName="a b"/>
+	<mx:Button label="a c" styleName="a c"/>
+	<mx:Button label="b c" styleName="b c"/>
+
+	<mx:Button label="a b c" styleName="a b c"/>
+
+	
+</mx:VBox>
