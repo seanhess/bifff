@@ -2,6 +2,66 @@
 <index>
 	<title>Source of BifffExamples</title>
 	<nodes>
+		<node label="old.styles">
+			<node label="embedded.css" icon="cssIcon" url="source/old/styles/embedded.css.html"/>
+			<node label="test.css" icon="cssIcon" url="source/old/styles/test.css.html"/>
+		</node>
+		<node label="old.tests" icon="packageIcon" expanded="true">
+			<node label="SampleViews.mxml" icon="mxmlIcon" url="source/old/tests/SampleViews.mxml.html"/>
+		</node>
+		<node label="old.tests.behaviors" icon="packageIcon" expanded="true">
+			<node label="BehaviorSuite.as" icon="actionScriptIcon" url="source/old/tests/behaviors/BehaviorSuite.as.html"/>
+			<node label="SimpleBehavior.as" icon="actionScriptIcon" url="source/old/tests/behaviors/SimpleBehavior.as.html"/>
+			<node label="TestSimpleBehavior.as" icon="actionScriptIcon" url="source/old/tests/behaviors/TestSimpleBehavior.as.html"/>
+			<node label="View.mxml" icon="mxmlIcon" url="source/old/tests/behaviors/View.mxml.html"/>
+		</node>
+		<node label="old.tests.listener" icon="packageIcon" expanded="true">
+			<node label="ListenerSuite.as" icon="actionScriptIcon" url="source/old/tests/listener/ListenerSuite.as.html"/>
+			<node label="TestBinding.as" icon="actionScriptIcon" url="source/old/tests/listener/TestBinding.as.html"/>
+			<node label="TestUpdateState.as" icon="actionScriptIcon" url="source/old/tests/listener/TestUpdateState.as.html"/>
+			<node label="ViewWithStates.mxml" icon="mxmlIcon" url="source/old/tests/listener/ViewWithStates.mxml.html"/>
+		</node>
+		<node label="old.tests.matcher" icon="packageIcon" expanded="true">
+			<node label="MatcherSuite.as" icon="actionScriptIcon" url="source/old/tests/matcher/MatcherSuite.as.html"/>
+			<node label="TestBasicMatching.as" icon="actionScriptIcon" url="source/old/tests/matcher/TestBasicMatching.as.html"/>
+			<node label="TestMultipleMatching.as" icon="actionScriptIcon" url="source/old/tests/matcher/TestMultipleMatching.as.html"/>
+			<node label="TestRecursiveMatching.as" icon="actionScriptIcon" url="source/old/tests/matcher/TestRecursiveMatching.as.html"/>
+		</node>
+		<node label="old.tests.mateintegration" icon="packageIcon" expanded="true">
+			<node label="Bubbling.as" icon="actionScriptIcon" url="source/old/tests/mateintegration/Bubbling.as.html"/>
+			<node label="FakeDispatcher.as" icon="actionScriptIcon" url="source/old/tests/mateintegration/FakeDispatcher.as.html"/>
+			<node label="MateIntegrationSuite.as" icon="actionScriptIcon" url="source/old/tests/mateintegration/MateIntegrationSuite.as.html"/>
+		</node>
+		<node label="old.tests.selector" icon="packageIcon" expanded="true">
+			<node label="SelectorSuite.as" icon="actionScriptIcon" url="source/old/tests/selector/SelectorSuite.as.html"/>
+			<node label="TestParsing.as" icon="actionScriptIcon" url="source/old/tests/selector/TestParsing.as.html"/>
+			<node label="TestParsingValue.as" icon="actionScriptIcon" url="source/old/tests/selector/TestParsingValue.as.html"/>
+		</node>
+		<node label="old.tests.selfselection" icon="packageIcon" expanded="true">
+			<node label="SampleButton.mxml" icon="mxmlIcon" url="source/old/tests/selfselection/SampleButton.mxml.html"/>
+			<node label="SelectSelf.as" icon="actionScriptIcon" url="source/old/tests/selfselection/SelectSelf.as.html"/>
+			<node label="SelfSelectionSuite.as" icon="actionScriptIcon" url="source/old/tests/selfselection/SelfSelectionSuite.as.html"/>
+		</node>
+		<node label="old.tests.setandget" icon="packageIcon" expanded="true">
+			<node label="SetAndGetSuite.as" icon="actionScriptIcon" url="source/old/tests/setandget/SetAndGetSuite.as.html"/>
+			<node label="TestGet.as" icon="actionScriptIcon" url="source/old/tests/setandget/TestGet.as.html"/>
+			<node label="TestSet.as" icon="actionScriptIcon" url="source/old/tests/setandget/TestSet.as.html"/>
+			<node label="View.mxml" icon="mxmlIcon" url="source/old/tests/setandget/View.mxml.html"/>
+		</node>
+		<node label="old.tests.smartobjects" icon="packageIcon" expanded="true">
+			<node label="SmartObjectSuite.as" icon="actionScriptIcon" url="source/old/tests/smartobjects/SmartObjectSuite.as.html"/>
+			<node label="TestNested.as" icon="actionScriptIcon" url="source/old/tests/smartobjects/TestNested.as.html"/>
+		</node>
+		<node label="old.tests.styles" icon="packageIcon" expanded="true">
+			<node label="StyleSuite.as" icon="actionScriptIcon" url="source/old/tests/styles/StyleSuite.as.html"/>
+			<node label="TestMultiStyleDeclaration.as" icon="actionScriptIcon" url="source/old/tests/styles/TestMultiStyleDeclaration.as.html"/>
+			<node label="View.mxml" icon="mxmlIcon" url="source/old/tests/styles/View.mxml.html"/>
+		</node>
+		<node label="old.views" icon="packageIcon" expanded="true">
+			<node label="ButtonRenderer.mxml" icon="mxmlIcon" url="source/old/views/ButtonRenderer.mxml.html"/>
+			<node label="MyCustomEvent.as" icon="actionScriptIcon" url="source/old/views/MyCustomEvent.as.html"/>
+			<node label="TitleWindowRenderer.mxml" icon="mxmlIcon" url="source/old/views/TitleWindowRenderer.mxml.html"/>
+		</node>
 		<node label="src">
 			<node label="net.seanhess.bifff.examples" icon="packageIcon" expanded="true">
 				<node label="BehaviorCustom.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/BehaviorCustom.mxml.html"/>
@@ -10,6 +70,7 @@
 				<node label="BehaviorListenScope.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/BehaviorListenScope.mxml.html"/>
 				<node label="BehaviorSetInject.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/BehaviorSetInject.mxml.html"/>
 				<node label="BehaviorStyles.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/BehaviorStyles.mxml.html"/>
+				<node label="OtherBehaviorSheet.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/OtherBehaviorSheet.mxml.html"/>
 				<node label="OtherDataInjection.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/OtherDataInjection.mxml.html"/>
 				<node label="SelectByClass.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/SelectByClass.mxml.html"/>
 				<node label="SelectByID.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/SelectByID.mxml.html"/>
@@ -26,6 +87,10 @@
 			</node>
 			<node label="net.seanhess.bifff.examples.model" icon="packageIcon" expanded="true">
 				<node label="FakeModel.as" icon="actionScriptIcon" url="source/net/seanhess/bifff/examples/model/FakeModel.as.html"/>
+			</node>
+			<node label="styles">
+				<node label="embedded.css" icon="cssIcon" url="source/styles/embedded.css.html"/>
+				<node label="test.css" icon="cssIcon" url="source/styles/test.css.html"/>
 			</node>
 			<node selected="true" label="BifffExamples.mxml" icon="mxmlAppIcon" url="source/BifffExamples.mxml.html"/>
 		</node>

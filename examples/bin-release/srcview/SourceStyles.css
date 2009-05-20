@@ -2,69 +2,6 @@ body {
 	font-family: Courier New, Courier, monospace;
 }
 
-.ActionScriptASDoc {
-	color: #3f5fbf;
-}
-
-.ActionScriptBracket/Brace {
-}
-
-.ActionScriptComment {
-	color: #009900;
-	font-style: italic;
-}
-
-.ActionScriptDefault_Text {
-}
-
-.ActionScriptMetadata {
-	color: #0033ff;
-	font-weight: bold;
-}
-
-.ActionScriptOperator {
-}
-
-.ActionScriptReserved {
-	color: #0033ff;
-	font-weight: bold;
-}
-
-.ActionScriptString {
-	color: #990000;
-	font-weight: bold;
-}
-
-.ActionScriptclass {
-	color: #9900cc;
-	font-weight: bold;
-}
-
-.ActionScriptfunction {
-	color: #339966;
-	font-weight: bold;
-}
-
-.ActionScriptinterface {
-	color: #9900cc;
-	font-weight: bold;
-}
-
-.ActionScriptpackage {
-	color: #9900cc;
-	font-weight: bold;
-}
-
-.ActionScripttrace {
-	color: #cc6666;
-	font-weight: bold;
-}
-
-.ActionScriptvar {
-	color: #6699cc;
-	font-weight: bold;
-}
-
 .MXMLComment {
 	color: #800000;
 }
@@ -126,5 +63,68 @@ body {
 
 .CSSString {
 	color: #990000;
+}
+
+.ActionScriptASDoc {
+	color: #3f5fbf;
+}
+
+.ActionScriptBracket/Brace {
+}
+
+.ActionScriptComment {
+	color: #009900;
+	font-style: italic;
+}
+
+.ActionScriptDefault_Text {
+}
+
+.ActionScriptMetadata {
+	color: #0033ff;
+	font-weight: bold;
+}
+
+.ActionScriptOperator {
+}
+
+.ActionScriptReserved {
+	color: #0033ff;
+	font-weight: bold;
+}
+
+.ActionScriptString {
+	color: #990000;
+	font-weight: bold;
+}
+
+.ActionScriptclass {
+	color: #9900cc;
+	font-weight: bold;
+}
+
+.ActionScriptfunction {
+	color: #339966;
+	font-weight: bold;
+}
+
+.ActionScriptinterface {
+	color: #9900cc;
+	font-weight: bold;
+}
+
+.ActionScriptpackage {
+	color: #9900cc;
+	font-weight: bold;
+}
+
+.ActionScripttrace {
+	color: #cc6666;
+	font-weight: bold;
+}
+
+.ActionScriptvar {
+	color: #6699cc;
+	font-weight: bold;
 }
 
