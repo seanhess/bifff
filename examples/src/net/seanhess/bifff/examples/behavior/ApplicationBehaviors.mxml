@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<BehaviorMap xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bifff.seanhess.net/2009">
+<BehaviorMap xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bifff.seanhess.net/2009" xmlns:behavior="net.seanhess.bifff.examples.behavior.*">
 	
 	<mx:Fade id="fade" duration="300"/>
 
 	<Selector match=".fadeChildren > mx.core.Container">
 		<Set hideEffect="{fade}" showEffect="{fade}"/>
+	</Selector>
+	
+	<Selector match=".padding">
+		<behavior:Padding/>
 	</Selector>
 	
 </BehaviorMap>

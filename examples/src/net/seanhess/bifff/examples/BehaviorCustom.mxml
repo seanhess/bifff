@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bifff.seanhess.net/2009" xmlns:behavior="net.seanhess.bifff.examples.behavior.*">
+	
+	<BehaviorMap>
+		<Selector match="#outside">
+			<behavior:Padding/>
+		</Selector>
+		
+		<Selector match="#inside">
+			<behavior:Padding amount="20"/>
+		</Selector>
+	</BehaviorMap>
+	
+	<mx:Box id="outside" backgroundColor="#000000">
+		<mx:Box id="inside" backgroundColor="#00CC00">
+			<mx:Button label="hi"/>
+		</mx:Box>
+	</mx:Box>
+</mx:Canvas>

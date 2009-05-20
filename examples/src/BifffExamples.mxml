@@ -6,7 +6,7 @@
 	<behavior:ApplicationBehaviors/>
 
 	<mx:ViewStack id="mainStack" width="100%" height="100%" styleName="fadeChildren">
-		<mx:Panel width="100%" height="100%" layout="horizontal" title="{selectorsStack.selectedChild.label}" paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10">
+		<mx:Panel width="100%" height="100%" label="Selectors" layout="horizontal" title="{selectorsStack.selectedChild.label}" styleName="padding">
 		
 			<mx:ToggleButtonBar dataProvider="{selectorsStack}" direction="vertical"/>
 		
@@ -21,11 +21,12 @@
 			</mx:ViewStack>
 			
 			<mx:ControlBar>
-				<mx:Button label="Behaviors" click="mainStack.selectedIndex=1"/>
+				<mx:ToggleButtonBar dataProvider="{mainStack}"/>
 			</mx:ControlBar>
+
 					
 		</mx:Panel>
-		<mx:Panel width="100%" height="100%" layout="horizontal" title="{behaviorsStack.selectedChild.label}" paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10">
+		<mx:Panel width="100%" height="100%" label="Behaviors" layout="horizontal" title="{behaviorsStack.selectedChild.label}" styleName="padding">
 		
 			<mx:ToggleButtonBar dataProvider="{behaviorsStack}" direction="vertical"/>
 		
@@ -34,10 +35,27 @@
 				<examples:BehaviorListen label="Listen"/>
 				<examples:BehaviorListenScope label="Scope"/>
 				<examples:BehaviorStyles label="Styles"/>
+				<examples:BehaviorCustom label="Custom: Padding"/>
+				<examples:BehaviorCustomSlide label="Custom: Slide"/>
 			</mx:ViewStack>
 			
 			<mx:ControlBar>
-				<mx:Button label="Selectors" click="mainStack.selectedIndex=0"/>
+				<mx:ToggleButtonBar dataProvider="{mainStack}"/>
+			</mx:ControlBar>
+
+					
+		</mx:Panel>
+		
+		<mx:Panel width="100%" height="100%" label="Other" layout="horizontal" title="{otherStack.selectedChild.label}" styleName="padding">
+		
+			<mx:ToggleButtonBar dataProvider="{otherStack}" direction="vertical"/>
+		
+			<mx:ViewStack id="otherStack" width="100%" height="100%" styleName="fadeChildren">
+				<examples:OtherDataInjection label="Data Injection"/>
+			</mx:ViewStack>
+			
+			<mx:ControlBar>
+				<mx:ToggleButtonBar dataProvider="{mainStack}"/>
 			</mx:ControlBar>
 					
 		</mx:Panel>

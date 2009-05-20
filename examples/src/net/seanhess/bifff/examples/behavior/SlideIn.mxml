@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Object xmlns:mx="http://www.adobe.com/2006/mxml">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.core.UIComponent;
+			
+			public function set target(value:UIComponent):void
+			{
+				value.setStyle("showEffect", show);
+				value.setStyle("hideEffect", hide);
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:Move id="show" xFrom="1000" xTo="0"/>
+	<mx:Move id="hide" xFrom="0" xTo="1000"/>
+	
+</mx:Object>

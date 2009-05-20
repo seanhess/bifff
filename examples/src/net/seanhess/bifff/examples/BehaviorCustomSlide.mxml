@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bifff.seanhess.net/2009" xmlns:behavior="net.seanhess.bifff.examples.behavior.*">
+	
+	<BehaviorMap>
+		<Selector match="#panel">
+			<behavior:SlideIn/>
+		</Selector>
+	</BehaviorMap>
+	
+	<mx:Button label="Show Container" click="panel.visible = true"/>
+	<mx:Button label="Hide Container" click="panel.visible = false"/>
+	
+	<mx:Canvas width="100%" height="100%" horizontalScrollPolicy="off">
+		<mx:Panel id="panel" title="Hello" width="200" height="200" visible="false">
+			
+		</mx:Panel>
+	</mx:Canvas>
+</mx:VBox>

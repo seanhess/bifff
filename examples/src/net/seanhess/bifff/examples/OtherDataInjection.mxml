@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="http://bifff.seanhess.net/2009" xmlns:model="net.seanhess.bifff.examples.model.*">
+	
+	<model:FakeModel id="model"/>
+	
+	<BehaviorMap>
+		<Selector match=".message">
+			<Inject text="{model.message}"/>
+		</Selector>
+	</BehaviorMap>
+	
+	<mx:FormItem label="Message">
+		<mx:Label styleName="message"/>
+		<mx:Label styleName="message"/>
+		<mx:Label styleName="message"/>
+	</mx:FormItem>
+	
+	<mx:TextInput id="input" change="model.message = input.text" styleName="message"/>
+
+</mx:VBox>
