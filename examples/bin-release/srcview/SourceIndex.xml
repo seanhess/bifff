@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index>
+	<title>Source of BifffExamples</title>
+	<nodes>
+		<node label="src">
+			<node label="net.seanhess.bifff.examples" icon="packageIcon" expanded="true">
+				<node label="BehaviorCustom.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/BehaviorCustom.mxml.html"/>
+				<node label="BehaviorCustomSlide.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/BehaviorCustomSlide.mxml.html"/>
+				<node label="BehaviorListen.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/BehaviorListen.mxml.html"/>
+				<node label="BehaviorListenScope.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/BehaviorListenScope.mxml.html"/>
+				<node label="BehaviorSetInject.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/BehaviorSetInject.mxml.html"/>
+				<node label="BehaviorStyles.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/BehaviorStyles.mxml.html"/>
+				<node label="OtherDataInjection.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/OtherDataInjection.mxml.html"/>
+				<node label="SelectByClass.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/SelectByClass.mxml.html"/>
+				<node label="SelectByID.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/SelectByID.mxml.html"/>
+				<node label="SelectByStyleName.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/SelectByStyleName.mxml.html"/>
+				<node label="SelectByTag.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/SelectByTag.mxml.html"/>
+				<node label="SelectDescendants.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/SelectDescendants.mxml.html"/>
+				<node label="SelectMixed.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/SelectMixed.mxml.html"/>
+				<node label="SelectMoreDescendents.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/SelectMoreDescendents.mxml.html"/>
+			</node>
+			<node label="net.seanhess.bifff.examples.behavior" icon="packageIcon" expanded="true">
+				<node label="ApplicationBehaviors.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/behavior/ApplicationBehaviors.mxml.html"/>
+				<node label="Padding.as" icon="actionScriptIcon" url="source/net/seanhess/bifff/examples/behavior/Padding.as.html"/>
+				<node label="SlideIn.mxml" icon="mxmlIcon" url="source/net/seanhess/bifff/examples/behavior/SlideIn.mxml.html"/>
+			</node>
+			<node label="net.seanhess.bifff.examples.model" icon="packageIcon" expanded="true">
+				<node label="FakeModel.as" icon="actionScriptIcon" url="source/net/seanhess/bifff/examples/model/FakeModel.as.html"/>
+			</node>
+			<node selected="true" label="BifffExamples.mxml" icon="mxmlAppIcon" url="source/BifffExamples.mxml.html"/>
+		</node>
+	</nodes>
+</index>
